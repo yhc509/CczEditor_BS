@@ -1,0 +1,230 @@
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\bin\Release\CczEditor.exe
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\bin\Release\CczEditor.pdb
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\ResolveAssemblyReference.cache
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.AboutBox.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ConfigControls.ConfigEditor.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ConfigControls.CopyAndEditDialog.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.ForceData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.ItemsData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.MagicData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.StoreData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.TerrainData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.UnitsData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ExtensionsControls.ForceCategoriesRestraint.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ExtensionsControls.SpecialImageDesignated.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.BaseImsgControl.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.CriticalImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.ForceImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.ItemsImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.MagicImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.RetreatImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.StaffImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.StageImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.UnitsExtensionImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.UnitsOriginalImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.SaveControls.ItemsSave.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Controls.SaveControls.UnitsSave.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.MainForm.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.Properties.Resources.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\GenerateResource.read.1.tlog
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\GenerateResource.write.1.tlog
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.exe
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor\CczEditor\obj\Release\CczEditor.pdb
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\ResolveAssemblyReference.cache
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.AboutBox.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ConfigControls.ConfigEditor.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ConfigControls.CopyAndEditDialog.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.ForceData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.ItemsData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.MagicData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.StoreData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.TerrainData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.UnitsData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ExtensionsControls.ForceCategoriesRestraint.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ExtensionsControls.SpecialImageDesignated.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.BaseImsgControl.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.CriticalImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.ForceImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.ItemsImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.MagicImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.RetreatImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.StaffImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.StageImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.UnitsExtensionImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.UnitsOriginalImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.SaveControls.ItemsSave.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.SaveControls.UnitsSave.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.MainForm.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\GenerateResource.read.1.tlog
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\GenerateResource.write.1.tlog
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.BaseDataControl.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.magicdetail.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.SaveControls.BaseSaveControl.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.SaveControls.Varuable.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.bomul.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.bomuldetail.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.philsal.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.spe.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.DataControls.sangseong.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\bin\Release\CczEditor.exe
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\bin\Release\CczEditor.pdb
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Properties.Resources.resources
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.exe
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.pdb
+D:\My Documents\Downloads\CczEditorSource3.1\사본 - CczEditor\CczEditor\obj\Release\CczEditor.Controls.BaseControl.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.exe
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.pdb
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\ResolveAssemblyReference.cache
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.AboutBox.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.BaseControl.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ConfigControls.ConfigEditor.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ConfigControls.CopyAndEditDialog.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.BaseDataControl.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.bomul.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.bomuldetail.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.ForceData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.ItemsData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.MagicData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.magicdetail.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.philsal.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.sangseong.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.spe.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.StoreData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.TerrainData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.UnitsData.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ExtensionsControls.ForceCategoriesRestraint.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ExtensionsControls.SpecialImageDesignated.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.BaseImsgControl.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.CriticalImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.ForceImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.ItemsImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.MagicImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.RetreatImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.StaffImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.StageImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.UnitsExtensionImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.UnitsOriginalImsg.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.SaveControls.BaseSaveControl.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.SaveControls.ItemsSave.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.SaveControls.UnitsSave.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.SaveControls.Varuable.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.MainForm.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Properties.Resources.resources
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\GenerateResource.read.1.tlog
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\GenerateResource.write.1.tlog
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\bin\Release\CczEditor.exe
+D:\My Documents\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\bin\Release\CczEditor.pdb
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.exe
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.pdb
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\bin\Release\CczEditor.exe
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\bin\Release\CczEditor.pdb
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\ResolveAssemblyReference.cache
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.AboutBox.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.BaseControl.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ConfigControls.ConfigEditor.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ConfigControls.CopyAndEditDialog.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.BaseDataControl.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.bomul.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.bomuldetail.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.ForceData.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.ItemsData.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.MagicData.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.magicdetail.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.philsal.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.sangseong.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.spe.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.StoreData.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.TerrainData.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.UnitsData.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ExtensionsControls.ForceCategoriesRestraint.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ExtensionsControls.SpecialImageDesignated.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.BaseImsgControl.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.CriticalImsg.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.ForceImsg.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.ItemsImsg.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.MagicImsg.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.RetreatImsg.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.StaffImsg.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.StageImsg.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.UnitsExtensionImsg.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.UnitsOriginalImsg.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.SaveControls.BaseSaveControl.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.SaveControls.ItemsSave.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.SaveControls.UnitsSave.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.SaveControls.Varuable.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.MainForm.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Properties.Resources.resources
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\GenerateResource.read.1.tlog
+C:\Users\JYH\Downloads\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\GenerateResource.write.1.tlog
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.exe
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.pdb
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\ResolveAssemblyReference.cache
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.AboutBox.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.BaseControl.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ConfigControls.ConfigEditor.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ConfigControls.CopyAndEditDialog.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.BaseDataControl.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.ForceData.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.ItemsData.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.MagicData.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.sangseong.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.StoreData.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.TerrainData.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.DataControls.UnitsData.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ExtensionsControls.ForceCategoriesRestraint.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ExtensionsControls.SpecialImageDesignated.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.BaseImsgControl.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.CriticalImsg.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.ForceImsg.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.ItemsImsg.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.MagicImsg.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.RetreatImsg.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.StaffImsg.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.StageImsg.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.UnitsExtensionImsg.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.UnitsOriginalImsg.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.SaveControls.BaseSaveControl.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.SaveControls.ItemsSave.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.SaveControls.UnitsSave.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Controls.SaveControls.Varuable.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.MainForm.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\CczEditor.Properties.Resources.resources
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\GenerateResource.read.1.tlog
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\obj\Release\GenerateResource.write.1.tlog
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\bin\Release\CczEditor.exe
+C:\Users\JYH\Desktop\JYH\게임\조조전Mod\제작자료\CczEditorSource3.1\CczEditor 3.13\CczEditor\bin\Release\CczEditor.pdb
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.pdb
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.csprojResolveAssemblyReference.cache
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.AboutBox.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.BaseControl.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ConfigControls.ConfigEditor.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ConfigControls.CopyAndEditDialog.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.DataControls.BaseDataControl.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.DataControls.ForceData.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.DataControls.ItemsData.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.DataControls.MagicData.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.DataControls.sangseong.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.DataControls.StoreData.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.DataControls.TerrainData.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.DataControls.UnitsData.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ExtensionsControls.ForceCategoriesRestraint.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ExtensionsControls.SpecialImageDesignated.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.BaseImsgControl.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.CriticalImsg.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.ForceImsg.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.ItemsImsg.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.MagicImsg.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.RetreatImsg.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.StaffImsg.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.StageImsg.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.UnitsExtensionImsg.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.ImsgControls.UnitsOriginalImsg.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.SaveControls.BaseSaveControl.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.SaveControls.ItemsSave.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Controls.SaveControls.UnitsSave.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.MainForm.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.Properties.Resources.resources
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.csproj.GenerateResource.Cache
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\bin\Release\CczEditor.exe
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\bin\Release\CczEditor.pdb
+C:\Users\yhc50\Desktop\한명남북조\cczeditor 3.13 source\CczEditor\obj\Release\CczEditor.exe

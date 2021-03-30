@@ -1,0 +1,78 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="livetemplates.csharp.usevar">True</setting>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/f:TextBoxControl.cs" caret="0" fromTop="0" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Data/f:SaveData.cs" caret="197" fromTop="14" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/f:Utils.cs" caret="580" fromTop="16" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:CompressionAlgorithms/f:Ls11.cs" caret="236" fromTop="9" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ImsgControls/f:StageImsg.cs" caret="524" fromTop="22" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Data/f:ImsgData.cs" caret="182" fromTop="18" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Resources/f:FaceResources.cs" caret="0" fromTop="0" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/f:MainForm.cs" caret="7550" fromTop="99" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/f:BaseControl.cs" caret="6376" fromTop="19" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Config/f:SystemConfigInfo.cs" caret="0" fromTop="0" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Resources/f:UnitMovResources.cs" caret="85" fromTop="2" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Resources/f:UnitSpcResources.cs" caret="85" fromTop="2" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Resources/f:UnitAtkResources.cs" caret="0" fromTop="0" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:DataControls/f:UnitsData.cs" caret="0" fromTop="0" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ExtensionsControls/f:ForceCategoriesRestraint.cs" caret="300" fromTop="16" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Data/f:FileData.cs" caret="1963" fromTop="42" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ExtensionsControls/f:SpecialImageDesignated.cs" caret="1199" fromTop="27" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Resources/f:ImageResources.cs" caret="10331" fromTop="26" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Config/f:ConfigInfo.cs" caret="1816" fromTop="17" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Config/f:ConfigOperation.cs" caret="4468" fromTop="2" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:DataControls/f:ItemsData.cs" caret="823" fromTop="15" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Data/f:GameData.cs" caret="780" fromTop="41" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ConfigControls/f:ConfigEditor.cs" caret="11791" fromTop="27" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/f:Program.cs" caret="3310" fromTop="26" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:DataControls/f:MagicData.cs" caret="870" fromTop="33" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:DataControls/f:ForceData.cs" caret="747" fromTop="7" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ExtensionsControls/f:SpecialImageDesignated.cs" caret="1199" fromTop="27" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Resources/f:ImageResources.cs" caret="10186" fromTop="22" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Resources/f:ImageResources.cs" caret="10311" fromTop="26" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:DataControls/f:MagicData.cs" caret="544" fromTop="24" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:DataControls/f:MagicData.cs" caret="870" fromTop="33" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:DataControls/f:ForceData.cs" caret="3874" fromTop="19" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ConfigControls/f:ConfigEditor.cs" caret="1718" fromTop="47" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ConfigControls/f:ConfigEditor.cs" caret="1440" fromTop="44" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Config/f:ConfigInfo.cs" caret="2174" fromTop="26" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Config/f:ConfigInfo.cs" caret="1823" fromTop="22" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Config/f:ConfigOperation.cs" caret="4691" fromTop="28" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Config/f:ConfigOperation.cs" caret="4468" fromTop="24" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ConfigControls/f:ConfigEditor.cs" caret="6671" fromTop="24" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ConfigControls/f:ConfigEditor.cs" caret="6969" fromTop="28" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ConfigControls/f:ConfigEditor.cs" caret="12637" fromTop="29" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ConfigControls/f:ConfigEditor.cs" caret="13149" fromTop="157" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Data/f:GameData.cs" caret="579" fromTop="26" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Data/f:GameData.cs" caret="579" fromTop="35" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Data/f:GameData.cs" caret="579" fromTop="19" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Data/f:GameData.cs" caret="579" fromTop="28" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Data/f:GameData.cs" caret="579" fromTop="49" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Data/f:GameData.cs" caret="579" fromTop="30" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Data/f:GameData.cs" caret="10084" fromTop="30" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:DataControls/f:ForceData.cs" caret="555" fromTop="22" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:DataControls/f:ForceData.cs" caret="1499" fromTop="41" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:DataControls/f:ForceData.cs" caret="2475" fromTop="31" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:DataControls/f:MagicData.cs" caret="5235" fromTop="33" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ConfigControls/f:ConfigEditor.cs" caret="12637" fromTop="24" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ConfigControls/f:ConfigEditor.cs" caret="11525" fromTop="18" />
+      <File id="768DD419-FB3C-4127-B8C6-4EB8490C1779/d:Controls/d:ConfigControls/f:ConfigEditor.cs" caret="12610" fromTop="42" />
+    </RecentEdits>
+  </RecentFiles>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+</Configuration>

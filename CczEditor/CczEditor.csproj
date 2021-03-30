@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{768DD419-FB3C-4127-B8C6-4EB8490C1779}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CczEditor</RootNamespace>
+    <AssemblyName>CczEditor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>1.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>3.2.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CczEditor.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CompressionAlgorithms\Ls11.cs" />
+    <Compile Include="CompressionAlgorithms\Ls11IndexInfo.cs" />
+    <Compile Include="CompressionAlgorithms\Ls11IndexInfoCollection.cs" />
+    <Compile Include="Config\ConfigInfo.cs" />
+    <Compile Include="Config\ConfigInfoCollection.cs" />
+    <Compile Include="Config\ConfigOperation.cs" />
+    <Compile Include="Config\ItemConfigInfo.cs" />
+    <Compile Include="Config\SystemConfigInfo.cs" />
+    <Compile Include="Controls\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BaseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ConfigControls\ConfigEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ConfigControls\ConfigEditor.Designer.cs">
+      <DependentUpon>ConfigEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ConfigControls\CopyAndEditDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ConfigControls\CopyAndEditDialog.Designer.cs">
+      <DependentUpon>CopyAndEditDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataControls\BaseDataControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataControls\BaseDataControl.Designer.cs">
+      <DependentUpon>BaseDataControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataControls\ForceData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataControls\ForceData.Designer.cs">
+      <DependentUpon>ForceData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataControls\ItemsData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataControls\ItemsData.Designer.cs">
+      <DependentUpon>ItemsData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataControls\MagicData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataControls\MagicData.Designer.cs">
+      <DependentUpon>MagicData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataControls\MoveUnits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\DataControls\MoveUnits.Designer.cs">
+      <DependentUpon>MoveUnits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataControls\sangseong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\DataControls\sangseong.designer.cs">
+      <DependentUpon>sangseong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataControls\StoreData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataControls\StoreData.Designer.cs">
+      <DependentUpon>StoreData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataControls\TerrainData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataControls\TerrainData.Designer.cs">
+      <DependentUpon>TerrainData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataControls\UnitsData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataControls\UnitsData.Designer.cs">
+      <DependentUpon>UnitsData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExtensionsControls\ForceCategoriesRestraint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ExtensionsControls\ForceCategoriesRestraint.Designer.cs">
+      <DependentUpon>ForceCategoriesRestraint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExtensionsControls\SpecialImageDesignated.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ExtensionsControls\SpecialImageDesignated.Designer.cs">
+      <DependentUpon>SpecialImageDesignated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\BaseImsgControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\BaseImsgControl.Designer.cs">
+      <DependentUpon>BaseImsgControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\CriticalImsg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\CriticalImsg.Designer.cs">
+      <DependentUpon>CriticalImsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\ForceImsg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\ForceImsg.Designer.cs">
+      <DependentUpon>ForceImsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\ItemsImsg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\ItemsImsg.Designer.cs">
+      <DependentUpon>ItemsImsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\MagicImsg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\MagicImsg.Designer.cs">
+      <DependentUpon>MagicImsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\RetreatImsg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\RetreatImsg.Designer.cs">
+      <DependentUpon>RetreatImsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\StaffImsg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\StaffImsg.Designer.cs">
+      <DependentUpon>StaffImsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\StageImsg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\StageImsg.Designer.cs">
+      <DependentUpon>StageImsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\UnitsExtensionImsg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\UnitsExtensionImsg.Designer.cs">
+      <DependentUpon>UnitsExtensionImsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\UnitsOriginalImsg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImsgControls\UnitsOriginalImsg.Designer.cs">
+      <DependentUpon>UnitsOriginalImsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NumericControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SaveControls\BaseSaveControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SaveControls\BaseSaveControl.Designer.cs">
+      <DependentUpon>BaseSaveControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SaveControls\ItemsSave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SaveControls\ItemsSave.Designer.cs">
+      <DependentUpon>ItemsSave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SaveControls\UnitsSave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SaveControls\UnitsSave.Designer.cs">
+      <DependentUpon>UnitsSave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextBoxControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\Exedata.cs" />
+    <Compile Include="Data\FileData.cs" />
+    <Compile Include="Data\GameData.cs" />
+    <Compile Include="Data\ImsgData.cs" />
+    <Compile Include="Data\SavebData.cs" />
+    <Compile Include="Data\SaveData.cs" />
+    <Compile Include="Data\Stardata.cs" />
+    <Compile Include="Data\Wrapper\UnitData.cs" />
+    <Compile Include="Data\Wrapper\WrapperData.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\ObjectCopier.cs" />
+    <EmbeddedResource Include="Controls\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\BaseControl.resx">
+      <DependentUpon>BaseControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ConfigControls\ConfigEditor.resx">
+      <DependentUpon>ConfigEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ConfigControls\CopyAndEditDialog.resx">
+      <DependentUpon>CopyAndEditDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataControls\BaseDataControl.resx">
+      <DependentUpon>BaseDataControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataControls\ForceData.resx">
+      <DependentUpon>ForceData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataControls\ItemsData.resx">
+      <DependentUpon>ItemsData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataControls\MagicData.resx">
+      <DependentUpon>MagicData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataControls\MoveUnits.resx">
+      <DependentUpon>MoveUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataControls\sangseong.resx">
+      <DependentUpon>sangseong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataControls\StoreData.resx">
+      <DependentUpon>StoreData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataControls\TerrainData.resx">
+      <DependentUpon>TerrainData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataControls\UnitsData.resx">
+      <DependentUpon>UnitsData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ExtensionsControls\ForceCategoriesRestraint.resx">
+      <DependentUpon>ForceCategoriesRestraint.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ExtensionsControls\SpecialImageDesignated.resx">
+      <DependentUpon>SpecialImageDesignated.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImsgControls\BaseImsgControl.resx">
+      <DependentUpon>BaseImsgControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImsgControls\CriticalImsg.resx">
+      <DependentUpon>CriticalImsg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImsgControls\ForceImsg.resx">
+      <DependentUpon>ForceImsg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImsgControls\ItemsImsg.resx">
+      <DependentUpon>ItemsImsg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImsgControls\MagicImsg.resx">
+      <DependentUpon>MagicImsg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImsgControls\RetreatImsg.resx">
+      <DependentUpon>RetreatImsg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImsgControls\StaffImsg.resx">
+      <DependentUpon>StaffImsg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImsgControls\StageImsg.resx">
+      <DependentUpon>StageImsg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImsgControls\UnitsExtensionImsg.resx">
+      <DependentUpon>UnitsExtensionImsg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImsgControls\UnitsOriginalImsg.resx">
+      <DependentUpon>UnitsOriginalImsg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SaveControls\BaseSaveControl.resx">
+      <DependentUpon>BaseSaveControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SaveControls\ItemsSave.resx">
+      <DependentUpon>ItemsSave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SaveControls\UnitsSave.resx">
+      <DependentUpon>UnitsSave.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Resources\EffareaResources.cs" />
+    <Compile Include="Resources\FaceResources.cs" />
+    <Compile Include="Resources\HitareaResources.cs" />
+    <Compile Include="Resources\IconResources.cs" />
+    <Compile Include="Resources\ImageResources.cs" />
+    <Compile Include="Resources\ItemResources.cs" />
+    <Compile Include="Resources\JpgResources.cs" />
+    <Compile Include="Resources\PmapobjResources.cs" />
+    <Compile Include="Resources\UnitAtkResources.cs" />
+    <Compile Include="Resources\UnitImageResources.cs" />
+    <Compile Include="Resources\UnitMovResources.cs" />
+    <Compile Include="Resources\UnitSpcResources.cs" />
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\ccz.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="1.ico" />
+    <Content Include="aa.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
