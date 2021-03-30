@@ -80,11 +80,10 @@
     <Compile Include="CompressionAlgorithms\Ls11.cs" />
     <Compile Include="CompressionAlgorithms\Ls11IndexInfo.cs" />
     <Compile Include="CompressionAlgorithms\Ls11IndexInfoCollection.cs" />
-    <Compile Include="Config\ConfigInfo.cs" />
-    <Compile Include="Config\ConfigInfoCollection.cs" />
-    <Compile Include="Config\ConfigOperation.cs" />
-    <Compile Include="Config\ItemConfigInfo.cs" />
-    <Compile Include="Config\SystemConfigInfo.cs" />
+    <Compile Include="Config\New\Config.cs" />
+    <Compile Include="Config\New\ConfigManager.cs" />
+    <Compile Include="Config\New\ConfigUtils.cs" />
+    <Compile Include="Config\New\SystemConfig.cs" />
     <Compile Include="Controls\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>

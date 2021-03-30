@@ -10,101 +10,132 @@ using System.Windows.Forms;
 
 namespace CczEditor.Data
 {
-    public class ExeData : FileData
+    public static class ExeData
     {
-
-        byte[] byte2 = new byte[2];
-        byte[] byte1 = new byte[1];
-        byte[] byte10 = new byte[0x10];
-
-        public ExeData(string fileName) : base(fileName)
+        private static string ExePath
         {
+            get
+            {
+                var config = Config.New.Config.Read(Config.New.SystemConfig.Inst.CurrentConfig);
+                var path = config.DirectoryPath;
+                var exeFileName = config.ExeFileName;
+
+                return Path.Combine(path, exeFileName);
+            }
         }
-        //능력명
-        public Dictionary<int, string> EffectsNames(bool hasFormater, Dictionary<int, string> list, int offset, int count)
+
+        public static bool IsLocked
         {
-            var name = new byte[18];
-            CurrentStream.Seek(offset, SeekOrigin.Begin);
-            CurrentStream.Read(name, 0, 18);
-            list.Add(count, hasFormater ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, count, Utils.ByteToString(name)) : Utils.ByteToString(name));
-            return list;
+            get
+            {
+                try
+                {
+                    var CurrentFile = new FileInfo(ExePath);
+                    using (FileStream stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.None))
+                    {
+                        stream.Close();
+                    }
+                }
+                catch (IOException)
+                {
+                    return true;
+                }
+                
+                return false;
+            }
+        }
+
+        public static string GetText(int offset, int length)
+        {
+            byte[] text = new byte[length];
+
+            var CurrentFile = new FileInfo(ExePath);
+            using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                stream.Seek(offset, SeekOrigin.Begin);
+                stream.Read(text, 0, length);
+                stream.Close();
+            }
+            return Utils.ByteToString(text);
+        }
+                         
+        public static ushort ReadWord(int select,int offset)
+        {
+            var binary = new byte[2];
+            var CurrentFile = new FileInfo(ExePath);
+            using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                stream.Seek(offset + select * 2, SeekOrigin.Begin);
+                stream.Read(binary, 0, 2);
+                stream.Close();
+            }
+            return (ushort) (binary[0] + binary[1] * 0x100);
+        }
+
+        public static void WriteWord(int value,int select,int offset)
+        {
+            var binary = BitConverter.GetBytes((short)value);
+            var CurrentFile = new FileInfo(ExePath);
+            using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.Write))
+            {
+                stream.Seek(offset + select * 2, SeekOrigin.Begin);
+                stream.Write(binary, 0, 2);
+                stream.Flush();
+                stream.Close();
+            }
         }
         
-        //계열명
-        public List<string> ForceCategoryNames(bool hasFormater, List<string> list, int offset, int count)
+        public static byte ReadByte(int select, int offset)
         {
-            var name = new byte[8];
-            CurrentStream.Seek(offset, SeekOrigin.Begin);
-            CurrentStream.Read(name, 0, 8);
-            list.Add(hasFormater ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, count, Utils.ByteToString(name)) : Utils.ByteToString(name));
-            return list;
+            var binary = new byte[1];
+            var CurrentFile = new FileInfo(ExePath);
+            using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                stream.Seek(offset + select, SeekOrigin.Begin);
+                stream.Read(binary, 0, 1);
+                stream.Close();
+            }
+            return (binary[0]);
         }
-        public string ForceCategoryNames2(int offset)
+
+        public static void WriteByte(int value, int select, int offset)
         {
-            var name = new byte[8];
-            CurrentStream.Seek(offset, SeekOrigin.Begin);
-            CurrentStream.Read(name, 0, 8);            
-            return Utils.ByteToString(name);
+            var binary = BitConverter.GetBytes((short)value);
+            var CurrentFile = new FileInfo(ExePath);
+            using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.Write))
+            {
+                stream.Seek(offset + select, SeekOrigin.Begin);
+                stream.Write(binary, 0, 1);
+                stream.Flush();
+                stream.Close();
+            }
         }
-        //병종명
-        public List<string> ForceNames(bool hasFormater, List<string> list, int offset, int count)
-           {
-            var name = new byte[8];
-            CurrentStream.Seek(offset, SeekOrigin.Begin);
-            CurrentStream.Read(name, 0, 8);
-            list.Add(hasFormater ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, count, Utils.ByteToString(name)) : Utils.ByteToString(name));//i
-            return list;
-        }
-        //보물도감
-          public void bomulsave(int count)
-          {
-              var offset = 0x6FF8C;
-              var temp = new byte[1];
-              CurrentStream.Seek(offset, SeekOrigin.Begin);
-              CurrentStream.WriteByte((byte)(count-1));
-          }
 
-        //2byte
-          public ushort ReadWord(int select,int offset)
-          {
-              CurrentStream.Seek((int)offset + select * 2, SeekOrigin.Begin);
-              CurrentStream.Read(byte2, 0, 2);
-              return (ushort) (byte2[0] + byte2[1] * 0x100);
-          }
+        /*
+        public void bomulsave(int count)
+        {
+            
+            var offset = 0x6FF8C;
+            var temp = new byte[1];
 
-          public void WriteWord(int value,int select,int offset)
-          {
-              byte2 = BitConverter.GetBytes((short)value);
-              CurrentStream.Seek((int)offset + select * 2, SeekOrigin.Begin);
-              CurrentStream.Write(byte2, 0, 2);
-              
-          }
+            var CurrentFile = new FileInfo(ExePath);
+            using (var CurrentStream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.Write))
+            {
+                CurrentStream.Seek(offset, SeekOrigin.Begin);
+                CurrentStream.WriteByte((byte)(count - 1));
+            }
+         }*/
 
-        //1byte
-          public byte ReadByte(int select, int offset)
-          {
-              CurrentStream.Seek((int)offset + select, SeekOrigin.Begin);
-              CurrentStream.Read(byte1, 0, 1);
-              return (byte1[0]);
-          }
-          public void WriteByte(int value, int select, int offset)
-          {
-              byte1 = BitConverter.GetBytes((byte)value);
-              CurrentStream.Seek((int)offset + select, SeekOrigin.Begin);
-              CurrentStream.Write(byte1, 0, 1);
-          }
-
+        /*
           //책략
-          public byte magicload(int select,string choice)
+          public byte magicload(int select, int offset)
           {
-              int offset=Program.CurrentConfig.Offsets[choice];
-              CurrentStream.Seek(offset + select, SeekOrigin.Begin);
-              CurrentStream.Read(byte1, 0, 1);
-              return byte1[0];
+            CurrentStream.Seek(offset + select, SeekOrigin.Begin);
+                CurrentStream.Read(byte1, 0, 1);
+                return byte1[0];
           }
-          public void magicsave(int select, string choice, byte magic)
+          public void magicsave(int select, int offset, byte magic)
           {
-              int offset = Program.CurrentConfig.Offsets[choice];
               byte1[0] = magic;
               CurrentStream.Seek((int)offset + select, SeekOrigin.Begin);
               CurrentStream.Write(byte1, 0, 1);
@@ -128,14 +159,14 @@ namespace CczEditor.Data
         //회심대사
           public byte readCritical(int SelectedIndex)
           {
-              int offset = Program.CurrentConfig.Offsets["Exe_Critical_Offset"] + SelectedIndex * 4;
+              int offset = Program.CurrentConfig.Exe.CriticalOffset + SelectedIndex * 4;
               CurrentStream.Seek(offset, SeekOrigin.Begin);
               CurrentStream.Read(byte1, 0, 1);
               return byte1[0];
           }
           public void saveCritical(int SelectedIndex,int index)
           {
-              int offset = Program.CurrentConfig.Offsets["Exe_Critical_Offset"] + SelectedIndex * 4;
+              int offset = Program.CurrentConfig.Exe.CriticalOffset + SelectedIndex * 4;
               byte1 = BitConverter.GetBytes((short)index);
               CurrentStream.Seek(offset, SeekOrigin.Begin);
               CurrentStream.Write(byte1, 0, 1);
@@ -147,6 +178,7 @@ namespace CczEditor.Data
               CurrentStream.Seek((int)magicoffset + select, SeekOrigin.Begin);
               CurrentStream.Read(byte1, 0, 1);
               return byte1[0];
+            return 0;
           }
           public void forcesave(int select, string choice, byte magic)
           {
@@ -162,6 +194,6 @@ namespace CczEditor.Data
               CurrentStream.Seek(offset, SeekOrigin.Begin);
               CurrentStream.Write(bytes, 0, length);
           }
-
-        }	
+        */
     }
+}

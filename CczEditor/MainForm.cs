@@ -30,8 +30,8 @@ namespace CczEditor
 		}
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-                        LoadConfigurationTypeNames();
-						LoadFileList();
+             LoadConfigurationTypeNames();
+			 //LoadFileList();
 		}
 
 		#endregion
@@ -62,17 +62,17 @@ namespace CczEditor
 
 		private void tsmiMainMenu_File_LoadData_Click(object sender, EventArgs e)
 		{
-			LoadDataFile(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_DATA));
+			LoadDataFile(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_DATA));
 		}
 
 		private void tsmiMainMenu_File_LoadImsg_Click(object sender, EventArgs e)
 		{
-			LoadImsgFile(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_IMSG));
+			LoadImsgFile(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_IMSG));
 		}
 
 		private void tscbMainMenu_File_LoadSave_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			LoadSaveFile(Path.Combine(Program.CurrentConfig.DataFileDirectory, string.Format("{0}.e5s", ((ToolStripComboBox)sender).SelectedItem)));
+			LoadSaveFile(Path.Combine(Program.CurrentConfig.DirectoryPath, string.Format("{0}.e5s", ((ToolStripComboBox)sender).SelectedItem)));
 		}
 
 		private void tsmiMainMenu_File_ExitApplication_Click(object sender, EventArgs e)
@@ -189,20 +189,21 @@ namespace CczEditor
         private void tscbMainMenu_Config_Selector_SelectedIndexChanged(object sender, EventArgs e)
         {
             var control = (ToolStripComboBox)sender;
-            var typeName = TypeNames.Keys.ToList()[control.SelectedIndex];
-            if (ConfigOperation.Configs.ContainsKey(typeName) || ConfigOperation.LoadConfig(typeName))
+            var configFileName = ConfigList.Keys.ToList()[control.SelectedIndex];
+
+            if(File.Exists(configFileName))
             {
-                ConfigOperation.SystemConfig.CurrentType = typeName;
-                ConfigOperation.SetCurrentConfig(typeName);
+                var config = Config.New.Config.Read(configFileName);
+                Config.New.SystemConfig.Inst.CurrentConfig = configFileName;
                 SetControlsVisible(false, false, false);
                 pMainContainer.Controls.Clear();
                 Text = Program.TitleNameCurrent = string.Format("{0} - {1}", Program.TITLE_NAME_ORIGINAL, Program.CurrentConfig.DisplayName);
                 LoadFileList();
-                tsmiMainMenu_Config_CopyEditor.Enabled = tsmiMainMenu_Config_Editor.Enabled = control.SelectedIndex != -1;               
+                tsmiMainMenu_Config_Editor.Enabled = control.SelectedIndex != -1;
             }
             else
             {
-                TypeNames.Remove(typeName);
+                ConfigList.Remove(configFileName);
                 control.Items.RemoveAt(control.SelectedIndex);
                 if (control.Items.Count > 0)
                 {
@@ -215,7 +216,7 @@ namespace CczEditor
         {
             var editor = new ConfigEditor
             {
-                TypeName = ConfigOperation.SystemConfig.CurrentType,
+                ConfigFileName = Config.New.SystemConfig.Inst.CurrentConfig,
                 Location = new Point(0, 0),
                 Dock = DockStyle.Fill
             };
@@ -224,7 +225,7 @@ namespace CczEditor
         }
 
         private void tsmiMainMenu_Config_CopyEditor_Click(object sender, EventArgs e)
-        {
+        {/*
             var dialog = new CopyAndEditDialog
             {
                 Owner = this,
@@ -247,18 +248,18 @@ namespace CczEditor
                 };
                 pMainContainer.Controls.Clear();
                 pMainContainer.Controls.Add(editor);
-            }
+            }*/
         }
 
         private void tsmiMainMenu_Config_LoadAll_Click(object sender, EventArgs e)
         {
-            LoadConfigurationTypeNames();
-            ConfigOperation.Configs.Clear();
-            tscbMainMenu_Config_Selector_SelectedIndexChanged(tscbMainMenu_Config_Selector, new EventArgs());
+            //LoadConfigurationTypeNames();
+            //ConfigOperation.Configs.Clear();
+            //tscbMainMenu_Config_Selector_SelectedIndexChanged(tscbMainMenu_Config_Selector, new EventArgs());
         }
 
         private void tsmiMainMenu_Config_SaveAll_Click(object sender, EventArgs e)
-        {
+        {/*
             if (TypeNames.Count <= 0)
             {
                 return;
@@ -269,7 +270,7 @@ namespace CczEditor
                 {
                     ConfigOperation.Configs[typeName.Key].WriteXml();
                 }
-            }
+            }*/
         }
 
         #endregion
@@ -288,11 +289,11 @@ namespace CczEditor
 
 		#region 정의
 
-		public static Dictionary<string, string> TypeNames;
+		public static Dictionary<string, string> ConfigList;
 
 		#endregion
 
-		#region 정의방법
+		#region 데이터 로드
 
 		private void ShowEditor(Control control)
 		{
@@ -317,7 +318,7 @@ namespace CczEditor
 			var ofd = new OpenFileDialog
 			          {
 			          	Filter = index == 3 ? "조조전 Save 파일|Sv0?d.e5s" : "조조전 구성 파일|*.e5",
-			          	InitialDirectory = Program.CurrentConfig.DataFileDirectory
+			          	InitialDirectory = Program.CurrentConfig.DirectoryPath
 			          };
 			if (DialogResult.OK == ofd.ShowDialog() && !string.IsNullOrEmpty(ofd.FileName) && File.Exists(ofd.FileName))
 			{
@@ -356,19 +357,16 @@ namespace CczEditor
 		{
 			var fbd = new FolderBrowserDialog
 			          {
-			          	SelectedPath = Program.CurrentConfig.DataFileDirectory,
+			          	SelectedPath = Program.CurrentConfig.DirectoryPath,
 			          	Description = "경로를 설정해주세요!"
 			          };
 			if (DialogResult.OK != fbd.ShowDialog() || string.IsNullOrEmpty(fbd.SelectedPath) || !Directory.Exists(fbd.SelectedPath))
 			{
 				return;
 			}
-			Program.CurrentConfig.DataFileDirectory = fbd.SelectedPath;
-			Program.CurrentConfig.WriteXml();
+			Program.CurrentConfig.DirectoryPath = fbd.SelectedPath;
+            Config.New.Config.Write(Program.CurrentConfig, Program.CurrentConfig.FileName);
 			LoadFileList();
-            Program.ExeData = new ExeData(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.CurrentConfig.Exename));
-          
-            ConfigOperation.Configs.Clear();
 		}
 
 		private void LoadDataFile(string fileName)
@@ -377,7 +375,7 @@ namespace CczEditor
 			{
 				Program.GameData = new GameData(fileName);
 				Program.ImsgData = null;
-				Program.SaveData = null;
+				//Program.SaveData = null;
 			}
 			catch (Exception ex)
 			{
@@ -394,7 +392,7 @@ namespace CczEditor
 			{
 				Program.GameData = null;
 				Program.ImsgData = new ImsgData(fileName);
-				Program.SaveData = null;
+				//Program.SaveData = null;
 			}
 			catch (Exception ex)
 			{
@@ -407,7 +405,7 @@ namespace CczEditor
 
 		private void LoadSaveFile(string fileName)
 		{
-			try
+			/*try
 			{
 				Program.GameData = null;
 				Program.ImsgData = null;
@@ -419,31 +417,33 @@ namespace CczEditor
 				return;
 			}
 			SetControlsVisible(false, false, true);
-			tsmiMainMenu_Save_Units_Click(tsmiMainMenu_Save_Units, new EventArgs());
+			tsmiMainMenu_Save_Units_Click(tsmiMainMenu_Save_Units, new EventArgs());*/
 		}
+
         private void LoadConfigurationTypeNames()
         {
             tscbMainMenu_Config_Selector.Items.Clear();
-            TypeNames = ConfigOperation.GetConfigTypeNames();
-            tscbMainMenu_Config_Selector.Items.AddRange(TypeNames.Values.ToArray());
+            ConfigList = Config.New.ConfigManager.GetConfigs();
+            tscbMainMenu_Config_Selector.Items.AddRange(ConfigList.Values.ToArray());
             tscbMainMenu_Config_Selector.Width += 50;
-            var index = TypeNames.Keys.ToList().IndexOf(ConfigOperation.SystemConfig.CurrentType);
+            var index = ConfigList.Keys.ToList().IndexOf(Config.New.SystemConfig.Inst.CurrentConfig);
             index = index == -1 ? 0 : index;
             tscbMainMenu_Config_Selector.SelectedIndex = index;
         }
 
 		private void LoadFileList()
 		{
-			if (Program.CurrentConfig == null || string.IsNullOrEmpty(Program.CurrentConfig.DataFileDirectory) || !Directory.Exists(Program.CurrentConfig.DataFileDirectory))
+            
+			if (Program.CurrentConfig == null || string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) || !Directory.Exists(Program.CurrentConfig.DirectoryPath))
 			{
 				tsmiMainMenu_File_LoadData.Enabled = tsmiMainMenu_File_LoadImsg.Enabled = tscbMainMenu_File_LoadSave.Enabled = false;
 				return;
 			}
 			try
 			{
-				tsmiMainMenu_File_LoadData.Enabled = File.Exists(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_DATA));
-				tsmiMainMenu_File_LoadImsg.Enabled = File.Exists(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_IMSG));
-				var saves = Directory.GetFiles(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_SAVE, SearchOption.TopDirectoryOnly);
+				tsmiMainMenu_File_LoadData.Enabled = File.Exists(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_DATA));
+				tsmiMainMenu_File_LoadImsg.Enabled = File.Exists(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_IMSG));
+				var saves = Directory.GetFiles(Program.CurrentConfig.DirectoryPath, Program.FILENAME_SAVE, SearchOption.TopDirectoryOnly);
 				tscbMainMenu_File_LoadSave.Items.Clear();
 				if (saves.Length > 0)
 				{
@@ -467,6 +467,6 @@ namespace CczEditor
 			}
         }
 
-        #endregion   
+        #endregion
     }
 }

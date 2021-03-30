@@ -8,15 +8,15 @@ namespace CczEditor.Controls.SaveControls
 {
 	public partial class BaseSaveControl : BaseControl
 	{
-		protected SaveData SaveData;
+		//protected SaveData SaveData;
 
 		public BaseSaveControl()
 		{
 			InitializeComponent();
-			if (Program.SaveData != null)
+			/*if (Program.SaveData != null)
 			{
 				SaveData = Program.SaveData;
-			}
+			}*/
 		}
 	}
 }

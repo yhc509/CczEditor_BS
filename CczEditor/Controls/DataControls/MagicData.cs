@@ -15,7 +15,8 @@ namespace CczEditor.Controls.DataControls
 		public MagicData()
 		{
 			InitializeComponent();
-            mda1.Enabled = mda2.Enabled = dp1.Enabled = dp2.Enabled = dp3.Enabled = dp4.Enabled = m0.Enabled = m1.Enabled = m2.Enabled = m3.Enabled = m4.Enabled = m5.Enabled = m6.Enabled = m7.Enabled = m8.Enabled = m9.Enabled = button1.Enabled = ExeDataLoaded;
+            mda1.Enabled = mda2.Enabled = dp1.Enabled = dp2.Enabled = dp3.Enabled = dp4.Enabled = m0.Enabled = 
+                m1.Enabled = m2.Enabled = m3.Enabled = m4.Enabled = m5.Enabled = m6.Enabled = m7.Enabled = m8.Enabled = m9.Enabled = button1.Enabled = true;
 			txtImsg.Enabled = ImsgDataLoaded;
 			GetResourcesHitarea();
 			GetResourcesEffarea();
@@ -23,14 +24,14 @@ namespace CczEditor.Controls.DataControls
 
 		private void MagicData_Load(object sender, EventArgs e)
 		{
-			cbHitarea.Items.AddRange(Program.CurrentConfig.Hitareas.ToArray());
-			cbEffarea.Items.AddRange(Program.CurrentConfig.Effareas.ToArray());
+			cbHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
+			cbEffarea.Items.AddRange(Program.CurrentConfig.EffAreaNames.ToArray());
             var forceNames = Program.CurrentConfig.ForceNames;
             for (var i = 0; i < forceNames.Count; i++)
             {
-                var item = new ListViewItem("0");
+               /* var item = new ListViewItem("0");
                 item.SubItems.Add(forceNames[i]);
-                lvLearnLv.Items.Add(item);
+                lvLearnLv.Items.Add(item);*/
             }
 			lbList.Items.AddRange(GameData.MagicNameList(true).ToArray());
 			lbList.SelectedIndex = 0;
@@ -52,7 +53,7 @@ namespace CczEditor.Controls.DataControls
 			cbEffarea.SelectedIndex = magic[14];
 			ncMpCost.Value = magic[15];
 			ncMagicIcon.Value = magic[16];
-			for (var i = 0; i < Program.CurrentConfig.Forces.Count; i++)
+			for (var i = 0; i < Program.CurrentConfig.ForceNames.Count; i++)
 			{
 				lvLearnLv.Items[i].Text = magic[17+i].ToString();
 			}
@@ -60,12 +61,16 @@ namespace CczEditor.Controls.DataControls
 			{
 				btnImsgRestore_Click();
 			}
+            /*
             if (ExeDataLoaded)
             {
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_MagicT_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_MagicT_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.MagicTypeStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.MagicTypeEndIndex)
                 {
                     m0.Enabled = true;
-                    m0.SelectedIndex = Program.ExeData.magicload(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_MagicT_Start"]), "Exe_Magic_MagicT_Offset");
+                    m0.SelectedIndex = Data.ExeData.magicload(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.MagicTypeStartIndex),
+                        Program.CurrentConfig.Exe.Magic.MagicTypeOffset);
                 }
                 else
                 {
@@ -73,10 +78,13 @@ namespace CczEditor.Controls.DataControls
                     m0.SelectedIndex = -1;
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_DamgT_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_DamgT_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.DamageTypeStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.DamageTypeEndIndex)
                 {
                     m1.Enabled = true;
-                    m1.SelectedIndex = Program.ExeData.magicload(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_DamgT_Start"]), "Exe_Magic_DamgT_Offset");
+                    m1.SelectedIndex = Data.ExeData.magicload(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.DamageTypeStartIndex),
+                        Program.CurrentConfig.Exe.Magic.DamageTypeOffset);
                 }
                 else
                 {
@@ -84,10 +92,13 @@ namespace CczEditor.Controls.DataControls
                     m1.SelectedIndex = -1;
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_CureT_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_CureT_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.HealTypeStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.HealTypeEndIndex)
                 {
                     m2.Enabled = true;
-                    m2.SelectedIndex = Program.ExeData.magicload(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_CureT_Start"]), "Exe_Magic_CureT_Offset");
+                    m2.SelectedIndex = Data.ExeData.magicload(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.HealTypeStartIndex),
+                        Program.CurrentConfig.Exe.Magic.HealTypeOffset);
                 }
                 else
                 {
@@ -95,10 +106,13 @@ namespace CczEditor.Controls.DataControls
                     m2.SelectedIndex = -1;
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_Meff_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_Meff_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.MeffStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.MeffEndIndex)
                 {
                     m3.Enabled = true;
-                    m3.Value = Program.ExeData.magicload(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_Meff_Start"]), "Exe_Magic_Meff_Offset");
+                    m3.Value = Data.ExeData.magicload(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.MeffStartIndex),
+                        Program.CurrentConfig.Exe.Magic.MeffOffset);
                 }
                 else
                 {
@@ -106,10 +120,13 @@ namespace CczEditor.Controls.DataControls
                     m3.Value = 0;
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_Mcall_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_Mcall_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.McallStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.McallEndIndex)
                 {
                     m4.Enabled = true;
-                    m4.SelectedIndex = Program.ExeData.magicload(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_Mcall_Start"]), "Exe_Magic_Mcall_Offset");
+                    m4.SelectedIndex = Data.ExeData.magicload(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.McallStartIndex),
+                        Program.CurrentConfig.Exe.Magic.McallOffset);
                    
                 }
                 else
@@ -118,10 +135,13 @@ namespace CczEditor.Controls.DataControls
                     m4.SelectedIndex = -1;
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_AI_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_AI_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.AiTypeStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.AiTypeEndIndex)
                 {
                     m5.Enabled = true;
-                    m5.SelectedIndex = Program.ExeData.magicload(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_AI_Start"]), "Exe_Magic_AI_Offset");
+                    m5.SelectedIndex = Data.ExeData.magicload(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.AiTypeStartIndex),
+                       Program.CurrentConfig.Exe.Magic.AiTypeOffset);
 
                 }
                 else
@@ -130,10 +150,13 @@ namespace CczEditor.Controls.DataControls
                     m5.SelectedIndex = -1;
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_Cond_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_Cond_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.UseConditionStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.UseConditionEndIndex)
                 {
                     m6.Enabled = true;
-                    m6.SelectedIndex = Program.ExeData.magicload(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_Cond_Start"]), "Exe_Magic_Cond_Offset");
+                    m6.SelectedIndex = Data.ExeData.magicload(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.UseConditionStartIndex),
+                        Program.CurrentConfig.Exe.Magic.UseConditionOffset);
 
                 }
                 else
@@ -142,10 +165,13 @@ namespace CczEditor.Controls.DataControls
                     m6.SelectedIndex = -1;
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_Learn_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_Learn_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.LearTypeStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.LearTypeEndIndex)
                 {
                     m7.Enabled = true;
-                    m7.Value = Program.ExeData.magicload(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_Learn_Start"]), "Exe_Magic_Learn_Offset");
+                    m7.Value = Program.ExeData.magicload(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.LearTypeStartIndex),
+                        Program.CurrentConfig.Exe.Magic.LearTypeOffset);
 
                 }
                 else
@@ -154,10 +180,13 @@ namespace CczEditor.Controls.DataControls
                     m7.Value = -1;
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_Damg_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_Damg_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.DamageValueStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.DamageValueEndIndex)
                 {
                     m8.Enabled = true;
-                    m8.Value = Program.ExeData.magicload(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_Damg_Start"]), "Exe_Magic_Damg_Offset");
+                    m8.Value = Program.ExeData.magicload(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.DamageValueStartIndex),
+                        Program.CurrentConfig.Exe.Magic.DamageValueOffset);
 
                 }
                 else
@@ -166,10 +195,13 @@ namespace CczEditor.Controls.DataControls
                     m8.Value = 0;
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_HitP_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_HitP_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.AccRateStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.AccRateEndIndex)
                 {
                     m9.Enabled = true;
-                    m9.Value = Program.ExeData.magicload(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_HitP_Start"]), "Exe_Magic_HitP_Offset");
+                    m9.Value = Program.ExeData.magicload(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.AccRateStartIndex), 
+                        Program.CurrentConfig.Exe.Magic.AccRateOffset);
 
                 }
                 else
@@ -177,7 +209,7 @@ namespace CczEditor.Controls.DataControls
                     m9.Enabled = false;
                     m9.Value = 0;
                 }
-            }
+            }*/
 			if (TopLevelControl != null)
 			{
 				TopLevelControl.Text = string.Format("{1} - 책략 편집 - 번호：{0}", lbList.SelectedIndex, Program.TitleNameCurrent);
@@ -200,7 +232,7 @@ namespace CczEditor.Controls.DataControls
 			magic[14] = (byte)cbEffarea.SelectedIndex;
 			magic[15] = (byte)ncMpCost.Value;
 			magic[16] = (byte)ncMagicIcon.Value;
-			for (var i = 0; i < Program.CurrentConfig.Forces.Count; i++)
+			for (var i = 0; i < Program.CurrentConfig.ForceNames.Count; i++)
 			{
 				magic[17+i] = byte.Parse(lvLearnLv.Items[i].Text);
 			}
@@ -213,58 +245,89 @@ namespace CczEditor.Controls.DataControls
 
 
             //EXE
+            /*
             if (ExeDataLoaded)
             {
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_MagicT_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_MagicT_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.MagicTypeStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.MagicTypeEndIndex)
                 {
-                    Program.ExeData.magicsave(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_MagicT_Start"]), "Exe_Magic_MagicT_Offset", (byte)m0.SelectedIndex);
+                    Program.ExeData.magicsave(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.MagicTypeStartIndex),
+                        Program.CurrentConfig.Exe.Magic.MagicTypeOffset, (byte)m0.SelectedIndex);
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_DamgT_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_DamgT_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.DamageTypeStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.DamageTypeEndIndex)
                 {
-                    Program.ExeData.magicsave(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_DamgT_Start"]), "Exe_Magic_DamgT_Offset", (byte)m1.SelectedIndex);
+                    Program.ExeData.magicsave(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.DamageTypeStartIndex),
+                        Program.CurrentConfig.Exe.Magic.DamageTypeOffset, (byte)m1.SelectedIndex);
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_CureT_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_CureT_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.HealTypeStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.HealTypeEndIndex)
                 {
-                    Program.ExeData.magicsave(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_CureT_Start"]), "Exe_Magic_CureT_Offset", (byte)m2.SelectedIndex);
+                    Program.ExeData.magicsave(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.HealTypeStartIndex),
+                        Program.CurrentConfig.Exe.Magic.HealTypeOffset, (byte)m2.SelectedIndex);
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_Meff_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_Meff_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.MeffStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.MeffEndIndex)
                 {
-                    Program.ExeData.magicsave(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_Meff_Start"]), "Exe_Magic_Meff_Offset", (byte)m3.Value);
+                    Program.ExeData.magicsave(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.MeffStartIndex),
+                        Program.CurrentConfig.Exe.Magic.MeffOffset, (byte)m3.Value);
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_Mcall_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_Mcall_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.McallStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.McallEndIndex)
                 {
-                    Program.ExeData.magicsave(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_Mcall_Start"]), "Exe_Magic_Mcall_Offset", (byte)m4.SelectedIndex);
+                    Program.ExeData.magicsave(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.MagicTypeStartIndex),
+                        Program.CurrentConfig.Exe.Magic.McallOffset, (byte)m4.SelectedIndex);
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_AI_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_AI_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.AiTypeStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.AiTypeEndIndex)
                 {
-                    Program.ExeData.magicsave(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_AI_Start"]), "Exe_Magic_AI_Offset", (byte)m5.SelectedIndex);
+                    Program.ExeData.magicsave(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.AiTypeStartIndex),
+                        Program.CurrentConfig.Exe.Magic.AiTypeOffset, (byte)m5.SelectedIndex);
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_Cond_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_Cond_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.UseConditionStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.UseConditionEndIndex)
                 {
-                    Program.ExeData.magicsave(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_Cond_Start"]), "Exe_Magic_Cond_Offset", (byte)m6.SelectedIndex);
+                    Program.ExeData.magicsave(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.UseConditionStartIndex),
+                        Program.CurrentConfig.Exe.Magic.UseConditionOffset, (byte)m6.SelectedIndex);
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_Learn_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_Learn_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.LearTypeStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.LearTypeEndIndex)
                 {
-                    Program.ExeData.magicsave(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_Learn_Start"]), "Exe_Magic_Learn_Offset", (byte)m7.Value);
+                    Program.ExeData.magicsave(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.LearTypeStartIndex),
+                        Program.CurrentConfig.Exe.Magic.LearTypeOffset, (byte)m7.Value);
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_Damg_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_Damg_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.DamageValueStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.DamageValueEndIndex)
                 {
-                    Program.ExeData.magicsave(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_Damg_Start"]), "Exe_Magic_Damg_Offset", (byte)m8.Value);
+                    Program.ExeData.magicsave(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.DamageValueStartIndex),
+                        Program.CurrentConfig.Exe.Magic.DamageValueOffset, (byte)m8.Value);
                 }
 
-                if (lbList.SelectedIndex >= Program.CurrentConfig.Offsets["Exe_Magic_HitP_Start"] && lbList.SelectedIndex <= Program.CurrentConfig.Offsets["Exe_Magic_HitP_End"])
+                if (lbList.SelectedIndex >= Program.CurrentConfig.Exe.Magic.AccRateStartIndex
+                    && lbList.SelectedIndex <= Program.CurrentConfig.Exe.Magic.AccRateEndIndex)
                 {
-                    Program.ExeData.magicsave(lbList.SelectedIndex - (Program.CurrentConfig.Offsets["Exe_Magic_HitP_Start"]), "Exe_Magic_HitP_Offset", (byte)m9.Value);
+                    Program.ExeData.magicsave(
+                        lbList.SelectedIndex - (Program.CurrentConfig.Exe.Magic.AccRateStartIndex),
+                        Program.CurrentConfig.Exe.Magic.AccRateOffset, (byte)m9.Value);
                 }
-            }
+            }*/
 			lbList.Items.RemoveAt(index);
 			lbList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, index, txtName.Text));
 			lbList.SelectedIndex = index;

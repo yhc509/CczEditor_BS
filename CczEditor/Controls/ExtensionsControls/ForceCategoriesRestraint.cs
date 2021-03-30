@@ -22,7 +22,7 @@ namespace CczEditor.Controls.ExtensionsControls
 
 		private void ForceCategoriesRestraint_Load(object sender, EventArgs e)
 		{
-			ncOffset.Value = ConfigOperation.SystemConfig.ForceCategoriesRestraintOffset;
+			//ncOffset.Value = ConfigOperation.SystemConfig.ForceCategoriesRestraintOffset;
 			var forceCategoryNames = Program.CurrentConfig.ForceCategoryNames;
 			_dataLength = forceCategoryNames.Count;
 			lbList.Items.Clear();
@@ -30,9 +30,9 @@ namespace CczEditor.Controls.ExtensionsControls
 			lvRestraint.Items.Clear();
 			for (var i = 0; i < forceCategoryNames.Count; i++)
 			{
-				var item = new ListViewItem("0");
+				/*var item = new ListViewItem("0");
 				item.SubItems.Add(forceCategoryNames[i]);
-				lvRestraint.Items.Add(item);
+				lvRestraint.Items.Add(item);*/
 			}
 		}
 
@@ -123,7 +123,7 @@ namespace CczEditor.Controls.ExtensionsControls
 
 		private void btnSaveOffset_Click(object sender, EventArgs e)
 		{
-			ConfigOperation.SystemConfig.ForceCategoriesRestraintOffset = (int)ncOffset.Value;
+			//ConfigOperation.SystemConfig.ForceCategoriesRestraintOffset = (int)ncOffset.Value;
 		}
 
         private void lvRestraint_SelectedIndexChanged(object sender, EventArgs e)

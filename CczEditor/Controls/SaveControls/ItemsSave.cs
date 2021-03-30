@@ -22,6 +22,7 @@ namespace CczEditor.Controls.SaveControls
 
 		private void ItemsSave_Load(object sender, EventArgs e)
 		{
+            /*
 			_itemIconList = GameData.ItemIconList();
 			var equipmentNames = new List<string> { "FF, 장비없음" };
 			equipmentNames.AddRange(GameData.GetItemNames(ItemType.Weapons, true));
@@ -45,7 +46,7 @@ namespace CczEditor.Controls.SaveControls
 				var item = new ListViewItem(SaveData.ItemAmountGet(i).ToString());
 				item.SubItems.Add(items[i]);
 				lvConsumablesItem.Items.Add(item);
-			}
+			}*/
 		}
 
 		private void lbList_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,14 +55,14 @@ namespace CczEditor.Controls.SaveControls
 			{
 				return;
 			}
-			var item = SaveData.ItemEquipmentGet(lbList.SelectedIndex);
+			/*var item = SaveData.ItemEquipmentGet(lbList.SelectedIndex);
 			cbItemType.SelectedIndex = cbItemType.FindString(Utils.GetString(item[0]));
 			ncLv.Value = item[1];
 			ncExp.Value = item[2];
 			if (TopLevelControl != null)
 			{
 				TopLevelControl.Text = string.Format("{1} - 세이브 편집 - 번호：{0}", lbList.SelectedIndex, Program.TitleNameCurrent);
-			}
+			}*/
 		}
 
 		private void btnEdit_Click(object sender, EventArgs e)
@@ -70,7 +71,7 @@ namespace CczEditor.Controls.SaveControls
 			{
 				return;
 			}
-			var index = lbList.SelectedIndex;
+			/*var index = lbList.SelectedIndex;
 			var item = SaveData.ItemEquipmentGet(index);
 			item[0] = (byte)Utils.GetId(cbItemType.SelectedItem);
 			if (item[0] == 0xFF)
@@ -85,17 +86,17 @@ namespace CczEditor.Controls.SaveControls
 			SaveData.ItemEquipmentSet(index, item);
 			lbList.Items.RemoveAt(index);
 			lbList.Items.Insert(index, string.Format(Program.FORMATSTRING_SAVEEQUIPMENT, index, cbItemType.SelectedItem));
-			lbList.SelectedIndex = index;
+			lbList.SelectedIndex = index;*/
 		}
 
 		private void btnSave_Click(object sender, EventArgs e)
 		{
-			SaveData.Gold = (int)ncGold.Value;
+			/*SaveData.Gold = (int)ncGold.Value;
 			SaveData.LoyalTreacherousValue = (byte)ncLoyalTreacherousValue.Value;
 			for (var i = 0; i < Program.SAVE_ITEM_AMOUNT_COUNT; i++)
 			{
 				SaveData.ItemAmountSet(i, byte.Parse(lvConsumablesItem.Items[i].Text));
-			}
+			}*/
 		}
 
 		private void btnRestore_Click(object sender, EventArgs e)

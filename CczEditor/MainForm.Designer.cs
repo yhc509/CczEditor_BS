@@ -68,7 +68,6 @@
             this.tsmiMainMenu_Config = new System.Windows.Forms.ToolStripMenuItem();
             this.tscbMainMenu_Config_Selector = new System.Windows.Forms.ToolStripComboBox();
             this.tsmiMainMenu_Config_Editor = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiMainMenu_Config_CopyEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.tss_Config_1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiMainMenu_Config_LoadAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMainMenu_Config_SaveAll = new System.Windows.Forms.ToolStripMenuItem();
@@ -382,7 +381,6 @@
             this.tsmiMainMenu_Config.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tscbMainMenu_Config_Selector,
             this.tsmiMainMenu_Config_Editor,
-            this.tsmiMainMenu_Config_CopyEditor,
             this.tss_Config_1,
             this.tsmiMainMenu_Config_LoadAll,
             this.tsmiMainMenu_Config_SaveAll});
@@ -404,13 +402,6 @@
             this.tsmiMainMenu_Config_Editor.Size = new System.Drawing.Size(260, 22);
             this.tsmiMainMenu_Config_Editor.Text = "편집 기본정보 설정 (&E)";
             this.tsmiMainMenu_Config_Editor.Click += new System.EventHandler(this.tsmiMainMenu_Config_Editor_Click);
-            // 
-            // tsmiMainMenu_Config_CopyEditor
-            // 
-            this.tsmiMainMenu_Config_CopyEditor.Name = "tsmiMainMenu_Config_CopyEditor";
-            this.tsmiMainMenu_Config_CopyEditor.Size = new System.Drawing.Size(260, 22);
-            this.tsmiMainMenu_Config_CopyEditor.Text = "현재의 설정을 복사한다 (&C)";
-            this.tsmiMainMenu_Config_CopyEditor.Click += new System.EventHandler(this.tsmiMainMenu_Config_CopyEditor_Click);
             // 
             // tss_Config_1
             // 
@@ -513,7 +504,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_Config;
         private System.Windows.Forms.ToolStripComboBox tscbMainMenu_Config_Selector;
         private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_Config_Editor;
-        private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_Config_CopyEditor;
         private System.Windows.Forms.ToolStripSeparator tss_Config_1;
         private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_Config_LoadAll;
         private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_Config_SaveAll;

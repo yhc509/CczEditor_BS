@@ -16,49 +16,46 @@ namespace CczEditor.Controls.DataControls
 		public ItemsData()
 		{
 			InitializeComponent();
-            cbItemHitarea.Enabled = cbItemHitarea.Enabled = pbItemHitarea.Enabled = Program.CurrentConfig.ItemCustomRange;
-			if (Program.CurrentConfig.ItemCustomRange)
+            cbItemHitarea.Enabled = cbItemHitarea.Enabled = pbItemHitarea.Enabled = Program.CurrentConfig.CodeOptionContainer.ItemCustomRange;
+			if (Program.CurrentConfig.CodeOptionContainer.ItemCustomRange)
 			{
 				GetResourcesHitarea();
             }
-            if (Program.CurrentConfig.Starusing)
-            {
-                GetResourcesHitarea();
-                GetResourcesEffarea();
-            }
-			GetResourcesItemIcon();
+
+            GetResourcesHitarea();
+            GetResourcesEffarea();
+            GetResourcesItemIcon();
 		}
 
 		private void ItemsData_Load(object sender, EventArgs e)
 		{
 			cbItemType.Items.Add("FF,유형 없음");
-            cbItemType.Items.AddRange(Program.CurrentConfig.ItemConfigs.EquipmentTypes(true).Values.ToArray());
+            cbItemType.Items.AddRange(Config.New.ConfigUtils.GetEquipmentTypes(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 
 			cbSpecialEffects.Items.Add("FF,능력 없음");
-            cbSpecialEffects.Items.AddRange(Program.CurrentConfig.ItemConfigs.AuxiliaryEffects(true).Values.ToArray());
+            cbSpecialEffects.Items.AddRange(Config.New.ConfigUtils.GetAuxiliaryEffects(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
      
 			cbItemEffects.Items.Add("FF,효과 없음");
-            cbItemEffects.Items.AddRange(Program.CurrentConfig.ItemConfigs.ConsumablesEffects(true).Values.ToArray());
+            cbItemEffects.Items.AddRange(Config.New.ConfigUtils.GetConsumablesEffects(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 
 			cbCorps.Items.Add("FF,모든 병종");
             cbCorps.Items.AddRange(Program.CurrentConfig.ForceCategoryNames.ToArray());
 
-            cbItemHitarea.Items.AddRange(Program.CurrentConfig.Hitareas.ToArray());
+            cbItemHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
 			lbList.Items.AddRange(GameData.ItemNameList(true).ToArray());
-            if (Program.CurrentConfig.Starusing == true)
+
+            if (Program.StarData != null && Program.StarData.CurrentFile != null && Program.StarData.CurrentStream != null)
             {
-                if (Program.StarData != null && Program.StarData.CurrentFile != null && Program.StarData.CurrentStream != null)
-                {
-                    cbBombEffects.Items.Add("FF,효과 없음");
-                    cbBombEffects.Items.AddRange(Program.CurrentConfig.ItemConfigs.BombsEffects(true).Values.ToArray());
-                    cbBombEffects.Items.AddRange(Program.CurrentConfig.ItemConfigs.BombsEffects2(true).Values.ToArray());
-                    cbBombEffects.Items.AddRange(Program.CurrentConfig.ItemConfigs.BombsEffects3(true).Values.ToArray());
-                    EffectsRange.Items.AddRange(Program.CurrentConfig.Effareas.ToArray());
-                    AtkRange.Items.AddRange(Program.CurrentConfig.Hitareas.ToArray());
-                    lbList.Items.AddRange(StarData.ItemNameList(true).ToArray());
-                }
+                cbBombEffects.Items.Add("FF,효과 없음");
+                cbBombEffects.Items.AddRange(Config.New.ConfigUtils.GetBombsEffects(true).Values.ToArray());
+                cbBombEffects.Items.AddRange(Config.New.ConfigUtils.GetBombsEffects2(true).Values.ToArray());
+                cbBombEffects.Items.AddRange(Config.New.ConfigUtils.GetBombsEffects3(true).Values.ToArray());
+                EffectsRange.Items.AddRange(Program.CurrentConfig.EffAreaNames.ToArray());
+                AtkRange.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
+                lbList.Items.AddRange(StarData.ItemNameList(true).ToArray());
             }
-			lbList.SelectedIndex = 0;
+
+            lbList.SelectedIndex = 0;
 			lbList.Focus();
 		}
 
@@ -160,7 +157,7 @@ namespace CczEditor.Controls.DataControls
 					ncSpecialEffectsValue.Enabled = false;
 					ncUpgradeValue.Enabled = false;
 					cbCorps.Enabled = false;
-                    cbItemHitarea.Enabled = Program.CurrentConfig.ItemCustomRange;
+                    cbItemHitarea.Enabled = Program.CurrentConfig.CodeOptionContainer.ItemCustomRange;
                     cbBombEffects.Enabled = false;
                     EffectsRange.Enabled = false;
                     AtkRange.Enabled = false;
@@ -174,7 +171,7 @@ namespace CczEditor.Controls.DataControls
 					ncSpecialEffectsValue.Value = 0;
 					ncUpgradeValue.Value = 0;
 					cbCorps.SelectedIndex = -1;
-					if (Program.CurrentConfig.ItemCustomRange)
+					if (Program.CurrentConfig.CodeOptionContainer.ItemCustomRange)
 					{
 						cbItemHitarea.SelectedIndex = item[23];
 						cbItemHitarea_SelectedIndexChanged(cbItemHitarea, new EventArgs());
@@ -221,7 +218,7 @@ namespace CczEditor.Controls.DataControls
                     AtkRange.SelectedIndex = -1;
                     BombType.SelectedIndex = -1;
 
-                    cbBombEffects.SelectedIndex = item[17] - (Program.CurrentConfig.ItemConfigs.Configs["AssMin"]-1);
+                    cbBombEffects.SelectedIndex = item[17] - (Program.CurrentConfig.Items.MineInstall-1);
                     ncPrice.Value = item[18];
                     ncItemIcon.Value = item[19];
                     ncSpecialEffectsValue.Value = BitConverter.ToUInt16(item, 21);
@@ -255,7 +252,7 @@ namespace CczEditor.Controls.DataControls
                     pbItemHitarea.Image = null;
 
                     BombType.SelectedIndex = item[16];
-                    cbBombEffects.SelectedIndex = item[17] - (Program.CurrentConfig.ItemConfigs.Configs["AssMin"] - 1);
+                    cbBombEffects.SelectedIndex = item[17] - (Program.CurrentConfig.Items.MineInstall - 1);
                     ncPrice.Value = item[18];
                     ncItemIcon.Value = item[19];
                     ncSpecialEffectsValue.Value = BitConverter.ToUInt16(item, 21);
@@ -290,7 +287,7 @@ namespace CczEditor.Controls.DataControls
                     pbItemHitarea.Image = null;
 
                     AtkRange.SelectedIndex = item[16];
-                    cbBombEffects.SelectedIndex = item[17] - (Program.CurrentConfig.ItemConfigs.Configs["AssMin"] - 1);
+                    cbBombEffects.SelectedIndex = item[17] - (Program.CurrentConfig.Items.MineInstall - 1);
                     ncPrice.Value = item[18];
                     ncItemIcon.Value = item[19];
                     ncSpecialEffectsValue.Value = BitConverter.ToUInt16(item, 21);
@@ -407,7 +404,7 @@ namespace CczEditor.Controls.DataControls
                     item[20] = (byte)ncItemIcon.Value;
 					item[21] = (byte)ncInitialValue.Value;
 					item[22] = 0x0;
-					if (Program.CurrentConfig.ItemCustomRange)
+					if (Program.CurrentConfig.CodeOptionContainer.ItemCustomRange)
 					{
 						item[23] = (byte)(cbItemHitarea.SelectedIndex == -1 ? 0 : cbItemHitarea.SelectedIndex);
 					}
@@ -466,7 +463,7 @@ namespace CczEditor.Controls.DataControls
 						item[18] = 0xFF;
 						item[21] = (byte)ncInitialValue.Value;
 						item[22] = 0x0;
-						if (Program.CurrentConfig.ItemCustomRange)
+						if (Program.CurrentConfig.CodeOptionContainer.ItemCustomRange)
 						{
 							item[23] = (byte)(cbItemHitarea.SelectedIndex == -1 ? 0 : cbItemHitarea.SelectedIndex);
 						}
@@ -496,7 +493,7 @@ namespace CczEditor.Controls.DataControls
                     else if (type1 == 0xFF && type2 == 0xFF && type3 == 0xFF && type4 != 0xFF)
                     {
                         Utils.ChangeByteValue(item, Utils.GetBytes(txtName.Text), 0, 15);
-                        if (type4 <= Program.CurrentConfig.ItemConfigs.Configs["AssMax"] && type4 >= Program.CurrentConfig.ItemConfigs.Configs["AssMin"])
+                        if (type4 <= Program.CurrentConfig.Items.MineControl && type4 >= Program.CurrentConfig.Items.MineInstall)
                         {
                             item[16] = 0x00;
                             item[17] = type4;
@@ -506,7 +503,7 @@ namespace CczEditor.Controls.DataControls
                             Utils.ChangeByteValue(item, BitConverter.GetBytes((ushort)ncSpecialEffectsValue.Value), 21);
                             item[23] = 0x00;
                         }
-                        else if (type4 == Program.CurrentConfig.ItemConfigs.Configs["AtkMine"])
+                        else if (type4 == Program.CurrentConfig.Items.Mine)
                         {
                             item[16] = (byte)(BombType.SelectedIndex == -1 ? 0 : BombType.SelectedIndex);
                             item[17] = type4;
@@ -516,7 +513,7 @@ namespace CczEditor.Controls.DataControls
                             Utils.ChangeByteValue(item, BitConverter.GetBytes((ushort)ncSpecialEffectsValue.Value), 21);
                             item[23] = (byte)(EffectsRange.SelectedIndex == -1 ? 0 : EffectsRange.SelectedIndex);
                         }
-                        else if (type4 == Program.CurrentConfig.ItemConfigs.Configs["AtkBomb"])
+                        else if (type4 == Program.CurrentConfig.Items.Bomb)
                         {
                             item[16] = (byte)(AtkRange.SelectedIndex == -1 ? 0 : AtkRange.SelectedIndex);
                             item[17] = type4;
@@ -542,13 +539,10 @@ namespace CczEditor.Controls.DataControls
             {
                 item[24] = 1;
             }
-            
-            if (ExeDataLoaded)
-            {
-                int bomulcount = 0;
-                GameData.BomulGet(bomulcount);
-            }
-            
+
+            int bomulcount = 0;
+            GameData.BomulGet(bomulcount);
+
             GameData.ItemSet(index, item);
 			lbList.Items.RemoveAt(index);
             lbList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, index, txtName.Text));
@@ -584,14 +578,14 @@ namespace CczEditor.Controls.DataControls
 
 		private void cbItemHitarea_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (Program.CurrentConfig.ItemCustomRange && (Hitareas != null && Hitareas.Exists))
+			if (Program.CurrentConfig.CodeOptionContainer.ItemCustomRange && (Hitareas != null && Hitareas.Exists))
 			{
 				pbItemHitarea.Image = cbItemHitarea.SelectedIndex == -1 ? null : Hitareas.GetImage(cbItemHitarea.SelectedIndex);
 			}
 		}
         private void EffectsRange_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (Program.CurrentConfig.Starusing && (Effareas != null && Effareas.Exists))
+            if (Effareas != null && Effareas.Exists)
             {
                 pbEffectRange.Image = EffectsRange.SelectedIndex == -1 ? null : Effareas.GetImage(EffectsRange.SelectedIndex);
             }
@@ -599,7 +593,7 @@ namespace CczEditor.Controls.DataControls
 
         private void AtkRange_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Program.CurrentConfig.Starusing && (Hitareas != null && Hitareas.Exists))
+            if (Hitareas != null && Hitareas.Exists)
             {
                 pbAtkRange.Image = AtkRange.SelectedIndex == -1 ? null : Hitareas.GetImage(AtkRange.SelectedIndex);
             }

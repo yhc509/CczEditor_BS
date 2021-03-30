@@ -9,6 +9,7 @@ using CczEditor.Data;
 #endregion
 using System.Drawing;
 using System.Media;
+using System.Linq;
 
 namespace CczEditor.Controls.DataControls
 {
@@ -19,14 +20,9 @@ namespace CczEditor.Controls.DataControls
         public UnitsData()
 		{
 			InitializeComponent();
-            CharacterComboBox.Enabled = PmapObjValueBox.Enabled = BattleObjValueBox.Enabled = BattleObjTeam1Radio.Visible = BattleObjTeam2Radio.Visible = BattleObjTeam3Radio.Visible = ExeDataLoaded;
-            PmapobjFrontText.Visible = PmapObjBackText.Visible = BattleObjText1.Visible = BattleObjText2.Visible = BattleObjText3.Visible = ExeDataLoaded;
-            pmapimg1.Visible = pmapimg2.Visible = spcimg1.Visible = spcimg2.Visible = spcimg3.Visible = ExeDataLoaded;
-            lblCharacter.Visible = CharacterComboBox.Visible = Program.CurrentConfig.Starusing;
-
 			tlpImsg.Enabled = ImsgDataLoaded;
-			ncStr.Maximum = ncVit.Maximum = ncInt.Maximum = ncAvg.Maximum = ncLuk.Maximum = Program.CurrentConfig.SingularAttribute ? 255 : 510;
-			ncStr.Increment = ncVit.Increment = ncInt.Increment = ncAvg.Increment = ncLuk.Increment = Program.CurrentConfig.SingularAttribute ? 1 : 2;
+			ncStr.Maximum = ncVit.Maximum = ncInt.Maximum = ncAvg.Maximum = ncLuk.Maximum = Program.CurrentConfig.CodeOptionContainer.SingularAttribute ? 255 : 510;
+			ncStr.Increment = ncVit.Increment = ncInt.Increment = ncAvg.Increment = ncLuk.Increment = Program.CurrentConfig.CodeOptionContainer.SingularAttribute ? 1 : 2;
 
             PmapObjValueBox.Maximum = 65535;
             BattleObjValueBox.Maximum = 65535;
@@ -66,7 +62,7 @@ namespace CczEditor.Controls.DataControls
 		{
 			_itemIconList = GameData.ItemIconList();
             cbForce.Items.Clear();
-            cbForce.Items.AddRange(Program.CurrentConfig.ForceNames.ToArray());
+            cbForce.Items.AddRange(Config.New.ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
             
             clbList.Items.AddRange(GameData.UnitNameList(true).ToArray());
 			clbList.SelectedIndex = 0;
@@ -77,7 +73,7 @@ namespace CczEditor.Controls.DataControls
 
         private void LoadUnit(int index)
         {
-            if (index < 0 || index >= Program.CurrentConfig.Offsets["Game_Unit_Count"])
+            if (index < 0 || index >= Program.CurrentConfig.Data.UnitCount)
                 return;
 
             var unit = new CczEditor.Data.Wrapper.UnitData();
@@ -87,7 +83,7 @@ namespace CczEditor.Controls.DataControls
             ncFace.Value = unit.Face;
             ncCritical.Value = unit.CriticalIndex;
 
-            if (Program.CurrentConfig.SingularAttribute)
+            if (Program.CurrentConfig.CodeOptionContainer.SingularAttribute)
             {
                 ncStr.Value = unit.Str;
                 ncVit.Value = unit.Vit;
@@ -107,19 +103,28 @@ namespace CczEditor.Controls.DataControls
             ncMp.Value = unit.Mp;
             cbForce.SelectedIndex = unit.Force;
 
+            PmapObjValueBox.Enabled = !ExeData.IsLocked;
+            CharacterComboBox.Enabled = !ExeData.IsLocked;
+            BattleObjValueBox.Enabled = !ExeData.IsLocked;
+            CutinComboBox.Enabled = !ExeData.IsLocked;
+            VoiceComboBox.Enabled = !ExeData.IsLocked;
+            CostValueBox.Enabled = !ExeData.IsLocked;
 
-            PmapObjValueBox.Value = unit.Pmapobj;
-            CharacterComboBox.SelectedIndex = unit.CharacterType;
-            BattleObjValueBox.Value = unit.BattleObj;
-
-            lblCutin.Visible = CutinComboBox.Visible = cbbCutin.Visible = index <= 255;
-            lblVoice.Visible = VoiceComboBox.Visible = cbbVoice.Visible = VoicePlayButton.Visible = index <= 255;
-            lblCost.Visible = CostValueBox.Visible = cbbCost.Visible = index <= 255;
-            if (index <= 255)
+            if (!ExeData.IsLocked)
             {
-                CutinComboBox.SelectedIndex = unit.Cutin;
-                VoiceComboBox.SelectedIndex = unit.Voice;
-                CostValueBox.Value = unit.Cost;
+                PmapObjValueBox.Value = unit.Pmapobj;
+                CharacterComboBox.SelectedIndex = unit.CharacterType;
+                BattleObjValueBox.Value = unit.BattleObj;
+
+                lblCutin.Visible = CutinComboBox.Visible = cbbCutin.Visible = index <= 255;
+                lblVoice.Visible = VoiceComboBox.Visible = cbbVoice.Visible = VoicePlayButton.Visible = index <= 255;
+                lblCost.Visible = CostValueBox.Visible = cbbCost.Visible = index <= 255;
+                if (index <= 255)
+                {
+                    CutinComboBox.SelectedIndex = unit.Cutin;
+                    VoiceComboBox.SelectedIndex = unit.Voice;
+                    CostValueBox.Value = unit.Cost;
+                }
             }
             
             if (index < Program.IMSG_UNITORIGINAL_COUNT)
@@ -163,7 +168,7 @@ namespace CczEditor.Controls.DataControls
             unit.CriticalIndex = (byte)ncCritical.Value;
             unit.Str = (byte)ncStr.Value;
             
-            if (Program.CurrentConfig.SingularAttribute)
+            if (Program.CurrentConfig.CodeOptionContainer.SingularAttribute)
             {
                 unit.Str = (byte)ncStr.Value;
                 unit.Vit = (byte)ncVit.Value;
@@ -326,7 +331,7 @@ namespace CczEditor.Controls.DataControls
 
         private void DrawBattleObj()
         {
-            if (UnitSpc == null || Program.ExeData == null || clbList.SelectedIndex < 0)
+            if (UnitSpc == null || clbList.SelectedIndex < 0)
             {
                 return;
             }
@@ -348,52 +353,49 @@ namespace CczEditor.Controls.DataControls
                     break;
             }
 
-            if (Program.CurrentConfig.SpcExtension)
+            var forceIndex = GetBattleObjImageIndex();
+            if (battleObjIndex == 0)
             {
-                var forceIndex = GetBattleObjImageIndex();
-                if (battleObjIndex == 0)
-                {
-                    BattleObjTeam1Radio.Enabled = BattleObjTeam2Radio.Enabled = BattleObjTeam3Radio.Enabled = true;
-                    var teamIndex = BattleObjTeam1Radio.Checked ? 0 : (BattleObjTeam2Radio.Checked ? 1 : (BattleObjTeam3Radio.Checked ? 2 : 0));
-                    if (cbForce.SelectedIndex <= 0x3b)
-                    {
-                        BattleObjText2.Visible = BattleObjText3.Visible = spcimg2.Visible = spcimg3.Visible = true;
-                        spc = forceIndex * 9 + (teamIndex);
-                        BattleObjText1.Text = (spc + 1).ToString();
-                        spcimg1.Image = loader.GetImage(spc);
-                        BattleObjText2.Text = (spc + 4).ToString();
-                        spcimg2.Image = loader.GetImage(spc + 3);
-                        BattleObjText3.Text = (spc + 7).ToString();
-                        spcimg3.Image = loader.GetImage(spc + 6);
-                    }
-                    else
-                    {
-                        BattleObjText2.Visible = BattleObjText3.Visible = spcimg2.Visible = spcimg3.Visible = false;
-                        spc = 180 + (forceIndex - 0x1f) * 3 + teamIndex;
-                        BattleObjText1.Text = (spc + 1).ToString();
-                        spcimg1.Image = loader.GetImage(spc);
-                    }
-                }
-                else if (battleObjIndex >= 1 && battleObjIndex <= Program.CurrentConfig.Offsets["Three_SPC"])
+                BattleObjTeam1Radio.Enabled = BattleObjTeam2Radio.Enabled = BattleObjTeam3Radio.Enabled = true;
+                var teamIndex = BattleObjTeam1Radio.Checked ? 0 : (BattleObjTeam2Radio.Checked ? 1 : (BattleObjTeam3Radio.Checked ? 2 : 0));
+                if (cbForce.SelectedIndex <= 0x3b)
                 {
                     BattleObjText2.Visible = BattleObjText3.Visible = spcimg2.Visible = spcimg3.Visible = true;
-                    BattleObjTeam1Radio.Enabled = BattleObjTeam2Radio.Enabled = BattleObjTeam3Radio.Enabled = false;
-                    spc = 240 + ((int)battleObjIndex - 1) * 3;
+                    spc = forceIndex * 9 + (teamIndex);
                     BattleObjText1.Text = (spc + 1).ToString();
                     spcimg1.Image = loader.GetImage(spc);
-                    BattleObjText2.Text = (spc + 2).ToString();
-                    spcimg2.Image = loader.GetImage(spc + 1);
-                    BattleObjText3.Text = (spc + 3).ToString();
-                    spcimg3.Image = loader.GetImage(spc + 2);
+                    BattleObjText2.Text = (spc + 4).ToString();
+                    spcimg2.Image = loader.GetImage(spc + 3);
+                    BattleObjText3.Text = (spc + 7).ToString();
+                    spcimg3.Image = loader.GetImage(spc + 6);
                 }
                 else
                 {
                     BattleObjText2.Visible = BattleObjText3.Visible = spcimg2.Visible = spcimg3.Visible = false;
-                    BattleObjTeam1Radio.Enabled = BattleObjTeam2Radio.Enabled = BattleObjTeam3Radio.Enabled = false;
-                    spc = 240 + (Program.CurrentConfig.Offsets["Three_SPC"] * 3) + ((int)battleObjIndex - (Program.CurrentConfig.Offsets["Three_SPC"] + 1));
+                    spc = 180 + (forceIndex - 0x1f) * 3 + teamIndex;
                     BattleObjText1.Text = (spc + 1).ToString();
                     spcimg1.Image = loader.GetImage(spc);
                 }
+            }
+            else if (battleObjIndex >= 1 && battleObjIndex <= Program.CurrentConfig.Exe.BattleObjTripleTypeCount)
+            {
+                BattleObjText2.Visible = BattleObjText3.Visible = spcimg2.Visible = spcimg3.Visible = true;
+                BattleObjTeam1Radio.Enabled = BattleObjTeam2Radio.Enabled = BattleObjTeam3Radio.Enabled = false;
+                spc = 240 + ((int)battleObjIndex - 1) * 3;
+                BattleObjText1.Text = (spc + 1).ToString();
+                spcimg1.Image = loader.GetImage(spc);
+                BattleObjText2.Text = (spc + 2).ToString();
+                spcimg2.Image = loader.GetImage(spc + 1);
+                BattleObjText3.Text = (spc + 3).ToString();
+                spcimg3.Image = loader.GetImage(spc + 2);
+            }
+            else
+            {
+                BattleObjText2.Visible = BattleObjText3.Visible = spcimg2.Visible = spcimg3.Visible = false;
+                BattleObjTeam1Radio.Enabled = BattleObjTeam2Radio.Enabled = BattleObjTeam3Radio.Enabled = false;
+                spc = 240 + (Program.CurrentConfig.Exe.BattleObjTripleTypeCount * 3) + ((int)battleObjIndex - (Program.CurrentConfig.Exe.BattleObjTripleTypeCount + 1));
+                BattleObjText1.Text = (spc + 1).ToString();
+                spcimg1.Image = loader.GetImage(spc);
             }
         }
 
@@ -421,7 +423,7 @@ namespace CczEditor.Controls.DataControls
 
         private void DrawPmapObj()
         {
-            if (Pmapobjs == null || Program.ExeData == null || clbList.SelectedIndex < 0)
+            if (Pmapobjs == null || clbList.SelectedIndex < 0)
             {
                 return;
             }
@@ -702,7 +704,7 @@ namespace CczEditor.Controls.DataControls
         private void VoicePlayButton_Click(object sender, EventArgs e)
         {
             var fileName = VoiceComboBox.SelectedItem.ToString();
-            var path = System.IO.Path.Combine(Program.CurrentConfig.DataFileDirectory, "Wav", fileName);
+            var path = System.IO.Path.Combine(Program.CurrentConfig.DirectoryPath, "Wav", fileName);
 
             if(System.IO.File.Exists(path))
             {

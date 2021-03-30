@@ -19,8 +19,8 @@ namespace CczEditor.Data
 
 		public byte[] UnitOriginalGet(int index)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_UnitOriginal_Offset"];
-			var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
+			var offset = Program.CurrentConfig.Imsg.UnitOriginalOffset;
+            var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
 			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Read(msg, 0, IMSG_DATA_BLOCK_LENGTH);
 			return msg;
@@ -28,15 +28,15 @@ namespace CczEditor.Data
 
 		public void UnitOriginalSet(int index, byte[] value)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_UnitOriginal_Offset"];
-			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
+			var offset = Program.CurrentConfig.Imsg.UnitOriginalOffset;
+            CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, IMSG_DATA_BLOCK_LENGTH);
 		}
 
 		public byte[] UnitExtensionGet(int index)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_UnitExtension_Offset"];
-			var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
+			var offset = Program.CurrentConfig.Imsg.UnitExtensionOffset;
+            var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
 			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Read(msg, 0, IMSG_DATA_BLOCK_LENGTH);
 			return msg;
@@ -44,15 +44,15 @@ namespace CczEditor.Data
 
 		public void UnitExtensionSet(int index, byte[] value)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_UnitExtension_Offset"];
-			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
+			var offset = Program.CurrentConfig.Imsg.UnitExtensionOffset;
+            CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, IMSG_DATA_BLOCK_LENGTH);
 		}
 
 		public byte[] ItemGet(int index)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Item_Offset"];
-			var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
+			var offset = Program.CurrentConfig.Imsg.ItemOffset;
+            var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
             CurrentStream.Seek(offset + index * IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
             CurrentStream.Read(msg, 0, IMSG_DATA_BLOCK_LENGTH);
 			return msg;
@@ -60,15 +60,15 @@ namespace CczEditor.Data
 
 		public void ItemSet(int index, byte[] value)
 		{
-            var offset = Program.CurrentConfig.Offsets["Imsg_Item_Offset"];
+            var offset = Program.CurrentConfig.Imsg.ItemOffset;
             CurrentStream.Seek(offset + index * IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
             CurrentStream.Write(value, 0, IMSG_DATA_BLOCK_LENGTH);
 		}
 
 		public byte[] MagicGet(int index)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Magic_Offset"];
-			var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
+			var offset = Program.CurrentConfig.Imsg.MagicOffset;
+            var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
 			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Read(msg, 0, IMSG_DATA_BLOCK_LENGTH);
 			return msg;
@@ -76,16 +76,16 @@ namespace CczEditor.Data
 
 		public void MagicSet(int index, byte[] value)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Magic_Offset"];
-			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
+			var offset = Program.CurrentConfig.Imsg.MagicOffset;
+            CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, IMSG_DATA_BLOCK_LENGTH);
 		}
 
 		public List<string> StageNameList(bool hasFormater)
 		{
-			var count = Program.CurrentConfig.Offsets["Imsg_Stage_Count"];
-			var offset = Program.CurrentConfig.Offsets["Imsg_Stage_Offset"];
-			var list = new List<string>();
+			var count = Program.CurrentConfig.Imsg.StageCount;
+            var offset = Program.CurrentConfig.Imsg.StageOffset;
+            var list = new List<string>();
 			var text = new byte[IMSG_STAGE_NAME_LENGTH];
 			for (var i = 0; i < count; i++)
 			{
@@ -98,8 +98,8 @@ namespace CczEditor.Data
 
 		public byte[] StageGet(int index)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Stage_Offset"];
-			var msg = new byte[IMSG_STAGE_NAME_LENGTH];
+			var offset = Program.CurrentConfig.Imsg.StageOffset;
+            var msg = new byte[IMSG_STAGE_NAME_LENGTH];
 			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Read(msg, 0, IMSG_STAGE_NAME_LENGTH);
 			return msg;
@@ -107,15 +107,15 @@ namespace CczEditor.Data
 
 		public void StageSet(int index, byte[] value)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Stage_Offset"];
-			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
+			var offset = Program.CurrentConfig.Imsg.StageOffset;
+            CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, IMSG_STAGE_NAME_LENGTH);
 		}
 
 		public byte[] ForceGet(int index)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Force_Offset"];
-			var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
+			var offset = Program.CurrentConfig.Imsg.ForceOffset;
+            var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
 			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Read(msg, 0, IMSG_DATA_BLOCK_LENGTH);
 			return msg;
@@ -123,15 +123,15 @@ namespace CczEditor.Data
 
 		public void ForceSet(int index, byte[] value)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Force_Offset"];
+            var offset = Program.CurrentConfig.Imsg.ForceOffset;
 			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, IMSG_DATA_BLOCK_LENGTH);
 		}
 
 		public List<string> RetreatNameList(bool hasFormater)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Retreat_Offset"];
-			var list = new List<string>();
+			var offset = Program.CurrentConfig.Imsg.RetreatOffset;
+            var list = new List<string>();
 			var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
 			for (var i = 0; i < IMSG_RETREAT_COUNT; i++)
 			{
@@ -144,7 +144,7 @@ namespace CczEditor.Data
 
 		public byte[] RetreatGet(int index)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Retreat_Offset"];
+            var offset = Program.CurrentConfig.Imsg.RetreatOffset;
 			var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
 			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Read(msg, 0, IMSG_DATA_BLOCK_LENGTH);
@@ -153,8 +153,8 @@ namespace CczEditor.Data
 
 		public void RetreatSet(int index, byte[] value)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Retreat_Offset"];
-			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
+			var offset = Program.CurrentConfig.Imsg.RetreatOffset;
+            CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, IMSG_DATA_BLOCK_LENGTH);
 		}
 
@@ -162,7 +162,7 @@ namespace CczEditor.Data
 		{
 			get
 			{
-				var offset = Program.CurrentConfig.Offsets["Imsg_Critical_Offset"];
+				var offset = Program.CurrentConfig.Imsg.CriticalOffset;
 				var list = new List<string>();
 				var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
 				for (var i = 0; i < IMSG_CRITICAL_COUNT; i++)
@@ -177,7 +177,7 @@ namespace CczEditor.Data
 
 		public byte[] CriticalGet(int index)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Critical_Offset"];
+            var offset = Program.CurrentConfig.Imsg.CriticalOffset;
 			var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
 			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Read(msg, 0, IMSG_DATA_BLOCK_LENGTH);
@@ -186,8 +186,8 @@ namespace CczEditor.Data
 
 		public void CriticalSet(int index, byte[] value)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Critical_Offset"];
-			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
+			var offset = Program.CurrentConfig.Imsg.CriticalOffset;
+            CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, IMSG_DATA_BLOCK_LENGTH);
 		}
 
@@ -195,7 +195,7 @@ namespace CczEditor.Data
 		{
 			get
 			{
-				var offset = Program.CurrentConfig.Offsets["Imsg_Staff_Offset"];
+                var offset = Program.CurrentConfig.Imsg.StaffOffset;
 				var list = new List<string>();
 				var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
 				for (var i = 0; i < IMSG_STAFF_COUNT; i++)
@@ -210,7 +210,7 @@ namespace CczEditor.Data
 
 		public byte[] StaffGet(int index)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Staff_Offset"];
+            var offset = Program.CurrentConfig.Imsg.StaffOffset;
 			var msg = new byte[IMSG_DATA_BLOCK_LENGTH];
 			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Read(msg, 0, IMSG_DATA_BLOCK_LENGTH);
@@ -219,8 +219,8 @@ namespace CczEditor.Data
 
 		public void StaffSet(int index, byte[] value)
 		{
-			var offset = Program.CurrentConfig.Offsets["Imsg_Staff_Offset"];
-			CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
+			var offset = Program.CurrentConfig.Imsg.StaffOffset;
+            CurrentStream.Seek(offset+index*IMSG_DATA_BLOCK_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, IMSG_DATA_BLOCK_LENGTH);
 		}
 	}

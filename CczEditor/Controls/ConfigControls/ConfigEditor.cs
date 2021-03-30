@@ -15,7 +15,7 @@ namespace CczEditor.Controls.ConfigControls
 {
 	public partial class ConfigEditor : BaseControl
 	{
-		public string TypeName { get; set; }
+		public string ConfigFileName { get; set; }
 
 		public ConfigEditor()
 		{
@@ -24,55 +24,50 @@ namespace CczEditor.Controls.ConfigControls
 
 		private void ConfigEditor_Load(object sender, EventArgs e)
 		{
-			if (string.IsNullOrEmpty(TypeName) || !ConfigOperation.Configs.ContainsKey(TypeName))
+			if (string.IsNullOrEmpty(ConfigFileName))
 			{
 				return;
 			}
-			var config = ConfigOperation.Configs[TypeName];
-			txtDataFileDirectory.Text = config.DataFileDirectory;
-            exename.Text = config.Exename;
+            var config = Config.New.Config.Read(ConfigFileName);
+			txtDataFileDirectory.Text = config.DirectoryPath;
+            exename.Text = config.ExeFileName;
 
-            ItemCustomRange.Checked = config.ItemCustomRange;
-            Starusing.Checked = config.Starusing;
-            ObjExtension.Checked = config.ObjExtension;
-            SpcExtension.Checked = config.SpcExtension;
-            AIExtension.Checked = config.AIExtension;
-            MagicLearnExtension.Checked = config.MagicLearnExtension;
-            SingularAttribute.Checked = config.SingularAttribute;		
+            ItemCustomRange.Checked = config.CodeOptionContainer.ItemCustomRange;
+            Starusing.Checked = true;
+            ObjExtension.Checked = true;
+            SpcExtension.Checked = true;
+            AIExtension.Checked = config.CodeOptionContainer.AIExtension;
+            MagicLearnExtension.Checked = config.CodeOptionContainer.MagicLearnExtension;
+            SingularAttribute.Checked = config.CodeOptionContainer.SingularAttribute;
 		}
 
 		private void btnSave_Click(object sender, EventArgs e)
 		{
-			if (string.IsNullOrEmpty(TypeName) || !ConfigOperation.Configs.ContainsKey(TypeName))
+			if (string.IsNullOrEmpty(ConfigFileName))
 			{
 				return;
-			}
-			var config = ConfigOperation.Configs[TypeName];
-			config.DataFileDirectory = txtDataFileDirectory.Text;
-            config.Exename = exename.Text;
-            config.ItemCustomRange = ItemCustomRange.Checked;
-            config.Starusing = Starusing.Checked;
-            config.ObjExtension = ObjExtension.Checked;
-            config.SpcExtension = SpcExtension.Checked;
-            config.AIExtension = AIExtension.Checked;
-            config.MagicLearnExtension = MagicLearnExtension.Checked;
-            config.SingularAttribute = SingularAttribute.Checked;			
-			config.WriteXml();
-			if (TypeName == Program.CurrentConfig.TypeName)
-			{
-				Program.ReLoadData();
-			}
-		}
+            }
+            var config = Config.New.Config.Read(ConfigFileName);
+            config.DirectoryPath = txtDataFileDirectory.Text;
+            config.ExeFileName = exename.Text;
+            config.CodeOptionContainer.ItemCustomRange = ItemCustomRange.Checked;
+            config.CodeOptionContainer.AIExtension = AIExtension.Checked;
+            config.CodeOptionContainer.MagicLearnExtension = MagicLearnExtension.Checked;
+            config.CodeOptionContainer.SingularAttribute = SingularAttribute.Checked;
+
+            Config.New.Config.Write(config, ConfigFileName);
+            Program.ReLoadData();
+        }
 
 		private void btnReLoad_Click(object sender, EventArgs e)
 		{
-			if (string.IsNullOrEmpty(TypeName) || !ConfigOperation.Configs.ContainsKey(TypeName) || !ConfigInfo.ExistsFile(TypeName))
+			if (string.IsNullOrEmpty(ConfigFileName))
 			{
 				return;
-			}
-			ConfigOperation.Configs[TypeName].ReadXml();
+            }
+            var config = Config.New.Config.Read(ConfigFileName);
 			ConfigEditor_Load(this, new EventArgs());
-			if (TypeName == Program.CurrentConfig.TypeName)
+			if (ConfigFileName == Program.CurrentConfig.FileName)
 			{
 				Program.ReLoadData();
 			}

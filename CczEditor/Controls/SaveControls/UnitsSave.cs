@@ -17,9 +17,9 @@ namespace CczEditor.Controls.SaveControls
 		public UnitsSave()
 		{
 			InitializeComponent();
-			ncStr.Maximum = ncVit.Maximum = ncInt.Maximum = ncAvg.Maximum = ncLuk.Maximum = Program.CurrentConfig.SingularAttribute ? 255 : 510;
-			ncStr.Increment = ncVit.Increment = ncInt.Increment = ncAvg.Increment = ncLuk.Increment = Program.CurrentConfig.SingularAttribute ? 1 : 2;
-			ncMp.Maximum = Program.CurrentConfig.SaveMpExtension ? 65535 : 255;
+			//ncStr.Maximum = ncVit.Maximum = ncInt.Maximum = ncAvg.Maximum = ncLuk.Maximum = Program.CurrentConfig.SingularAttribute ? 255 : 510;
+			//ncStr.Increment = ncVit.Increment = ncInt.Increment = ncAvg.Increment = ncLuk.Increment = Program.CurrentConfig.SingularAttribute ? 1 : 2;
+			//ncMp.Maximum = Program.CurrentConfig.SaveMpExtension ? 65535 : 255;
 			GetResourcesFace();
 			GetResourcesPmapobj();
 			GetResourcesItemIcon();
@@ -49,6 +49,7 @@ namespace CczEditor.Controls.SaveControls
 			{
 				return;
 			}
+            /*
 			var unit = SaveData.UnitGet(clbList.SelectedIndex);
 			ncFace.Value = BitConverter.ToUInt16(unit, 0);
 			ncPmapobj.Value = unit[2];
@@ -112,7 +113,7 @@ namespace CczEditor.Controls.SaveControls
 			if (TopLevelControl != null)
 			{
 				TopLevelControl.Text = string.Format("{1} - 세이브 편집 - 번호：{0}", clbList.SelectedIndex, Program.TitleNameCurrent);
-			}
+			}*/
 		}
 
 		private void btnSave_Click(object sender, EventArgs e)
@@ -130,7 +131,7 @@ namespace CczEditor.Controls.SaveControls
 		}
 
 		private void UnitDataSave(int index, bool batch)
-		{
+		{/*
 			var unit = SaveData.UnitGet(index);
 			if (!batch || cbbFace.Checked)
 			{
@@ -297,7 +298,7 @@ namespace CczEditor.Controls.SaveControls
 				unit[36] = (byte)ncRetreat.Value;
 			}
 
-			SaveData.UnitSet(index, unit);
+			SaveData.UnitSet(index, unit);*/
 		}
 
 		#region 复选框列表操作

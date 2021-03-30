@@ -10,13 +10,13 @@ namespace CczEditor.Data
     public class StarData : FileData
     {
         public const int STAR_ITEM_LENGTH = Program.GAME_ITEM_LENGTH;
-        private readonly Dictionary<int, string> _weapons = Program.CurrentConfig.ItemConfigs.WeaponsTypes(false);
-        private readonly Dictionary<int, string> _armor = Program.CurrentConfig.ItemConfigs.ArmorTypes(false);
-        private readonly Dictionary<int, string> _auxiliary = Program.CurrentConfig.ItemConfigs.AuxiliaryEffects(false);
-        private readonly Dictionary<int, string> _consumables = Program.CurrentConfig.ItemConfigs.ConsumablesEffects(false);
-        private readonly Dictionary<int, string> _bombs = Program.CurrentConfig.ItemConfigs.BombsEffects(false);
-        private readonly Dictionary<int, string> _bombs2 = Program.CurrentConfig.ItemConfigs.BombsEffects2(false);
-        private readonly Dictionary<int, string> _bombs3 = Program.CurrentConfig.ItemConfigs.BombsEffects3(false);
+        private readonly Dictionary<int, string> _weapons = Config.New.ConfigUtils.GetWeaponsTypes(false);
+        private readonly Dictionary<int, string> _armor = Config.New.ConfigUtils.GetArmorTypes(false);
+        private readonly Dictionary<int, string> _auxiliary = Config.New.ConfigUtils.GetAuxiliaryEffects(Program.FORMATSTRING_KEYVALUEPAIR_HEX2);
+        private readonly Dictionary<int, string> _consumables = Config.New.ConfigUtils.GetConsumablesEffects(Program.FORMATSTRING_KEYVALUEPAIR_HEX2);
+        private readonly Dictionary<int, string> _bombs = Config.New.ConfigUtils.GetBombsEffects(false);
+        private readonly Dictionary<int, string> _bombs2 = Config.New.ConfigUtils.GetBombsEffects2(false);
+        private readonly Dictionary<int, string> _bombs3 = Config.New.ConfigUtils.GetBombsEffects3(false);
 
 
         public StarData(string fileName) : base(fileName)
@@ -24,16 +24,18 @@ namespace CczEditor.Data
         }
         public List<string> GetItemNames(ItemType type, bool hasFormater)
         {
-            var count = Program.CurrentConfig.Offsets["Star_Item_Count"];
-            var offset = Program.CurrentConfig.Offsets["Star_Item_Offset"];
+            var count = Program.CurrentConfig.Data.StarItemCount;
+            var offset = Program.CurrentConfig.Data.StarItemOffset;
             var list = new List<string>(); 
             var data = new byte[STAR_ITEM_LENGTH * count];
             CurrentStream.Seek(offset, SeekOrigin.Begin);
             CurrentStream.Read(data, 0, STAR_ITEM_LENGTH * count);
-            for (var i = Program.CurrentConfig.Offsets["Game_Item_Count"] + 1; i < count; i++)
+            for (var i = Program.CurrentConfig.Data.ItemCount + 1; i < count; i++)
             {
-                var t = data[17 + STAR_ITEM_LENGTH * (i - (Program.CurrentConfig.Offsets["Game_Item_Count"] + 1))];
-                var s = hasFormater ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, Utils.ByteToString(data, STAR_ITEM_LENGTH * (i - (Program.CurrentConfig.Offsets["Game_Item_Count"] + 1)), 16)) : Utils.ByteToString(data, STAR_ITEM_LENGTH * (i - (Program.CurrentConfig.Offsets["Game_Item_Count"] + 1)), 16);
+                var t = data[17 + STAR_ITEM_LENGTH * (i - (Program.CurrentConfig.Data.ItemCount + 1))];
+                var s = hasFormater ? 
+                    string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, Utils.ByteToString(data, STAR_ITEM_LENGTH * (i - (Program.CurrentConfig.Data.ItemCount + 1)), 16))
+                    : Utils.ByteToString(data, STAR_ITEM_LENGTH * (i - (Program.CurrentConfig.Data.ItemCount + 1)), 16);
                 switch (type)
                 {
                     case ItemType.Weapons:
@@ -101,13 +103,13 @@ namespace CczEditor.Data
 
         public List<string> ItemNameList(bool hasFormater)//List<string> list
         {
-            var count = Program.CurrentConfig.Offsets["Star_Item_Count"];
-            var offset = Program.CurrentConfig.Offsets["Star_Item_Offset"];
+            var count = Program.CurrentConfig.Data.StarItemCount;
+            var offset = Program.CurrentConfig.Data.StarItemOffset;
             var list = new List<string>();
             var name = new byte[16];
-            for (var i = Program.CurrentConfig.Offsets["Game_Item_Count"]; i < count; i++)
+            for (var i = Program.CurrentConfig.Data.ItemCount; i < count; i++)
             {
-                CurrentStream.Seek(offset + (i-Program.CurrentConfig.Offsets["Game_Item_Count"]) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
+                CurrentStream.Seek(offset + (i-Program.CurrentConfig.Data.ItemCount) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
                 CurrentStream.Read(name, 0, 16);
                 list.Add(hasFormater ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, Utils.ByteToString(name)) : Utils.ByteToString(name));
             }
@@ -116,8 +118,8 @@ namespace CczEditor.Data
 
         public List<int> ItemIconList(List<int> list)
         {
-            var count = Program.CurrentConfig.Offsets["Star_Item_Count"];
-            var offset = Program.CurrentConfig.Offsets["Star_Item_Offset"];
+            var count = Program.CurrentConfig.Data.StarItemCount;
+            var offset = Program.CurrentConfig.Data.StarItemOffset;
             for (var i = 0x82; i < count; i++)
             {
                 CurrentStream.Seek(offset + (i-0x82) * STAR_ITEM_LENGTH + 20, SeekOrigin.Begin);
@@ -130,8 +132,8 @@ namespace CczEditor.Data
         {
             get
             {
-                var count = Program.CurrentConfig.Offsets["Star_Item_Count"];
-                var offset = Program.CurrentConfig.Offsets["Star_Item_Offset"];
+                var count = Program.CurrentConfig.Data.StarItemCount;
+                var offset = Program.CurrentConfig.Data.StarItemOffset;
                 var list = new List<bool>();
                 for (var i = 0x82; i < count; i++)
                 {
@@ -142,8 +144,8 @@ namespace CczEditor.Data
             }
             set
             {
-                var count = Program.CurrentConfig.Offsets["Star_Item_Count"];
-                var offset = Program.CurrentConfig.Offsets["Star_Item_Offset"];
+                var count = Program.CurrentConfig.Data.StarItemCount;
+                var offset = Program.CurrentConfig.Data.StarItemOffset;
                 count = count > value.Count ? value.Count : count;
                 for (var i = 0x82; i < count; i++)
                 {
@@ -154,10 +156,10 @@ namespace CczEditor.Data
         }
         public void BomulGet(int bomul,byte[] item,int i)
         {
-            for (; i < Program.CurrentConfig.Offsets["Star_Item_Count"]; i++)
+            for (; i < Program.CurrentConfig.Data.StarItemCount; i++)
             {
                 var offset = 24;
-                CurrentStream.Seek(offset + (i-Program.CurrentConfig.Offsets["Game_Item_Count"]) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
+                CurrentStream.Seek(offset + (i-Program.CurrentConfig.Data.ItemCount) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
                 CurrentStream.Read(item, 0, 1);
                 if (item[0] == 1)
                 {
@@ -165,11 +167,11 @@ namespace CczEditor.Data
                 }
                 item[0] = 0;
             }
-            Program.ExeData.bomulsave(bomul); 
+            //Program.ExeData.bomulsave(bomul); 
         }
         public byte[] ItemGet(int index,byte[] item)
         {
-            var offset = Program.CurrentConfig.Offsets["Star_Item_Offset"];
+            var offset = Program.CurrentConfig.Data.StarItemOffset;
             CurrentStream.Seek(offset + (index-0x82) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
             CurrentStream.Read(item, 0, STAR_ITEM_LENGTH);
             return item;
@@ -177,7 +179,7 @@ namespace CczEditor.Data
 
         public void ItemSet(int index, byte[] value)
         {
-            var offset = Program.CurrentConfig.Offsets["Star_Item_Offset"];
+            var offset = Program.CurrentConfig.Data.StarItemOffset;
             CurrentStream.Seek(offset + (index-0x82) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
             CurrentStream.Write(value, 0, STAR_ITEM_LENGTH);
         }

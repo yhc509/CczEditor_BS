@@ -16,9 +16,6 @@ namespace CczEditor
 {
 	internal static class Program
 	{
-		/// <summary>
-		/// 应用程序的主入口点。
-		/// </summary>
 		[STAThread]
 		private static void Main()
 		{
@@ -28,7 +25,22 @@ namespace CczEditor
 
 			try
 			{
-				ConfigOperation.InitializationConfiguration();
+
+                string systemConfigFileName = Config.New.SystemConfig.DefaultSystemConfigFileName;
+                Config.New.SystemConfig.Read(systemConfigFileName);
+
+                if (string.IsNullOrEmpty(Config.New.SystemConfig.Inst.CurrentConfig) ||
+                    !File.Exists(Config.New.SystemConfig.Inst.CurrentConfig))
+                {
+                    var config = Config.New.SystemConfig.CreateDefaultConfig();
+                    Config.New.Config.Write(config, Config.New.SystemConfig.DefaultConfigName);
+                    CurrentConfig = config;
+                }
+                else
+                {
+                    var config = Config.New.Config.Read(Config.New.SystemConfig.Inst.CurrentConfig);
+                    CurrentConfig = config;
+                }
 			}
 			catch (Exception ex)
 			{
@@ -37,63 +49,24 @@ namespace CczEditor
 
 			Application.Run(new MainForm());
 		}
-
-		/// <summary>
-		/// 程序为捕获的异常处理
-		/// </summary>
+        
 		private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
 		{
 			Utils.ShowError(e.Exception.Message);
 		}
-
-		/// <summary>
-		/// 当前配置信息
-		/// </summary>
-		public static ConfigInfo CurrentConfig { get; set; }
-
-		/// <summary>
-		/// 默认的XmlWriter设置
-		/// </summary>
-		public static readonly XmlWriterSettings XmlWriterSettings = new XmlWriterSettings
-		                                                             {
-		                                                             	Encoding = Encoding.UTF8,
-		                                                             	Indent = true,
-		                                                             	IndentChars = "\t",
-		                                                             	OmitXmlDeclaration = true
-		                                                             };
-
-		/// <summary>
-		/// 默认的XmlReader设置
-		/// </summary>
-		public static readonly XmlReaderSettings XmlReaderSettings = new XmlReaderSettings
-		                                                             {
-		                                                             	IgnoreComments = true,
-		                                                             	IgnoreProcessingInstructions = true,
-		                                                             	IgnoreWhitespace = true
-		                                                             };
-
-		/// <summary>
-		/// 简体中文编码
-		/// </summary>
+        
+		public static Config.New.Config CurrentConfig { get; set; }
+        
 		public static readonly Encoding EncoderS = Encoding.GetEncoding("euc-kr");
-
-		/// <summary>
-		/// 繁体中文编码
-		/// </summary>
+        
 		public static readonly Encoding EncoderT = Encoding.GetEncoding("euc-kr");
-
-		/// <summary>
-		/// 当前使用中的编码
-		/// </summary>
+        
 		public static Encoding Encoder
 		{
             get { return EncoderS; }
 		}
-
-		/// <summary>
-		/// 程序窗口当前标题
-		/// </summary>
-        public static string TitleNameCurrent = "CczEditor 3.1.3";
+        
+        public static string TitleNameCurrent = "CczEditor 3.2.0";
 
 		#region 常数定义
 
@@ -315,32 +288,16 @@ namespace CczEditor
 		#endregion
 
 		#endregion
-
-        /// <summary>
-        /// exe종류
-        /// </summary>
-        public static ExeData ExeData;
-
-		/// <summary>
-		/// data종류
-		/// </summary>
+                
 		public static GameData GameData;
         public static StarData StarData;
-
-		/// <summary>
-		/// imsg종류
-		/// </summary>
+        
 		public static ImsgData ImsgData;
-
-		/// <summary>
-		/// save종류
-		/// </summary>
+        
+        /*
         public static SaveData SaveData;
-        public static SavebData SavebData;
-
-		/// <summary>
-		/// 파일보존
-		/// </summary>
+        public static SavebData SavebData;*/
+        
 		public static void ReLoadData()
 		{
 			if (GameData != null && GameData.CurrentFile != null && !string.IsNullOrEmpty(GameData.CurrentFile.FullName) && GameData.CurrentFile.Exists)
@@ -351,18 +308,16 @@ namespace CczEditor
 			{
 				ImsgData = new ImsgData(ImsgData.CurrentFile.FullName);
 			}
-			if (SaveData != null && SaveData.CurrentFile != null && !string.IsNullOrEmpty(SaveData.CurrentFile.FullName) && SaveData.CurrentFile.Exists)
+			/*if (SaveData != null && SaveData.CurrentFile != null && !string.IsNullOrEmpty(SaveData.CurrentFile.FullName) && SaveData.CurrentFile.Exists)
 			{
 				SaveData = new SaveData(SaveData.CurrentFile.FullName);
-			}
+			}*/
             if (StarData != null && StarData.CurrentFile != null && !string.IsNullOrEmpty(StarData.CurrentFile.FullName) && StarData.CurrentFile.Exists)
             {
                 StarData = new StarData(StarData.CurrentFile.FullName);
             }
 		}
-		/// <summary>
-		/// 파일로드
-		/// </summary>
+
 		public static void LoadGameData()
 		{
 			try
@@ -374,14 +329,14 @@ namespace CczEditor
 						GameData = new GameData(Path.Combine(ImsgData.CurrentFile.DirectoryName, FILENAME_DATA));
 						return;
 					}
-					if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null)
+					/*if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null)
 					{
 						GameData = new GameData(Path.Combine(SaveData.CurrentFile.DirectoryName, FILENAME_DATA));
 						return;
-					}
-					if (CurrentConfig != null && !string.IsNullOrEmpty(CurrentConfig.DataFileDirectory) && Directory.Exists(CurrentConfig.DataFileDirectory))
+					}*/
+					if (CurrentConfig != null && !string.IsNullOrEmpty(CurrentConfig.DirectoryPath) && Directory.Exists(CurrentConfig.DirectoryPath))
 					{
-						GameData = new GameData(Path.Combine(CurrentConfig.DataFileDirectory, FILENAME_DATA));
+						GameData = new GameData(Path.Combine(CurrentConfig.DirectoryPath, FILENAME_DATA));
 						return;
 					}
 				}
@@ -391,10 +346,10 @@ namespace CczEditor
 					{
 						GameData = new GameData(Path.Combine(ImsgData.CurrentFile.DirectoryName, FILENAME_DATA));
 					}
-					if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null && GameData.CurrentFile.DirectoryName != SaveData.CurrentFile.DirectoryName)
+					/*if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null && GameData.CurrentFile.DirectoryName != SaveData.CurrentFile.DirectoryName)
 					{
 						GameData = new GameData(Path.Combine(SaveData.CurrentFile.DirectoryName, FILENAME_DATA));
-					}
+					}*/
 				}
 			}
 			catch (Exception)
@@ -403,9 +358,7 @@ namespace CczEditor
 				return;
 			}
 		}
-        /// <summary>
-        /// 파일로드
-        /// </summary>
+
         public static void LoadStarData()
         {
                 try
@@ -417,14 +370,14 @@ namespace CczEditor
                             StarData = new StarData(Path.Combine(ImsgData.CurrentFile.DirectoryName, FILENAME_STAR));
                             return;
                         }
-                        if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null)
+                        /*if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null)
                         {
                             StarData = new StarData(Path.Combine(SaveData.CurrentFile.DirectoryName, FILENAME_STAR));
                             return;
-                        }
-                        if (CurrentConfig != null && !string.IsNullOrEmpty(CurrentConfig.DataFileDirectory) && Directory.Exists(CurrentConfig.DataFileDirectory))
+                        }*/
+                        if (CurrentConfig != null && !string.IsNullOrEmpty(CurrentConfig.DirectoryPath) && Directory.Exists(CurrentConfig.DirectoryPath))
                         {
-                            StarData = new StarData(Path.Combine(CurrentConfig.DataFileDirectory, FILENAME_STAR));
+                            StarData = new StarData(Path.Combine(CurrentConfig.DirectoryPath, FILENAME_STAR));
                             return;
                         }
                     }
@@ -434,10 +387,10 @@ namespace CczEditor
                         {
                             StarData = new StarData(Path.Combine(ImsgData.CurrentFile.DirectoryName, FILENAME_STAR));
                         }
-                        if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null && StarData.CurrentFile.DirectoryName != SaveData.CurrentFile.DirectoryName)
+                        /*if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null && StarData.CurrentFile.DirectoryName != SaveData.CurrentFile.DirectoryName)
                         {
                             StarData = new StarData(Path.Combine(SaveData.CurrentFile.DirectoryName, FILENAME_STAR));
-                        }
+                        }*/
                     }
                 }
                 catch (Exception)
@@ -446,52 +399,7 @@ namespace CczEditor
                     return;
                 }
         }
-        /// <summary>
-        /// 파일로드
-        /// </summary>
-        public static void LoadExeData()
-        {
-            try
-            {
-                if (ExeData == null || ExeData.CurrentStream == null)
-                {
-                    if (ImsgData != null && ImsgData.CurrentFile != null && ImsgData.CurrentFile.Exists && ImsgData.CurrentFile.DirectoryName != null)
-                    {
-                        ExeData = new ExeData(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.CurrentConfig.Exename));
-                        return;
-                    }
-                    if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null)
-                    {
-                        ExeData = new ExeData(Path.Combine(SaveData.CurrentFile.DirectoryName, Program.CurrentConfig.Exename));
-                        return;
-                    }
-                    if (CurrentConfig != null && !string.IsNullOrEmpty(CurrentConfig.DataFileDirectory) && Directory.Exists(CurrentConfig.DataFileDirectory))
-                    {
-                        ExeData = new ExeData(Path.Combine(CurrentConfig.DataFileDirectory, Program.CurrentConfig.Exename));
-                        return;
-                    }
-                }
-                else
-                {
-                    if (ImsgData != null && ImsgData.CurrentFile != null && ImsgData.CurrentFile.Exists && ImsgData.CurrentFile.DirectoryName != null && StarData.CurrentFile.DirectoryName != ImsgData.CurrentFile.DirectoryName)
-                    {
-                        ExeData = new ExeData(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.CurrentConfig.Exename));
-                    }
-                    if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null && StarData.CurrentFile.DirectoryName != SaveData.CurrentFile.DirectoryName)
-                    {
-                        ExeData = new ExeData(Path.Combine(SaveData.CurrentFile.DirectoryName, Program.CurrentConfig.Exename));
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                ExeData = null;
-                return;
-            }
-        }
-		/// <summary>
-		/// 파일로드
-		/// </summary>
+        
 		public static void LoadImsgData()
 		{
 			try
@@ -503,14 +411,14 @@ namespace CczEditor
 						ImsgData = new ImsgData(Path.Combine(GameData.CurrentFile.DirectoryName, FILENAME_IMSG));
 						return;
 					}
-					if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null)
+					/*if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null)
 					{
 						ImsgData = new ImsgData(Path.Combine(SaveData.CurrentFile.DirectoryName, FILENAME_IMSG));
 						return;
-					}
-					if (CurrentConfig != null && !string.IsNullOrEmpty(CurrentConfig.DataFileDirectory) && Directory.Exists(CurrentConfig.DataFileDirectory))
+					}*/
+					if (CurrentConfig != null && !string.IsNullOrEmpty(CurrentConfig.DirectoryPath) && Directory.Exists(CurrentConfig.DirectoryPath))
 					{
-						ImsgData = new ImsgData(Path.Combine(CurrentConfig.DataFileDirectory, FILENAME_IMSG));
+						ImsgData = new ImsgData(Path.Combine(CurrentConfig.DirectoryPath, FILENAME_IMSG));
 						return;
 					}
 				}
@@ -521,11 +429,11 @@ namespace CczEditor
 						ImsgData = new ImsgData(Path.Combine(GameData.CurrentFile.DirectoryName, FILENAME_IMSG));
 						return;
 					}
-					if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null && ImsgData.CurrentFile.DirectoryName != SaveData.CurrentFile.DirectoryName)
+					/*if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null && ImsgData.CurrentFile.DirectoryName != SaveData.CurrentFile.DirectoryName)
 					{
 						ImsgData = new ImsgData(Path.Combine(SaveData.CurrentFile.DirectoryName, FILENAME_IMSG));
 						return;
-					}
+					}*/
 				}
 			}
 			catch (Exception)
@@ -536,6 +444,7 @@ namespace CczEditor
 		}
         public static void LoadSavebData()
         {
+            /*
             try
             {
                 if (SavebData == null || SavebData.CurrentStream == null)
@@ -547,12 +456,12 @@ namespace CczEditor
                     }
                     if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null)
                     {
-                        SavebData = new SavebData(Path.Combine(SavebData.CurrentFile.DirectoryName, Program.CurrentConfig.Exename));
+                        SavebData = new SavebData(Path.Combine(SavebData.CurrentFile.DirectoryName, Program.CurrentConfig.ExeFileName));
                         return;
                     }
-                    if (CurrentConfig != null && !string.IsNullOrEmpty(CurrentConfig.DataFileDirectory) && Directory.Exists(CurrentConfig.DataFileDirectory))
+                    if (CurrentConfig != null && !string.IsNullOrEmpty(CurrentConfig.DirectoryPath) && Directory.Exists(CurrentConfig.DirectoryPath))
                     {
-                        SavebData = new SavebData(Path.Combine(CurrentConfig.DataFileDirectory, Program.CurrentConfig.Exename));
+                        SavebData = new SavebData(Path.Combine(CurrentConfig.DirectoryPath, Program.CurrentConfig.ExeFileName));
                         return;
                     }
                 }
@@ -560,11 +469,11 @@ namespace CczEditor
                 {
                     if (ImsgData != null && ImsgData.CurrentFile != null && ImsgData.CurrentFile.Exists && ImsgData.CurrentFile.DirectoryName != null && StarData.CurrentFile.DirectoryName != ImsgData.CurrentFile.DirectoryName)
                     {
-                        ExeData = new ExeData(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.CurrentConfig.Exename));
+                        ExeData = new ExeData(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.CurrentConfig.ExeFileName));
                     }
                     if (SaveData != null && SaveData.CurrentFile != null && SaveData.CurrentFile.Exists && SaveData.CurrentFile.DirectoryName != null && StarData.CurrentFile.DirectoryName != SaveData.CurrentFile.DirectoryName)
                     {
-                        ExeData = new ExeData(Path.Combine(SaveData.CurrentFile.DirectoryName, Program.CurrentConfig.Exename));
+                        ExeData = new ExeData(Path.Combine(SaveData.CurrentFile.DirectoryName, Program.CurrentConfig.ExeFileName));
                     }
                 }
             }
@@ -572,7 +481,7 @@ namespace CczEditor
             {
                 StarData = null;
                 return;
-            }
+            }*/
         }
 	}
 }

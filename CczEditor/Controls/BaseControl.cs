@@ -15,7 +15,6 @@ namespace CczEditor.Controls
     /// </summary>
     public class BaseControl : UserControl
     {
-        protected ExeData ExeData;
         protected GameData GameData;
         protected StarData StarData;
         protected ImsgData ImsgData;
@@ -61,18 +60,7 @@ namespace CczEditor.Controls
             {
                 Program.LoadStarData();
                 StarData = Program.StarData;
-            }            
-            if (Program.ExeData != null)
-            {
-                Program.LoadExeData();
-                ExeData = Program.ExeData;
             }
-            else
-            {
-                Program.LoadExeData();
-                ExeData = Program.ExeData;
-            }
-
         }
 
         public bool GameDataLoaded
@@ -83,11 +71,6 @@ namespace CczEditor.Controls
         public bool ImsgDataLoaded
         {
             get { return ImsgData != null && ImsgData.CurrentFile != null && ImsgData.CurrentStream != null; }
-        }
-
-        public bool ExeDataLoaded
-        {
-            get { return ExeData != null && ExeData.CurrentFile != null && ExeData.CurrentStream != null; }
         }
 
         public bool StarDataLoaded
@@ -108,9 +91,9 @@ namespace CczEditor.Controls
             {
                 ItemIcons = new ItemResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_ITEM));
             }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DataFileDirectory) && Directory.Exists(Program.CurrentConfig.DataFileDirectory))
+            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
             {
-                ItemIcons = new ItemResources(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_ITEM));
+                ItemIcons = new ItemResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_ITEM));
             }
         }
 
@@ -128,9 +111,9 @@ namespace CczEditor.Controls
             {
                 Faces = new FaceResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_FACE));
             }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DataFileDirectory) && Directory.Exists(Program.CurrentConfig.DataFileDirectory))
+            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
             {
-                Faces = new FaceResources(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_FACE));
+                Faces = new FaceResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_FACE));
             }
         }
 
@@ -148,9 +131,9 @@ namespace CczEditor.Controls
             {
                 FaceLarges = new FaceResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_FACE_LARGE));
             }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DataFileDirectory) && Directory.Exists(Program.CurrentConfig.DataFileDirectory))
+            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
             {
-                FaceLarges = new FaceResources(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_FACE_LARGE));
+                FaceLarges = new FaceResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_FACE_LARGE));
             }
         }
 
@@ -169,9 +152,9 @@ namespace CczEditor.Controls
             {
                 Pmapobjs = new PmapobjResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_PMAPOBJ));
             }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DataFileDirectory) && Directory.Exists(Program.CurrentConfig.DataFileDirectory))
+            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
             {
-                Pmapobjs = new PmapobjResources(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_PMAPOBJ));
+                Pmapobjs = new PmapobjResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_PMAPOBJ));
             }
         }
 
@@ -189,9 +172,9 @@ namespace CczEditor.Controls
             {
                 Hitareas = new HitareaResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_HITAREA));
             }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DataFileDirectory) && Directory.Exists(Program.CurrentConfig.DataFileDirectory))
+            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
             {
-                Hitareas = new HitareaResources(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_HITAREA));
+                Hitareas = new HitareaResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_HITAREA));
             }
         }
 
@@ -209,9 +192,9 @@ namespace CczEditor.Controls
             {
                 Effareas = new EffareaResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_EFFAREA));
             }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DataFileDirectory) && Directory.Exists(Program.CurrentConfig.DataFileDirectory))
+            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
             {
-                Effareas = new EffareaResources(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_EFFAREA));
+                Effareas = new EffareaResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_EFFAREA));
             }
         }
 
@@ -229,9 +212,9 @@ namespace CczEditor.Controls
             {
                 UnitAtk = new UnitAtkResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEATK));
             }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DataFileDirectory) && Directory.Exists(Program.CurrentConfig.DataFileDirectory))
+            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
             {
-                UnitAtk = new UnitAtkResources(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_IMAGEATK));
+                UnitAtk = new UnitAtkResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_IMAGEATK));
             }
         }
 
@@ -249,9 +232,9 @@ namespace CczEditor.Controls
             {
                 UnitMov = new UnitMovResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEMOV));
             }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DataFileDirectory) && Directory.Exists(Program.CurrentConfig.DataFileDirectory))
+            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
             {
-                UnitMov = new UnitMovResources(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_IMAGEMOV));
+                UnitMov = new UnitMovResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_IMAGEMOV));
             }
         }
 
@@ -269,9 +252,9 @@ namespace CczEditor.Controls
             {
                 UnitSpc = new UnitSpcResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_IMAGESPC));
             }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DataFileDirectory) && Directory.Exists(Program.CurrentConfig.DataFileDirectory))
+            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
             {
-                UnitSpc = new UnitSpcResources(Path.Combine(Program.CurrentConfig.DataFileDirectory, Program.FILENAME_IMAGESPC));
+                UnitSpc = new UnitSpcResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_IMAGESPC));
             }
         }
 

@@ -8,6 +8,7 @@ using System.IO;
 
 namespace CczEditor.Data
 {
+    /*
 	public class SaveData : FileData
 	{
 		public const int SAVE_UNIT_LENGTH = Program.SAVE_UNIT_LENGTH;
@@ -122,5 +123,5 @@ namespace CczEditor.Data
 			CurrentStream.Seek(offset+index*SAVE_UNIT_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, SAVE_UNIT_LENGTH);
 		}
-	}
+	}*/
 }

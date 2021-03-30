@@ -11,8 +11,8 @@ namespace CczEditor.Controls.DataControls
 		public ForceData()
 		{
 			InitializeComponent();
-            f1.Enabled = f2.Enabled = f3.Enabled = f4.Enabled = f5.Enabled = f6.Enabled = f7.Enabled = f8.Enabled = eff.Enabled = button1.Enabled = ExeDataLoaded;
-            if (Program.CurrentConfig.AIExtension && ExeDataLoaded)
+            f1.Enabled = f2.Enabled = f3.Enabled = f4.Enabled = f5.Enabled = f6.Enabled = f7.Enabled = f8.Enabled = eff.Enabled = button1.Enabled = true;
+            if (Program.CurrentConfig.CodeOptionContainer.AIExtension)
             {
                 f9.Enabled = true;
             }
@@ -27,7 +27,7 @@ namespace CczEditor.Controls.DataControls
 
 		private void ForceData_Load(object sender, EventArgs e)
 		{
-            var equipmentTypes = Program.CurrentConfig.ItemConfigs.EquipmentTypes(false);
+            var equipmentTypes = Config.New.ConfigUtils.GetEquipmentTypes(Program.FORMATSTRING_KEYVALUEPAIR_HEX2);
 			if (equipmentTypes != null)
 			{
 				for (var i = 0; i < equipmentTypes.Count; i++)
@@ -42,7 +42,7 @@ namespace CczEditor.Controls.DataControls
 					}
 				}
 			}
-			cbHitarea.Items.AddRange(Program.CurrentConfig.Hitareas.ToArray());
+			cbHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
             lbList.Items.AddRange(Program.CurrentConfig.ForceNames.ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
@@ -73,36 +73,33 @@ namespace CczEditor.Controls.DataControls
 			{
 				btnImsgRestore_Click();
 			}
-            if (ExeDataLoaded)
-            {               
-                int forcenum = 0;
-                int ForceCount = Program.CurrentConfig.Forces.Count;
-                int ForceCategoryCount = Program.CurrentConfig.ForceCategories.Count;
-                if (lbList.SelectedIndex < ((ForceCount-ForceCategoryCount)/2)*3-1)
-                {
-                    forcenum = (lbList.SelectedIndex / 3);
-                }
-                else
-                {
-                    forcenum = (lbList.SelectedIndex - ((ForceCount - ForceCategoryCount) / 2) * 3) + (ForceCount-ForceCategoryCount)/2;
-                }
-                label10.Text = Program.CurrentConfig.ForceCategoryNameslb(forcenum);
-                f1.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_MovSound");
-                f2.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_MovSpeed");
-                f3.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AtkSound");
-                f4.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AtkType");
-                f5.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_ForceType");
-                f6.Value = Program.ExeData.forceload(forcenum, "Exe_Force_SprDmg");
-                f7.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AtkDelay");
-                f8.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AtkPinc");
-                if (Program.CurrentConfig.AIExtension)
-                {
-                    f9.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AI");
-                }
-                eff.SelectedIndex = Program.ExeData.forceload(lbList.SelectedIndex, "Exe_Force_AtkEffect");
 
+            int forcenum = 0;
+            int ForceCount = Program.CurrentConfig.ForceNames.Count;
+            int ForceCategoryCount = Program.CurrentConfig.ForceCategoryNames.Count;
+            if (lbList.SelectedIndex < ((ForceCount - ForceCategoryCount) / 2) * 3 - 1)
+            {
+                forcenum = (lbList.SelectedIndex / 3);
             }
-			if (TopLevelControl != null)
+            else
+            {
+                forcenum = (lbList.SelectedIndex - ((ForceCount - ForceCategoryCount) / 2) * 3) + (ForceCount - ForceCategoryCount) / 2;
+            }
+            //label10.Text = Program.CurrentConfig.ForceCategoryNameslb(forcenum);
+            //f1.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_MovSound");
+            //f2.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_MovSpeed");
+            //f3.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AtkSound");
+            //f4.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AtkType");
+            //f5.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_ForceType");
+            //f6.Value = Program.ExeData.forceload(forcenum, "Exe_Force_SprDmg");
+            //f7.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AtkDelay");
+            //f8.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AtkPinc");
+            if (Program.CurrentConfig.CodeOptionContainer.AIExtension)
+            {
+                //f9.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AI");
+            }
+            //eff.SelectedIndex = Program.ExeData.forceload(lbList.SelectedIndex, "Exe_Force_AtkEffect");
+            if (TopLevelControl != null)
 			{
 				TopLevelControl.Text = string.Format("{1} - 병종 편집 - 번호：{0}", lbList.SelectedIndex, Program.TitleNameCurrent);
 			}
@@ -142,34 +139,31 @@ namespace CczEditor.Controls.DataControls
             }
 
             //EXE
-            if (ExeDataLoaded)
+            int forcenum = 0;
+            if (lbList.SelectedIndex < 60)
             {
-                int forcenum = 0;
-                if (lbList.SelectedIndex < 60)
-                {
-                    forcenum = (lbList.SelectedIndex / 3);
-                }
-                else
-                {
-                    forcenum = (lbList.SelectedIndex - 59) + 19;
-                }
-                Program.ExeData.forcesave(forcenum, "Exe_Force_MovSound", (byte)f1.SelectedIndex);
-                Program.ExeData.forcesave(forcenum, "Exe_Force_MovSpeed", (byte)f2.SelectedIndex);
-                Program.ExeData.forcesave(forcenum, "Exe_Force_AtkSound", (byte)f3.SelectedIndex);
-                Program.ExeData.forcesave(forcenum, "Exe_Force_AtkType", (byte)f4.SelectedIndex);
-                Program.ExeData.forcesave(forcenum, "Exe_Force_ForceType", (byte)f5.SelectedIndex);
-                Program.ExeData.forcesave(forcenum, "Exe_Force_SprDmg", (byte)f6.Value);
-                Program.ExeData.forcesave(forcenum, "Exe_Force_AtkDelay", (byte)f7.SelectedIndex);
-                Program.ExeData.forcesave(forcenum, "Exe_Force_AtkPinc", (byte)f8.SelectedIndex);
-                if (Program.CurrentConfig.AIExtension)
-                {
-                    Program.ExeData.forcesave(forcenum, "Exe_Force_AI", (byte)f9.SelectedIndex);
-                }
-                Program.ExeData.forcesave(lbList.SelectedIndex, "Exe_Force_AtkEffect", (byte)eff.SelectedIndex);
+                forcenum = (lbList.SelectedIndex / 3);
             }
-		}
+            else
+            {
+                forcenum = (lbList.SelectedIndex - 59) + 19;
+            }
+            //Program.ExeData.forcesave(forcenum, "Exe_Force_MovSound", (byte)f1.SelectedIndex);
+            //Program.ExeData.forcesave(forcenum, "Exe_Force_MovSpeed", (byte)f2.SelectedIndex);
+            //Program.ExeData.forcesave(forcenum, "Exe_Force_AtkSound", (byte)f3.SelectedIndex);
+            //Program.ExeData.forcesave(forcenum, "Exe_Force_AtkType", (byte)f4.SelectedIndex);
+            //Program.ExeData.forcesave(forcenum, "Exe_Force_ForceType", (byte)f5.SelectedIndex);
+            //Program.ExeData.forcesave(forcenum, "Exe_Force_SprDmg", (byte)f6.Value);
+            //Program.ExeData.forcesave(forcenum, "Exe_Force_AtkDelay", (byte)f7.SelectedIndex);
+            //Program.ExeData.forcesave(forcenum, "Exe_Force_AtkPinc", (byte)f8.SelectedIndex);
+            if (Program.CurrentConfig.CodeOptionContainer.AIExtension)
+            {
+                //Program.ExeData.forcesave(forcenum, "Exe_Force_AI", (byte)f9.SelectedIndex);
+            }
+            //Program.ExeData.forcesave(lbList.SelectedIndex, "Exe_Force_AtkEffect", (byte)eff.SelectedIndex);
+        }
 
-		private void btnRestore_Click(object sender, EventArgs e)
+        private void btnRestore_Click(object sender, EventArgs e)
 		{
 			lbList_SelectedIndexChanged(lbList, new EventArgs());
 		}

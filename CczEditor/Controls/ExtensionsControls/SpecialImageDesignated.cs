@@ -430,8 +430,8 @@ namespace CczEditor.Controls.ExtensionsControls
 
 		private void btnSaveOffset_Click(object sender, EventArgs e)
 		{
-			ConfigOperation.SystemConfig.SpecialImageDesignatedOffset = (int)ncOffset.Value;
-            ConfigOperation.SystemConfig.RSpecialImageDesignatedOffset = (int)pmapoffset.Value;
+			//ConfigOperation.SystemConfig.SpecialImageDesignatedOffset = (int)ncOffset.Value;
+            //ConfigOperation.SystemConfig.RSpecialImageDesignatedOffset = (int)pmapoffset.Value;
 		}
 
         private void ncPmapobj_ValueChanged_1(object sender, EventArgs e)

@@ -18,9 +18,9 @@ namespace CczEditor.Controls.DataControls
             var forceNames = Program.CurrentConfig.ForceCategoryNames;
             for (var i = 0; i < forceNames.Count; i++)
             {
-                var item = new ListViewItem("0");
+                /*var item = new ListViewItem("0");
                 item.SubItems.Add(forceNames[i]);
-                lvLearnLv.Items.Add(item);
+                lvLearnLv.Items.Add(item);*/
             }
             listBox1.SelectedIndex = 0;
         }
@@ -29,7 +29,7 @@ namespace CczEditor.Controls.DataControls
         {
             for (var i = 0; i < Program.CurrentConfig.ForceCategoryNames.Count; i++)
             {
-                lvLearnLv.Items[i].Text = Program.ExeData.detailload(0, 0, Program.CurrentConfig.Offsets["Exe_Force_SangSeong"] + (listBox1.SelectedIndex * Program.CurrentConfig.ForceCategoryNames.Count) + i).ToString(); ;
+               // lvLearnLv.Items[i].Text = Program.ExeData.detailload(0, 0, Program.CurrentConfig.Exe.Force.SynastryOffset + (listBox1.SelectedIndex * Program.CurrentConfig.ForceCategoryNames.Count) + i).ToString(); ;
             }
         }
 
@@ -45,7 +45,7 @@ namespace CczEditor.Controls.DataControls
         {
             for (var i = 0; i < Program.CurrentConfig.ForceCategoryNames.Count; i++)
             {
-                Program.ExeData.detailsave(0, 0, Program.CurrentConfig.Offsets["Exe_Force_SangSeong"] + (listBox1.SelectedIndex *  Program.CurrentConfig.ForceCategoryNames.Count) + i, byte.Parse(lvLearnLv.Items[i].Text));
+                //Program.ExeData.detailsave(0, 0, Program.CurrentConfig.Exe.Force.SynastryOffset + (listBox1.SelectedIndex *  Program.CurrentConfig.ForceCategoryNames.Count) + i, byte.Parse(lvLearnLv.Items[i].Text));
             }
         }
         private void lvLearnLv_ItemActivate(object sender, EventArgs e)

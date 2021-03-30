@@ -65,19 +65,19 @@ namespace CczEditor.Data.Wrapper
                 Program.GameData.UnitSet(index, result);
             }
 
-            if (Program.ExeData.IsExist)
+            if (!ExeData.IsLocked)
             {
-                Program.ExeData.WriteWord(Pmapobj, index, Program.CurrentConfig.Offsets["Unit_Pmapobj"]);
-                Program.ExeData.WriteWord(BattleObj, index, Program.CurrentConfig.Offsets["Unit_Spc"]);
-                Program.ExeData.WriteByte(CharacterType, index, Program.CurrentConfig.Offsets["Unit_Cha"]);
+                ExeData.WriteWord(Pmapobj, index, Program.CurrentConfig.Exe.UnitPmapObjOffset);
+                ExeData.WriteWord(BattleObj, index, Program.CurrentConfig.Exe.UnitBattleObjOffset);
+                ExeData.WriteByte(CharacterType, index, Program.CurrentConfig.Exe.UnitCharacterOffset);
                 if (index <= 255)
                 {
-                    Program.ExeData.WriteByte(Voice, index, Program.CurrentConfig.Offsets["Unit_Voice"]);
-                    Program.ExeData.WriteByte(Cost, index, Program.CurrentConfig.Offsets["Unit_Cost"]);
-                    Program.ExeData.WriteByte(Cutin, index, Program.CurrentConfig.Offsets["Unit_Cutin"]);
+                    ExeData.WriteByte(Voice, index, Program.CurrentConfig.Exe.UnitVoiceOffset);
+                    ExeData.WriteByte(Cost, index, Program.CurrentConfig.Exe.UnitCostOffset);
+                    ExeData.WriteByte(Cutin, index, Program.CurrentConfig.Exe.UnitCutinOffset);
                 }
             }
-            
+
             if (Program.ImsgData.IsExist)
             {
                 if (Imsg != null)
@@ -117,17 +117,17 @@ namespace CczEditor.Data.Wrapper
                 Lv = unit[27];
             }
 
-            if (Program.ExeData.IsExist)
+            if(!ExeData.IsLocked)
             {
-                Pmapobj = Program.ExeData.ReadWord(index, Program.CurrentConfig.Offsets["Unit_Pmapobj"]);
-                BattleObj = Program.ExeData.ReadWord(index, Program.CurrentConfig.Offsets["Unit_Spc"]);
-                CharacterType = Program.ExeData.ReadByte(index, Program.CurrentConfig.Offsets["Unit_Cha"]);
-                if (index <= 255)
-                {
-                    Voice = Program.ExeData.ReadByte(index, Program.CurrentConfig.Offsets["Unit_Voice"]);
-                    Cutin = Program.ExeData.ReadByte(index, Program.CurrentConfig.Offsets["Unit_Cutin"]);
-                    Cost = Program.ExeData.ReadByte(index, Program.CurrentConfig.Offsets["Unit_Cost"]);
-                }
+                Pmapobj = ExeData.ReadWord(index, Program.CurrentConfig.Exe.UnitPmapObjOffset);
+                BattleObj = ExeData.ReadWord(index, Program.CurrentConfig.Exe.UnitBattleObjOffset);
+                CharacterType = ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitCharacterOffset);
+            }
+            if (index <= 255)
+            {
+                Voice = ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitVoiceOffset);
+                Cutin = ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitCutinOffset);
+                Cost = ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitCostOffset);
             }
 
             if (Program.ImsgData.IsExist)
