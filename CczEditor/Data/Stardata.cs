@@ -10,13 +10,13 @@ namespace CczEditor.Data
     public class StarData : FileData
     {
         public const int STAR_ITEM_LENGTH = Program.GAME_ITEM_LENGTH;
-        private readonly Dictionary<int, string> _weapons = Config.New.ConfigUtils.GetWeaponsTypes(false);
-        private readonly Dictionary<int, string> _armor = Config.New.ConfigUtils.GetArmorTypes(false);
-        private readonly Dictionary<int, string> _auxiliary = Config.New.ConfigUtils.GetAuxiliaryEffects(Program.FORMATSTRING_KEYVALUEPAIR_HEX2);
-        private readonly Dictionary<int, string> _consumables = Config.New.ConfigUtils.GetConsumablesEffects(Program.FORMATSTRING_KEYVALUEPAIR_HEX2);
-        private readonly Dictionary<int, string> _bombs = Config.New.ConfigUtils.GetBombsEffects(false);
-        private readonly Dictionary<int, string> _bombs2 = Config.New.ConfigUtils.GetBombsEffects2(false);
-        private readonly Dictionary<int, string> _bombs3 = Config.New.ConfigUtils.GetBombsEffects3(false);
+        private readonly Dictionary<int, string> _weapons = ConfigUtils.GetWeaponsTypes(null);
+        private readonly Dictionary<int, string> _armor = ConfigUtils.GetArmorTypes(null);
+        private readonly Dictionary<int, string> _auxiliary = ConfigUtils.GetAuxiliaryEffects(null);
+        private readonly Dictionary<int, string> _consumables = ConfigUtils.GetConsumablesEffects(null);
+        private readonly Dictionary<int, string> _bombs = ConfigUtils.GetBombsEffects(null);
+        private readonly Dictionary<int, string> _bombs2 = ConfigUtils.GetBombsEffects2(null);
+        private readonly Dictionary<int, string> _bombs3 = ConfigUtils.GetBombsEffects3(null);
 
 
         public StarData(string fileName) : base(fileName)

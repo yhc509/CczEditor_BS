@@ -3,6 +3,8 @@
 using System;
 
 #endregion
+using System.Linq;
+using System.Windows.Forms;
 
 namespace CczEditor.Controls.DataControls
 {
@@ -15,7 +17,7 @@ namespace CczEditor.Controls.DataControls
 
 		private void TerrainData_Load(object sender, EventArgs e)
 		{
-            lbList.Items.AddRange(Program.CurrentConfig.ForceCategoryNames.ToArray());
+            lbList.Items.AddRange(ConfigUtils.GetForceCategoryNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
 		}
@@ -168,5 +170,17 @@ namespace CczEditor.Controls.DataControls
 		{
 			lbList_SelectedIndexChanged(lbList, new EventArgs());
 		}
-	}
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            var list = ConfigUtils.GetForceCategoryNames(null).Values.ToList();
+            var index = list.FindIndex(x => x == searchTextBox.Text);
+            if (index == -1)
+            {
+                MessageBox.Show("찾기에 실패했습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            lbList.SelectedIndex = index;
+        }
+    }
 }

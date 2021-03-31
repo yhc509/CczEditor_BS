@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-using CczEditor.Config;
+using CczEditor;
 using CczEditor.Controls;
 using CczEditor.Controls.ConfigControls;
 using CczEditor.Controls.DataControls;
@@ -193,8 +193,8 @@ namespace CczEditor
 
             if(File.Exists(configFileName))
             {
-                var config = Config.New.Config.Read(configFileName);
-                Config.New.SystemConfig.Inst.CurrentConfig = configFileName;
+                var config = Config.Read(configFileName);
+                SystemConfig.Inst.CurrentConfig = configFileName;
                 SetControlsVisible(false, false, false);
                 pMainContainer.Controls.Clear();
                 Text = Program.TitleNameCurrent = string.Format("{0} - {1}", Program.TITLE_NAME_ORIGINAL, Program.CurrentConfig.DisplayName);
@@ -216,7 +216,7 @@ namespace CczEditor
         {
             var editor = new ConfigEditor
             {
-                ConfigFileName = Config.New.SystemConfig.Inst.CurrentConfig,
+                ConfigFileName = SystemConfig.Inst.CurrentConfig,
                 Location = new Point(0, 0),
                 Dock = DockStyle.Fill
             };
@@ -365,7 +365,7 @@ namespace CczEditor
 				return;
 			}
 			Program.CurrentConfig.DirectoryPath = fbd.SelectedPath;
-            Config.New.Config.Write(Program.CurrentConfig, Program.CurrentConfig.FileName);
+            Config.Write(Program.CurrentConfig, Program.CurrentConfig.FileName);
 			LoadFileList();
 		}
 
@@ -423,10 +423,10 @@ namespace CczEditor
         private void LoadConfigurationTypeNames()
         {
             tscbMainMenu_Config_Selector.Items.Clear();
-            ConfigList = Config.New.ConfigManager.GetConfigs();
+            ConfigList = ConfigManager.GetConfigs();
             tscbMainMenu_Config_Selector.Items.AddRange(ConfigList.Values.ToArray());
             tscbMainMenu_Config_Selector.Width += 50;
-            var index = ConfigList.Keys.ToList().IndexOf(Config.New.SystemConfig.Inst.CurrentConfig);
+            var index = ConfigList.Keys.ToList().IndexOf(SystemConfig.Inst.CurrentConfig);
             index = index == -1 ? 0 : index;
             tscbMainMenu_Config_Selector.SelectedIndex = index;
         }

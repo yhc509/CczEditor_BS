@@ -28,13 +28,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.SuspendLayout();
-			// 
-			// MagicImsg
-			// 
-			this.Name = "MagicImsg";
-			this.Load += new System.EventHandler(this.MagicImsg_Load);
-			this.ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // MagicImsg
+            // 
+            this.Name = "MagicImsg";
+            this.Size = new System.Drawing.Size(892, 581);
+            this.Load += new System.EventHandler(this.MagicImsg_Load);
+            this.ResumeLayout(false);
 
 		}
 

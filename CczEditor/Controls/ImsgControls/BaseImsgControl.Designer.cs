@@ -44,8 +44,8 @@
             this.tlpContainer.ColumnCount = 4;
             this.tlpContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 137F));
             this.tlpContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 209F));
-            this.tlpContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 172F));
-            this.tlpContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+            this.tlpContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 259F));
+            this.tlpContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 83F));
             this.tlpContainer.Controls.Add(this.lbList, 0, 0);
             this.tlpContainer.Controls.Add(this.txtText, 1, 3);
             this.tlpContainer.Controls.Add(this.lblTitle, 1, 1);
@@ -66,7 +66,7 @@
             this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 347F));
             this.tlpContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tlpContainer.Size = new System.Drawing.Size(690, 550);
+            this.tlpContainer.Size = new System.Drawing.Size(892, 581);
             this.tlpContainer.TabIndex = 0;
             // 
             // lbList
@@ -89,7 +89,7 @@
             this.txtText.MaxLength = 200;
             this.txtText.Multiline = true;
             this.txtText.Name = "txtText";
-            this.txtText.Size = new System.Drawing.Size(547, 240);
+            this.txtText.Size = new System.Drawing.Size(749, 240);
             this.txtText.TabIndex = 1;
             this.txtText.TextChanged += new System.EventHandler(this.txtText_TextChanged);
             // 
@@ -109,9 +109,9 @@
             // 
             this.btnRestore.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnRestore.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnRestore.Location = new System.Drawing.Point(521, 307);
+            this.btnRestore.Location = new System.Drawing.Point(608, 307);
             this.btnRestore.Name = "btnRestore";
-            this.btnRestore.Size = new System.Drawing.Size(166, 25);
+            this.btnRestore.Size = new System.Drawing.Size(281, 25);
             this.btnRestore.TabIndex = 3;
             this.btnRestore.Text = "복원";
             this.btnRestore.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@
             this.btnSave.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSave.Location = new System.Drawing.Point(349, 307);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(166, 25);
+            this.btnSave.Size = new System.Drawing.Size(253, 25);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "저장";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -153,7 +153,7 @@
             // 
             this.Controls.Add(this.tlpContainer);
             this.Name = "BaseImsgControl";
-            this.Size = new System.Drawing.Size(690, 550);
+            this.Size = new System.Drawing.Size(892, 581);
             this.tlpContainer.ResumeLayout(false);
             this.tlpContainer.PerformLayout();
             this.ResumeLayout(false);

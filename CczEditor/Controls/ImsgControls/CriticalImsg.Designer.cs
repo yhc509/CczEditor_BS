@@ -34,7 +34,7 @@
             // 
             this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Name = "CriticalImsg";
-            this.Size = new System.Drawing.Size(690, 550);
+            this.Size = new System.Drawing.Size(892, 581);
             this.Load += new System.EventHandler(this.CriticalImsg_Load);
             this.ResumeLayout(false);
 

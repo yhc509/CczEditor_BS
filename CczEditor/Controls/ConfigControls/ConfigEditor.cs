@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-using CczEditor.Config;
+using CczEditor;
 using CczEditor.Data;
 
 #endregion
@@ -28,7 +28,7 @@ namespace CczEditor.Controls.ConfigControls
 			{
 				return;
 			}
-            var config = Config.New.Config.Read(ConfigFileName);
+            var config = Config.Read(ConfigFileName);
 			txtDataFileDirectory.Text = config.DirectoryPath;
             exename.Text = config.ExeFileName;
 
@@ -47,7 +47,7 @@ namespace CczEditor.Controls.ConfigControls
 			{
 				return;
             }
-            var config = Config.New.Config.Read(ConfigFileName);
+            var config = Config.Read(ConfigFileName);
             config.DirectoryPath = txtDataFileDirectory.Text;
             config.ExeFileName = exename.Text;
             config.CodeOptionContainer.ItemCustomRange = ItemCustomRange.Checked;
@@ -55,7 +55,7 @@ namespace CczEditor.Controls.ConfigControls
             config.CodeOptionContainer.MagicLearnExtension = MagicLearnExtension.Checked;
             config.CodeOptionContainer.SingularAttribute = SingularAttribute.Checked;
 
-            Config.New.Config.Write(config, ConfigFileName);
+            Config.Write(config, ConfigFileName);
             Program.ReLoadData();
         }
 
@@ -65,7 +65,7 @@ namespace CczEditor.Controls.ConfigControls
 			{
 				return;
             }
-            var config = Config.New.Config.Read(ConfigFileName);
+            var config = Config.Read(ConfigFileName);
 			ConfigEditor_Load(this, new EventArgs());
 			if (ConfigFileName == Program.CurrentConfig.FileName)
 			{

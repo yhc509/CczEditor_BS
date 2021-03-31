@@ -1,6 +1,8 @@
 ﻿#region using List
 
+using System.Windows.Forms;
 using System;
+using System.Linq;
 
 #endregion
 
@@ -11,7 +13,6 @@ namespace CczEditor.Controls.DataControls
 		public ForceData()
 		{
 			InitializeComponent();
-            f1.Enabled = f2.Enabled = f3.Enabled = f4.Enabled = f5.Enabled = f6.Enabled = f7.Enabled = f8.Enabled = eff.Enabled = button1.Enabled = true;
             if (Program.CurrentConfig.CodeOptionContainer.AIExtension)
             {
                 f9.Enabled = true;
@@ -27,7 +28,7 @@ namespace CczEditor.Controls.DataControls
 
 		private void ForceData_Load(object sender, EventArgs e)
 		{
-            var equipmentTypes = Config.New.ConfigUtils.GetEquipmentTypes(Program.FORMATSTRING_KEYVALUEPAIR_HEX2);
+            var equipmentTypes = ConfigUtils.GetEquipmentTypes(Program.FORMATSTRING_KEYVALUEPAIR_HEX2);
 			if (equipmentTypes != null)
 			{
 				for (var i = 0; i < equipmentTypes.Count; i++)
@@ -43,7 +44,7 @@ namespace CczEditor.Controls.DataControls
 				}
 			}
 			cbHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
-            lbList.Items.AddRange(Program.CurrentConfig.ForceNames.ToArray());
+            lbList.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
 		}
@@ -85,20 +86,22 @@ namespace CczEditor.Controls.DataControls
             {
                 forcenum = (lbList.SelectedIndex - ((ForceCount - ForceCategoryCount) / 2) * 3) + (ForceCount - ForceCategoryCount) / 2;
             }
-            //label10.Text = Program.CurrentConfig.ForceCategoryNameslb(forcenum);
-            //f1.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_MovSound");
-            //f2.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_MovSpeed");
-            //f3.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AtkSound");
-            //f4.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AtkType");
-            //f5.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_ForceType");
-            //f6.Value = Program.ExeData.forceload(forcenum, "Exe_Force_SprDmg");
-            //f7.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AtkDelay");
-            //f8.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AtkPinc");
+
+            f1.Enabled = f2.Enabled = f3.Enabled = f4.Enabled = f5.Enabled = f6.Enabled = f7.Enabled = f8.Enabled = eff.Enabled = button1.Enabled = !Data.ExeData.IsLocked;
+            label10.Text = ConfigUtils.GetForceCategoryName(forcenum);
+            f1.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.MoveSoundOffset);
+            f2.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.MoveSpeedOffset);
+            f3.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.AtkSoundOffset);
+            f4.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.AtkTypeOffset);
+            f5.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.TypeOffset);
+            f6.Value = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.MagicDamageOffset);
+            f7.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.AtkDelayOffset);
+            f8.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.AtkPincOffset);
             if (Program.CurrentConfig.CodeOptionContainer.AIExtension)
             {
-                //f9.SelectedIndex = Program.ExeData.forceload(forcenum, "Exe_Force_AI");
+                f9.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.AiTypeOffset);
             }
-            //eff.SelectedIndex = Program.ExeData.forceload(lbList.SelectedIndex, "Exe_Force_AtkEffect");
+            eff.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
             if (TopLevelControl != null)
 			{
 				TopLevelControl.Text = string.Format("{1} - 병종 편집 - 번호：{0}", lbList.SelectedIndex, Program.TitleNameCurrent);
@@ -148,19 +151,19 @@ namespace CczEditor.Controls.DataControls
             {
                 forcenum = (lbList.SelectedIndex - 59) + 19;
             }
-            //Program.ExeData.forcesave(forcenum, "Exe_Force_MovSound", (byte)f1.SelectedIndex);
-            //Program.ExeData.forcesave(forcenum, "Exe_Force_MovSpeed", (byte)f2.SelectedIndex);
-            //Program.ExeData.forcesave(forcenum, "Exe_Force_AtkSound", (byte)f3.SelectedIndex);
-            //Program.ExeData.forcesave(forcenum, "Exe_Force_AtkType", (byte)f4.SelectedIndex);
-            //Program.ExeData.forcesave(forcenum, "Exe_Force_ForceType", (byte)f5.SelectedIndex);
-            //Program.ExeData.forcesave(forcenum, "Exe_Force_SprDmg", (byte)f6.Value);
-            //Program.ExeData.forcesave(forcenum, "Exe_Force_AtkDelay", (byte)f7.SelectedIndex);
-            //Program.ExeData.forcesave(forcenum, "Exe_Force_AtkPinc", (byte)f8.SelectedIndex);
+            Data.ExeData.WriteByte((byte)f1.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.MoveSoundOffset);
+            Data.ExeData.WriteByte((byte)f2.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.MoveSpeedOffset);
+            Data.ExeData.WriteByte((byte)f3.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkSoundOffset);
+            Data.ExeData.WriteByte((byte)f4.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkTypeOffset);
+            Data.ExeData.WriteByte((byte)f5.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.TypeOffset);
+            Data.ExeData.WriteByte((byte)f6.Value, forcenum, Program.CurrentConfig.Exe.Force.MagicDamageOffset);
+            Data.ExeData.WriteByte((byte)f7.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkDelayOffset);
+            Data.ExeData.WriteByte((byte)f8.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkPincOffset);
             if (Program.CurrentConfig.CodeOptionContainer.AIExtension)
             {
-                //Program.ExeData.forcesave(forcenum, "Exe_Force_AI", (byte)f9.SelectedIndex);
+                Data.ExeData.WriteByte((byte)f9.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AiTypeOffset);
             }
-            //Program.ExeData.forcesave(lbList.SelectedIndex, "Exe_Force_AtkEffect", (byte)eff.SelectedIndex);
+            Data.ExeData.WriteByte((byte)eff.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
         }
 
         private void btnRestore_Click(object sender, EventArgs e)
@@ -205,5 +208,17 @@ namespace CczEditor.Controls.DataControls
             sangseong.ShowDialog();
         }
 
-	}
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            var list = ConfigUtils.GetForceNames().Values.ToList();
+            var index = list.FindIndex(x => x == searchTextBox.Text);
+            if(index == -1)
+            {
+                MessageBox.Show("찾기에 실패했습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            lbList.SelectedIndex = index;
+
+        }
+    }
 }

@@ -91,6 +91,9 @@
             this.lblTerrain04 = new System.Windows.Forms.Label();
             this.lblTerrain07 = new System.Windows.Forms.Label();
             this.lblTerrain01 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnRestore = new System.Windows.Forms.Button();
             this.gbMobility = new System.Windows.Forms.GroupBox();
             this.ncMobility30 = new CczEditor.Controls.NumericControl();
             this.ncMobility27 = new CczEditor.Controls.NumericControl();
@@ -152,9 +155,9 @@
             this.lblMobility04 = new System.Windows.Forms.Label();
             this.lblMobility07 = new System.Windows.Forms.Label();
             this.lblMobility01 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnRestore = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.searchTextBox = new CczEditor.Controls.TextBoxControl();
             this.tlpMainContainer.SuspendLayout();
             this.gbTerrain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ncTerrain30)).BeginInit();
@@ -187,6 +190,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ncTerrain07)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncTerrain04)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncTerrain01)).BeginInit();
+            this.panel1.SuspendLayout();
             this.gbMobility.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ncMobility30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMobility27)).BeginInit();
@@ -218,7 +222,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ncMobility07)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMobility04)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMobility01)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlpMainContainer
@@ -226,19 +230,18 @@
             this.tlpMainContainer.ColumnCount = 2;
             this.tlpMainContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tlpMainContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 504F));
-            this.tlpMainContainer.Controls.Add(this.lbList, 0, 0);
-            this.tlpMainContainer.Controls.Add(this.gbTerrain, 1, 1);
-            this.tlpMainContainer.Controls.Add(this.gbMobility, 1, 2);
-            this.tlpMainContainer.Controls.Add(this.panel1, 1, 3);
+            this.tlpMainContainer.Controls.Add(this.gbTerrain, 1, 0);
+            this.tlpMainContainer.Controls.Add(this.gbMobility, 1, 1);
+            this.tlpMainContainer.Controls.Add(this.panel1, 1, 2);
+            this.tlpMainContainer.Controls.Add(this.tableLayoutPanel1, 0, 0);
             this.tlpMainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMainContainer.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tlpMainContainer.Location = new System.Drawing.Point(0, 0);
             this.tlpMainContainer.Name = "tlpMainContainer";
-            this.tlpMainContainer.RowCount = 4;
-            this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 251F));
-            this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 145F));
+            this.tlpMainContainer.RowCount = 3;
+            this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 256F));
+            this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 286F));
+            this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -265,18 +268,18 @@
             this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpMainContainer.Size = new System.Drawing.Size(650, 550);
+            this.tlpMainContainer.Size = new System.Drawing.Size(892, 581);
             this.tlpMainContainer.TabIndex = 0;
             // 
             // lbList
             // 
+            this.lbList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbList.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbList.FormattingEnabled = true;
             this.lbList.ItemHeight = 15;
             this.lbList.Location = new System.Drawing.Point(3, 3);
             this.lbList.Name = "lbList";
-            this.tlpMainContainer.SetRowSpan(this.lbList, 4);
-            this.lbList.Size = new System.Drawing.Size(112, 544);
+            this.lbList.Size = new System.Drawing.Size(108, 509);
             this.lbList.TabIndex = 0;
             this.lbList.SelectedIndexChanged += new System.EventHandler(this.lbList_SelectedIndexChanged);
             // 
@@ -343,7 +346,7 @@
             this.gbTerrain.Controls.Add(this.lblTerrain07);
             this.gbTerrain.Controls.Add(this.lblTerrain01);
             this.gbTerrain.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.gbTerrain.Location = new System.Drawing.Point(123, 15);
+            this.gbTerrain.Location = new System.Drawing.Point(123, 3);
             this.gbTerrain.Name = "gbTerrain";
             this.gbTerrain.Size = new System.Drawing.Size(524, 234);
             this.gbTerrain.TabIndex = 1;
@@ -1100,6 +1103,37 @@
             this.lblTerrain01.TabIndex = 30;
             this.lblTerrain01.Text = "평지";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnSave);
+            this.panel1.Controls.Add(this.btnRestore);
+            this.panel1.Location = new System.Drawing.Point(123, 545);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(766, 31);
+            this.panel1.TabIndex = 5;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSave.Location = new System.Drawing.Point(609, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(74, 24);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "저장";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnRestore
+            // 
+            this.btnRestore.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnRestore.Location = new System.Drawing.Point(689, 3);
+            this.btnRestore.Name = "btnRestore";
+            this.btnRestore.Size = new System.Drawing.Size(74, 24);
+            this.btnRestore.TabIndex = 4;
+            this.btnRestore.Text = "복원";
+            this.btnRestore.UseVisualStyleBackColor = true;
+            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
+            // 
             // gbMobility
             // 
             this.gbMobility.Controls.Add(this.ncMobility30);
@@ -1163,7 +1197,7 @@
             this.gbMobility.Controls.Add(this.lblMobility07);
             this.gbMobility.Controls.Add(this.lblMobility01);
             this.gbMobility.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.gbMobility.Location = new System.Drawing.Point(123, 265);
+            this.gbMobility.Location = new System.Drawing.Point(123, 259);
             this.gbMobility.Name = "gbMobility";
             this.gbMobility.Size = new System.Drawing.Size(524, 233);
             this.gbMobility.TabIndex = 2;
@@ -1920,42 +1954,49 @@
             this.lblMobility01.TabIndex = 30;
             this.lblMobility01.Text = "평지";
             // 
-            // panel1
+            // tableLayoutPanel1
             // 
-            this.panel1.Controls.Add(this.btnSave);
-            this.panel1.Controls.Add(this.btnRestore);
-            this.panel1.Location = new System.Drawing.Point(123, 516);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(524, 31);
-            this.panel1.TabIndex = 5;
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.lbList, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.searchButton, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.searchTextBox, 0, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tlpMainContainer.SetRowSpan(this.tableLayoutPanel1, 3);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(114, 575);
+            this.tableLayoutPanel1.TabIndex = 6;
             // 
-            // btnSave
+            // searchButton
             // 
-            this.btnSave.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSave.Location = new System.Drawing.Point(364, 4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(74, 24);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "저장";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.searchButton.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchButton.Location = new System.Drawing.Point(3, 548);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(108, 23);
+            this.searchButton.TabIndex = 10;
+            this.searchButton.Text = "검색";
+            this.searchButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
-            // btnRestore
+            // searchTextBox
             // 
-            this.btnRestore.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnRestore.Location = new System.Drawing.Point(444, 3);
-            this.btnRestore.Name = "btnRestore";
-            this.btnRestore.Size = new System.Drawing.Size(74, 24);
-            this.btnRestore.TabIndex = 4;
-            this.btnRestore.Text = "복원";
-            this.btnRestore.UseVisualStyleBackColor = true;
-            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
+            this.searchTextBox.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchTextBox.Location = new System.Drawing.Point(3, 518);
+            this.searchTextBox.MaxLength = 6;
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(108, 23);
+            this.searchTextBox.TabIndex = 9;
             // 
             // TerrainData
             // 
             this.Controls.Add(this.tlpMainContainer);
             this.Name = "TerrainData";
-            this.Size = new System.Drawing.Size(650, 550);
+            this.Size = new System.Drawing.Size(892, 581);
             this.Load += new System.EventHandler(this.TerrainData_Load);
             this.tlpMainContainer.ResumeLayout(false);
             this.gbTerrain.ResumeLayout(false);
@@ -1990,6 +2031,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ncTerrain07)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncTerrain04)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncTerrain01)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.gbMobility.ResumeLayout(false);
             this.gbMobility.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ncMobility30)).EndInit();
@@ -2022,7 +2064,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ncMobility07)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMobility04)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMobility01)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -2156,5 +2199,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnRestore;
-	}
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button searchButton;
+        private TextBoxControl searchTextBox;
+    }
 }

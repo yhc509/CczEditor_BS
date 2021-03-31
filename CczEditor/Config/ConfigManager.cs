@@ -6,7 +6,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace CczEditor.Config.New
+namespace CczEditor
 {
     public static class ConfigManager
     {

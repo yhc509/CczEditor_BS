@@ -30,26 +30,26 @@ namespace CczEditor.Controls.DataControls
 		private void ItemsData_Load(object sender, EventArgs e)
 		{
 			cbItemType.Items.Add("FF,유형 없음");
-            cbItemType.Items.AddRange(Config.New.ConfigUtils.GetEquipmentTypes(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
+            cbItemType.Items.AddRange(ConfigUtils.GetEquipmentTypes(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 
 			cbSpecialEffects.Items.Add("FF,능력 없음");
-            cbSpecialEffects.Items.AddRange(Config.New.ConfigUtils.GetAuxiliaryEffects(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
+            cbSpecialEffects.Items.AddRange(ConfigUtils.GetAuxiliaryEffects(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
      
 			cbItemEffects.Items.Add("FF,효과 없음");
-            cbItemEffects.Items.AddRange(Config.New.ConfigUtils.GetConsumablesEffects(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
+            cbItemEffects.Items.AddRange(ConfigUtils.GetConsumablesEffects(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 
 			cbCorps.Items.Add("FF,모든 병종");
-            cbCorps.Items.AddRange(Program.CurrentConfig.ForceCategoryNames.ToArray());
+            cbCorps.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 
             cbItemHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
-			lbList.Items.AddRange(GameData.ItemNameList(true).ToArray());
+			lbList.Items.AddRange(GameData.ItemNameList(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).ToArray());
 
             if (Program.StarData != null && Program.StarData.CurrentFile != null && Program.StarData.CurrentStream != null)
             {
                 cbBombEffects.Items.Add("FF,효과 없음");
-                cbBombEffects.Items.AddRange(Config.New.ConfigUtils.GetBombsEffects(true).Values.ToArray());
-                cbBombEffects.Items.AddRange(Config.New.ConfigUtils.GetBombsEffects2(true).Values.ToArray());
-                cbBombEffects.Items.AddRange(Config.New.ConfigUtils.GetBombsEffects3(true).Values.ToArray());
+                cbBombEffects.Items.AddRange(ConfigUtils.GetBombsEffects(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
+                cbBombEffects.Items.AddRange(ConfigUtils.GetBombsEffects2(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
+                cbBombEffects.Items.AddRange(ConfigUtils.GetBombsEffects3(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
                 EffectsRange.Items.AddRange(Program.CurrentConfig.EffAreaNames.ToArray());
                 AtkRange.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
                 lbList.Items.AddRange(StarData.ItemNameList(true).ToArray());
@@ -573,8 +573,11 @@ namespace CczEditor.Controls.DataControls
 			{
 				return;
 			}
-			pbIcon.Image = ItemIcons.GetImage((int)ncItemIcon.Value);
-		}
+            pbIcons.Image = Resources.ItemIconResources.Load((int) (ncItemIcon.Value * 2) + 100);
+            lbIconSmall.Text = ((ncItemIcon.Value * 2) + 100).ToString();
+            pbIcon.Image = Resources.ItemIconResources.Load((int)(ncItemIcon.Value * 2) + 101);
+            lbIcon.Text = ((ncItemIcon.Value * 2) + 101).ToString();
+        }
 
 		private void cbItemHitarea_SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -597,6 +600,18 @@ namespace CczEditor.Controls.DataControls
             {
                 pbAtkRange.Image = AtkRange.SelectedIndex == -1 ? null : Hitareas.GetImage(AtkRange.SelectedIndex);
             }
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            var list = GameData.ItemNameList(null);
+            var index = list.FindIndex(x => x == searchTextBox.Text);
+            if (index == -1)
+            {
+                MessageBox.Show("찾기에 실패했습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            lbList.SelectedIndex = index;
         }
     }
 }

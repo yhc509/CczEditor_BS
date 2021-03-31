@@ -1,6 +1,7 @@
 ﻿#region using List
 
 using System;
+using System.Linq;
 
 #endregion
 
@@ -20,7 +21,7 @@ namespace CczEditor.Controls.ImsgControls
 
 		private void ForceImsg_Load(object sender, EventArgs e)
 		{
-			lbList.Items.AddRange(Program.CurrentConfig.ForceNames.ToArray());
+			lbList.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
 		}

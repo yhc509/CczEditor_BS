@@ -5,7 +5,7 @@ using System.Text;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace CczEditor.Config.New
+namespace CczEditor
 {
     [Serializable]
     public partial class Config
@@ -74,6 +74,8 @@ namespace CczEditor.Config.New
             public bool MagicLearnExtension;
 
             public bool SingularAttribute;
+
+            public bool MagicReflect;
         }
 
         [Serializable]

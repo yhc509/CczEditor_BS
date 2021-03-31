@@ -3,43 +3,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CczEditor.Config.New
+namespace CczEditor
 {
     public class ConfigUtils
     {
-        public static Dictionary<int, string> GetWeaponsTypes(bool hasFormater)
+        public static Dictionary<int, string> GetWeaponsTypes(string format = null)
         {
             var min = Program.CurrentConfig.Items.WeaponIndexMin;
             var max = Program.CurrentConfig.Items.WeaponIndexMax;
             var effects = Program.CurrentConfig.ItemEffects;
-            var list = new Dictionary<int, string>();
+
+            var result = new Dictionary<int, string>();
             for (var i = min; i <= max; i++)
             {
-                if (effects.Exists(x=>x.Index == i))
-                {
-                    list.Add(i, hasFormater ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, effects[i].Offset.ToString()) : effects[i].Offset.ToString());
-                }
+                var effect = effects.Find(x => x.Index == i);
+                if (effect == null) continue;
+
+                var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+
+                if (string.IsNullOrEmpty(format))
+                    result.Add(effect.Index, effName);
+                else
+                    result.Add(effect.Index, string.Format(format, i, effName));
             }
-            return list;
+            return result;
         }
 
-        public static Dictionary<int, string> GetArmorTypes(bool hasFormater)
+        public static Dictionary<int, string> GetArmorTypes(string format = null)
         {
             var min = Program.CurrentConfig.Items.ArmorIndexMin;
             var max = Program.CurrentConfig.Items.ArmorIndexMax;
             var effects = Program.CurrentConfig.ItemEffects;
-            var list = new Dictionary<int, string>();
+
+            var result = new Dictionary<int, string>();
             for (var i = min; i <= max; i++)
             {
-                if (effects.Exists(x => x.Index == i))
-                {
-                    list.Add(i, hasFormater ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, effects[i].Offset.ToString()) : effects[i].Offset.ToString());
-                }
+                var effect = effects.Find(x => x.Index == i);
+                if (effect == null) continue;
+
+                var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+
+                if (string.IsNullOrEmpty(format))
+                    result.Add(effect.Index, effName);
+                else
+                    result.Add(effect.Index, string.Format(format, i, effName));
             }
-            return list;
+            return result;
         }
 
-        public static Dictionary<int, string> GetEquipmentTypes(string format)
+        public static Dictionary<int, string> GetEquipmentTypes(string format = null)
         {
             var min = Program.CurrentConfig.Items.WeaponIndexMin;
             var max = Program.CurrentConfig.Items.ArmorIndexMax;
@@ -68,7 +80,7 @@ namespace CczEditor.Config.New
             return result;
         }
 
-        public static Dictionary<int, string> GetAuxiliaryEffects(string format)
+        public static Dictionary<int, string> GetAuxiliaryEffects(string format = null)
         {
             var auxiliaryMin = Program.CurrentConfig.Items.AuxiliaryIndexMin;
             var auxiliaryMax = Program.CurrentConfig.Items.AuxiliaryIndexMax;
@@ -99,7 +111,7 @@ namespace CczEditor.Config.New
             return result;
         }
 
-        public static Dictionary<int, string> GetConsumablesEffects(string format)
+        public static Dictionary<int, string> GetConsumablesEffects(string format = null)
         {
             var consumablesMin = Program.CurrentConfig.Items.ConsumablesMin;
             var consumablesMax = Program.CurrentConfig.Items.ConsumablesMax;
@@ -121,66 +133,117 @@ namespace CczEditor.Config.New
             return result;
         }
 
-        public static Dictionary<int, string> GetBombsEffects(bool hasFormater)
+        public static Dictionary<int, string> GetBombsEffects(string format = null)
         {
             var min = Program.CurrentConfig.Items.MineInstall;
             var max = Program.CurrentConfig.Items.MineControl;
             var effects = Program.CurrentConfig.ItemEffects;
-            var list = new Dictionary<int, string>();
+            var result = new Dictionary<int, string>();
             for (var i = min; i <= max; i++)
             {
-                if (effects.Exists(x => x.Index == i))
-                {
-                    var text = Data.ExeData.GetText(effects[i].Offset, effects[i].Length);
-                    list.Add(i, hasFormater ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, text) : text);
-                }
+                var effect = effects.Find(x => x.Index == i);
+                if (effect == null) continue;
+
+                var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+
+                if (string.IsNullOrEmpty(format))
+                    result.Add(effect.Index, effName);
+                else
+                    result.Add(effect.Index, string.Format(format, i, effName));
             }
-            return list;
+            return result;
         }
 
-        public static Dictionary<int, string> GetBombsEffects2(bool hasFormater)
+        public static Dictionary<int, string> GetBombsEffects2(string format = null)
         {
             var _Bombs = Program.CurrentConfig.Items.Mine;
             var effects = Program.CurrentConfig.ItemEffects;
-            var list = new Dictionary<int, string>();
+            var result = new Dictionary<int, string>();
             var i = _Bombs;
 
             if (effects.Exists(x => x.Index == i))
             {
-                var text = Data.ExeData.GetText(effects[i].Offset, effects[i].Length);
-                list.Add(i, hasFormater ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, text) : text);
+                var effect = effects.Find(x => x.Index == i);
+                if (effect == null) return result;
+
+                var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+
+                if (string.IsNullOrEmpty(format))
+                    result.Add(effect.Index, effName);
+                else
+                    result.Add(effect.Index, string.Format(format, i, effName));
             }
-            return list;
+            return result;
         }
 
-        public static Dictionary<int, string> GetBombsEffects3(bool hasFormater)
+        public static Dictionary<int, string> GetBombsEffects3(string format = null)
         {
             var _Bombs = Program.CurrentConfig.Items.Bomb;
             var effects = Program.CurrentConfig.ItemEffects;
-            var list = new Dictionary<int, string>();
+            var result = new Dictionary<int, string>();
             var i = _Bombs;
 
             if (effects.Exists(x => x.Index == i))
             {
-                var text = Data.ExeData.GetText(effects[i].Offset, effects[i].Length);
-                list.Add(i, hasFormater ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, text) : text);
+                var effect = effects.Find(x => x.Index == i);
+                if (effect == null) return result;
+
+                var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+
+                if (string.IsNullOrEmpty(format))
+                    result.Add(effect.Index, effName);
+                else
+                    result.Add(effect.Index, string.Format(format, i, effName));
             }
-            return list;
+            return result;
         }
-        
-        public static Dictionary<int, string> GetForceNames(string format)
+
+        public static Dictionary<int, string> GetForceNames(string format = null)
         {
             var result = new Dictionary<int, string>();
             var forceOffsets = Program.CurrentConfig.ForceNames;
-            for(int i = 0; i <forceOffsets.Count; i++)
+
+            for(int i = 0; i < forceOffsets.Count; i++)
             {
-                var forceName = Data.ExeData.GetText(forceOffsets[i].Offset, forceOffsets[i].Length);
-                if(string.IsNullOrEmpty(format))
-                    result.Add(forceOffsets[i].Index, forceName);
-                else
-                    result.Add(forceOffsets[i].Index, string.Format(format, i, forceName));
+                var forceName = GetForceName(i, format);
+                result.Add(forceOffsets[i].Index, forceName);
             }
             return result;
+        }
+
+        public static string GetForceName(int index, string format = null)
+        {
+            var forceOffsets = Program.CurrentConfig.ForceNames;
+            var forceName = Data.ExeData.GetText(forceOffsets[index].Offset, forceOffsets[index].Length);
+
+            if (string.IsNullOrEmpty(format))
+                return forceName;
+            else
+                return string.Format(format, index, forceName);
+        }
+
+        public static Dictionary<int, string> GetForceCategoryNames(string format = null)
+        {
+            var result = new Dictionary<int, string>();
+            var forceCategoryOffsets = Program.CurrentConfig.ForceCategoryNames;
+
+            for (int i = 0; i < forceCategoryOffsets.Count; i++)
+            {
+                var forceCategoryName = GetForceCategoryName(i, format);
+                result.Add(forceCategoryOffsets[i].Index, forceCategoryName);
+            }
+            return result;
+        }
+
+        public static string GetForceCategoryName(int index, string format = null)
+        {
+            var forceCategoryOffsets = Program.CurrentConfig.ForceCategoryNames;
+            var forceCategoryName = Data.ExeData.GetText(forceCategoryOffsets[index].Offset, forceCategoryOffsets[index].Length);
+
+            if (string.IsNullOrEmpty(format))
+                return forceCategoryName;
+            else
+                return string.Format(format, index, forceCategoryName);
         }
     }
 }

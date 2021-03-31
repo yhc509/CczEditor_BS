@@ -158,7 +158,12 @@ namespace CczEditor.Controls.DataControls
 			{
 				e.NewValue = CheckState.Unchecked;
 			}
-			lblEquipmentCheckedCount.Text = string.Format("선택중：{0}", control.CheckedIndices.Count+1);
+
+            int changedValue = 0;
+            if (e.CurrentValue == CheckState.Checked && e.NewValue == CheckState.Unchecked) changedValue--;
+            else if (e.CurrentValue == CheckState.Unchecked && e.NewValue == CheckState.Checked) changedValue++;
+
+            lblEquipmentCheckedCount.Text = string.Format("선택중：{0}", control.CheckedIndices.Count + changedValue);
 		}
 
 		private void clbConsumables_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -167,8 +172,24 @@ namespace CczEditor.Controls.DataControls
 			if (control.CheckedIndices.Count >= 15)
 			{
 				e.NewValue = CheckState.Unchecked;
-			}
-			lblConsumablesCheckedCount.Text = string.Format("선택중：{0}", control.CheckedIndices.Count+1);
+            }
+
+            int changedValue = 0;
+            if (e.CurrentValue == CheckState.Checked && e.NewValue == CheckState.Unchecked) changedValue--;
+            else if (e.CurrentValue == CheckState.Unchecked && e.NewValue == CheckState.Checked) changedValue++;
+            lblConsumablesCheckedCount.Text = string.Format("선택중：{0}", control.CheckedIndices.Count + changedValue);
 		}
-	}
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            var list = GameData.StoreNameList(false);
+            var index = list.FindIndex(x => x == searchTextBox.Text);
+            if (index == -1)
+            {
+                MessageBox.Show("찾기에 실패했습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            lbList.SelectedIndex = index;
+        }
+    }
 }

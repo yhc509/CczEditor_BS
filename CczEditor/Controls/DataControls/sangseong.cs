@@ -14,13 +14,13 @@ namespace CczEditor.Controls.DataControls
         public sangseong()
         {
             InitializeComponent();
-            listBox1.Items.AddRange(Program.CurrentConfig.ForceCategoryNames.ToArray());
-            var forceNames = Program.CurrentConfig.ForceCategoryNames;
+            var forceNames = ConfigUtils.GetForceCategoryNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2);
+            listBox1.Items.AddRange(forceNames.Values.ToArray());
             for (var i = 0; i < forceNames.Count; i++)
             {
-                /*var item = new ListViewItem("0");
+                var item = new ListViewItem("0");
                 item.SubItems.Add(forceNames[i]);
-                lvLearnLv.Items.Add(item);*/
+                lvLearnLv.Items.Add(item);
             }
             listBox1.SelectedIndex = 0;
         }
@@ -29,7 +29,8 @@ namespace CczEditor.Controls.DataControls
         {
             for (var i = 0; i < Program.CurrentConfig.ForceCategoryNames.Count; i++)
             {
-               // lvLearnLv.Items[i].Text = Program.ExeData.detailload(0, 0, Program.CurrentConfig.Exe.Force.SynastryOffset + (listBox1.SelectedIndex * Program.CurrentConfig.ForceCategoryNames.Count) + i).ToString(); ;
+                var offset = Program.CurrentConfig.Exe.Force.SynastryOffset + (listBox1.SelectedIndex * Program.CurrentConfig.ForceCategoryNames.Count) + i;
+                lvLearnLv.Items[i].Text = Data.ExeData.ReadByte(0, offset).ToString();
             }
         }
 
@@ -45,7 +46,9 @@ namespace CczEditor.Controls.DataControls
         {
             for (var i = 0; i < Program.CurrentConfig.ForceCategoryNames.Count; i++)
             {
-                //Program.ExeData.detailsave(0, 0, Program.CurrentConfig.Exe.Force.SynastryOffset + (listBox1.SelectedIndex *  Program.CurrentConfig.ForceCategoryNames.Count) + i, byte.Parse(lvLearnLv.Items[i].Text));
+                byte value = byte.Parse(lvLearnLv.Items[i].Text);
+                var offset = Program.CurrentConfig.Exe.Force.SynastryOffset + (listBox1.SelectedIndex * Program.CurrentConfig.ForceCategoryNames.Count) + i;
+                Data.ExeData.WriteByte(value, 0, offset);
             }
         }
         private void lvLearnLv_ItemActivate(object sender, EventArgs e)

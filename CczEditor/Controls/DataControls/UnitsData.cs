@@ -62,7 +62,7 @@ namespace CczEditor.Controls.DataControls
 		{
 			_itemIconList = GameData.ItemIconList();
             cbForce.Items.Clear();
-            cbForce.Items.AddRange(Config.New.ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
+            cbForce.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
             
             clbList.Items.AddRange(GameData.UnitNameList(true).ToArray());
 			clbList.SelectedIndex = 0;
@@ -552,6 +552,11 @@ namespace CczEditor.Controls.DataControls
         {
             var list = GameData.UnitNameList(false);
             var index = list.FindIndex(x => x == searchTextBox.Text);
+            if (index == -1)
+            {
+                MessageBox.Show("찾기에 실패했습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             clbList.SelectedIndex = index;
         }
         #endregion

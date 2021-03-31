@@ -29,7 +29,6 @@
 		private void InitializeComponent()
 		{
             this.tlpMainContainer = new System.Windows.Forms.TableLayoutPanel();
-            this.lbList = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.txtImsg = new CczEditor.Controls.TextBoxControl();
@@ -84,6 +83,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnRestore = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbList = new System.Windows.Forms.ListBox();
+            this.searchTextBox = new CczEditor.Controls.TextBoxControl();
+            this.searchButton = new System.Windows.Forms.Button();
             this.tlpMainContainer.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -101,6 +104,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbEffarea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.f6)).BeginInit();
             this.panel1.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlpMainContainer
@@ -109,39 +113,27 @@
             this.tlpMainContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 121F));
             this.tlpMainContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tlpMainContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpMainContainer.Controls.Add(this.lbList, 0, 0);
             this.tlpMainContainer.Controls.Add(this.groupBox2, 1, 0);
             this.tlpMainContainer.Controls.Add(this.groupBox1, 1, 1);
             this.tlpMainContainer.Controls.Add(this.panel1, 1, 2);
+            this.tlpMainContainer.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tlpMainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMainContainer.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tlpMainContainer.Location = new System.Drawing.Point(0, 0);
             this.tlpMainContainer.Name = "tlpMainContainer";
             this.tlpMainContainer.RowCount = 3;
             this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
-            this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 378F));
-            this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tlpMainContainer.Size = new System.Drawing.Size(690, 551);
+            this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 409F));
+            this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+            this.tlpMainContainer.Size = new System.Drawing.Size(892, 581);
             this.tlpMainContainer.TabIndex = 0;
-            // 
-            // lbList
-            // 
-            this.lbList.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbList.FormattingEnabled = true;
-            this.lbList.ItemHeight = 15;
-            this.lbList.Location = new System.Drawing.Point(3, 3);
-            this.lbList.Name = "lbList";
-            this.tlpMainContainer.SetRowSpan(this.lbList, 3);
-            this.lbList.Size = new System.Drawing.Size(112, 544);
-            this.lbList.TabIndex = 0;
-            this.lbList.SelectedIndexChanged += new System.EventHandler(this.lbList_SelectedIndexChanged);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel1);
             this.groupBox2.Location = new System.Drawing.Point(124, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(563, 134);
+            this.groupBox2.Size = new System.Drawing.Size(762, 134);
             this.groupBox2.TabIndex = 49;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "설명 편집";
@@ -164,7 +156,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.05263F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(557, 112);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(756, 112);
             this.tableLayoutPanel1.TabIndex = 45;
             // 
             // txtImsg
@@ -176,7 +168,7 @@
             this.txtImsg.MaxLength = 200;
             this.txtImsg.Multiline = true;
             this.txtImsg.Name = "txtImsg";
-            this.txtImsg.Size = new System.Drawing.Size(551, 82);
+            this.txtImsg.Size = new System.Drawing.Size(750, 82);
             this.txtImsg.TabIndex = 13;
             this.txtImsg.TextChanged += new System.EventHandler(this.txtImsg_TextChanged);
             // 
@@ -185,11 +177,11 @@
             this.lblImsgCount.AutoSize = true;
             this.lblImsgCount.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblImsgCount.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblImsgCount.Location = new System.Drawing.Point(469, 91);
+            this.lblImsgCount.Location = new System.Drawing.Point(568, 91);
             this.lblImsgCount.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.lblImsgCount.Name = "lblImsgCount";
             this.lblImsgCount.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.lblImsgCount.Size = new System.Drawing.Size(85, 20);
+            this.lblImsgCount.Size = new System.Drawing.Size(185, 20);
             this.lblImsgCount.TabIndex = 16;
             this.lblImsgCount.Text = "0";
             this.lblImsgCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -199,7 +191,7 @@
             this.groupBox1.Controls.Add(this.tableLayoutPanel2);
             this.groupBox1.Location = new System.Drawing.Point(124, 143);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(563, 372);
+            this.groupBox1.Size = new System.Drawing.Size(626, 402);
             this.groupBox1.TabIndex = 48;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "병종 편집";
@@ -207,7 +199,7 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 5;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.91489F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 157F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94F));
@@ -261,22 +253,18 @@
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 19);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 11;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(557, 350);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(620, 380);
             this.tableLayoutPanel2.TabIndex = 46;
             // 
             // lblMove
@@ -286,7 +274,7 @@
             this.lblMove.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMove.Location = new System.Drawing.Point(3, 0);
             this.lblMove.Name = "lblMove";
-            this.lblMove.Size = new System.Drawing.Size(72, 27);
+            this.lblMove.Size = new System.Drawing.Size(94, 30);
             this.lblMove.TabIndex = 17;
             this.lblMove.Text = "이동력";
             this.lblMove.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -296,9 +284,9 @@
             this.lblAtk.AutoSize = true;
             this.lblAtk.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblAtk.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblAtk.Location = new System.Drawing.Point(3, 82);
+            this.lblAtk.Location = new System.Drawing.Point(3, 90);
             this.lblAtk.Name = "lblAtk";
-            this.lblAtk.Size = new System.Drawing.Size(72, 28);
+            this.lblAtk.Size = new System.Drawing.Size(94, 30);
             this.lblAtk.TabIndex = 19;
             this.lblAtk.Text = "공격력";
             this.lblAtk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -308,9 +296,9 @@
             this.lblDef.AutoSize = true;
             this.lblDef.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDef.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblDef.Location = new System.Drawing.Point(3, 110);
+            this.lblDef.Location = new System.Drawing.Point(3, 120);
             this.lblDef.Name = "lblDef";
-            this.lblDef.Size = new System.Drawing.Size(72, 27);
+            this.lblDef.Size = new System.Drawing.Size(94, 30);
             this.lblDef.TabIndex = 20;
             this.lblDef.Text = "방어력";
             this.lblDef.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -320,9 +308,9 @@
             this.lblHitarea.AutoSize = true;
             this.lblHitarea.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblHitarea.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblHitarea.Location = new System.Drawing.Point(3, 27);
+            this.lblHitarea.Location = new System.Drawing.Point(3, 30);
             this.lblHitarea.Name = "lblHitarea";
-            this.lblHitarea.Size = new System.Drawing.Size(72, 28);
+            this.lblHitarea.Size = new System.Drawing.Size(94, 30);
             this.lblHitarea.TabIndex = 18;
             this.lblHitarea.Text = "공격범위";
             this.lblHitarea.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -332,9 +320,9 @@
             this.lblMag.AutoSize = true;
             this.lblMag.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMag.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblMag.Location = new System.Drawing.Point(3, 137);
+            this.lblMag.Location = new System.Drawing.Point(3, 150);
             this.lblMag.Name = "lblMag";
-            this.lblMag.Size = new System.Drawing.Size(72, 27);
+            this.lblMag.Size = new System.Drawing.Size(94, 30);
             this.lblMag.TabIndex = 21;
             this.lblMag.Text = "정신력";
             this.lblMag.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -344,9 +332,9 @@
             this.lblCrt.AutoSize = true;
             this.lblCrt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCrt.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCrt.Location = new System.Drawing.Point(3, 164);
+            this.lblCrt.Location = new System.Drawing.Point(3, 180);
             this.lblCrt.Name = "lblCrt";
-            this.lblCrt.Size = new System.Drawing.Size(72, 28);
+            this.lblCrt.Size = new System.Drawing.Size(94, 30);
             this.lblCrt.TabIndex = 22;
             this.lblCrt.Text = "순발력";
             this.lblCrt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -356,9 +344,9 @@
             this.lblMp.AutoSize = true;
             this.lblMp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMp.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblMp.Location = new System.Drawing.Point(3, 248);
+            this.lblMp.Location = new System.Drawing.Point(3, 270);
             this.lblMp.Name = "lblMp";
-            this.lblMp.Size = new System.Drawing.Size(72, 29);
+            this.lblMp.Size = new System.Drawing.Size(94, 30);
             this.lblMp.TabIndex = 25;
             this.lblMp.Text = "MP 상승";
             this.lblMp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -368,9 +356,9 @@
             this.lblHp.AutoSize = true;
             this.lblHp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblHp.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblHp.Location = new System.Drawing.Point(3, 220);
+            this.lblHp.Location = new System.Drawing.Point(3, 240);
             this.lblHp.Name = "lblHp";
-            this.lblHp.Size = new System.Drawing.Size(72, 28);
+            this.lblHp.Size = new System.Drawing.Size(94, 30);
             this.lblHp.TabIndex = 24;
             this.lblHp.Text = "HP 상승";
             this.lblHp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -379,7 +367,7 @@
             // 
             this.ncMove.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ncMove.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ncMove.Location = new System.Drawing.Point(81, 3);
+            this.ncMove.Location = new System.Drawing.Point(103, 3);
             this.ncMove.Maximum = new decimal(new int[] {
             255,
             0,
@@ -397,7 +385,7 @@
             this.cbHitarea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbHitarea.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbHitarea.FormattingEnabled = true;
-            this.cbHitarea.Location = new System.Drawing.Point(81, 30);
+            this.cbHitarea.Location = new System.Drawing.Point(103, 33);
             this.cbHitarea.Name = "cbHitarea";
             this.cbHitarea.Size = new System.Drawing.Size(108, 23);
             this.cbHitarea.TabIndex = 2;
@@ -407,7 +395,7 @@
             // 
             this.ncHp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ncHp.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ncHp.Location = new System.Drawing.Point(81, 223);
+            this.ncHp.Location = new System.Drawing.Point(103, 243);
             this.ncHp.Maximum = new decimal(new int[] {
             255,
             0,
@@ -423,7 +411,7 @@
             // 
             this.ncMp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ncMp.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ncMp.Location = new System.Drawing.Point(81, 251);
+            this.ncMp.Location = new System.Drawing.Point(103, 273);
             this.ncMp.Maximum = new decimal(new int[] {
             255,
             0,
@@ -439,9 +427,9 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(3, 55);
+            this.label11.Location = new System.Drawing.Point(3, 60);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(72, 27);
+            this.label11.Size = new System.Drawing.Size(94, 30);
             this.label11.TabIndex = 63;
             this.label11.Text = "공격영향";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -462,7 +450,7 @@
             "대몰우전",
             "삼격",
             "방괴"});
-            this.eff.Location = new System.Drawing.Point(81, 58);
+            this.eff.Location = new System.Drawing.Point(103, 63);
             this.eff.Name = "eff";
             this.eff.Size = new System.Drawing.Size(108, 23);
             this.eff.TabIndex = 64;
@@ -473,9 +461,9 @@
             this.lblMor.AutoSize = true;
             this.lblMor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMor.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblMor.Location = new System.Drawing.Point(3, 192);
+            this.lblMor.Location = new System.Drawing.Point(3, 210);
             this.lblMor.Name = "lblMor";
-            this.lblMor.Size = new System.Drawing.Size(72, 28);
+            this.lblMor.Size = new System.Drawing.Size(94, 30);
             this.lblMor.TabIndex = 23;
             this.lblMor.Text = "사기";
             this.lblMor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -484,7 +472,7 @@
             // 
             this.ncMor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ncMor.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ncMor.Location = new System.Drawing.Point(81, 195);
+            this.ncMor.Location = new System.Drawing.Point(103, 213);
             this.ncMor.Maximum = new decimal(new int[] {
             255,
             0,
@@ -500,7 +488,7 @@
             // 
             this.ncAtk.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ncAtk.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ncAtk.Location = new System.Drawing.Point(81, 85);
+            this.ncAtk.Location = new System.Drawing.Point(103, 93);
             this.ncAtk.Maximum = new decimal(new int[] {
             255,
             0,
@@ -516,7 +504,7 @@
             // 
             this.ncDef.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ncDef.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ncDef.Location = new System.Drawing.Point(81, 113);
+            this.ncDef.Location = new System.Drawing.Point(103, 123);
             this.ncDef.Maximum = new decimal(new int[] {
             255,
             0,
@@ -532,7 +520,7 @@
             // 
             this.ncMag.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ncMag.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ncMag.Location = new System.Drawing.Point(81, 140);
+            this.ncMag.Location = new System.Drawing.Point(103, 153);
             this.ncMag.Maximum = new decimal(new int[] {
             255,
             0,
@@ -548,7 +536,7 @@
             // 
             this.ncCrt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ncCrt.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ncCrt.Location = new System.Drawing.Point(81, 167);
+            this.ncCrt.Location = new System.Drawing.Point(103, 183);
             this.ncCrt.Maximum = new decimal(new int[] {
             255,
             0,
@@ -562,7 +550,7 @@
             // 
             // pbHitarea
             // 
-            this.pbHitarea.Location = new System.Drawing.Point(6, 280);
+            this.pbHitarea.Location = new System.Drawing.Point(6, 303);
             this.pbHitarea.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.pbHitarea.Name = "pbHitarea";
             this.pbHitarea.Size = new System.Drawing.Size(63, 63);
@@ -572,7 +560,7 @@
             // 
             // pbEffarea
             // 
-            this.pbEffarea.Location = new System.Drawing.Point(82, 280);
+            this.pbEffarea.Location = new System.Drawing.Point(104, 303);
             this.pbEffarea.Margin = new System.Windows.Forms.Padding(4, 3, 3, 3);
             this.pbEffarea.Name = "pbEffarea";
             this.pbEffarea.Size = new System.Drawing.Size(63, 63);
@@ -586,19 +574,19 @@
             this.clbEquipment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clbEquipment.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.clbEquipment.FormattingEnabled = true;
-            this.clbEquipment.Location = new System.Drawing.Point(195, 30);
+            this.clbEquipment.Location = new System.Drawing.Point(217, 33);
             this.clbEquipment.Name = "clbEquipment";
             this.tableLayoutPanel2.SetRowSpan(this.clbEquipment, 9);
-            this.clbEquipment.Size = new System.Drawing.Size(151, 244);
+            this.clbEquipment.Size = new System.Drawing.Size(151, 264);
             this.clbEquipment.TabIndex = 0;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(352, 0);
+            this.label9.Location = new System.Drawing.Point(374, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 27);
+            this.label9.Size = new System.Drawing.Size(88, 30);
             this.label9.TabIndex = 61;
             this.label9.Text = "계열 명 : ";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -607,9 +595,9 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(446, 0);
+            this.label10.Location = new System.Drawing.Point(468, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(108, 27);
+            this.label10.Size = new System.Drawing.Size(149, 30);
             this.label10.TabIndex = 62;
             this.label10.Text = "[뭐시기]";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -618,9 +606,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(352, 27);
+            this.label1.Location = new System.Drawing.Point(374, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 28);
+            this.label1.Size = new System.Drawing.Size(88, 30);
             this.label1.TabIndex = 45;
             this.label1.Text = "이동소리";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -639,18 +627,18 @@
             "전차대",
             "특수1",
             "특수2"});
-            this.f1.Location = new System.Drawing.Point(446, 30);
+            this.f1.Location = new System.Drawing.Point(468, 33);
             this.f1.Name = "f1";
-            this.f1.Size = new System.Drawing.Size(108, 23);
+            this.f1.Size = new System.Drawing.Size(149, 23);
             this.f1.TabIndex = 53;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(352, 55);
+            this.label2.Location = new System.Drawing.Point(374, 60);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 27);
+            this.label2.Size = new System.Drawing.Size(88, 30);
             this.label2.TabIndex = 46;
             this.label2.Text = "이동속도";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -664,18 +652,18 @@
             this.f2.Items.AddRange(new object[] {
             "고속이동",
             "저속이동"});
-            this.f2.Location = new System.Drawing.Point(446, 58);
+            this.f2.Location = new System.Drawing.Point(468, 63);
             this.f2.Name = "f2";
-            this.f2.Size = new System.Drawing.Size(108, 23);
+            this.f2.Size = new System.Drawing.Size(149, 23);
             this.f2.TabIndex = 54;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(352, 82);
+            this.label3.Location = new System.Drawing.Point(374, 90);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 28);
+            this.label3.Size = new System.Drawing.Size(88, 30);
             this.label3.TabIndex = 47;
             this.label3.Text = "공격소리";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -696,18 +684,18 @@
             "사격(점사)",
             "화염방사",
             "독기살포"});
-            this.f3.Location = new System.Drawing.Point(446, 85);
+            this.f3.Location = new System.Drawing.Point(468, 93);
             this.f3.Name = "f3";
-            this.f3.Size = new System.Drawing.Size(108, 23);
+            this.f3.Size = new System.Drawing.Size(149, 23);
             this.f3.TabIndex = 55;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(352, 110);
+            this.label4.Location = new System.Drawing.Point(374, 120);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 27);
+            this.label4.Size = new System.Drawing.Size(88, 30);
             this.label4.TabIndex = 48;
             this.label4.Text = "간접공격";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -721,18 +709,18 @@
             this.f4.Items.AddRange(new object[] {
             "안한다",
             "한다"});
-            this.f4.Location = new System.Drawing.Point(446, 113);
+            this.f4.Location = new System.Drawing.Point(468, 123);
             this.f4.Name = "f4";
-            this.f4.Size = new System.Drawing.Size(108, 23);
+            this.f4.Size = new System.Drawing.Size(149, 23);
             this.f4.TabIndex = 56;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(352, 137);
+            this.label5.Location = new System.Drawing.Point(374, 150);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 27);
+            this.label5.Size = new System.Drawing.Size(88, 30);
             this.label5.TabIndex = 49;
             this.label5.Text = "병종유형";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -747,18 +735,18 @@
             "만능",
             "문관",
             "무관"});
-            this.f5.Location = new System.Drawing.Point(446, 140);
+            this.f5.Location = new System.Drawing.Point(468, 153);
             this.f5.Name = "f5";
-            this.f5.Size = new System.Drawing.Size(108, 23);
+            this.f5.Size = new System.Drawing.Size(149, 23);
             this.f5.TabIndex = 57;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(352, 164);
+            this.label6.Location = new System.Drawing.Point(374, 180);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 28);
+            this.label6.Size = new System.Drawing.Size(88, 30);
             this.label6.TabIndex = 50;
             this.label6.Text = "책략피해";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -767,23 +755,23 @@
             // 
             this.f6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.f6.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.f6.Location = new System.Drawing.Point(446, 167);
+            this.f6.Location = new System.Drawing.Point(468, 183);
             this.f6.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.f6.Name = "f6";
-            this.f6.Size = new System.Drawing.Size(108, 23);
+            this.f6.Size = new System.Drawing.Size(149, 23);
             this.f6.TabIndex = 60;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(352, 192);
+            this.label7.Location = new System.Drawing.Point(374, 210);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(88, 28);
+            this.label7.Size = new System.Drawing.Size(88, 30);
             this.label7.TabIndex = 51;
             this.label7.Text = "공격지연";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -797,18 +785,18 @@
             this.f7.Items.AddRange(new object[] {
             "안한다",
             "한다"});
-            this.f7.Location = new System.Drawing.Point(446, 195);
+            this.f7.Location = new System.Drawing.Point(468, 213);
             this.f7.Name = "f7";
-            this.f7.Size = new System.Drawing.Size(108, 23);
+            this.f7.Size = new System.Drawing.Size(149, 23);
             this.f7.TabIndex = 58;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(352, 220);
+            this.label8.Location = new System.Drawing.Point(374, 240);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(88, 28);
+            this.label8.Size = new System.Drawing.Size(88, 30);
             this.label8.TabIndex = 52;
             this.label8.Text = "협공참여";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -822,15 +810,15 @@
             this.f8.Items.AddRange(new object[] {
             "한다",
             "안한다"});
-            this.f8.Location = new System.Drawing.Point(446, 223);
+            this.f8.Location = new System.Drawing.Point(468, 243);
             this.f8.Name = "f8";
-            this.f8.Size = new System.Drawing.Size(108, 23);
+            this.f8.Size = new System.Drawing.Size(149, 23);
             this.f8.TabIndex = 59;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(195, 280);
+            this.button1.Location = new System.Drawing.Point(217, 303);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(151, 32);
             this.button1.TabIndex = 13;
@@ -842,9 +830,9 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(195, 0);
+            this.label12.Location = new System.Drawing.Point(217, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(151, 27);
+            this.label12.Size = new System.Drawing.Size(151, 30);
             this.label12.TabIndex = 66;
             this.label12.Text = "착용가능장비";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -853,9 +841,9 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.Location = new System.Drawing.Point(352, 248);
+            this.label13.Location = new System.Drawing.Point(374, 270);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(88, 29);
+            this.label13.Size = new System.Drawing.Size(88, 30);
             this.label13.TabIndex = 67;
             this.label13.Text = "인공지능";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -873,25 +861,25 @@
             "4순위",
             "5순위",
             "6순위"});
-            this.f9.Location = new System.Drawing.Point(446, 251);
+            this.f9.Location = new System.Drawing.Point(468, 273);
             this.f9.Name = "f9";
-            this.f9.Size = new System.Drawing.Size(108, 23);
+            this.f9.Size = new System.Drawing.Size(149, 23);
             this.f9.TabIndex = 68;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnRestore);
             this.panel1.Controls.Add(this.btnSave);
-            this.panel1.Location = new System.Drawing.Point(121, 518);
+            this.panel1.Location = new System.Drawing.Point(121, 549);
             this.panel1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(566, 29);
+            this.panel1.Size = new System.Drawing.Size(768, 29);
             this.panel1.TabIndex = 47;
             // 
             // btnRestore
             // 
             this.btnRestore.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnRestore.Location = new System.Drawing.Point(486, 1);
+            this.btnRestore.Location = new System.Drawing.Point(691, 2);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(74, 24);
             this.btnRestore.TabIndex = 12;
@@ -902,7 +890,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSave.Location = new System.Drawing.Point(406, 2);
+            this.btnSave.Location = new System.Drawing.Point(611, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(74, 24);
             this.btnSave.TabIndex = 11;
@@ -910,11 +898,60 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.lbList, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.searchTextBox, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.searchButton, 0, 2);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tlpMainContainer.SetRowSpan(this.tableLayoutPanel3, 3);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(115, 573);
+            this.tableLayoutPanel3.TabIndex = 50;
+            // 
+            // lbList
+            // 
+            this.lbList.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbList.FormattingEnabled = true;
+            this.lbList.ItemHeight = 15;
+            this.lbList.Location = new System.Drawing.Point(3, 3);
+            this.lbList.Name = "lbList";
+            this.lbList.Size = new System.Drawing.Size(109, 499);
+            this.lbList.TabIndex = 0;
+            this.lbList.SelectedIndexChanged += new System.EventHandler(this.lbList_SelectedIndexChanged);
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchTextBox.Location = new System.Drawing.Point(3, 516);
+            this.searchTextBox.MaxLength = 6;
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(109, 23);
+            this.searchTextBox.TabIndex = 9;
+            // 
+            // searchButton
+            // 
+            this.searchButton.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.searchButton.Location = new System.Drawing.Point(3, 546);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(109, 23);
+            this.searchButton.TabIndex = 10;
+            this.searchButton.Text = "검색";
+            this.searchButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
             // ForceData
             // 
             this.Controls.Add(this.tlpMainContainer);
             this.Name = "ForceData";
-            this.Size = new System.Drawing.Size(690, 551);
+            this.Size = new System.Drawing.Size(892, 581);
             this.Load += new System.EventHandler(this.ForceData_Load);
             this.tlpMainContainer.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -935,6 +972,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbEffarea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.f6)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -997,5 +1036,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox f9;
-	}
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private TextBoxControl searchTextBox;
+        private System.Windows.Forms.Button searchButton;
+    }
 }

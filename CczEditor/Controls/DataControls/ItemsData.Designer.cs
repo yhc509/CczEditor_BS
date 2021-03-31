@@ -34,47 +34,48 @@
             this.txtImsg = new CczEditor.Controls.TextBoxControl();
             this.lblImsgCount = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbSpecialEffects = new System.Windows.Forms.ComboBox();
+            this.lbIcon = new System.Windows.Forms.Label();
+            this.lblSpecialEffects = new System.Windows.Forms.Label();
+            this.cbBombEffects = new System.Windows.Forms.ComboBox();
+            this.lbIconSmall = new System.Windows.Forms.Label();
+            this.ncPrice = new CczEditor.Controls.NumericControl();
+            this.BombType = new System.Windows.Forms.ComboBox();
+            this.ncUpgradeValue = new CczEditor.Controls.NumericControl();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbCorps = new System.Windows.Forms.ComboBox();
+            this.EffectsRange = new System.Windows.Forms.ComboBox();
+            this.AtkRange = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbItemHitarea = new System.Windows.Forms.ComboBox();
+            this.lblSpecialEffectsValue = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ncInitialValue = new CczEditor.Controls.NumericControl();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.ncItemIcon = new CczEditor.Controls.NumericControl();
+            this.lblUpgradeValue = new System.Windows.Forms.Label();
+            this.lblInitialValue = new System.Windows.Forms.Label();
+            this.lblCorps = new System.Windows.Forms.Label();
+            this.ncSpecialEffectsValue = new CczEditor.Controls.NumericControl();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblItemIcon = new System.Windows.Forms.Label();
+            this.lblItemHitarea = new System.Windows.Forms.Label();
+            this.cbItemEffects = new System.Windows.Forms.ComboBox();
+            this.lblItemEffects = new System.Windows.Forms.Label();
+            this.cbItemType = new System.Windows.Forms.ComboBox();
+            this.lblItemType = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.SpecialEffNameEditBox = new CczEditor.Controls.TextBoxControl();
             this.SpecialEffNameEditButton = new System.Windows.Forms.Button();
             this.SpecialEffListLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbSpecialEffects = new System.Windows.Forms.ComboBox();
-            this.lblSpecialEffects = new System.Windows.Forms.Label();
-            this.cbBombEffects = new System.Windows.Forms.ComboBox();
-            this.ncPrice = new CczEditor.Controls.NumericControl();
-            this.ncUpgradeValue = new CczEditor.Controls.NumericControl();
-            this.cbCorps = new System.Windows.Forms.ComboBox();
-            this.AtkRange = new System.Windows.Forms.ComboBox();
-            this.cbItemHitarea = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblPrice = new System.Windows.Forms.Label();
-            this.lblUpgradeValue = new System.Windows.Forms.Label();
-            this.lblCorps = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblItemHitarea = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblItemType = new System.Windows.Forms.Label();
             this.txtName = new CczEditor.Controls.TextBoxControl();
-            this.cbItemType = new System.Windows.Forms.ComboBox();
             this.lblName = new System.Windows.Forms.Label();
-            this.lblItemEffects = new System.Windows.Forms.Label();
-            this.cbItemEffects = new System.Windows.Forms.ComboBox();
-            this.lblItemIcon = new System.Windows.Forms.Label();
-            this.ncItemIcon = new CczEditor.Controls.NumericControl();
-            this.pbIcon = new System.Windows.Forms.PictureBox();
-            this.ncInitialValue = new CczEditor.Controls.NumericControl();
-            this.lblInitialValue = new System.Windows.Forms.Label();
-            this.lblSpecialEffectsValue = new System.Windows.Forms.Label();
-            this.ncSpecialEffectsValue = new CczEditor.Controls.NumericControl();
-            this.label3 = new System.Windows.Forms.Label();
-            this.EffectsRange = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.BombType = new System.Windows.Forms.ComboBox();
             this.pbItemHitarea = new System.Windows.Forms.PictureBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.pbAtkRange = new System.Windows.Forms.PictureBox();
             this.pbEffectRange = new System.Windows.Forms.PictureBox();
+            this.pbIcon = new System.Windows.Forms.PictureBox();
+            this.pbIcons = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -87,18 +88,17 @@
             this.gbImsg.SuspendLayout();
             this.tlpImsg.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ncPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncUpgradeValue)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ncItemIcon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncInitialValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ncItemIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncSpecialEffectsValue)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbItemHitarea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAtkRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEffectRange)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIcons)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -192,13 +192,45 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbSpecialEffects);
+            this.groupBox1.Controls.Add(this.lbIcon);
+            this.groupBox1.Controls.Add(this.lblSpecialEffects);
+            this.groupBox1.Controls.Add(this.cbBombEffects);
+            this.groupBox1.Controls.Add(this.lbIconSmall);
+            this.groupBox1.Controls.Add(this.ncPrice);
+            this.groupBox1.Controls.Add(this.BombType);
+            this.groupBox1.Controls.Add(this.ncUpgradeValue);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.cbCorps);
+            this.groupBox1.Controls.Add(this.EffectsRange);
+            this.groupBox1.Controls.Add(this.AtkRange);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.cbItemHitarea);
+            this.groupBox1.Controls.Add(this.lblSpecialEffectsValue);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.ncInitialValue);
+            this.groupBox1.Controls.Add(this.lblPrice);
+            this.groupBox1.Controls.Add(this.ncItemIcon);
+            this.groupBox1.Controls.Add(this.lblUpgradeValue);
+            this.groupBox1.Controls.Add(this.lblInitialValue);
+            this.groupBox1.Controls.Add(this.lblCorps);
+            this.groupBox1.Controls.Add(this.ncSpecialEffectsValue);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.lblItemIcon);
+            this.groupBox1.Controls.Add(this.lblItemHitarea);
+            this.groupBox1.Controls.Add(this.cbItemEffects);
+            this.groupBox1.Controls.Add(this.lblItemEffects);
+            this.groupBox1.Controls.Add(this.cbItemType);
+            this.groupBox1.Controls.Add(this.lblItemType);
             this.groupBox1.Controls.Add(this.tableLayoutPanel3);
-            this.groupBox1.Controls.Add(this.tableLayoutPanel4);
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox1.Controls.Add(this.txtName);
+            this.groupBox1.Controls.Add(this.lblName);
             this.groupBox1.Controls.Add(this.pbItemHitarea);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.pbAtkRange);
             this.groupBox1.Controls.Add(this.pbEffectRange);
+            this.groupBox1.Controls.Add(this.pbIcon);
+            this.groupBox1.Controls.Add(this.pbIcons);
             this.groupBox1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox1.Location = new System.Drawing.Point(122, 144);
             this.groupBox1.Name = "groupBox1";
@@ -206,6 +238,379 @@
             this.groupBox1.TabIndex = 43;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "물품 편집";
+            // 
+            // cbSpecialEffects
+            // 
+            this.cbSpecialEffects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSpecialEffects.Enabled = false;
+            this.cbSpecialEffects.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbSpecialEffects.FormattingEnabled = true;
+            this.cbSpecialEffects.Location = new System.Drawing.Point(350, 36);
+            this.cbSpecialEffects.Name = "cbSpecialEffects";
+            this.cbSpecialEffects.Size = new System.Drawing.Size(173, 23);
+            this.cbSpecialEffects.TabIndex = 3;
+            // 
+            // lbIcon
+            // 
+            this.lbIcon.AutoSize = true;
+            this.lbIcon.Location = new System.Drawing.Point(225, 169);
+            this.lbIcon.Name = "lbIcon";
+            this.lbIcon.Size = new System.Drawing.Size(28, 15);
+            this.lbIcon.TabIndex = 55;
+            this.lbIcon.Text = "100";
+            // 
+            // lblSpecialEffects
+            // 
+            this.lblSpecialEffects.AutoSize = true;
+            this.lblSpecialEffects.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSpecialEffects.Location = new System.Drawing.Point(273, 36);
+            this.lblSpecialEffects.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblSpecialEffects.Name = "lblSpecialEffects";
+            this.lblSpecialEffects.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblSpecialEffects.Size = new System.Drawing.Size(55, 20);
+            this.lblSpecialEffects.TabIndex = 21;
+            this.lblSpecialEffects.Text = "특수효과";
+            this.lblSpecialEffects.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // cbBombEffects
+            // 
+            this.cbBombEffects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBombEffects.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbBombEffects.FormattingEnabled = true;
+            this.cbBombEffects.Location = new System.Drawing.Point(350, 66);
+            this.cbBombEffects.Name = "cbBombEffects";
+            this.cbBombEffects.Size = new System.Drawing.Size(173, 23);
+            this.cbBombEffects.TabIndex = 49;
+            // 
+            // lbIconSmall
+            // 
+            this.lbIconSmall.AutoSize = true;
+            this.lbIconSmall.Location = new System.Drawing.Point(225, 138);
+            this.lbIconSmall.Name = "lbIconSmall";
+            this.lbIconSmall.Size = new System.Drawing.Size(28, 15);
+            this.lbIconSmall.TabIndex = 54;
+            this.lbIconSmall.Text = "100";
+            // 
+            // ncPrice
+            // 
+            this.ncPrice.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ncPrice.Location = new System.Drawing.Point(350, 96);
+            this.ncPrice.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.ncPrice.MaxNumberControl = null;
+            this.ncPrice.MinNumberControl = null;
+            this.ncPrice.Name = "ncPrice";
+            this.ncPrice.Size = new System.Drawing.Size(173, 23);
+            this.ncPrice.TabIndex = 5;
+            // 
+            // BombType
+            // 
+            this.BombType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BombType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.BombType.FormattingEnabled = true;
+            this.BombType.Items.AddRange(new object[] {
+            "폭발",
+            "인도",
+            "조종"});
+            this.BombType.Location = new System.Drawing.Point(120, 272);
+            this.BombType.Name = "BombType";
+            this.BombType.Size = new System.Drawing.Size(133, 23);
+            this.BombType.TabIndex = 53;
+            // 
+            // ncUpgradeValue
+            // 
+            this.ncUpgradeValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ncUpgradeValue.Location = new System.Drawing.Point(350, 126);
+            this.ncUpgradeValue.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.ncUpgradeValue.MaxNumberControl = null;
+            this.ncUpgradeValue.MinNumberControl = null;
+            this.ncUpgradeValue.Name = "ncUpgradeValue";
+            this.ncUpgradeValue.Size = new System.Drawing.Size(173, 23);
+            this.ncUpgradeValue.TabIndex = 9;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 280);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(55, 15);
+            this.label6.TabIndex = 52;
+            this.label6.Text = "폭발방식";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbCorps
+            // 
+            this.cbCorps.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCorps.Enabled = false;
+            this.cbCorps.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbCorps.FormattingEnabled = true;
+            this.cbCorps.Location = new System.Drawing.Point(350, 156);
+            this.cbCorps.Name = "cbCorps";
+            this.cbCorps.Size = new System.Drawing.Size(173, 23);
+            this.cbCorps.TabIndex = 10;
+            // 
+            // EffectsRange
+            // 
+            this.EffectsRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.EffectsRange.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.EffectsRange.FormattingEnabled = true;
+            this.EffectsRange.Location = new System.Drawing.Point(120, 237);
+            this.EffectsRange.Name = "EffectsRange";
+            this.EffectsRange.Size = new System.Drawing.Size(133, 23);
+            this.EffectsRange.TabIndex = 46;
+            this.EffectsRange.SelectedIndexChanged += new System.EventHandler(this.EffectsRange_SelectedIndexChanged_1);
+            // 
+            // AtkRange
+            // 
+            this.AtkRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.AtkRange.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.AtkRange.FormattingEnabled = true;
+            this.AtkRange.Location = new System.Drawing.Point(350, 186);
+            this.AtkRange.Name = "AtkRange";
+            this.AtkRange.Size = new System.Drawing.Size(173, 23);
+            this.AtkRange.TabIndex = 47;
+            this.AtkRange.SelectedIndexChanged += new System.EventHandler(this.AtkRange_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 240);
+            this.label3.Name = "label3";
+            this.label3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label3.Size = new System.Drawing.Size(55, 20);
+            this.label3.TabIndex = 44;
+            this.label3.Text = "영향범위";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbItemHitarea
+            // 
+            this.cbItemHitarea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbItemHitarea.Enabled = false;
+            this.cbItemHitarea.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbItemHitarea.FormattingEnabled = true;
+            this.cbItemHitarea.Location = new System.Drawing.Point(350, 216);
+            this.cbItemHitarea.Name = "cbItemHitarea";
+            this.cbItemHitarea.Size = new System.Drawing.Size(173, 23);
+            this.cbItemHitarea.TabIndex = 11;
+            this.cbItemHitarea.SelectedIndexChanged += new System.EventHandler(this.cbItemHitarea_SelectedIndexChanged);
+            // 
+            // lblSpecialEffectsValue
+            // 
+            this.lblSpecialEffectsValue.AutoSize = true;
+            this.lblSpecialEffectsValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSpecialEffectsValue.Location = new System.Drawing.Point(6, 203);
+            this.lblSpecialEffectsValue.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblSpecialEffectsValue.Name = "lblSpecialEffectsValue";
+            this.lblSpecialEffectsValue.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblSpecialEffectsValue.Size = new System.Drawing.Size(67, 20);
+            this.lblSpecialEffectsValue.TabIndex = 26;
+            this.lblSpecialEffectsValue.Text = "특수효과치";
+            this.lblSpecialEffectsValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(273, 63);
+            this.label5.Name = "label5";
+            this.label5.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label5.Size = new System.Drawing.Size(68, 20);
+            this.label5.TabIndex = 48;
+            this.label5.Text = "폭탄 / 지뢰";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ncInitialValue
+            // 
+            this.ncInitialValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ncInitialValue.Location = new System.Drawing.Point(117, 163);
+            this.ncInitialValue.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.ncInitialValue.MaxNumberControl = null;
+            this.ncInitialValue.MinNumberControl = null;
+            this.ncInitialValue.Name = "ncInitialValue";
+            this.ncInitialValue.Size = new System.Drawing.Size(64, 23);
+            this.ncInitialValue.TabIndex = 7;
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPrice.Location = new System.Drawing.Point(273, 96);
+            this.lblPrice.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(65, 15);
+            this.lblPrice.TabIndex = 23;
+            this.lblPrice.Text = "가격 / 100";
+            this.lblPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ncItemIcon
+            // 
+            this.ncItemIcon.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ncItemIcon.Location = new System.Drawing.Point(117, 130);
+            this.ncItemIcon.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.ncItemIcon.MaxNumberControl = null;
+            this.ncItemIcon.MinNumberControl = null;
+            this.ncItemIcon.Name = "ncItemIcon";
+            this.ncItemIcon.Size = new System.Drawing.Size(64, 23);
+            this.ncItemIcon.TabIndex = 6;
+            this.ncItemIcon.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.ncItemIcon.ValueChanged += new System.EventHandler(this.ncItemIcon_ValueChanged);
+            // 
+            // lblUpgradeValue
+            // 
+            this.lblUpgradeValue.AutoSize = true;
+            this.lblUpgradeValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblUpgradeValue.Location = new System.Drawing.Point(273, 126);
+            this.lblUpgradeValue.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblUpgradeValue.Name = "lblUpgradeValue";
+            this.lblUpgradeValue.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblUpgradeValue.Size = new System.Drawing.Size(67, 20);
+            this.lblUpgradeValue.TabIndex = 27;
+            this.lblUpgradeValue.Text = "등급성장치";
+            this.lblUpgradeValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblInitialValue
+            // 
+            this.lblInitialValue.AutoSize = true;
+            this.lblInitialValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblInitialValue.Location = new System.Drawing.Point(6, 166);
+            this.lblInitialValue.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblInitialValue.Name = "lblInitialValue";
+            this.lblInitialValue.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblInitialValue.Size = new System.Drawing.Size(67, 20);
+            this.lblInitialValue.TabIndex = 25;
+            this.lblInitialValue.Text = "초기효과치";
+            this.lblInitialValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblCorps
+            // 
+            this.lblCorps.AutoSize = true;
+            this.lblCorps.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCorps.Location = new System.Drawing.Point(273, 156);
+            this.lblCorps.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblCorps.Name = "lblCorps";
+            this.lblCorps.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblCorps.Size = new System.Drawing.Size(55, 20);
+            this.lblCorps.TabIndex = 28;
+            this.lblCorps.Text = "착용병종";
+            this.lblCorps.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // ncSpecialEffectsValue
+            // 
+            this.ncSpecialEffectsValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ncSpecialEffectsValue.Location = new System.Drawing.Point(117, 200);
+            this.ncSpecialEffectsValue.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.ncSpecialEffectsValue.MaxNumberControl = null;
+            this.ncSpecialEffectsValue.MinNumberControl = null;
+            this.ncSpecialEffectsValue.Name = "ncSpecialEffectsValue";
+            this.ncSpecialEffectsValue.Size = new System.Drawing.Size(64, 23);
+            this.ncSpecialEffectsValue.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(273, 183);
+            this.label4.Name = "label4";
+            this.label4.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.label4.Size = new System.Drawing.Size(55, 20);
+            this.label4.TabIndex = 45;
+            this.label4.Text = "공격범위";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblItemIcon
+            // 
+            this.lblItemIcon.AutoSize = true;
+            this.lblItemIcon.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblItemIcon.Location = new System.Drawing.Point(6, 130);
+            this.lblItemIcon.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblItemIcon.Name = "lblItemIcon";
+            this.lblItemIcon.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblItemIcon.Size = new System.Drawing.Size(59, 20);
+            this.lblItemIcon.TabIndex = 24;
+            this.lblItemIcon.Text = "물품 그림";
+            this.lblItemIcon.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblItemHitarea
+            // 
+            this.lblItemHitarea.AutoSize = true;
+            this.lblItemHitarea.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblItemHitarea.Location = new System.Drawing.Point(273, 216);
+            this.lblItemHitarea.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblItemHitarea.Name = "lblItemHitarea";
+            this.lblItemHitarea.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblItemHitarea.Size = new System.Drawing.Size(55, 20);
+            this.lblItemHitarea.TabIndex = 29;
+            this.lblItemHitarea.Text = "도구범위";
+            this.lblItemHitarea.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // cbItemEffects
+            // 
+            this.cbItemEffects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbItemEffects.Enabled = false;
+            this.cbItemEffects.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbItemEffects.FormattingEnabled = true;
+            this.cbItemEffects.Location = new System.Drawing.Point(120, 100);
+            this.cbItemEffects.Name = "cbItemEffects";
+            this.cbItemEffects.Size = new System.Drawing.Size(133, 23);
+            this.cbItemEffects.TabIndex = 4;
+            // 
+            // lblItemEffects
+            // 
+            this.lblItemEffects.AutoSize = true;
+            this.lblItemEffects.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblItemEffects.Location = new System.Drawing.Point(6, 100);
+            this.lblItemEffects.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblItemEffects.Name = "lblItemEffects";
+            this.lblItemEffects.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblItemEffects.Size = new System.Drawing.Size(83, 20);
+            this.lblItemEffects.TabIndex = 22;
+            this.lblItemEffects.Text = "소모도구 효과";
+            this.lblItemEffects.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // cbItemType
+            // 
+            this.cbItemType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbItemType.Enabled = false;
+            this.cbItemType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbItemType.FormattingEnabled = true;
+            this.cbItemType.Location = new System.Drawing.Point(120, 69);
+            this.cbItemType.Name = "cbItemType";
+            this.cbItemType.Size = new System.Drawing.Size(133, 23);
+            this.cbItemType.TabIndex = 2;
+            // 
+            // lblItemType
+            // 
+            this.lblItemType.AutoSize = true;
+            this.lblItemType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblItemType.Location = new System.Drawing.Point(6, 69);
+            this.lblItemType.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.lblItemType.Name = "lblItemType";
+            this.lblItemType.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblItemType.Size = new System.Drawing.Size(108, 20);
+            this.lblItemType.TabIndex = 20;
+            this.lblItemType.Text = "무기 / 방어구 유형";
+            this.lblItemType.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // tableLayoutPanel3
             // 
@@ -251,501 +656,32 @@
             this.SpecialEffListLabel.TabIndex = 4;
             this.SpecialEffListLabel.Text = "특수효과목록";
             // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.23256F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.76744F));
-            this.tableLayoutPanel4.Controls.Add(this.cbSpecialEffects, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.lblSpecialEffects, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.cbBombEffects, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.ncPrice, 1, 2);
-            this.tableLayoutPanel4.Controls.Add(this.ncUpgradeValue, 1, 3);
-            this.tableLayoutPanel4.Controls.Add(this.cbCorps, 1, 4);
-            this.tableLayoutPanel4.Controls.Add(this.AtkRange, 1, 5);
-            this.tableLayoutPanel4.Controls.Add(this.cbItemHitarea, 1, 6);
-            this.tableLayoutPanel4.Controls.Add(this.label5, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.lblPrice, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.lblUpgradeValue, 0, 3);
-            this.tableLayoutPanel4.Controls.Add(this.lblCorps, 0, 4);
-            this.tableLayoutPanel4.Controls.Add(this.label4, 0, 5);
-            this.tableLayoutPanel4.Controls.Add(this.lblItemHitarea, 0, 6);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(261, 27);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 7;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(272, 205);
-            this.tableLayoutPanel4.TabIndex = 43;
-            // 
-            // cbSpecialEffects
-            // 
-            this.cbSpecialEffects.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbSpecialEffects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSpecialEffects.Enabled = false;
-            this.cbSpecialEffects.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbSpecialEffects.FormattingEnabled = true;
-            this.cbSpecialEffects.Location = new System.Drawing.Point(85, 3);
-            this.cbSpecialEffects.Name = "cbSpecialEffects";
-            this.cbSpecialEffects.Size = new System.Drawing.Size(184, 23);
-            this.cbSpecialEffects.TabIndex = 3;
-            // 
-            // lblSpecialEffects
-            // 
-            this.lblSpecialEffects.AutoSize = true;
-            this.lblSpecialEffects.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSpecialEffects.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSpecialEffects.Location = new System.Drawing.Point(3, 3);
-            this.lblSpecialEffects.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.lblSpecialEffects.Name = "lblSpecialEffects";
-            this.lblSpecialEffects.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.lblSpecialEffects.Size = new System.Drawing.Size(76, 27);
-            this.lblSpecialEffects.TabIndex = 21;
-            this.lblSpecialEffects.Text = "특수효과";
-            this.lblSpecialEffects.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // cbBombEffects
-            // 
-            this.cbBombEffects.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbBombEffects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBombEffects.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbBombEffects.FormattingEnabled = true;
-            this.cbBombEffects.Location = new System.Drawing.Point(85, 33);
-            this.cbBombEffects.Name = "cbBombEffects";
-            this.cbBombEffects.Size = new System.Drawing.Size(184, 23);
-            this.cbBombEffects.TabIndex = 49;
-            // 
-            // ncPrice
-            // 
-            this.ncPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ncPrice.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ncPrice.Location = new System.Drawing.Point(85, 63);
-            this.ncPrice.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ncPrice.MaxNumberControl = null;
-            this.ncPrice.MinNumberControl = null;
-            this.ncPrice.Name = "ncPrice";
-            this.ncPrice.Size = new System.Drawing.Size(184, 23);
-            this.ncPrice.TabIndex = 5;
-            // 
-            // ncUpgradeValue
-            // 
-            this.ncUpgradeValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ncUpgradeValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ncUpgradeValue.Location = new System.Drawing.Point(85, 93);
-            this.ncUpgradeValue.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ncUpgradeValue.MaxNumberControl = null;
-            this.ncUpgradeValue.MinNumberControl = null;
-            this.ncUpgradeValue.Name = "ncUpgradeValue";
-            this.ncUpgradeValue.Size = new System.Drawing.Size(184, 23);
-            this.ncUpgradeValue.TabIndex = 9;
-            // 
-            // cbCorps
-            // 
-            this.cbCorps.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbCorps.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCorps.Enabled = false;
-            this.cbCorps.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbCorps.FormattingEnabled = true;
-            this.cbCorps.Location = new System.Drawing.Point(85, 123);
-            this.cbCorps.Name = "cbCorps";
-            this.cbCorps.Size = new System.Drawing.Size(184, 23);
-            this.cbCorps.TabIndex = 10;
-            // 
-            // AtkRange
-            // 
-            this.AtkRange.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AtkRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.AtkRange.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.AtkRange.FormattingEnabled = true;
-            this.AtkRange.Location = new System.Drawing.Point(85, 153);
-            this.AtkRange.Name = "AtkRange";
-            this.AtkRange.Size = new System.Drawing.Size(184, 23);
-            this.AtkRange.TabIndex = 47;
-            this.AtkRange.SelectedIndexChanged += new System.EventHandler(this.AtkRange_SelectedIndexChanged);
-            // 
-            // cbItemHitarea
-            // 
-            this.cbItemHitarea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbItemHitarea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbItemHitarea.Enabled = false;
-            this.cbItemHitarea.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbItemHitarea.FormattingEnabled = true;
-            this.cbItemHitarea.Location = new System.Drawing.Point(85, 183);
-            this.cbItemHitarea.Name = "cbItemHitarea";
-            this.cbItemHitarea.Size = new System.Drawing.Size(184, 23);
-            this.cbItemHitarea.TabIndex = 11;
-            this.cbItemHitarea.SelectedIndexChanged += new System.EventHandler(this.cbItemHitarea_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 30);
-            this.label5.Name = "label5";
-            this.label5.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.label5.Size = new System.Drawing.Size(76, 30);
-            this.label5.TabIndex = 48;
-            this.label5.Text = "폭탄 / 지뢰";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPrice
-            // 
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPrice.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPrice.Location = new System.Drawing.Point(3, 63);
-            this.lblPrice.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(76, 27);
-            this.lblPrice.TabIndex = 23;
-            this.lblPrice.Text = "가격 / 100";
-            this.lblPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblUpgradeValue
-            // 
-            this.lblUpgradeValue.AutoSize = true;
-            this.lblUpgradeValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblUpgradeValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblUpgradeValue.Location = new System.Drawing.Point(3, 93);
-            this.lblUpgradeValue.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.lblUpgradeValue.Name = "lblUpgradeValue";
-            this.lblUpgradeValue.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.lblUpgradeValue.Size = new System.Drawing.Size(76, 27);
-            this.lblUpgradeValue.TabIndex = 27;
-            this.lblUpgradeValue.Text = "등급성장치";
-            this.lblUpgradeValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblCorps
-            // 
-            this.lblCorps.AutoSize = true;
-            this.lblCorps.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCorps.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCorps.Location = new System.Drawing.Point(3, 123);
-            this.lblCorps.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.lblCorps.Name = "lblCorps";
-            this.lblCorps.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.lblCorps.Size = new System.Drawing.Size(76, 27);
-            this.lblCorps.TabIndex = 28;
-            this.lblCorps.Text = "착용병종";
-            this.lblCorps.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 150);
-            this.label4.Name = "label4";
-            this.label4.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.label4.Size = new System.Drawing.Size(76, 30);
-            this.label4.TabIndex = 45;
-            this.label4.Text = "공격범위";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblItemHitarea
-            // 
-            this.lblItemHitarea.AutoSize = true;
-            this.lblItemHitarea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblItemHitarea.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblItemHitarea.Location = new System.Drawing.Point(3, 183);
-            this.lblItemHitarea.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.lblItemHitarea.Name = "lblItemHitarea";
-            this.lblItemHitarea.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.lblItemHitarea.Size = new System.Drawing.Size(76, 27);
-            this.lblItemHitarea.TabIndex = 29;
-            this.lblItemHitarea.Text = "도구범위";
-            this.lblItemHitarea.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.lblItemType, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtName, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.cbItemType, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblName, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblItemEffects, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.cbItemEffects, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblItemIcon, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.ncItemIcon, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.pbIcon, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.ncInitialValue, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lblInitialValue, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lblSpecialEffectsValue, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.ncSpecialEffectsValue, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.EffectsRange, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.BombType, 1, 7);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 27);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(239, 239);
-            this.tableLayoutPanel1.TabIndex = 42;
-            // 
-            // lblItemType
-            // 
-            this.lblItemType.AutoSize = true;
-            this.lblItemType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblItemType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblItemType.Location = new System.Drawing.Point(3, 33);
-            this.lblItemType.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.lblItemType.Name = "lblItemType";
-            this.lblItemType.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.lblItemType.Size = new System.Drawing.Size(94, 27);
-            this.lblItemType.TabIndex = 20;
-            this.lblItemType.Text = "무기 / 방어구 유형";
-            this.lblItemType.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // txtName
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.txtName, 2);
-            this.txtName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtName.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtName.Location = new System.Drawing.Point(103, 3);
+            this.txtName.Location = new System.Drawing.Point(120, 36);
             this.txtName.MaxLength = 8;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(133, 23);
             this.txtName.TabIndex = 1;
             // 
-            // cbItemType
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.cbItemType, 2);
-            this.cbItemType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbItemType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbItemType.Enabled = false;
-            this.cbItemType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbItemType.FormattingEnabled = true;
-            this.cbItemType.Location = new System.Drawing.Point(103, 33);
-            this.cbItemType.Name = "cbItemType";
-            this.cbItemType.Size = new System.Drawing.Size(133, 23);
-            this.cbItemType.TabIndex = 2;
-            // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblName.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblName.Location = new System.Drawing.Point(3, 3);
+            this.lblName.Location = new System.Drawing.Point(6, 36);
             this.lblName.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.lblName.Name = "lblName";
             this.lblName.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.lblName.Size = new System.Drawing.Size(94, 27);
+            this.lblName.Size = new System.Drawing.Size(59, 20);
             this.lblName.TabIndex = 19;
             this.lblName.Text = "물품 이름";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // lblItemEffects
-            // 
-            this.lblItemEffects.AutoSize = true;
-            this.lblItemEffects.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblItemEffects.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblItemEffects.Location = new System.Drawing.Point(3, 63);
-            this.lblItemEffects.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.lblItemEffects.Name = "lblItemEffects";
-            this.lblItemEffects.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.lblItemEffects.Size = new System.Drawing.Size(94, 27);
-            this.lblItemEffects.TabIndex = 22;
-            this.lblItemEffects.Text = "소모도구 효과";
-            this.lblItemEffects.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // cbItemEffects
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.cbItemEffects, 2);
-            this.cbItemEffects.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbItemEffects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbItemEffects.Enabled = false;
-            this.cbItemEffects.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbItemEffects.FormattingEnabled = true;
-            this.cbItemEffects.Location = new System.Drawing.Point(103, 63);
-            this.cbItemEffects.Name = "cbItemEffects";
-            this.cbItemEffects.Size = new System.Drawing.Size(133, 23);
-            this.cbItemEffects.TabIndex = 4;
-            // 
-            // lblItemIcon
-            // 
-            this.lblItemIcon.AutoSize = true;
-            this.lblItemIcon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblItemIcon.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblItemIcon.Location = new System.Drawing.Point(3, 93);
-            this.lblItemIcon.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.lblItemIcon.Name = "lblItemIcon";
-            this.lblItemIcon.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.lblItemIcon.Size = new System.Drawing.Size(94, 27);
-            this.lblItemIcon.TabIndex = 24;
-            this.lblItemIcon.Text = "물품 그림";
-            this.lblItemIcon.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // ncItemIcon
-            // 
-            this.ncItemIcon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ncItemIcon.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ncItemIcon.Location = new System.Drawing.Point(103, 93);
-            this.ncItemIcon.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ncItemIcon.MaxNumberControl = null;
-            this.ncItemIcon.MinNumberControl = null;
-            this.ncItemIcon.Name = "ncItemIcon";
-            this.ncItemIcon.Size = new System.Drawing.Size(64, 23);
-            this.ncItemIcon.TabIndex = 6;
-            this.ncItemIcon.Value = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ncItemIcon.ValueChanged += new System.EventHandler(this.ncItemIcon_ValueChanged);
-            // 
-            // pbIcon
-            // 
-            this.pbIcon.Location = new System.Drawing.Point(172, 92);
-            this.pbIcon.Margin = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.pbIcon.Name = "pbIcon";
-            this.tableLayoutPanel1.SetRowSpan(this.pbIcon, 2);
-            this.pbIcon.Size = new System.Drawing.Size(32, 32);
-            this.pbIcon.TabIndex = 37;
-            this.pbIcon.TabStop = false;
-            // 
-            // ncInitialValue
-            // 
-            this.ncInitialValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ncInitialValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ncInitialValue.Location = new System.Drawing.Point(103, 123);
-            this.ncInitialValue.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ncInitialValue.MaxNumberControl = null;
-            this.ncInitialValue.MinNumberControl = null;
-            this.ncInitialValue.Name = "ncInitialValue";
-            this.ncInitialValue.Size = new System.Drawing.Size(64, 23);
-            this.ncInitialValue.TabIndex = 7;
-            // 
-            // lblInitialValue
-            // 
-            this.lblInitialValue.AutoSize = true;
-            this.lblInitialValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblInitialValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblInitialValue.Location = new System.Drawing.Point(3, 123);
-            this.lblInitialValue.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.lblInitialValue.Name = "lblInitialValue";
-            this.lblInitialValue.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.lblInitialValue.Size = new System.Drawing.Size(94, 27);
-            this.lblInitialValue.TabIndex = 25;
-            this.lblInitialValue.Text = "초기효과치";
-            this.lblInitialValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblSpecialEffectsValue
-            // 
-            this.lblSpecialEffectsValue.AutoSize = true;
-            this.lblSpecialEffectsValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSpecialEffectsValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSpecialEffectsValue.Location = new System.Drawing.Point(3, 153);
-            this.lblSpecialEffectsValue.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.lblSpecialEffectsValue.Name = "lblSpecialEffectsValue";
-            this.lblSpecialEffectsValue.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.lblSpecialEffectsValue.Size = new System.Drawing.Size(94, 27);
-            this.lblSpecialEffectsValue.TabIndex = 26;
-            this.lblSpecialEffectsValue.Text = "특수효과치";
-            this.lblSpecialEffectsValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // ncSpecialEffectsValue
-            // 
-            this.ncSpecialEffectsValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ncSpecialEffectsValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.ncSpecialEffectsValue.Location = new System.Drawing.Point(103, 153);
-            this.ncSpecialEffectsValue.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.ncSpecialEffectsValue.MaxNumberControl = null;
-            this.ncSpecialEffectsValue.MinNumberControl = null;
-            this.ncSpecialEffectsValue.Name = "ncSpecialEffectsValue";
-            this.ncSpecialEffectsValue.Size = new System.Drawing.Size(64, 23);
-            this.ncSpecialEffectsValue.TabIndex = 8;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 180);
-            this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.label3.Size = new System.Drawing.Size(94, 30);
-            this.label3.TabIndex = 44;
-            this.label3.Text = "영향범위";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // EffectsRange
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.EffectsRange, 2);
-            this.EffectsRange.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EffectsRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.EffectsRange.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.EffectsRange.FormattingEnabled = true;
-            this.EffectsRange.Location = new System.Drawing.Point(103, 183);
-            this.EffectsRange.Name = "EffectsRange";
-            this.EffectsRange.Size = new System.Drawing.Size(133, 23);
-            this.EffectsRange.TabIndex = 46;
-            this.EffectsRange.SelectedIndexChanged += new System.EventHandler(this.EffectsRange_SelectedIndexChanged_1);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(3, 210);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(94, 30);
-            this.label6.TabIndex = 52;
-            this.label6.Text = "폭발방식";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // BombType
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.BombType, 2);
-            this.BombType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BombType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BombType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.BombType.FormattingEnabled = true;
-            this.BombType.Items.AddRange(new object[] {
-            "폭발",
-            "인도",
-            "조종"});
-            this.BombType.Location = new System.Drawing.Point(103, 213);
-            this.BombType.Name = "BombType";
-            this.BombType.Size = new System.Drawing.Size(133, 23);
-            this.BombType.TabIndex = 53;
-            // 
             // pbItemHitarea
             // 
             this.pbItemHitarea.InitialImage = null;
-            this.pbItemHitarea.Location = new System.Drawing.Point(346, 239);
+            this.pbItemHitarea.Location = new System.Drawing.Point(350, 245);
             this.pbItemHitarea.Name = "pbItemHitarea";
             this.pbItemHitarea.Size = new System.Drawing.Size(64, 64);
             this.pbItemHitarea.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -767,7 +703,7 @@
             // pbAtkRange
             // 
             this.pbAtkRange.InitialImage = null;
-            this.pbAtkRange.Location = new System.Drawing.Point(181, 272);
+            this.pbAtkRange.Location = new System.Drawing.Point(189, 301);
             this.pbAtkRange.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.pbAtkRange.Name = "pbAtkRange";
             this.pbAtkRange.Size = new System.Drawing.Size(64, 64);
@@ -778,13 +714,33 @@
             // pbEffectRange
             // 
             this.pbEffectRange.InitialImage = null;
-            this.pbEffectRange.Location = new System.Drawing.Point(109, 272);
+            this.pbEffectRange.Location = new System.Drawing.Point(117, 301);
             this.pbEffectRange.Margin = new System.Windows.Forms.Padding(13, 3, 3, 3);
             this.pbEffectRange.Name = "pbEffectRange";
             this.pbEffectRange.Size = new System.Drawing.Size(64, 64);
             this.pbEffectRange.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbEffectRange.TabIndex = 51;
             this.pbEffectRange.TabStop = false;
+            // 
+            // pbIcon
+            // 
+            this.pbIcon.Location = new System.Drawing.Point(186, 160);
+            this.pbIcon.Margin = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.pbIcon.Name = "pbIcon";
+            this.pbIcon.Size = new System.Drawing.Size(32, 32);
+            this.pbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbIcon.TabIndex = 37;
+            this.pbIcon.TabStop = false;
+            // 
+            // pbIcons
+            // 
+            this.pbIcons.Location = new System.Drawing.Point(199, 137);
+            this.pbIcons.Margin = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.pbIcons.Name = "pbIcons";
+            this.pbIcons.Size = new System.Drawing.Size(16, 16);
+            this.pbIcons.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbIcons.TabIndex = 53;
+            this.pbIcons.TabStop = false;
             // 
             // panel1
             // 
@@ -874,6 +830,7 @@
             this.searchButton.Text = "검색";
             this.searchButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // ItemsData
             // 
@@ -888,21 +845,18 @@
             this.tlpImsg.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ncPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncUpgradeValue)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ncItemIcon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncInitialValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ncItemIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncSpecialEffectsValue)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbItemHitarea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAtkRange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEffectRange)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIcons)).EndInit();
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -919,7 +873,6 @@
         private TextBoxControl txtImsg;
         private System.Windows.Forms.Label lblImsgCount;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label lblItemType;
         private NumericControl ncInitialValue;
         private System.Windows.Forms.Label lblInitialValue;
@@ -959,7 +912,6 @@
         private System.Windows.Forms.ComboBox BombType;
         private System.Windows.Forms.PictureBox pbItemHitarea;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private TextBoxControl searchTextBox;
         private System.Windows.Forms.Button searchButton;
@@ -967,5 +919,8 @@
         private TextBoxControl SpecialEffNameEditBox;
         private System.Windows.Forms.Button SpecialEffNameEditButton;
         private System.Windows.Forms.Label SpecialEffListLabel;
+        private System.Windows.Forms.Label lbIcon;
+        private System.Windows.Forms.Label lbIconSmall;
+        private System.Windows.Forms.PictureBox pbIcons;
     }
 }

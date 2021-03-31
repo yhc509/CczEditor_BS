@@ -28,13 +28,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.SuspendLayout();
-			// 
-			// RetreatImsg
-			// 
-			this.Name = "RetreatImsg";
-			this.Load += new System.EventHandler(this.RetreatImsg_Load);
-			this.ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // RetreatImsg
+            // 
+            this.Name = "RetreatImsg";
+            this.Size = new System.Drawing.Size(892, 581);
+            this.Load += new System.EventHandler(this.RetreatImsg_Load);
+            this.ResumeLayout(false);
 
 		}
 

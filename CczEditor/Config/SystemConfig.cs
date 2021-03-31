@@ -5,7 +5,7 @@ using System.Text;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace CczEditor.Config.New
+namespace CczEditor
 {
     [Serializable]
     public class SystemConfig
@@ -66,11 +66,12 @@ namespace CczEditor.Config.New
             result.ExeFileName = "Ekd5.exe";
 
             #region CodeOption Setting
-            result.CodeOptionContainer.ItemCustomRange = true;
+            result.CodeOptionContainer.ItemCustomRange = false;
             result.CodeOptionContainer.MpExtension = false;
             result.CodeOptionContainer.AIExtension = true;
             result.CodeOptionContainer.MagicLearnExtension = true;
             result.CodeOptionContainer.SingularAttribute = false;
+            result.CodeOptionContainer.MagicReflect = true;
             #endregion
 
             #region Data Setting
@@ -227,8 +228,8 @@ namespace CczEditor.Config.New
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 24, Length = 4, Offset = 0x8ACAC });
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 25, Length = 4, Offset = 0x8ACAC });
 
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 26, Length = 10, Offset = 0x8A9E8 });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 27, Length = 10, Offset = 0x8A9F5 });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 26, Length = 12, Offset = 0x8A9E8 });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 27, Length = 12, Offset = 0x8A9F5 });
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 28, Length = 14, Offset = 0x8AA02 });
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 29, Length = 12, Offset = 0x8AA11 });
 

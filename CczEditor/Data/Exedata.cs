@@ -16,7 +16,7 @@ namespace CczEditor.Data
         {
             get
             {
-                var config = Config.New.Config.Read(Config.New.SystemConfig.Inst.CurrentConfig);
+                var config = Config.Read(SystemConfig.Inst.CurrentConfig);
                 var path = config.DirectoryPath;
                 var exeFileName = config.ExeFileName;
 

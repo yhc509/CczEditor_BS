@@ -6,7 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-using CczEditor.Config;
+using CczEditor;
 
 #endregion
 

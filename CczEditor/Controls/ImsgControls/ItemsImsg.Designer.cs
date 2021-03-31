@@ -28,13 +28,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.SuspendLayout();
-			// 
-			// ItemsImsg
-			// 
-			this.Name = "ItemsImsg";
-			this.Load += new System.EventHandler(this.ItemsImsg_Load);
-			this.ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // ItemsImsg
+            // 
+            this.Name = "ItemsImsg";
+            this.Size = new System.Drawing.Size(892, 581);
+            this.Load += new System.EventHandler(this.ItemsImsg_Load);
+            this.ResumeLayout(false);
 
 		}
 

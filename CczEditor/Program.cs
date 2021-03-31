@@ -7,10 +7,11 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 
-using CczEditor.Config;
+using CczEditor;
 using CczEditor.Data;
 
 #endregion
+using CczEditor;
 
 namespace CczEditor
 {
@@ -26,19 +27,19 @@ namespace CczEditor
 			try
 			{
 
-                string systemConfigFileName = Config.New.SystemConfig.DefaultSystemConfigFileName;
-                Config.New.SystemConfig.Read(systemConfigFileName);
+                string systemConfigFileName = SystemConfig.DefaultSystemConfigFileName;
+                SystemConfig.Read(systemConfigFileName);
 
-                if (string.IsNullOrEmpty(Config.New.SystemConfig.Inst.CurrentConfig) ||
-                    !File.Exists(Config.New.SystemConfig.Inst.CurrentConfig))
+                if (string.IsNullOrEmpty(SystemConfig.Inst.CurrentConfig) ||
+                    !File.Exists(SystemConfig.Inst.CurrentConfig))
                 {
-                    var config = Config.New.SystemConfig.CreateDefaultConfig();
-                    Config.New.Config.Write(config, Config.New.SystemConfig.DefaultConfigName);
+                    var config = SystemConfig.CreateDefaultConfig();
+                    Config.Write(config, SystemConfig.DefaultConfigName);
                     CurrentConfig = config;
                 }
                 else
                 {
-                    var config = Config.New.Config.Read(Config.New.SystemConfig.Inst.CurrentConfig);
+                    var config = Config.Read(SystemConfig.Inst.CurrentConfig);
                     CurrentConfig = config;
                 }
 			}
@@ -55,7 +56,7 @@ namespace CczEditor
 			Utils.ShowError(e.Exception.Message);
 		}
         
-		public static Config.New.Config CurrentConfig { get; set; }
+		public static Config CurrentConfig { get; set; }
         
 		public static readonly Encoding EncoderS = Encoding.GetEncoding("euc-kr");
         

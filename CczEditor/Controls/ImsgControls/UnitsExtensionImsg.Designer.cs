@@ -28,13 +28,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.SuspendLayout();
-			// 
-			// UnitsExtensionImsg
-			// 
-			this.Name = "UnitsExtensionImsg";
-			this.Load += new System.EventHandler(this.UnitsExtensionImsg_Load);
-			this.ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // UnitsExtensionImsg
+            // 
+            this.Name = "UnitsExtensionImsg";
+            this.Size = new System.Drawing.Size(892, 581);
+            this.Load += new System.EventHandler(this.UnitsExtensionImsg_Load);
+            this.ResumeLayout(false);
 
 		}
 
