@@ -111,7 +111,7 @@ namespace CczEditor
 
 		private void tsmiMainMenu_Data_Magic_Click(object sender, EventArgs e)
 		{
-			ShowEditor(new MagicData());
+            ShowEditor(new Controls.DataControls.MagicData());
 		}
 
 
@@ -468,5 +468,10 @@ namespace CczEditor
         }
 
         #endregion
+
+        private void ExeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowEditor(new Controls.DataControls.ExeSpecialDataController());
+        }
     }
 }

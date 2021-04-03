@@ -3,6 +3,7 @@
 using System.Windows.Forms;
 using System;
 using System.Linq;
+using System.Text;
 
 #endregion
 
@@ -43,7 +44,17 @@ namespace CczEditor.Controls.DataControls
 					}
 				}
 			}
-			cbHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
+
+            SpecialSkillForce.Items.Add(string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, 0, "미사용"));
+            var specialSkillList = Program.CurrentConfig.SpecialSkillNames;
+            for(int i = Program.CurrentConfig.Exe.SpecialSkillPhysicsCount + 1; i < specialSkillList.Count; i++)
+            {
+                var index = i - Program.CurrentConfig.Exe.SpecialSkillPhysicsCount;
+                SpecialSkillForce.Items.Add(string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, index, specialSkillList[i].Description));
+            }
+
+
+            cbHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
             lbList.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
@@ -55,6 +66,7 @@ namespace CczEditor.Controls.DataControls
 			{
 				return;
 			}
+
 			var force = GameData.ForceGet(lbList.SelectedIndex);
 			ncMove.Value = force[0];
 			cbHitarea.SelectedIndex = force[1];
@@ -75,33 +87,40 @@ namespace CczEditor.Controls.DataControls
 				btnImsgRestore_Click();
 			}
 
-            int forcenum = 0;
+            int forceIndex = (byte) lbList.SelectedIndex;
+            int forceCategoryIndex = 0;
             int ForceCount = Program.CurrentConfig.ForceNames.Count;
             int ForceCategoryCount = Program.CurrentConfig.ForceCategoryNames.Count;
             if (lbList.SelectedIndex < ((ForceCount - ForceCategoryCount) / 2) * 3 - 1)
             {
-                forcenum = (lbList.SelectedIndex / 3);
+                forceCategoryIndex = (lbList.SelectedIndex / 3);
             }
             else
             {
-                forcenum = (lbList.SelectedIndex - ((ForceCount - ForceCategoryCount) / 2) * 3) + (ForceCount - ForceCategoryCount) / 2;
+                forceCategoryIndex = (lbList.SelectedIndex - ((ForceCount - ForceCategoryCount) / 2) * 3) + (ForceCount - ForceCategoryCount) / 2;
             }
 
             f1.Enabled = f2.Enabled = f3.Enabled = f4.Enabled = f5.Enabled = f6.Enabled = f7.Enabled = f8.Enabled = eff.Enabled = button1.Enabled = !Data.ExeData.IsLocked;
-            label10.Text = ConfigUtils.GetForceCategoryName(forcenum);
-            f1.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.MoveSoundOffset);
-            f2.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.MoveSpeedOffset);
-            f3.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.AtkSoundOffset);
-            f4.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.AtkTypeOffset);
-            f5.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.TypeOffset);
-            f6.Value = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.MagicDamageOffset);
-            f7.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.AtkDelayOffset);
-            f8.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.AtkPincOffset);
-            if (Program.CurrentConfig.CodeOptionContainer.AIExtension)
+            if (!Data.ExeData.IsLocked)
             {
-                f9.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.AiTypeOffset);
+                ForceNameBox.Text = ConfigUtils.GetForceName(forceIndex);
+                ForceCategoryNameBox.Text = ConfigUtils.GetForceCategoryName(forceCategoryIndex);
+                f1.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.MoveSoundOffset);
+                f2.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.MoveSpeedOffset);
+                f3.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkSoundOffset);
+                f4.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkTypeOffset);
+                f5.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.TypeOffset);
+                f6.Value = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.MagicDamageOffset);
+                f7.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkDelayOffset);
+                f8.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkPincOffset);
+                if (Program.CurrentConfig.CodeOptionContainer.AIExtension)
+                {
+                    f9.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AiTypeOffset);
+                }
+                eff.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
+
+                SpecialSkillForce.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.SpecialSkillForceOffset);
             }
-            eff.SelectedIndex = Data.ExeData.ReadByte(forcenum, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
             if (TopLevelControl != null)
 			{
 				TopLevelControl.Text = string.Format("{1} - 병종 편집 - 번호：{0}", lbList.SelectedIndex, Program.TitleNameCurrent);
@@ -115,7 +134,9 @@ namespace CczEditor.Controls.DataControls
 				return;
 			}
 
+
 			var index = lbList.SelectedIndex;
+
 			var force = GameData.ForceGet(index);
 			force[0] = (byte)ncMove.Value;
 			force[1] = (byte)cbHitarea.SelectedIndex;
@@ -142,28 +163,56 @@ namespace CczEditor.Controls.DataControls
             }
 
             //EXE
-            int forcenum = 0;
-            if (lbList.SelectedIndex < 60)
+            if (!Data.ExeData.IsLocked)
             {
-                forcenum = (lbList.SelectedIndex / 3);
+                int forcenum = 0;
+                if (lbList.SelectedIndex < 60)
+                {
+                    forcenum = (lbList.SelectedIndex / 3);
+                }
+                else
+                {
+                    forcenum = (lbList.SelectedIndex - 59) + 19;
+                }
+
+                string forceName;
+                var forceInfo = Program.CurrentConfig.ForceNames.Find(x => x.Index == index);
+                if (ForceNameBox.Text.Length > forceInfo.Length)
+                    forceName = ForceNameBox.Text.Substring(0, forceInfo.Length);
+                else
+                    forceName = ForceNameBox.Text;
+
+                Data.ExeData.WriteText(forceName, forceInfo.Offset, forceInfo.Length);
+
+                string forceCategoryName;
+                var forceCategoryInfo = Program.CurrentConfig.ForceCategoryNames.Find(x => x.Index == index);
+                if (ForceCategoryNameBox.Text.Length > forceInfo.Length)
+                    forceCategoryName = ForceCategoryNameBox.Text.Substring(0, forceInfo.Length);
+                else
+                    forceCategoryName = ForceCategoryNameBox.Text;
+            
+                Data.ExeData.WriteText(forceCategoryName, forceCategoryInfo.Offset, forceCategoryInfo.Length);
+
+                Data.ExeData.WriteByte((byte)f1.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.MoveSoundOffset);
+                Data.ExeData.WriteByte((byte)f2.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.MoveSpeedOffset);
+                Data.ExeData.WriteByte((byte)f3.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkSoundOffset);
+                Data.ExeData.WriteByte((byte)f4.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkTypeOffset);
+                Data.ExeData.WriteByte((byte)f5.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.TypeOffset);
+                Data.ExeData.WriteByte((byte)f6.Value, forcenum, Program.CurrentConfig.Exe.Force.MagicDamageOffset);
+                Data.ExeData.WriteByte((byte)f7.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkDelayOffset);
+                Data.ExeData.WriteByte((byte)f8.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkPincOffset);
+                if (Program.CurrentConfig.CodeOptionContainer.AIExtension)
+                {
+                    Data.ExeData.WriteByte((byte)f9.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AiTypeOffset);
+                }
+                Data.ExeData.WriteByte((byte)eff.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
+
+                Data.ExeData.WriteByte((byte)SpecialSkillForce.SelectedIndex, forcenum, Program.CurrentConfig.Exe.SpecialSkillForceOffset);
+                
+                lbList.Items.RemoveAt(index);
+                lbList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, index, forceName));
+                lbList.SelectedIndex = index;
             }
-            else
-            {
-                forcenum = (lbList.SelectedIndex - 59) + 19;
-            }
-            Data.ExeData.WriteByte((byte)f1.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.MoveSoundOffset);
-            Data.ExeData.WriteByte((byte)f2.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.MoveSpeedOffset);
-            Data.ExeData.WriteByte((byte)f3.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkSoundOffset);
-            Data.ExeData.WriteByte((byte)f4.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkTypeOffset);
-            Data.ExeData.WriteByte((byte)f5.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.TypeOffset);
-            Data.ExeData.WriteByte((byte)f6.Value, forcenum, Program.CurrentConfig.Exe.Force.MagicDamageOffset);
-            Data.ExeData.WriteByte((byte)f7.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkDelayOffset);
-            Data.ExeData.WriteByte((byte)f8.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkPincOffset);
-            if (Program.CurrentConfig.CodeOptionContainer.AIExtension)
-            {
-                Data.ExeData.WriteByte((byte)f9.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AiTypeOffset);
-            }
-            Data.ExeData.WriteByte((byte)eff.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
         }
 
         private void btnRestore_Click(object sender, EventArgs e)
@@ -198,9 +247,10 @@ namespace CczEditor.Controls.DataControls
 		}
 
 		private void txtImsg_TextChanged(object sender, EventArgs e)
-		{
-			lblImsgCount.Text = string.Format("글자 수 {0}", txtImsg.Text.Length);
-		}
+        {
+            int length = Encoding.Default.GetByteCount(txtImsg.Text);
+            lblImsgCount.Text = $"{length} / 200 byte";
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {

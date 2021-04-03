@@ -291,7 +291,7 @@ namespace CczEditor.Data
 				}
 			}
 		}
-        public void BomulGet(int bomul)
+        public void WriteTreasureCount(int bomul)
         {
             var item = new byte[1];
             int i = 0;
@@ -308,7 +308,7 @@ namespace CczEditor.Data
             }
             if (Program.StarData != null && Program.StarData.CurrentFile != null && Program.StarData.CurrentStream != null)
             {
-                Program.StarData.BomulGet(bomul, item, i);
+                Program.StarData.WriteTreasureCount(bomul, item, i);
             }
         }
 

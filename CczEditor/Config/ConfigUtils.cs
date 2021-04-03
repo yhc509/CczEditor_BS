@@ -111,6 +111,20 @@ namespace CczEditor
             return result;
         }
 
+        public static string GetAuxiliaryEffect(int index, string format = null)
+        {
+            var auxiliaryMin = Program.CurrentConfig.Items.AuxiliaryIndexMin;
+            var auxiliaryMax = Program.CurrentConfig.Items.AuxiliaryIndexMax;
+            var consumablesMin = Program.CurrentConfig.Items.ConsumablesMin;
+            var consumablesMax = Program.CurrentConfig.Items.Bomb;
+            var effects = Program.CurrentConfig.ItemEffects;
+            var effect = effects.Find(x => x.Index == index);
+            if (effect == null) return null;
+
+            var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+            return effName;
+        }
+
         public static Dictionary<int, string> GetConsumablesEffects(string format = null)
         {
             var consumablesMin = Program.CurrentConfig.Items.ConsumablesMin;
@@ -244,6 +258,43 @@ namespace CczEditor
                 return forceCategoryName;
             else
                 return string.Format(format, index, forceCategoryName);
+        }
+
+
+        public static Dictionary<int, string> GetSpecialEffectNames(string format = null)
+        {
+            var result = new Dictionary<int, string>();
+            var specialEffectOffsets = Program.CurrentConfig.SpecialEffectNames;
+
+            for (int i = 0; i < specialEffectOffsets.Count; i++)
+            {
+                var specialEffectName = GetSpecialEffectName(i, format);
+                result.Add(specialEffectOffsets[i].Index, specialEffectName);
+            }
+            return result;
+        }
+
+
+        public static string GetSpecialEffectName(int index, string format = null)
+        {
+            var specialEffectOffset = Program.CurrentConfig.SpecialEffectNames;
+            var specialEffectName = Data.ExeData.GetText(specialEffectOffset[index].Offset, specialEffectOffset[index].Length);
+
+            if (string.IsNullOrEmpty(format))
+                return specialEffectName;
+            else
+                return string.Format(format, index, specialEffectName);
+        }
+
+        public static string GetSpecialSkillName(int index, string format = null)
+        {
+            var specialSkillOffset = Program.CurrentConfig.SpecialSkillNames;
+            var specialSkillName = Data.ExeData.GetText(specialSkillOffset[index].Offset, specialSkillOffset[index].Length);
+
+            if (string.IsNullOrEmpty(format))
+                return specialSkillName;
+            else
+                return string.Format(format, index, specialSkillName);
         }
     }
 }

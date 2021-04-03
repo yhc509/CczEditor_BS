@@ -34,8 +34,12 @@
             this.txtImsg = new CczEditor.Controls.TextBoxControl();
             this.lblImsgCount = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.EffNameLabel = new System.Windows.Forms.Label();
+            this.SpecialEffNameEditButton = new System.Windows.Forms.Button();
+            this.SpecialEffNameEditBox = new CczEditor.Controls.TextBoxControl();
             this.cbSpecialEffects = new System.Windows.Forms.ComboBox();
             this.lbIcon = new System.Windows.Forms.Label();
+            this.SpecialEffListLabel = new System.Windows.Forms.Label();
             this.lblSpecialEffects = new System.Windows.Forms.Label();
             this.cbBombEffects = new System.Windows.Forms.ComboBox();
             this.lbIconSmall = new System.Windows.Forms.Label();
@@ -64,10 +68,6 @@
             this.lblItemEffects = new System.Windows.Forms.Label();
             this.cbItemType = new System.Windows.Forms.ComboBox();
             this.lblItemType = new System.Windows.Forms.Label();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.SpecialEffNameEditBox = new CczEditor.Controls.TextBoxControl();
-            this.SpecialEffNameEditButton = new System.Windows.Forms.Button();
-            this.SpecialEffListLabel = new System.Windows.Forms.Label();
             this.txtName = new CczEditor.Controls.TextBoxControl();
             this.lblName = new System.Windows.Forms.Label();
             this.pbItemHitarea = new System.Windows.Forms.PictureBox();
@@ -93,7 +93,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ncInitialValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncItemIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncSpecialEffectsValue)).BeginInit();
-            this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbItemHitarea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAtkRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEffectRange)).BeginInit();
@@ -192,8 +191,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.EffNameLabel);
+            this.groupBox1.Controls.Add(this.SpecialEffNameEditButton);
+            this.groupBox1.Controls.Add(this.SpecialEffNameEditBox);
             this.groupBox1.Controls.Add(this.cbSpecialEffects);
             this.groupBox1.Controls.Add(this.lbIcon);
+            this.groupBox1.Controls.Add(this.SpecialEffListLabel);
             this.groupBox1.Controls.Add(this.lblSpecialEffects);
             this.groupBox1.Controls.Add(this.cbBombEffects);
             this.groupBox1.Controls.Add(this.lbIconSmall);
@@ -222,7 +225,6 @@
             this.groupBox1.Controls.Add(this.lblItemEffects);
             this.groupBox1.Controls.Add(this.cbItemType);
             this.groupBox1.Controls.Add(this.lblItemType);
-            this.groupBox1.Controls.Add(this.tableLayoutPanel3);
             this.groupBox1.Controls.Add(this.txtName);
             this.groupBox1.Controls.Add(this.lblName);
             this.groupBox1.Controls.Add(this.pbItemHitarea);
@@ -239,6 +241,35 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "물품 편집";
             // 
+            // EffNameLabel
+            // 
+            this.EffNameLabel.AutoSize = true;
+            this.EffNameLabel.Location = new System.Drawing.Point(625, 59);
+            this.EffNameLabel.Name = "EffNameLabel";
+            this.EffNameLabel.Size = new System.Drawing.Size(64, 15);
+            this.EffNameLabel.TabIndex = 56;
+            this.EffNameLabel.Text = "0 / 0 byte";
+            // 
+            // SpecialEffNameEditButton
+            // 
+            this.SpecialEffNameEditButton.Location = new System.Drawing.Point(695, 34);
+            this.SpecialEffNameEditButton.Name = "SpecialEffNameEditButton";
+            this.SpecialEffNameEditButton.Size = new System.Drawing.Size(57, 22);
+            this.SpecialEffNameEditButton.TabIndex = 3;
+            this.SpecialEffNameEditButton.Text = "수정";
+            this.SpecialEffNameEditButton.UseVisualStyleBackColor = true;
+            this.SpecialEffNameEditButton.Click += new System.EventHandler(this.SpecialEffNameEditButton_Click);
+            // 
+            // SpecialEffNameEditBox
+            // 
+            this.SpecialEffNameEditBox.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.SpecialEffNameEditBox.Location = new System.Drawing.Point(536, 33);
+            this.SpecialEffNameEditBox.MaxLength = 8;
+            this.SpecialEffNameEditBox.Name = "SpecialEffNameEditBox";
+            this.SpecialEffNameEditBox.Size = new System.Drawing.Size(153, 23);
+            this.SpecialEffNameEditBox.TabIndex = 2;
+            this.SpecialEffNameEditBox.TextChanged += new System.EventHandler(this.SpecialEffNameEditBox_TextChanged);
+            // 
             // cbSpecialEffects
             // 
             this.cbSpecialEffects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -249,6 +280,7 @@
             this.cbSpecialEffects.Name = "cbSpecialEffects";
             this.cbSpecialEffects.Size = new System.Drawing.Size(173, 23);
             this.cbSpecialEffects.TabIndex = 3;
+            this.cbSpecialEffects.SelectedIndexChanged += new System.EventHandler(this.cbSpecialEffects_SelectedIndexChanged);
             // 
             // lbIcon
             // 
@@ -258,6 +290,15 @@
             this.lbIcon.Size = new System.Drawing.Size(28, 15);
             this.lbIcon.TabIndex = 55;
             this.lbIcon.Text = "100";
+            // 
+            // SpecialEffListLabel
+            // 
+            this.SpecialEffListLabel.AutoSize = true;
+            this.SpecialEffListLabel.Location = new System.Drawing.Point(542, 96);
+            this.SpecialEffListLabel.Name = "SpecialEffListLabel";
+            this.SpecialEffListLabel.Size = new System.Drawing.Size(79, 15);
+            this.SpecialEffListLabel.TabIndex = 4;
+            this.SpecialEffListLabel.Text = "특수효과목록";
             // 
             // lblSpecialEffects
             // 
@@ -612,50 +653,6 @@
             this.lblItemType.Text = "무기 / 방어구 유형";
             this.lblItemType.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63F));
-            this.tableLayoutPanel3.Controls.Add(this.SpecialEffNameEditBox, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.SpecialEffNameEditButton, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.SpecialEffListLabel, 0, 1);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(539, 27);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.14634F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85.85366F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(222, 205);
-            this.tableLayoutPanel3.TabIndex = 52;
-            // 
-            // SpecialEffNameEditBox
-            // 
-            this.SpecialEffNameEditBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SpecialEffNameEditBox.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.SpecialEffNameEditBox.Location = new System.Drawing.Point(3, 3);
-            this.SpecialEffNameEditBox.MaxLength = 8;
-            this.SpecialEffNameEditBox.Name = "SpecialEffNameEditBox";
-            this.SpecialEffNameEditBox.Size = new System.Drawing.Size(153, 23);
-            this.SpecialEffNameEditBox.TabIndex = 2;
-            // 
-            // SpecialEffNameEditButton
-            // 
-            this.SpecialEffNameEditButton.Location = new System.Drawing.Point(162, 3);
-            this.SpecialEffNameEditButton.Name = "SpecialEffNameEditButton";
-            this.SpecialEffNameEditButton.Size = new System.Drawing.Size(57, 22);
-            this.SpecialEffNameEditButton.TabIndex = 3;
-            this.SpecialEffNameEditButton.Text = "수정";
-            this.SpecialEffNameEditButton.UseVisualStyleBackColor = true;
-            // 
-            // SpecialEffListLabel
-            // 
-            this.SpecialEffListLabel.AutoSize = true;
-            this.SpecialEffListLabel.Location = new System.Drawing.Point(3, 28);
-            this.SpecialEffListLabel.Name = "SpecialEffListLabel";
-            this.SpecialEffListLabel.Size = new System.Drawing.Size(79, 15);
-            this.SpecialEffListLabel.TabIndex = 4;
-            this.SpecialEffListLabel.Text = "특수효과목록";
-            // 
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -760,6 +757,7 @@
             this.button1.TabIndex = 15;
             this.button1.Text = "보물도감";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             // 
             // btnSave
             // 
@@ -850,8 +848,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ncInitialValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncItemIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncSpecialEffectsValue)).EndInit();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbItemHitarea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAtkRange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEffectRange)).EndInit();
@@ -915,12 +911,12 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private TextBoxControl searchTextBox;
         private System.Windows.Forms.Button searchButton;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private TextBoxControl SpecialEffNameEditBox;
         private System.Windows.Forms.Button SpecialEffNameEditButton;
         private System.Windows.Forms.Label SpecialEffListLabel;
         private System.Windows.Forms.Label lbIcon;
         private System.Windows.Forms.Label lbIconSmall;
         private System.Windows.Forms.PictureBox pbIcons;
+        private System.Windows.Forms.Label EffNameLabel;
     }
 }

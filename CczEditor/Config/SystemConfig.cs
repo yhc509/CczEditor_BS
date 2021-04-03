@@ -72,6 +72,10 @@ namespace CczEditor
             result.CodeOptionContainer.MagicLearnExtension = true;
             result.CodeOptionContainer.SingularAttribute = false;
             result.CodeOptionContainer.MagicReflect = true;
+            result.CodeOptionContainer.UseLargeFace = true;
+            result.CodeOptionContainer.UseCutin = true;
+            result.CodeOptionContainer.UseVoice = true;
+            result.CodeOptionContainer.UseCost = true;
             #endregion
 
             #region Data Setting
@@ -142,6 +146,28 @@ namespace CczEditor
 
             result.Exe.CriticalOffset = 0x89C30;
             result.Exe.CriticalCount = 0x14;
+            result.Exe.TreasureCountOffset = 0x6FF8C;
+
+            result.Exe.SpecialSkillOffset = 0xDA000;
+            result.Exe.SpecialSkillPhysicsCount = 0x1A;
+            result.Exe.SpecialSkillForceOffset = 0xA3A00;
+
+            result.Exe.SpecialEffectOffset = 0xDA1B0;
+            result.Exe.AbilityAssistPercentOffset = 0x6170F;
+            result.Exe.RangeAttack2TypeOffset = 0x3ED10;
+            result.Exe.RangeAttack3TypeOffset = 0x3ED22;
+            result.Exe.IgnoreDefenceOffset = 0x6170E;
+            result.Exe.GoldDefenceRateOffset = 0xA140C;
+            result.Exe.MpDefenceRecoverOffest = 0x38EFC;
+            result.Exe.StateEffectAccOffset = 0xA0E88;
+            result.Exe.TitleOffsets = new int[]
+            {
+                0x8A120,
+                0x8B2D8,
+                0x8D248,
+                0x8D260,
+                0x8D278
+            };
 
             result.Exe.Force.AtkEffectOffset = 0x6C81;
             result.Exe.Force.MoveSoundOffset = 0xA38C0;
@@ -198,6 +224,11 @@ namespace CczEditor
             result.Exe.Magic.ReflectTypeStartIndex = 0x00;
             result.Exe.Magic.ReflectTypeEndIndex = 0x49;
             result.Exe.Magic.ReflectTypeOffset = 0xC465;
+            #endregion
+
+            #region Save Setting
+            result.Save.SpecialSkillOffset = 0x7800;
+            result.Save.SpecialEffectOffset = 0x79B0;
             #endregion
 
             #region ItemEffName Setting
@@ -330,11 +361,7 @@ namespace CczEditor
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 87, Length = 8, Offset = 0x8AD4E });
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 88, Length = 6, Offset = 0x8AD4E });
             #endregion
-
-            #region CodeEffName Setting
-            //result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Index = 0, Offset = 0, Length = 0x10 });
-            #endregion
-
+            
             #region ForceName Setting
             result.ForceNames.Add(new Config.ConfigForceNameInfos { Index = 0, Length = 8, Offset = 0xD18D0 });
             result.ForceNames.Add(new Config.ConfigForceNameInfos { Index = 1, Length = 8, Offset = 0xD18D9 });
@@ -517,6 +544,270 @@ namespace CczEditor
             result.EffAreaNames.Add("대몰우전");
             result.EffAreaNames.Add("삼격");
             result.EffAreaNames.Add("방괴");
+            #endregion
+
+            #region SpecialEffect Setting
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 0, Length = 0x10, Offset = 0xF9430 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 1, Length = 0x10, Offset = 0xF9440 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 2, Length = 0x10, Offset = 0xF9450 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 3, Length = 0x10, Offset = 0xF9460 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 4, Length = 0x10, Offset = 0xF9470 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 5, Length = 0x10, Offset = 0xF9480 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 6, Length = 0x10, Offset = 0xF9490 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 7, Length = 0x10, Offset = 0xF94A0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 8, Length = 0x10, Offset = 0xF94B0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 9, Length = 0x10, Offset = 0xF94C0 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 10, Length = 0x10, Offset = 0xF94D0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 11, Length = 0x10, Offset = 0xF94E0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 12, Length = 0x10, Offset = 0xF94F0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 13, Length = 0x10, Offset = 0xF9500 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 14, Length = 0x10, Offset = 0xF9510 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 15, Length = 0x10, Offset = 0xF9520 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 16, Length = 0x10, Offset = 0xF9530 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 17, Length = 0x10, Offset = 0xF9540 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 18, Length = 0x10, Offset = 0xF9550 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 19, Length = 0x10, Offset = 0xF9560 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 20, Length = 0x10, Offset = 0xF9570 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 21, Length = 0x10, Offset = 0xF9580 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 22, Length = 0x10, Offset = 0xF9590 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 23, Length = 0x10, Offset = 0xF95A0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 24, Length = 0x10, Offset = 0xF95B0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 25, Length = 0x10, Offset = 0xF95C0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 26, Length = 0x10, Offset = 0xF95D0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 27, Length = 0x10, Offset = 0xF95E0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 28, Length = 0x10, Offset = 0xF95F0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 29, Length = 0x10, Offset = 0xF9600 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 30, Length = 0x10, Offset = 0xF9610 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 31, Length = 0x10, Offset = 0xF9620 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 32, Length = 0x10, Offset = 0xF9630 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 33, Length = 0x10, Offset = 0xF9640 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 34, Length = 0x10, Offset = 0xF9650 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 35, Length = 0x10, Offset = 0xF9660 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 36, Length = 0x10, Offset = 0xF9670 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 37, Length = 0x10, Offset = 0xF9680 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 38, Length = 0x10, Offset = 0xF9690 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 39, Length = 0x10, Offset = 0xF96A0 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 40, Length = 0x10, Offset = 0xF96B0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 41, Length = 0x10, Offset = 0xF96C0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 42, Length = 0x10, Offset = 0xF96D0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 43, Length = 0x10, Offset = 0xF96E0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 44, Length = 0x10, Offset = 0xF96F0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 45, Length = 0x10, Offset = 0xF9700 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 46, Length = 0x10, Offset = 0xF9710 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 47, Length = 0x10, Offset = 0xF9720 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 48, Length = 0x10, Offset = 0xF9730 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 49, Length = 0x10, Offset = 0xF9740 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 50, Length = 0x10, Offset = 0xF9750 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 51, Length = 0x10, Offset = 0xF9760 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 52, Length = 0x10, Offset = 0xF9770 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 53, Length = 0x10, Offset = 0xF9780 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 54, Length = 0x10, Offset = 0xF9790 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 55, Length = 0x10, Offset = 0xF97A0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 56, Length = 0x10, Offset = 0xF97B0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 57, Length = 0x10, Offset = 0xF97C0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 58, Length = 0x10, Offset = 0xF97D0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 59, Length = 0x10, Offset = 0xF97E0 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 60, Length = 0x10, Offset = 0xF97F0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 61, Length = 0x10, Offset = 0xF9800 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 62, Length = 0x10, Offset = 0xF9810 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 63, Length = 0x10, Offset = 0xF9820 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 64, Length = 0x10, Offset = 0xF9830 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 65, Length = 0x10, Offset = 0xF9840 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 66, Length = 0x10, Offset = 0xF9850 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 67, Length = 0x10, Offset = 0xF9860 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 68, Length = 0x10, Offset = 0xF9870 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 69, Length = 0x10, Offset = 0xF9880 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 70, Length = 0x10, Offset = 0xF9890 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 71, Length = 0x10, Offset = 0xF98A0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 72, Length = 0x10, Offset = 0xF98B0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 73, Length = 0x10, Offset = 0xF98C0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 74, Length = 0x10, Offset = 0xF98D0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 75, Length = 0x10, Offset = 0xF98E0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 76, Length = 0x10, Offset = 0xF98F0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 77, Length = 0x10, Offset = 0xF9900 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 78, Length = 0x10, Offset = 0xF9910 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 79, Length = 0x10, Offset = 0xF9920 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 80, Length = 0x10, Offset = 0xF9930 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 81, Length = 0x10, Offset = 0xF9940 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 82, Length = 0x10, Offset = 0xF9950 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 83, Length = 0x10, Offset = 0xF9960 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 84, Length = 0x10, Offset = 0xF9970 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 85, Length = 0x10, Offset = 0xF9980 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 86, Length = 0x10, Offset = 0xF9990 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 87, Length = 0x10, Offset = 0xF99A0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 88, Length = 0x10, Offset = 0xF99B0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 89, Length = 0x10, Offset = 0xF99C0 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 90, Length = 0x10, Offset = 0xF99D0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 91, Length = 0x10, Offset = 0xF99E0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 92, Length = 0x10, Offset = 0xF99F0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 93, Length = 0x10, Offset = 0xF9A00 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 94, Length = 0x10, Offset = 0xF9A10 });
+            #endregion
+            
+            #region SpecialSkillName Setting
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 0, Length = 0x10, Offset = 0xD0F11, Description = "공격력상승"});
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 1, Length = 0x10, Offset = 0xD0F21, Description = "방어력상승" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 2, Length = 0x10, Offset = 0xD0F31, Description = "정신력상승" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 3, Length = 0x10, Offset = 0xD0F41, Description = "순발력상승" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 4, Length = 0x10, Offset = 0xD0F51, Description = "사기상승" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 5, Length = 0x10, Offset = 0xD0F61, Description = "이동력상승" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 6, Length = 0x10, Offset = 0xD0F71, Description = "전능력상승" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 7, Length = 0x10, Offset = 0xD0F81, Description = "공격저하" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 8, Length = 0x10, Offset = 0xD0F91, Description = "방어저하" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 9, Length = 0x10, Offset = 0xD0FA1, Description = "정신저하" });
+
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 10, Length = 0x10, Offset = 0xD0FB1, Description = "순발저하" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 11, Length = 0x10, Offset = 0xD0FC1, Description = "사기저하" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 12, Length = 0x10, Offset = 0xD0FD1, Description = "이동저하" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 13, Length = 0x10, Offset = 0xD0FE1, Description = "속성이상공격" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 14, Length = 0x10, Offset = 0xD0FF1, Description = "부동공격" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 15, Length = 0x10, Offset = 0xD1001, Description = "금책공격" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 16, Length = 0x10, Offset = 0xD1011, Description = "혼란공격" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 17, Length = 0x10, Offset = 0xD1021, Description = "중독공격" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 18, Length = 0x10, Offset = 0xD1031, Description = "상태이상공격" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 19, Length = 0x10, Offset = 0xD1041, Description = "흡혈공격" });
+
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 20, Length = 0x10, Offset = 0xD1051, Description = "방어무시" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 21, Length = 0x10, Offset = 0xD1061, Description = "돌파공격" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 22, Length = 0x10, Offset = 0xD1071, Description = "분전공격" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 23, Length = 0x10, Offset = 0xD1081, Description = "범위공격1" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 24, Length = 0x10, Offset = 0xD1091, Description = "범위공격2" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 25, Length = 0x10, Offset = 0xD10A1, Description = "범위공격3" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 26, Length = 0x10, Offset = 0xD10B1, Description = "범위공격4" });
+
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 27, Length = 0x10, Offset = 0xD10C1, Description = "모든 아군 회복" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 28, Length = 0x10, Offset = 0xD10D1, Description = "모든 아군 패기" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 29, Length = 0x10, Offset = 0xD10E1, Description = "모든 적군 제압" });
+
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 30, Length = 0x10, Offset = 0xD10F1, Description = "모든 적군 상태이상" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 31, Length = 0x10, Offset = 0xD1101, Description = "모든 아군 기합" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 32, Length = 0x10, Offset = 0xD1111, Description = "모든 적군 위압" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 33, Length = 0x10, Offset = 0xD1121, Description = "모든 아군 강화회복" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 34, Length = 0x10, Offset = 0xD1131, Description = "우화팔진도" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 35, Length = 0x10, Offset = 0xD1141, Description = "모든 아군 회귀" });
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 36, Length = 0x10, Offset = 0xD1151, Description = "랜덤" });
+            #endregion
+
+            #region CodeEffName Setting
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5BF8, TypeIndex = (int) Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "공격력보조", Editable = false, SubEdit = 1 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5C00, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "방어력보조", Editable = false, SubEdit = 1 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5C08, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "정신력보조", Editable = false, SubEdit = 1 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5C10, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "순발력보조", Editable = false, SubEdit = 1 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5C18, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "사기보조", Editable = false, SubEdit = 1 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5C20, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "HP보조", Editable = false, SubEdit = 1 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5C28, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "MP보조", Editable = false, SubEdit = 1 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5C30, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "획득Exp보조", Editable = false, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5C38, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "이동력보조", Editable = false, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x361F8, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "능력정화", Editable = false, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B7D4, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "능력각성", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3BF56, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "일치단결", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x782B3, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "일기당천", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5AA92, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "악전고투", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5A64, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "MP공격", Editable = true, SubEdit = 0 });
+
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x4EDB1, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "치명일격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x50EB, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "주동/연환공격", Editable = false, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xA0BEA, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "인도/분전공격", Editable = false, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x10489, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "강화/돌파공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x6C5A, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "범위공격", Editable = false, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x587C, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "무반격공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5820, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "반격후반격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5F8A, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "흡혈공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5FDB, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "금전약탈", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x10312, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "선제공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3832A, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "지원공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B22B, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "돌진공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B29A, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "반격강화", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x78310, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "보복공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3ECF7, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "간접공격1", Editable = false, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3ED02, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "간접공격2", Editable = true, SubEdit = 1 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3ED14, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "간접공격3", Editable = true, SubEdit = 2 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B0B1, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "방어무시", Editable = false, SubEdit = 3 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC219, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "맹공일격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC24F, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "허점공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC283, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "약점공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC360, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "무조건반격", Editable = true, SubEdit = 0 });
+            
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3AA7A, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AttackAcc, Description = "공격백발백중", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3AA92, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AttackAcc, Description = "공격명중보조", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3AAB7, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AttackAcc, Description = "공격방어보조", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x102E3, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AttackAcc, Description = "전방어보조", Editable = true, SubEdit = 0 });
+
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B659, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "원소책략보조", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x51C5, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "책략위력보조", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x4D351, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "MP절약", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x1F317, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "날씨무시책략", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x1CD33, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "지형무시책략", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xA152C, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "책략모방", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3ABD1, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "책략백발백중", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3ADA7, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "책략명중보조", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3ACB4, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "책략방어보조", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3D5B0, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "책략사용", Editable = false, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x384BF, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "연속책략", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x1F388, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "사신소환", Editable = false, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC30F, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "책략범위고정", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC388, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "회복책략보조", Editable = true, SubEdit = 0 });
+
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3721F, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.StateEffectAttack, Description = "부동공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x37220, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.StateEffectAttack, Description = "금책공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x37221, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.StateEffectAttack, Description = "혼란공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x37222, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.StateEffectAttack, Description = "중독공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x4E6A, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.StateEffectAttack, Description = "상태이상공격", Editable = true, SubEdit = 1 });
+
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3C25A, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TurnCure, Description = "매턴 HP 회복", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3C297, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TurnCure, Description = "매턴 MP 회복", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3BB46, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TurnCure, Description = "매턴 상태 회복", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3C2E3, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TurnCure, Description = "매턴 Exp 획득", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3C30E, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TurnCure, Description = "매턴 무기 Exp 획득", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3C339, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TurnCure, Description = "매턴 방어 Exp 획득", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3C42D, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TurnCure, Description = "자동상승", Editable = false, SubEdit = 0 });
+
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x37219, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "공격저하", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3721A, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "방어저하", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3721B, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "정신저하", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3721C, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "순발저하", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3721D, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "사기저하", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3721E, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "이동저하", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x72164, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "속성이상공격", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC194, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "선제공격저하", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC1D8, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "선제정신저하", Editable = true, SubEdit = 0 });
+
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B1ED, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DecreaseDmg, Description = "간접피해감소", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B259, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DecreaseDmg, Description = "물리피해감소", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B679, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DecreaseDmg, Description = "책략피해감소", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC4F1, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DecreaseDmg, Description = "물리피해고정", Editable = true, SubEdit = 0 });
+
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x51D7, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "치명일격방어", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5335, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "이차공격방어", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3ECD1, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "간접공격방어", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x7205B, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "상태이상반사", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xA151A, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "MP방어", Editable = true, SubEdit = 2 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xA13AD, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "금전방어", Editable = true, SubEdit = 1 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC3D5, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "책략반사", Editable = true, SubEdit = 0 });
+
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3EC67, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TerrainAssist, Description = "지형효과보조", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xA0AD2, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TerrainAssist, Description = "수전보조", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x371A0, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TerrainAssist, Description = "돌격이동", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3EC7C, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TerrainAssist, Description = "험로이동", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x2E80, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TerrainAssist, Description = "비상이동", Editable = true, SubEdit = 0 });
+
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xA1491, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "연속행동", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x103E9, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "SP보조", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x222E8, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "자동사용", Editable = false, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x40275, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "물리반사", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x29FAB, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "공훈추가", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x78277, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "은신방어", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x4EDD1, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "공격유도", Editable = true, SubEdit = 0 });
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC32F, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "도구범위고정", Editable = true, SubEdit = 0 });
             #endregion
 
             return result;

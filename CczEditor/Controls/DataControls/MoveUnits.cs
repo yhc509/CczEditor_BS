@@ -114,7 +114,11 @@ namespace CczEditor.Controls.DataControls
 
             var sourceList = sourceUnitListBox.CheckedIndices.Cast<int>().ToArray();
             var destList = destUnitListBox.CheckedIndices.Cast<int>().ToArray();
-            
+
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
+
+            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
             for (int i = 0; i < destUnitListBox.CheckedIndices.Count; i++)
             {
                 var dest = new CczEditor.Data.Wrapper.UnitData();
@@ -126,6 +130,10 @@ namespace CczEditor.Controls.DataControls
 
                 dest.Write(sourceList[i]);
             }
+            Data.ExeData.Close();
+
+            sw.Stop();
+            Console.WriteLine($"{sw.Elapsed.ToString()}");
             
             ClearItems();
         }

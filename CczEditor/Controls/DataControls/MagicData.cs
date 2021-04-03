@@ -3,7 +3,7 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
-
+using System.Text;
 using CczEditor.Resources;
 
 #endregion
@@ -393,9 +393,10 @@ namespace CczEditor.Controls.DataControls
 		}
 
 		private void txtImsg_TextChanged(object sender, EventArgs e)
-		{
-			lblImsgCount.Text = string.Format("글자 수 {0}", txtImsg.Text.Length);
-		}
+        {
+            int length = Encoding.Default.GetByteCount(txtImsg.Text);
+            lblImsgCount.Text = $"{length} / 200 byte";
+        }
 
 		private void lvLearnLv_ItemActivate(object sender, EventArgs e)
 		{

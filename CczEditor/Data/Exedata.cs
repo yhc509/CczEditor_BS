@@ -31,7 +31,7 @@ namespace CczEditor.Data
                 try
                 {
                     var CurrentFile = new FileInfo(ExePath);
-                    using (FileStream stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.None))
+                    using (FileStream stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                     {
                         stream.Close();
                     }
@@ -44,17 +44,42 @@ namespace CczEditor.Data
                 return false;
             }
         }
+        
+        private static FileStream Stream;
+
+        public static void Open(FileAccess accessType)
+        {
+            var CurrentFile = new FileInfo(ExePath);
+            Stream = CurrentFile.Open(FileMode.Open, accessType, FileShare.ReadWrite);
+        }
+
+        public static void Close()
+        {
+            if (Stream != null) {
+                Stream.Flush();
+                Stream.Close();
+                Stream = null;
+            }
+        }
 
         public static string GetText(int offset, int length)
         {
             byte[] text = new byte[length];
 
-            var CurrentFile = new FileInfo(ExePath);
-            using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.Read))
+            if (Stream == null)
             {
-                stream.Seek(offset, SeekOrigin.Begin);
-                stream.Read(text, 0, length);
-                stream.Close();
+                var CurrentFile = new FileInfo(ExePath);
+                using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                {
+                    stream.Seek(offset, SeekOrigin.Begin);
+                    stream.Read(text, 0, length);
+                    stream.Close();
+                }
+            }
+            else
+            {
+                Stream.Seek(offset, SeekOrigin.Begin);
+                Stream.Read(text, 0, length);
             }
             return Utils.ByteToString(text);
         }
@@ -62,12 +87,21 @@ namespace CczEditor.Data
         public static ushort ReadWord(int select,int offset)
         {
             var binary = new byte[2];
-            var CurrentFile = new FileInfo(ExePath);
-            using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.Read))
+
+            if (Stream == null)
             {
-                stream.Seek(offset + select * 2, SeekOrigin.Begin);
-                stream.Read(binary, 0, 2);
-                stream.Close();
+                var CurrentFile = new FileInfo(ExePath);
+                using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                {
+                    stream.Seek(offset + select * 2, SeekOrigin.Begin);
+                    stream.Read(binary, 0, 2);
+                    stream.Close();
+                }
+            }
+            else
+            {
+                Stream.Seek(offset + select * 2, SeekOrigin.Begin);
+                Stream.Read(binary, 0, 2);
             }
             return (ushort) (binary[0] + binary[1] * 0x100);
         }
@@ -75,25 +109,41 @@ namespace CczEditor.Data
         public static void WriteWord(int value,int select,int offset)
         {
             var binary = BitConverter.GetBytes((short)value);
-            var CurrentFile = new FileInfo(ExePath);
-            using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.Write))
+            if (Stream == null)
             {
-                stream.Seek(offset + select * 2, SeekOrigin.Begin);
-                stream.Write(binary, 0, 2);
-                stream.Flush();
-                stream.Close();
+                var CurrentFile = new FileInfo(ExePath);
+                using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
+                {
+                    stream.Seek(offset + select * 2, SeekOrigin.Begin);
+                    stream.Write(binary, 0, 2);
+                    stream.Flush();
+                    stream.Close();
+                }
+            }
+            else
+            {
+                Stream.Seek(offset + select * 2, SeekOrigin.Begin);
+                Stream.Write(binary, 0, 2);
             }
         }
         
         public static byte ReadByte(int select, int offset)
         {
             var binary = new byte[1];
-            var CurrentFile = new FileInfo(ExePath);
-            using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.Read))
+            if (Stream == null)
             {
-                stream.Seek(offset + select, SeekOrigin.Begin);
-                stream.Read(binary, 0, 1);
-                stream.Close();
+                var CurrentFile = new FileInfo(ExePath);
+                using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                {
+                    stream.Seek(offset + select, SeekOrigin.Begin);
+                    stream.Read(binary, 0, 1);
+                    stream.Close();
+                }
+            }
+            else
+            {
+                Stream.Seek(offset + select, SeekOrigin.Begin);
+                Stream.Read(binary, 0, 1);
             }
             return (binary[0]);
         }
@@ -101,99 +151,66 @@ namespace CczEditor.Data
         public static void WriteByte(int value, int select, int offset)
         {
             var binary = BitConverter.GetBytes((short)value);
-            var CurrentFile = new FileInfo(ExePath);
-            using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.Write))
+            if (Stream == null)
             {
-                stream.Seek(offset + select, SeekOrigin.Begin);
-                stream.Write(binary, 0, 1);
-                stream.Flush();
-                stream.Close();
+                var CurrentFile = new FileInfo(ExePath);
+                using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
+                {
+                    stream.Seek(offset + select, SeekOrigin.Begin);
+                    stream.Write(binary, 0, 1);
+                    stream.Flush();
+                    stream.Close();
+                }
+            }
+            else
+            {
+                Stream.Seek(offset + select, SeekOrigin.Begin);
+                Stream.Write(binary, 0, 1);
             }
         }
 
-        /*
-        public void bomulsave(int count)
+        public static void WriteText(string text, int offset, int length)
         {
-            
-            var offset = 0x6FF8C;
-            var temp = new byte[1];
-
-            var CurrentFile = new FileInfo(ExePath);
-            using (var CurrentStream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.Write))
+            var binary = new byte[length];
+            Utils.ChangeByteValue(binary, Utils.GetBytes(text), 0, length);
+            if (Stream == null)
             {
-                CurrentStream.Seek(offset, SeekOrigin.Begin);
-                CurrentStream.WriteByte((byte)(count - 1));
+                var CurrentFile = new FileInfo(ExePath);
+                using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
+                {
+                    stream.Seek(offset, SeekOrigin.Begin);
+                    stream.Write(binary, 0, length);
+                    stream.Flush();
+                    stream.Close();
+                }
             }
-         }*/
+            else
+            {
+                Stream.Seek(offset, SeekOrigin.Begin);
+                Stream.Write(binary, 0, length);
+            }
+        }
+        
+        public static byte[] Read(int offset, int length)
+        {
+            var binary = new byte[length];
+            if (Stream == null)
+            {
+                var CurrentFile = new FileInfo(ExePath);
+                using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                {
+                    stream.Seek(offset, SeekOrigin.Begin);
+                    stream.Read(binary, 0, length);
+                    stream.Close();
+                }
+            }
+            else
+            {
+                Stream.Seek(offset, SeekOrigin.Begin);
+                Stream.Read(binary, 0, length);
+            }
+            return binary;
+        }
 
-        /*
-          //책략
-          public byte magicload(int select, int offset)
-          {
-            CurrentStream.Seek(offset + select, SeekOrigin.Begin);
-                CurrentStream.Read(byte1, 0, 1);
-                return byte1[0];
-          }
-          public void magicsave(int select, int offset, byte magic)
-          {
-              byte1[0] = magic;
-              CurrentStream.Seek((int)offset + select, SeekOrigin.Begin);
-              CurrentStream.Write(byte1, 0, 1);
-          }
-
-        // 책략세부
-          public byte detailload(int select,int choice,int offset)
-          {
-              int magicoffset = offset + (choice*8) + (select*0xab);
-              CurrentStream.Seek(magicoffset, SeekOrigin.Begin);
-              CurrentStream.Read(byte1, 0, 1);
-              return byte1[0];
-          }
-          public void detailsave(int select, int choice, int offset, byte value)
-          {
-              byte1[0] = value;
-              int magicoffset = offset + (choice * 8) + (select * 0xab);
-              CurrentStream.Seek(magicoffset, SeekOrigin.Begin);
-              CurrentStream.Write(byte1, 0, 1);
-          }
-        //회심대사
-          public byte readCritical(int SelectedIndex)
-          {
-              int offset = Program.CurrentConfig.Exe.CriticalOffset + SelectedIndex * 4;
-              CurrentStream.Seek(offset, SeekOrigin.Begin);
-              CurrentStream.Read(byte1, 0, 1);
-              return byte1[0];
-          }
-          public void saveCritical(int SelectedIndex,int index)
-          {
-              int offset = Program.CurrentConfig.Exe.CriticalOffset + SelectedIndex * 4;
-              byte1 = BitConverter.GetBytes((short)index);
-              CurrentStream.Seek(offset, SeekOrigin.Begin);
-              CurrentStream.Write(byte1, 0, 1);
-          }
-        //병종설정
-          public byte forceload(int select, string choice)
-          {
-              int magicoffset = Program.CurrentConfig.Offsets[choice];              
-              CurrentStream.Seek((int)magicoffset + select, SeekOrigin.Begin);
-              CurrentStream.Read(byte1, 0, 1);
-              return byte1[0];
-            return 0;
-          }
-          public void forcesave(int select, string choice, byte magic)
-          {
-              int magicoffset = Program.CurrentConfig.Offsets[choice];  
-              byte1[0] = magic;
-              CurrentStream.Seek((int)magicoffset + select, SeekOrigin.Begin);
-              CurrentStream.Write(byte1, 0, 1);
-          }
-          //유동적
-          public void code(byte[] bytes,int offset,int length)
-          {
-              var temp = new byte[length];
-              CurrentStream.Seek(offset, SeekOrigin.Begin);
-              CurrentStream.Write(bytes, 0, length);
-          }
-        */
     }
 }

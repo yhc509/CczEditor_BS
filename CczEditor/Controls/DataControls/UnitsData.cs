@@ -10,6 +10,8 @@ using CczEditor.Data;
 using System.Drawing;
 using System.Media;
 using System.Linq;
+using System.Text;
+using System.IO;
 
 namespace CczEditor.Controls.DataControls
 {
@@ -23,6 +25,10 @@ namespace CczEditor.Controls.DataControls
 			tlpImsg.Enabled = ImsgDataLoaded;
 			ncStr.Maximum = ncVit.Maximum = ncInt.Maximum = ncAvg.Maximum = ncLuk.Maximum = Program.CurrentConfig.CodeOptionContainer.SingularAttribute ? 255 : 510;
 			ncStr.Increment = ncVit.Increment = ncInt.Increment = ncAvg.Increment = ncLuk.Increment = Program.CurrentConfig.CodeOptionContainer.SingularAttribute ? 1 : 2;
+
+            cbbCutin.Visible = CutinComboBox.Visible = lblCutin.Visible = Program.CurrentConfig.CodeOptionContainer.UseCutin;
+            cbbCost.Visible = CostValueBox.Visible = lblCost.Visible = Program.CurrentConfig.CodeOptionContainer.UseCost;
+            cbbVoice.Visible = VoiceComboBox.Visible = VoicePlayButton.Visible = lblVoice.Visible = Program.CurrentConfig.CodeOptionContainer.UseVoice;
 
             PmapObjValueBox.Maximum = 65535;
             BattleObjValueBox.Maximum = 65535;
@@ -246,8 +252,9 @@ namespace CczEditor.Controls.DataControls
 		#region Imsg
         
 		private void txtImsg_TextChanged(object sender, EventArgs e)
-		{
-			lblImsgCount.Text = string.Format("글자 수 {0}", txtImsg.Text.Length);
+        {
+            int length = Encoding.Default.GetByteCount(txtImsg.Text);
+            lblImsgCount.Text = $"{length} / 200 byte";
 		}
 
 		private void rbtnImsgType_CheckedChanged(object sender, EventArgs e)
@@ -722,5 +729,228 @@ namespace CczEditor.Controls.DataControls
                 return;
             }
         }
+
+        #region ImageChange
+
+        private void pbFace_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "Image File(*.bmp;*.jpg)|*.bmp;*.jpg";
+                OpenFileDialog openFileDialog2 = openFileDialog1;
+                if (DialogResult.OK != openFileDialog2.ShowDialog() || string.IsNullOrEmpty(openFileDialog2.FileName) || !File.Exists(openFileDialog2.FileName))
+                    return;
+
+                int faceIndex = int.Parse(this.FaceText.Text);
+
+                bool flag = this.Faces.SetImage(faceIndex, 120, 120, openFileDialog2.FileName);
+                this.ncFace_ValueChanged((object)null, (EventArgs)null);
+                if (flag)
+                {
+                    int num1 = (int)MessageBox.Show("수정 성공!");
+                }
+                else
+                {
+                    int num2 = (int)MessageBox.Show("오류가 발생했습니다!");
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private void pbFaceL_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "Image File(*.bmp;*.jpg)|*.bmp;*.jpg";
+                OpenFileDialog openFileDialog2 = openFileDialog1;
+                if (DialogResult.OK != openFileDialog2.ShowDialog() || string.IsNullOrEmpty(openFileDialog2.FileName) || !File.Exists(openFileDialog2.FileName))
+                    return;
+
+                int faceIndex = int.Parse(this.FaceText.Text);
+                bool flag = this.FaceLarges.SetImage(faceIndex, 196, 280, openFileDialog2.FileName);
+                this.ncFace_ValueChanged((object)null, (EventArgs)null);
+                if (flag)
+                {
+                    int num1 = (int)MessageBox.Show("수정 성공!");
+                }
+                else
+                {
+                    int num2 = (int)MessageBox.Show("오류가 발생했습니다!");
+                }
+            }
+            catch
+            {
+            }
+        }
+
+
+        private void pmapImg1_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "Image File(*.bmp;*.jpg)|*.bmp;*.jpg";
+                OpenFileDialog openFileDialog2 = openFileDialog1;
+                if (DialogResult.OK != openFileDialog2.ShowDialog() || string.IsNullOrEmpty(openFileDialog2.FileName) || !File.Exists(openFileDialog2.FileName))
+                    return;
+                bool flag = this.Pmapobjs.SetImage(int.Parse(this.PmapobjFrontText.Text) - 1, openFileDialog2.FileName);
+                this.pmap_ValueChanged((object)null, (EventArgs)null);
+                if (flag)
+                {
+                    int num1 = (int)MessageBox.Show("수정 성공!");
+                }
+                else
+                {
+                    int num2 = (int)MessageBox.Show("오류가 발생했습니다!");
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private void pmapImg2_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "Image File(*.bmp;*.jpg)|*.bmp;*.jpg";
+                OpenFileDialog openFileDialog2 = openFileDialog1;
+                if (DialogResult.OK != openFileDialog2.ShowDialog() || string.IsNullOrEmpty(openFileDialog2.FileName) || !File.Exists(openFileDialog2.FileName))
+                    return;
+                bool flag = this.Pmapobjs.SetImage(int.Parse(this.PmapObjBackText.Text) - 1, openFileDialog2.FileName);
+                this.pmap_ValueChanged((object)null, (EventArgs)null);
+                if (flag)
+                {
+                    int num1 = (int)MessageBox.Show("수정 성공!");
+                }
+                else
+                {
+                    int num2 = (int)MessageBox.Show("오류가 발생했습니다!");
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private void spcimg1_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "Image File(*.bmp;*.jpg)|*.bmp;*.jpg";
+                OpenFileDialog openFileDialog2 = openFileDialog1;
+                if (DialogResult.OK != openFileDialog2.ShowDialog() || string.IsNullOrEmpty(openFileDialog2.FileName) || !File.Exists(openFileDialog2.FileName))
+                    return;
+                int index = int.Parse(this.BattleObjText1.Text) - 1;
+                bool flag = false;
+                switch (this.BattleObjComboBox.SelectedIndex)
+                {
+                    case 0:
+                        flag = this.UnitAtk.SetImage(index, openFileDialog2.FileName);
+                        break;
+                    case 1:
+                        flag = this.UnitMov.SetImage(index, openFileDialog2.FileName);
+                        break;
+                    case 2:
+                        flag = this.UnitSpc.SetImage(index, openFileDialog2.FileName);
+                        break;
+                }
+                this.spcv_ValueChanged_1((object)null, (EventArgs)null);
+                if (flag)
+                {
+                    int num1 = (int)MessageBox.Show("수정 성공!");
+                }
+                else
+                {
+                    int num2 = (int)MessageBox.Show("오류가 발생했습니다!");
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private void spcimg2_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "Image File(*.bmp;*.jpg)|*.bmp;*.jpg";
+                OpenFileDialog openFileDialog2 = openFileDialog1;
+                if (DialogResult.OK != openFileDialog2.ShowDialog() || string.IsNullOrEmpty(openFileDialog2.FileName) || !File.Exists(openFileDialog2.FileName))
+                    return;
+                int index = int.Parse(this.BattleObjText2.Text) - 1;
+                bool flag = false;
+                switch (this.BattleObjComboBox.SelectedIndex)
+                {
+                    case 0:
+                        flag = this.UnitAtk.SetImage(index, openFileDialog2.FileName);
+                        break;
+                    case 1:
+                        flag = this.UnitMov.SetImage(index, openFileDialog2.FileName);
+                        break;
+                    case 2:
+                        flag = this.UnitSpc.SetImage(index, openFileDialog2.FileName);
+                        break;
+                }
+                this.spcv_ValueChanged_1((object)null, (EventArgs)null);
+                if (flag)
+                {
+                    int num1 = (int)MessageBox.Show("수정 성공!");
+                }
+                else
+                {
+                    int num2 = (int)MessageBox.Show("오류가 발생했습니다!");
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private void spcimg3_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "Image File(*.bmp;*.jpg)|*.bmp;*.jpg";
+                OpenFileDialog openFileDialog2 = openFileDialog1;
+                if (DialogResult.OK != openFileDialog2.ShowDialog() || string.IsNullOrEmpty(openFileDialog2.FileName) || !File.Exists(openFileDialog2.FileName))
+                    return;
+                int index = int.Parse(this.BattleObjText3.Text) - 1;
+                bool flag = false;
+                switch (this.BattleObjComboBox.SelectedIndex)
+                {
+                    case 0:
+                        flag = this.UnitAtk.SetImage(index, openFileDialog2.FileName);
+                        break;
+                    case 1:
+                        flag = this.UnitMov.SetImage(index, openFileDialog2.FileName);
+                        break;
+                    case 2:
+                        flag = this.UnitSpc.SetImage(index, openFileDialog2.FileName);
+                        break;
+                }
+                this.spcv_ValueChanged_1((object)null, (EventArgs)null);
+                if (flag)
+                {
+                    int num1 = (int)MessageBox.Show("수정 성공!");
+                }
+                else
+                {
+                    int num2 = (int)MessageBox.Show("오류가 발생했습니다!");
+                }
+            }
+            catch
+            {
+            }
+        }
+        #endregion
     }
 }

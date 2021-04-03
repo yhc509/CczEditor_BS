@@ -35,3 +35,9 @@ C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.Proper
 C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.csproj.GenerateResource.Cache
 C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.exe
 C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.pdb
+C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.Controls.DataControls.ExeSpecialDataController.resources
+C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.Controls.DataControls.SaveApplyPopup.resources
+C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\bin\x86\Release\CczEditor.exe.manifest
+C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\bin\x86\Release\CczEditor.application
+C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.exe.manifest
+C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.application

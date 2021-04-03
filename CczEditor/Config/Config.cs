@@ -30,6 +30,8 @@ namespace CczEditor
 
         public ConfigExeInfos Exe = new ConfigExeInfos();
 
+        public ConfigSaveInfos Save = new ConfigSaveInfos();
+
         public List<ConfigItemEffectNameInfos> ItemEffects = new List<ConfigItemEffectNameInfos>();
 
         public List<ConfigCodeEffectInfos> CodeEffects = new List<ConfigCodeEffectInfos>();
@@ -41,6 +43,10 @@ namespace CczEditor
         public List<string> HitAreaNames = new List<string>();
 
         public List<string> EffAreaNames = new List<string>();
+        
+        public List<ConfigSpecialEffectNameInfos> SpecialEffectNames = new List<ConfigSpecialEffectNameInfos>();
+        
+        public List<ConfigSpecialSkillNameInfos> SpecialSkillNames = new List<ConfigSpecialSkillNameInfos>();
 
 
         public static Config Read(string fileName)
@@ -76,6 +82,14 @@ namespace CczEditor
             public bool SingularAttribute;
 
             public bool MagicReflect;
+
+            public bool UseLargeFace;
+
+            public bool UseCutin;
+
+            public bool UseVoice;
+
+            public bool UseCost;
         }
 
         [Serializable]
@@ -156,9 +170,33 @@ namespace CczEditor
             public int UnitPmapObjOffset;
             public int CriticalOffset;
             public int CriticalCount;
+            public int TreasureCountOffset;
+
+            public int SpecialSkillOffset;
+            public int SpecialSkillPhysicsCount;
+            public int SpecialSkillForceOffset;
+
+            public int SpecialEffectOffset;
+
+            public int AbilityAssistPercentOffset;
+            public int RangeAttack2TypeOffset;
+            public int RangeAttack3TypeOffset;
+            public int IgnoreDefenceOffset;
+            public int GoldDefenceRateOffset;
+            public int MpDefenceRecoverOffest;
+            public int StateEffectAccOffset;
+
+            public int[] TitleOffsets;
 
             public ConfigExeForceInfos Force = new ConfigExeForceInfos();
             public ConfigExeMagicInfos Magic = new ConfigExeMagicInfos();
+        }
+
+        [Serializable]
+        public class ConfigSaveInfos
+        {
+            public int SpecialSkillOffset;
+            public int SpecialEffectOffset;            
         }
 
         [Serializable]
@@ -236,11 +274,28 @@ namespace CczEditor
         [Serializable]
         public class ConfigCodeEffectInfos
         {
-            public int Index;
-            public int Offset;
-            public byte Length;
-        }
+            public enum Type
+            {
+                AbilityAssist = 0,
+                SpecialAttack = 1,
+                AttackAcc = 2,
+                Magic = 3,
+                StateEffectAttack = 4,
+                TurnCure = 5,
+                DeburfAttack = 6,
+                DecreaseDmg = 7,
+                Defence = 8,
+                TerrainAssist = 9,
+                Etc = 10,
+            }
 
+            public int Offset;
+            public int TypeIndex;
+            public string Description;
+            public bool Editable;
+            public int SubEdit;
+        }
+        
         [Serializable]
         public class ConfigForceNameInfos
         {
@@ -255,6 +310,24 @@ namespace CczEditor
             public int Index;
             public int Offset;
             public byte Length;
+        }
+
+        [Serializable]
+        public class ConfigSpecialEffectNameInfos
+        {
+            public int Index;
+            public int Offset;
+            public byte Length;
+            public string Description;
+        }
+        
+        [Serializable]
+        public class ConfigSpecialSkillNameInfos
+        {
+            public int Index;
+            public int Offset;
+            public byte Length;
+            public string Description;
         }
     }
 }

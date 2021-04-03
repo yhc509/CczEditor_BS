@@ -29,7 +29,6 @@
 		private void InitializeComponent()
 		{
             this.tlpMainContainer = new System.Windows.Forms.TableLayoutPanel();
-            this.lbList = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -53,6 +52,7 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.searchTextBox = new CczEditor.Controls.TextBoxControl();
             this.searchButton = new System.Windows.Forms.Button();
+            this.lbList = new System.Windows.Forms.ListBox();
             this.tlpMainContainer.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -84,18 +84,6 @@
             this.tlpMainContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpMainContainer.Size = new System.Drawing.Size(892, 581);
             this.tlpMainContainer.TabIndex = 0;
-            // 
-            // lbList
-            // 
-            this.lbList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbList.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbList.FormattingEnabled = true;
-            this.lbList.ItemHeight = 15;
-            this.lbList.Location = new System.Drawing.Point(3, 3);
-            this.lbList.Name = "lbList";
-            this.lbList.Size = new System.Drawing.Size(105, 512);
-            this.lbList.TabIndex = 0;
-            this.lbList.SelectedIndexChanged += new System.EventHandler(this.lbList_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -394,6 +382,18 @@
             this.searchButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // lbList
+            // 
+            this.lbList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbList.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbList.FormattingEnabled = true;
+            this.lbList.ItemHeight = 15;
+            this.lbList.Location = new System.Drawing.Point(3, 3);
+            this.lbList.Name = "lbList";
+            this.lbList.Size = new System.Drawing.Size(105, 512);
+            this.lbList.TabIndex = 0;
+            this.lbList.SelectedIndexChanged += new System.EventHandler(this.lbList_SelectedIndexChanged);
             // 
             // StoreData
             // 

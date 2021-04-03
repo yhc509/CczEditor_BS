@@ -3,7 +3,7 @@
 using System;
 using System.Drawing;
 using System.IO;
-
+using System.Collections.Generic;
 using CczEditor.CompressionAlgorithms;
 
 #endregion
@@ -145,7 +145,7 @@ namespace CczEditor.Resources
 				return 0;
 			}
 		}
-
+        /*
 		public Image GetImage(int index)
 		{
 			Utils.ChangeByteValue(BmpFileHeader, BitConverter.GetBytes(ImageWidth), 0x12);
@@ -206,8 +206,225 @@ namespace CczEditor.Resources
 				return null;
 			}
 		}
+        */
 
-		public bool Exists
+        public Image GetImage(int index)
+        {
+            if (!string.IsNullOrEmpty(this.FileName))
+            {
+                if (File.Exists(this.FileName))
+                {
+                    try
+                    {
+                        using (FileStream fileStream = new FileStream(this.FileName, FileMode.Open, FileAccess.Read, FileShare.Delete))
+                        {
+                            if (this.FileDict == null)
+                            {
+                                this.FileDict = new byte[256];
+                                fileStream.Seek(16L, SeekOrigin.Begin);
+                                fileStream.Read(this.FileDict, 0, 256);
+                            }
+                            byte[] numArray1 = new byte[4];
+                            fileStream.Seek((long)(272 + 12 * index), SeekOrigin.Begin);
+                            fileStream.Read(numArray1, 0, 4);
+                            int length1 = Ls11.Convert(numArray1);
+                            if (length1 == 0)
+                                return (Image)null;
+                            fileStream.Read(numArray1, 0, 4);
+                            int length2 = Ls11.Convert(numArray1);
+                            fileStream.Read(numArray1, 0, 4);
+                            int num = Ls11.Convert(numArray1);
+                            byte[] buffer = new byte[length2];
+                            fileStream.Seek((long)num, SeekOrigin.Begin);
+                            byte[] numArray2 = new byte[length2];
+                            if (length1 == length2)
+                            {
+                                fileStream.Read(numArray2, 0, length2);
+                            }
+                            else
+                            {
+                                byte[] numArray3 = new byte[length1];
+                                fileStream.Read(numArray3, 0, length1);
+                                this.Decode(this.FileDict, numArray3, numArray2, length2, length1, length2);
+                            }
+                            numArray2.CopyTo((Array)buffer, 0);
+                            if (buffer[0] != byte.MaxValue && buffer[0] != (byte)66)
+                            {
+                                Utils.ChangeByteValue(this.BmpFileHeader, BitConverter.GetBytes(this.ImageWidth), 18);
+                                Utils.ChangeByteValue(this.BmpFileHeader, BitConverter.GetBytes(-this.ImageHeight), 22);
+                                buffer = new byte[this.BmpFileHeader.Length + length2];
+                                this.BmpFileHeader.CopyTo((Array)buffer, 0);
+                                if ((long)num >= fileStream.Length)
+                                    return (Image)null;
+                                fileStream.Seek((long)num, SeekOrigin.Begin);
+                                byte[] numArray3 = new byte[length2];
+                                if (length1 == length2)
+                                {
+                                    fileStream.Read(numArray3, 0, length2);
+                                }
+                                else
+                                {
+                                    byte[] numArray4 = new byte[length1];
+                                    fileStream.Read(numArray4, 0, length1);
+                                    this.Decode(this.FileDict, numArray4, numArray3, length2, length1, length2);
+                                }
+                                numArray3.CopyTo((Array)buffer, this.BmpFileHeader.Length);
+                            }
+                            Bitmap bitmap = new Bitmap((Stream)new MemoryStream(buffer));
+                            bitmap.MakeTransparent(Color.FromArgb(247, 0, (int)byte.MaxValue));
+                            return (Image)bitmap;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        return (Image)null;
+                    }
+                }
+            }
+            return (Image)null;
+        }
+
+        public bool SetImage(int index, string ImageFile)
+        {
+            List<byte[]> numArrayList = new List<byte[]>();
+            if (!string.IsNullOrEmpty(this.FileName) && File.Exists(this.FileName) && !string.IsNullOrEmpty(ImageFile))
+            {
+                if (File.Exists(ImageFile))
+                {
+                    try
+                    {
+                        using (FileStream fileStream1 = new FileStream(this.FileName, FileMode.Open, FileAccess.ReadWrite, FileShare.Delete))
+                        {
+                            if (this.FileDict == null)
+                            {
+                                this.FileDict = new byte[256];
+                                fileStream1.Seek(16L, SeekOrigin.Begin);
+                                fileStream1.Read(this.FileDict, 0, 256);
+                            }
+                            int num1 = 0;
+                            byte[] numArray1 = new byte[4];
+                            fileStream1.Seek((long)(280 + 12 * num1), SeekOrigin.Begin);
+                            fileStream1.Read(numArray1, 0, 4);
+                            int num2 = Ls11.Convert(numArray1);
+                            while (272 + 12 * num1 + 4 < num2)
+                            {
+                                if (index == num1)
+                                {
+                                    using (FileStream fileStream2 = new FileStream(ImageFile, FileMode.Open, FileAccess.Read, FileShare.Delete))
+                                    {
+                                        byte[] buffer1 = new byte[2];
+                                        fileStream2.Seek(0L, SeekOrigin.Begin);
+                                        fileStream2.Read(buffer1, 0, buffer1.Length);
+                                        if (buffer1[0] == (byte)66 && buffer1[1] == (byte)77)
+                                        {
+                                            fileStream2.Seek(28L, SeekOrigin.Begin);
+                                            fileStream2.Read(buffer1, 0, buffer1.Length);
+                                            if (buffer1[0] == (byte)8)
+                                            {
+                                                fileStream2.Seek(24L, SeekOrigin.Begin);
+                                                fileStream2.Read(buffer1, 0, buffer1.Length);
+                                                bool flag = buffer1[0] == (byte)0;
+                                                byte[] buffer2 = new byte[fileStream2.Length - 1078L];
+                                                byte[] numArray2 = new byte[this.ImageWidth];
+                                                for (int imageHeight = this.ImageHeight; imageHeight >= 1; --imageHeight)
+                                                {
+                                                    fileStream2.Seek((long)(1078 + (imageHeight - 1) * this.ImageWidth), SeekOrigin.Begin);
+                                                    if (flag)
+                                                        fileStream2.Read(buffer2, (this.ImageHeight - imageHeight) * this.ImageWidth, numArray2.Length);
+                                                    else
+                                                        fileStream2.Read(buffer2, (imageHeight - 1) * this.ImageWidth, numArray2.Length);
+                                                }
+                                                numArrayList.Add(buffer2);
+                                            }
+                                            else if (buffer1[0] == (byte)24)
+                                            {
+                                                byte[] buffer2 = new byte[fileStream2.Length];
+                                                fileStream2.Seek(0L, SeekOrigin.Begin);
+                                                fileStream2.Read(buffer2, 0, buffer2.Length);
+                                                numArrayList.Add(buffer2);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            byte[] buffer2 = new byte[fileStream2.Length];
+                                            fileStream2.Seek(0L, SeekOrigin.Begin);
+                                            fileStream2.Read(buffer2, 0, buffer2.Length);
+                                            numArrayList.Add(buffer2);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    fileStream1.Seek((long)(272 + 12 * num1), SeekOrigin.Begin);
+                                    fileStream1.Read(numArray1, 0, 4);
+                                    if (Ls11.Convert(numArray1) == 0)
+                                    {
+                                        ++num1;
+                                        continue;
+                                    }
+                                    fileStream1.Read(numArray1, 0, 4);
+                                    byte[] buffer = new byte[Ls11.Convert(numArray1)];
+                                    fileStream1.Read(numArray1, 0, 4);
+                                    int num3 = Ls11.Convert(numArray1);
+                                    fileStream1.Seek((long)num3, SeekOrigin.Begin);
+                                    fileStream1.Read(buffer, 0, buffer.Length);
+                                    numArrayList.Add(buffer);
+                                }
+                                ++num1;
+                            }
+                            for (int index1 = 0; index1 < numArrayList.Count; ++index1)
+                            {
+                                int num3 = 272 + 12 * index1;
+                                int length = numArrayList[index1].Length;
+                                int num4;
+                                if (index1 == 0)
+                                {
+                                    num4 = numArrayList.Count * 12 + 280;
+                                }
+                                else
+                                {
+                                    int num5 = 280 + 12 * (index1 - 1);
+                                    fileStream1.Seek((long)num5, SeekOrigin.Begin);
+                                    byte[] numArray2 = new byte[4];
+                                    fileStream1.Read(numArray2, 0, numArray2.Length);
+                                    num4 = Ls11.Convert(numArray2) + numArrayList[index1 - 1].Length;
+                                }
+                                byte[] numArray3 = new byte[4];
+                                byte[] bytes1 = BitConverter.GetBytes(length);
+                                Ls11.Convert(bytes1);
+                                byte[] numArray4 = new byte[4];
+                                byte[] bytes2 = BitConverter.GetBytes(num4);
+                                Ls11.Convert(bytes2);
+                                fileStream1.Seek((long)num3, SeekOrigin.Begin);
+                                fileStream1.Write(bytes1, 0, bytes1.Length);
+                                fileStream1.Write(bytes1, 0, bytes1.Length);
+                                fileStream1.Write(bytes2, 0, bytes2.Length);
+                            }
+                            byte[] buffer3 = new byte[4];
+                            fileStream1.Write(buffer3, 0, buffer3.Length);
+                            for (int index1 = 0; index1 < numArrayList.Count; ++index1)
+                            {
+                                int num3 = index1 * 12 + 280;
+                                byte[] numArray2 = new byte[4];
+                                fileStream1.Seek((long)num3, SeekOrigin.Begin);
+                                fileStream1.Read(numArray2, 0, 4);
+                                int num4 = Ls11.Convert(numArray2);
+                                fileStream1.Seek((long)num4, SeekOrigin.Begin);
+                                fileStream1.Write(numArrayList[index1], 0, numArrayList[index1].Length);
+                            }
+                        }
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool Exists
 		{
 			get { return !string.IsNullOrEmpty(FileName) && File.Exists(FileName); }
 		}

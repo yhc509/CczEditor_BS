@@ -154,7 +154,7 @@ namespace CczEditor.Data
                 }
             }
         }
-        public void BomulGet(int bomul,byte[] item,int i)
+        public void WriteTreasureCount(int bomul,byte[] item,int i)
         {
             for (; i < Program.CurrentConfig.Data.StarItemCount; i++)
             {
@@ -167,7 +167,8 @@ namespace CczEditor.Data
                 }
                 item[0] = 0;
             }
-            //Program.ExeData.bomulsave(bomul); 
+            if(!ExeData.IsLocked)
+                ExeData.WriteByte(bomul, 0, Program.CurrentConfig.Exe.TreasureCountOffset);
         }
         public byte[] ItemGet(int index,byte[] item)
         {

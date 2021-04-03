@@ -42,6 +42,7 @@
             this.cbbImsg = new System.Windows.Forms.CheckBox();
             this.rbtnImsgType1 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.VoicePlayButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -136,7 +137,6 @@
             this.ncListControlCheckNumberMax = new CczEditor.Controls.NumericControl();
             this.ncListControlCheckNumberMin = new CczEditor.Controls.NumericControl();
             this.btnListControlCheckNumber = new System.Windows.Forms.Button();
-            this.VoicePlayButton = new System.Windows.Forms.Button();
             this.tlpMainContainer.SuspendLayout();
             this.pList.SuspendLayout();
             this.gbImsg.SuspendLayout();
@@ -386,6 +386,16 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "인물 편집";
+            // 
+            // VoicePlayButton
+            // 
+            this.VoicePlayButton.Location = new System.Drawing.Point(597, 314);
+            this.VoicePlayButton.Name = "VoicePlayButton";
+            this.VoicePlayButton.Size = new System.Drawing.Size(30, 23);
+            this.VoicePlayButton.TabIndex = 84;
+            this.VoicePlayButton.Text = "▶";
+            this.VoicePlayButton.UseVisualStyleBackColor = true;
+            this.VoicePlayButton.Click += new System.EventHandler(this.VoicePlayButton_Click);
             // 
             // label6
             // 
@@ -1311,6 +1321,7 @@
             this.pbFaceL.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbFaceL.TabIndex = 65;
             this.pbFaceL.TabStop = false;
+            this.pbFaceL.DoubleClick += new System.EventHandler(this.pbFaceL_DoubleClick);
             // 
             // tableLayoutPanel1
             // 
@@ -1366,6 +1377,7 @@
             this.pmapimg2.Size = new System.Drawing.Size(48, 64);
             this.pmapimg2.TabIndex = 54;
             this.pmapimg2.TabStop = false;
+            this.pmapimg2.DoubleClick += new System.EventHandler(this.pmapImg2_DoubleClick);
             // 
             // pmapimg1
             // 
@@ -1375,6 +1387,7 @@
             this.pmapimg1.Size = new System.Drawing.Size(48, 64);
             this.pmapimg1.TabIndex = 53;
             this.pmapimg1.TabStop = false;
+            this.pmapimg1.DoubleClick += new System.EventHandler(this.pmapImg1_DoubleClick);
             // 
             // tableLayoutPanel2
             // 
@@ -1418,6 +1431,7 @@
             this.spcimg3.Size = new System.Drawing.Size(64, 64);
             this.spcimg3.TabIndex = 2;
             this.spcimg3.TabStop = false;
+            this.spcimg3.DoubleClick += new System.EventHandler(this.spcimg3_DoubleClick);
             // 
             // spcimg1
             // 
@@ -1426,6 +1440,7 @@
             this.spcimg1.Size = new System.Drawing.Size(64, 64);
             this.spcimg1.TabIndex = 0;
             this.spcimg1.TabStop = false;
+            this.spcimg1.DoubleClick += new System.EventHandler(this.spcimg1_DoubleClick);
             // 
             // spcimg2
             // 
@@ -1434,6 +1449,7 @@
             this.spcimg2.Size = new System.Drawing.Size(64, 64);
             this.spcimg2.TabIndex = 1;
             this.spcimg2.TabStop = false;
+            this.spcimg2.DoubleClick += new System.EventHandler(this.spcimg2_DoubleClick);
             // 
             // BattleObjText2
             // 
@@ -1502,6 +1518,7 @@
             this.pbFace.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbFace.TabIndex = 37;
             this.pbFace.TabStop = false;
+            this.pbFace.DoubleClick += new System.EventHandler(this.pbFace_DoubleClick);
             // 
             // pBatch
             // 
@@ -1652,16 +1669,6 @@
             this.btnListControlCheckNumber.Text = "선택";
             this.btnListControlCheckNumber.UseVisualStyleBackColor = true;
             this.btnListControlCheckNumber.Click += new System.EventHandler(this.btnListControlCheckNumber_Click);
-            // 
-            // VoicePlayButton
-            // 
-            this.VoicePlayButton.Location = new System.Drawing.Point(597, 314);
-            this.VoicePlayButton.Name = "VoicePlayButton";
-            this.VoicePlayButton.Size = new System.Drawing.Size(30, 23);
-            this.VoicePlayButton.TabIndex = 84;
-            this.VoicePlayButton.Text = "▶";
-            this.VoicePlayButton.UseVisualStyleBackColor = true;
-            this.VoicePlayButton.Click += new System.EventHandler(this.VoicePlayButton_Click);
             // 
             // UnitsData
             // 

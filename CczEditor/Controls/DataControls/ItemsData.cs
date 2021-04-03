@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using CczEditor.Data;
+using System.Text;
 
 #endregion
 
@@ -541,7 +542,7 @@ namespace CczEditor.Controls.DataControls
             }
 
             int bomulcount = 0;
-            GameData.BomulGet(bomulcount);
+            GameData.WriteTreasureCount(bomulcount);
 
             GameData.ItemSet(index, item);
 			lbList.Items.RemoveAt(index);
@@ -563,8 +564,9 @@ namespace CczEditor.Controls.DataControls
 		}
         
 		private void txtImsg_TextChanged(object sender, EventArgs e)
-		{
-			lblImsgCount.Text = string.Format("글자 수 {0}", txtImsg.Text.Length);
+        {
+            int length = Encoding.Default.GetByteCount(txtImsg.Text);
+            lblImsgCount.Text = $"{length} / 200 byte";
 		}
 
 		private void ncItemIcon_ValueChanged(object sender, EventArgs e)
@@ -612,6 +614,75 @@ namespace CczEditor.Controls.DataControls
                 return;
             }
             lbList.SelectedIndex = index;
+        }
+
+        private void cbSpecialEffects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Data.ExeData.IsLocked || cbSpecialEffects.SelectedIndex < 0)
+            {
+                SpecialEffListLabel.Text = string.Empty;
+                SpecialEffNameEditBox.Text = string.Empty;
+                SpecialEffNameEditBox.Enabled = false;
+                SpecialEffNameEditButton.Enabled = false;
+                return;
+            }
+
+            SpecialEffNameEditBox.Enabled = true;
+            SpecialEffNameEditButton.Enabled = true;
+
+            var code = Utils.GetId(cbSpecialEffects.SelectedItem);
+            var effName = ConfigUtils.GetAuxiliaryEffect(code);
+            if (string.IsNullOrEmpty(effName))
+            {
+                SpecialEffNameEditBox.Enabled = false;
+            }
+            else
+            {
+                SpecialEffNameEditBox.Enabled = true;
+            }
+            SpecialEffNameEditBox.Text = effName;
+
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("특수효과 리스트\n");
+            var list = Program.CurrentConfig.CodeEffects;
+            int count = 0;
+            foreach(var eff in list)
+            {
+                var checkCode = Data.ExeData.ReadByte(0, eff.Offset);
+                if (checkCode != code) continue;
+                sb.Append($"-{eff.Description}");
+                sb.Append("\n");
+                count++;
+            }
+            if (count == 0) sb.Append("-없음");
+            SpecialEffListLabel.Text = sb.ToString();
+        }
+
+        private void SpecialEffNameEditButton_Click(object sender, EventArgs e)
+        {
+            var code = Utils.GetId(cbSpecialEffects.SelectedItem);
+            var target = Program.CurrentConfig.ItemEffects.Find(x => x.Index == code);
+            if (target == null) return;
+
+            int length = Encoding.Default.GetByteCount(SpecialEffNameEditBox.Text);
+            if (length > target.Length)
+            {
+                MessageBox.Show("이름이 너무 깁니다!");
+                return;
+            }
+
+            Data.ExeData.WriteText(SpecialEffNameEditBox.Text, target.Offset, target.Length);
+        }
+
+        private void SpecialEffNameEditBox_TextChanged(object sender, EventArgs e)
+        {
+            var code = Utils.GetId(cbSpecialEffects.SelectedItem);
+            var target = Program.CurrentConfig.ItemEffects.Find(x => x.Index == code);
+            if (target == null) return;
+
+            int length = Encoding.Default.GetByteCount(SpecialEffNameEditBox.Text);
+            EffNameLabel.Text = $"{length}/{target.Length} byte";
         }
     }
 }

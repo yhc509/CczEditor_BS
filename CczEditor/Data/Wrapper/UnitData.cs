@@ -40,15 +40,13 @@ namespace CczEditor.Data.Wrapper
         public void Write(int index)
         {
             byte[] result = new byte[0x48];
-
-            if (Name.Length > 4)
-                Name = Name.Substring(0, 4);
-
+            
             Utils.ChangeByteValue(result, Utils.GetBytes(Name), 0, 12);
             Utils.ChangeByteValue(result, BitConverter.GetBytes(Face), 13);
 
             result[16] = CriticalIndex;
-            
+
+            result[17] = 0xFF;
             result[18] = Str;
             result[19] = Vit;
             result[20] = Int;
@@ -59,6 +57,10 @@ namespace CczEditor.Data.Wrapper
             result[25] = Mp;
             result[26] = Force;
             result[27] = Lv;
+
+            result[29] = 0xFF;
+            result[30] = 0xFF;
+            result[31] = 0xFF;
 
             if (Program.GameData.IsExist)
             {
@@ -72,9 +74,12 @@ namespace CczEditor.Data.Wrapper
                 ExeData.WriteByte(CharacterType, index, Program.CurrentConfig.Exe.UnitCharacterOffset);
                 if (index <= 255)
                 {
-                    ExeData.WriteByte(Voice, index, Program.CurrentConfig.Exe.UnitVoiceOffset);
-                    ExeData.WriteByte(Cost, index, Program.CurrentConfig.Exe.UnitCostOffset);
-                    ExeData.WriteByte(Cutin, index, Program.CurrentConfig.Exe.UnitCutinOffset);
+                    if(Program.CurrentConfig.CodeOptionContainer.UseVoice)
+                        ExeData.WriteByte(Voice, index, Program.CurrentConfig.Exe.UnitVoiceOffset);
+                    if (Program.CurrentConfig.CodeOptionContainer.UseCost)
+                        ExeData.WriteByte(Cost, index, Program.CurrentConfig.Exe.UnitCostOffset);
+                    if (Program.CurrentConfig.CodeOptionContainer.UseCutin)
+                        ExeData.WriteByte(Cutin, index, Program.CurrentConfig.Exe.UnitCutinOffset);
                 }
             }
 
@@ -87,11 +92,14 @@ namespace CczEditor.Data.Wrapper
                     Program.ImsgData.UnitExtensionSet(index, msg);
                 }
 
-                if (Retreat != null)
+                if (index < Program.IMSG_RETREAT_COUNT)
                 {
-                    var msg = new byte[Program.IMSG_DATA_BLOCK_LENGTH];
-                    Utils.ChangeByteValue(msg, Utils.GetBytes(Retreat), 0, Program.IMSG_DATA_BLOCK_LENGTH);
-                    Program.ImsgData.RetreatSet(index, msg);
+                    if (Retreat != null)
+                    {
+                        var msg = new byte[Program.IMSG_DATA_BLOCK_LENGTH];
+                        Utils.ChangeByteValue(msg, Utils.GetBytes(Retreat), 0, Program.IMSG_DATA_BLOCK_LENGTH);
+                        Program.ImsgData.RetreatSet(index, msg);
+                    }
                 }
             }
         }
@@ -125,15 +133,21 @@ namespace CczEditor.Data.Wrapper
             }
             if (index <= 255)
             {
-                Voice = ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitVoiceOffset);
-                Cutin = ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitCutinOffset);
-                Cost = ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitCostOffset);
+                if (Program.CurrentConfig.CodeOptionContainer.UseVoice)
+                    Voice = ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitVoiceOffset);
+                if (Program.CurrentConfig.CodeOptionContainer.UseCutin)
+                    Cutin = ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitCutinOffset);
+                if (Program.CurrentConfig.CodeOptionContainer.UseCost)
+                    Cost = ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitCostOffset);
             }
 
             if (Program.ImsgData.IsExist)
             {
                 Imsg = Utils.ByteToString(Program.ImsgData.UnitExtensionGet(index), 0, Program.IMSG_DATA_BLOCK_LENGTH);
-                Retreat = Utils.ByteToString(Program.ImsgData.RetreatGet(index), 0, Program.IMSG_DATA_BLOCK_LENGTH);
+                if (index < Program.IMSG_RETREAT_COUNT)
+                {
+                    Retreat = Utils.ByteToString(Program.ImsgData.RetreatGet(index), 0, Program.IMSG_DATA_BLOCK_LENGTH);
+                }
             }
         }
 

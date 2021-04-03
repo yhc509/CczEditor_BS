@@ -49,7 +49,7 @@
             this.tsmiMainMenu_Data_Force = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMainMenu_Data_Terrain = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMainMenu_Data_Magic = new System.Windows.Forms.ToolStripMenuItem();
-            this.특수편집ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMainMenu_Imsg = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMainMenu_Imsg_Units = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMainMenu_Imsg_Units_Original = new System.Windows.Forms.ToolStripMenuItem();
@@ -200,7 +200,7 @@
             this.tsmiMainMenu_Data_Force,
             this.tsmiMainMenu_Data_Terrain,
             this.tsmiMainMenu_Data_Magic,
-            this.특수편집ToolStripMenuItem});
+            this.ExeToolStripMenuItem});
             this.tsmiMainMenu_Data.Name = "tsmiMainMenu_Data";
             this.tsmiMainMenu_Data.Size = new System.Drawing.Size(93, 20);
             this.tsmiMainMenu_Data.Text = "Data 편집 (&D)";
@@ -209,50 +209,51 @@
             // tsmiMainMenu_Data_Units
             // 
             this.tsmiMainMenu_Data_Units.Name = "tsmiMainMenu_Data_Units";
-            this.tsmiMainMenu_Data_Units.Size = new System.Drawing.Size(149, 22);
+            this.tsmiMainMenu_Data_Units.Size = new System.Drawing.Size(152, 22);
             this.tsmiMainMenu_Data_Units.Text = "인물 편집 (&U)";
             this.tsmiMainMenu_Data_Units.Click += new System.EventHandler(this.tsmiMainMenu_Data_Units_Click);
             // 
             // tsmiMainMenu_Data_Items
             // 
             this.tsmiMainMenu_Data_Items.Name = "tsmiMainMenu_Data_Items";
-            this.tsmiMainMenu_Data_Items.Size = new System.Drawing.Size(149, 22);
+            this.tsmiMainMenu_Data_Items.Size = new System.Drawing.Size(152, 22);
             this.tsmiMainMenu_Data_Items.Text = "물품 편집 (I)";
             this.tsmiMainMenu_Data_Items.Click += new System.EventHandler(this.tsmiMainMenu_Data_Items_Click);
             // 
             // tsmiMainMenu_Data_Store
             // 
             this.tsmiMainMenu_Data_Store.Name = "tsmiMainMenu_Data_Store";
-            this.tsmiMainMenu_Data_Store.Size = new System.Drawing.Size(149, 22);
+            this.tsmiMainMenu_Data_Store.Size = new System.Drawing.Size(152, 22);
             this.tsmiMainMenu_Data_Store.Text = "상점 편집 (&S)";
             this.tsmiMainMenu_Data_Store.Click += new System.EventHandler(this.tsmiMainMenu_Data_Store_Click);
             // 
             // tsmiMainMenu_Data_Force
             // 
             this.tsmiMainMenu_Data_Force.Name = "tsmiMainMenu_Data_Force";
-            this.tsmiMainMenu_Data_Force.Size = new System.Drawing.Size(149, 22);
+            this.tsmiMainMenu_Data_Force.Size = new System.Drawing.Size(152, 22);
             this.tsmiMainMenu_Data_Force.Text = "병종 편집 (&F)";
             this.tsmiMainMenu_Data_Force.Click += new System.EventHandler(this.tsmiMainMenu_Data_Force_Click);
             // 
             // tsmiMainMenu_Data_Terrain
             // 
             this.tsmiMainMenu_Data_Terrain.Name = "tsmiMainMenu_Data_Terrain";
-            this.tsmiMainMenu_Data_Terrain.Size = new System.Drawing.Size(149, 22);
+            this.tsmiMainMenu_Data_Terrain.Size = new System.Drawing.Size(152, 22);
             this.tsmiMainMenu_Data_Terrain.Text = "지형 편집 (&T)";
             this.tsmiMainMenu_Data_Terrain.Click += new System.EventHandler(this.tsmiMainMenu_Data_Terrain_Click);
             // 
             // tsmiMainMenu_Data_Magic
             // 
             this.tsmiMainMenu_Data_Magic.Name = "tsmiMainMenu_Data_Magic";
-            this.tsmiMainMenu_Data_Magic.Size = new System.Drawing.Size(149, 22);
+            this.tsmiMainMenu_Data_Magic.Size = new System.Drawing.Size(152, 22);
             this.tsmiMainMenu_Data_Magic.Text = "책략 편집 (&M)";
             this.tsmiMainMenu_Data_Magic.Click += new System.EventHandler(this.tsmiMainMenu_Data_Magic_Click);
             // 
-            // 특수편집ToolStripMenuItem
+            // ExeToolStripMenuItem
             // 
-            this.특수편집ToolStripMenuItem.Name = "특수편집ToolStripMenuItem";
-            this.특수편집ToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.특수편집ToolStripMenuItem.Text = "특수 편집";
+            this.ExeToolStripMenuItem.Name = "ExeToolStripMenuItem";
+            this.ExeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ExeToolStripMenuItem.Text = "특수 편집";
+            this.ExeToolStripMenuItem.Click += new System.EventHandler(this.ExeToolStripMenuItem_Click);
             // 
             // tsmiMainMenu_Imsg
             // 
@@ -507,7 +508,7 @@
         private System.Windows.Forms.ToolStripSeparator tss_Config_1;
         private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_Config_LoadAll;
         private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_Config_SaveAll;
-        private System.Windows.Forms.ToolStripMenuItem 특수편집ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExeToolStripMenuItem;
     }
 }
 
