@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CczEditor.exe" size="461760">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CczEditor.exe" size="458176">
       <assemblyIdentity name="CczEditor" version="4.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>sXlIr0uCGf/5QZ4AApKvibgqZAI=</dsig:DigestValue>
+        <dsig:DigestValue>5IK3nW26Ml6X5co29kgcvwc7RzU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -31,7 +31,6 @@ namespace CczEditor
 		private void MainForm_Load(object sender, EventArgs e)
 		{
              LoadConfigurationTypeNames();
-			 //LoadFileList();
 		}
 
 		#endregion
@@ -64,17 +63,7 @@ namespace CczEditor
 		{
 			LoadDataFile(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_DATA));
 		}
-
-		private void tsmiMainMenu_File_LoadImsg_Click(object sender, EventArgs e)
-		{
-			LoadImsgFile(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_IMSG));
-		}
-
-		private void tscbMainMenu_File_LoadSave_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			LoadSaveFile(Path.Combine(Program.CurrentConfig.DirectoryPath, string.Format("{0}.e5s", ((ToolStripComboBox)sender).SelectedItem)));
-		}
-
+        
 		private void tsmiMainMenu_File_ExitApplication_Click(object sender, EventArgs e)
 		{
 			Application.Exit();
@@ -128,17 +117,7 @@ namespace CczEditor
 		{
 			ShowEditor(new UnitsExtensionImsg());
 		}
-
-		private void tsmiMainMenu_Imsg_Items_Click(object sender, EventArgs e)
-		{
-			ShowEditor(new ItemsImsg());
-		}
-
-		private void tsmiMainMenu_Imsg_Force_Click(object sender, EventArgs e)
-		{
-			ShowEditor(new ForceImsg());
-		}
-
+        
 		private void tsmiMainMenu_Imsg_Retreat_Click(object sender, EventArgs e)
 		{
 			ShowEditor(new RetreatImsg());
@@ -148,41 +127,14 @@ namespace CczEditor
 		{
 			ShowEditor(new CriticalImsg());
 		}
-
-		private void tsmiMainMenu_Imsg_Magic_Click(object sender, EventArgs e)
-		{
-			ShowEditor(new MagicImsg());
-		}
-
-		private void tsmiMainMenu_Imsg_Stage_Click(object sender, EventArgs e)
-		{
-			ShowEditor(new StageImsg());
-		}
-
+        
 		private void tsmiMainMenu_Imsg_Staff_Click(object sender, EventArgs e)
 		{
 			ShowEditor(new StaffImsg());
 		}
 
 		#endregion
-
-		#region save메뉴
-
-		private void tsmiMainMenu_Save_Units_Click(object sender, EventArgs e)
-		{
-			ShowEditor(new UnitsSave());
-		}
-
-		private void tsmiMainMenu_Save_Items_Click(object sender, EventArgs e)
-		{
-			ShowEditor(new ItemsSave());
-		}
         
-        private void 변량편집VToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-		#endregion
 
         #region 설정메뉴
 
@@ -223,56 +175,7 @@ namespace CczEditor
             pMainContainer.Controls.Clear();
             pMainContainer.Controls.Add(editor);
         }
-
-        private void tsmiMainMenu_Config_CopyEditor_Click(object sender, EventArgs e)
-        {/*
-            var dialog = new CopyAndEditDialog
-            {
-                Owner = this,
-                TypeName = Program.CurrentConfig.TypeName,
-                TypeDisplayName = Program.CurrentConfig.DisplayName,
-                TypeNames = TypeNames
-            };
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                var config = Program.CurrentConfig.CloneConfig(dialog.TypeName);
-                config.DisplayName = dialog.TypeDisplayName;
-                ConfigOperation.Configs.Add(dialog.TypeName, config);
-                TypeNames.Add(dialog.TypeName, dialog.TypeDisplayName);
-                tscbMainMenu_Config_Selector.Items.Add(dialog.TypeDisplayName);
-                var editor = new ConfigEditor
-                {
-                    TypeName = dialog.TypeName,
-                    Location = new Point(0, 0),
-                    Dock = DockStyle.Fill
-                };
-                pMainContainer.Controls.Clear();
-                pMainContainer.Controls.Add(editor);
-            }*/
-        }
-
-        private void tsmiMainMenu_Config_LoadAll_Click(object sender, EventArgs e)
-        {
-            //LoadConfigurationTypeNames();
-            //ConfigOperation.Configs.Clear();
-            //tscbMainMenu_Config_Selector_SelectedIndexChanged(tscbMainMenu_Config_Selector, new EventArgs());
-        }
-
-        private void tsmiMainMenu_Config_SaveAll_Click(object sender, EventArgs e)
-        {/*
-            if (TypeNames.Count <= 0)
-            {
-                return;
-            }
-            foreach (var typeName in TypeNames)
-            {
-                if (ConfigOperation.Configs.ContainsKey(typeName.Key))
-                {
-                    ConfigOperation.Configs[typeName.Key].WriteXml();
-                }
-            }*/
-        }
-
+        
         #endregion
 
 		
@@ -286,13 +189,9 @@ namespace CczEditor
 		#endregion
 
 		#endregion
-
-		#region 정의
-
+        
 		public static Dictionary<string, string> ConfigList;
-
-		#endregion
-
+        
 		#region 데이터 로드
 
 		private void ShowEditor(Control control)
@@ -310,41 +209,21 @@ namespace CczEditor
 		{
 			tsmiMainMenu_Data.Enabled = tsmiMainMenu_Data.Visible = game;
 			tsmiMainMenu_Imsg.Enabled = tsmiMainMenu_Imsg.Visible = imsg;
-			tsmiMainMenu_Save.Enabled = tsmiMainMenu_Save.Visible = save;
 		}
 
 		private void LoadFileDialog(int index)
 		{
 			var ofd = new OpenFileDialog
 			          {
-			          	Filter = index == 3 ? "조조전 Save 파일|Sv0?d.e5s" : "조조전 구성 파일|*.e5",
+			          	Filter = "조조전 구성 파일|*.e5",
 			          	InitialDirectory = Program.CurrentConfig.DirectoryPath
 			          };
 			if (DialogResult.OK == ofd.ShowDialog() && !string.IsNullOrEmpty(ofd.FileName) && File.Exists(ofd.FileName))
 			{
 				pMainContainer.Controls.Clear();
 				Text = Program.TITLE_NAME_ORIGINAL;
-				switch (index)
-				{
-					case 1:
-					{
-						LoadDataFile(ofd.FileName);
-						break;
-					}
-					case 2:
-					{
-						LoadImsgFile(ofd.FileName);
-						break;
-					}
-					case 3:
-					{
-						LoadSaveFile(ofd.FileName);
-						break;
-					}
-					default:
-						break;
-				}
-				GC.Collect();
+                LoadDataFile(ofd.FileName);
+                GC.Collect();
 			}
 			else
 			{
@@ -375,49 +254,14 @@ namespace CczEditor
 			{
 				Program.GameData = new GameData(fileName);
 				Program.ImsgData = null;
-				//Program.SaveData = null;
 			}
 			catch (Exception ex)
 			{
 				Utils.ShowError(ex.Message);
 				return;
 			}
-			SetControlsVisible(true, false, false);
+			SetControlsVisible(true, true, false);
 			tsmiMainMenu_Data_Units_Click(tsmiMainMenu_Data_Units, new EventArgs());
-		}
-
-		private void LoadImsgFile(string fileName)
-		{
-			try
-			{
-				Program.GameData = null;
-				Program.ImsgData = new ImsgData(fileName);
-				//Program.SaveData = null;
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowError(ex.Message);
-				return;
-			}
-			SetControlsVisible(false, true, false);
-			tsmiMainMenu_Imsg_Items_Click(tsmiMainMenu_Imsg_Items, new EventArgs());
-		}
-
-		private void LoadSaveFile(string fileName)
-		{
-			/*try
-			{
-				Program.GameData = null;
-				Program.ImsgData = null;
-				Program.SaveData = new SaveData(fileName);
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowError(ex.Message);
-				return;
-			}
-			SetControlsVisible(false, false, true);
-			tsmiMainMenu_Save_Units_Click(tsmiMainMenu_Save_Units, new EventArgs());*/
 		}
 
         private void LoadConfigurationTypeNames()
@@ -436,29 +280,12 @@ namespace CczEditor
             
 			if (Program.CurrentConfig == null || string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) || !Directory.Exists(Program.CurrentConfig.DirectoryPath))
 			{
-				tsmiMainMenu_File_LoadData.Enabled = tsmiMainMenu_File_LoadImsg.Enabled = tscbMainMenu_File_LoadSave.Enabled = false;
+				tsmiMainMenu_File_LoadData.Enabled = false;
 				return;
 			}
 			try
 			{
 				tsmiMainMenu_File_LoadData.Enabled = File.Exists(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_DATA));
-				tsmiMainMenu_File_LoadImsg.Enabled = File.Exists(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_IMSG));
-				var saves = Directory.GetFiles(Program.CurrentConfig.DirectoryPath, Program.FILENAME_SAVE, SearchOption.TopDirectoryOnly);
-				tscbMainMenu_File_LoadSave.Items.Clear();
-				if (saves.Length > 0)
-				{
-					tscbMainMenu_File_LoadSave.Enabled = true;
-					var list = saves.ToList();
-					list.Sort();
-					foreach (var save in list)
-					{
-						tscbMainMenu_File_LoadSave.Items.Add(Path.GetFileNameWithoutExtension(save));
-					}
-				}
-				else
-				{
-					tscbMainMenu_File_LoadSave.Enabled = false;
-				}
 			}
 			catch (Exception ex)
 			{
@@ -472,6 +299,11 @@ namespace CczEditor
         private void ExeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowEditor(new Controls.DataControls.ExeSpecialDataController());
+        }
+
+        private void 프로젝트편집ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowEditor(new Controls.DataControls.ProjectController());
         }
     }
 }

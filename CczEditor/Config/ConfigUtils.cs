@@ -217,11 +217,13 @@ namespace CczEditor
             var result = new Dictionary<int, string>();
             var forceOffsets = Program.CurrentConfig.ForceNames;
 
-            for(int i = 0; i < forceOffsets.Count; i++)
+            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            for (int i = 0; i < forceOffsets.Count; i++)
             {
                 var forceName = GetForceName(i, format);
                 result.Add(forceOffsets[i].Index, forceName);
             }
+            Data.ExeData.Close();
             return result;
         }
 
@@ -241,11 +243,13 @@ namespace CczEditor
             var result = new Dictionary<int, string>();
             var forceCategoryOffsets = Program.CurrentConfig.ForceCategoryNames;
 
+            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
             for (int i = 0; i < forceCategoryOffsets.Count; i++)
             {
                 var forceCategoryName = GetForceCategoryName(i, format);
                 result.Add(forceCategoryOffsets[i].Index, forceCategoryName);
             }
+            Data.ExeData.Close();
             return result;
         }
 
@@ -266,11 +270,13 @@ namespace CczEditor
             var result = new Dictionary<int, string>();
             var specialEffectOffsets = Program.CurrentConfig.SpecialEffectNames;
 
+            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
             for (int i = 0; i < specialEffectOffsets.Count; i++)
             {
                 var specialEffectName = GetSpecialEffectName(i, format);
                 result.Add(specialEffectOffsets[i].Index, specialEffectName);
             }
+            Data.ExeData.Close();
             return result;
         }
 
@@ -279,7 +285,6 @@ namespace CczEditor
         {
             var specialEffectOffset = Program.CurrentConfig.SpecialEffectNames;
             var specialEffectName = Data.ExeData.GetText(specialEffectOffset[index].Offset, specialEffectOffset[index].Length);
-
             if (string.IsNullOrEmpty(format))
                 return specialEffectName;
             else

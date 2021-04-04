@@ -21,7 +21,6 @@ namespace CczEditor.Controls.DataControls
         {
             InitSpecialTab();
             InitCodeEffectTab();
-            InitTitleText();
 
             SpecialEffectList.SelectedIndex = 0;
             SpecialSkillList.SelectedIndex = 0;
@@ -30,6 +29,7 @@ namespace CczEditor.Controls.DataControls
 
         private void InitSpecialTab()
         {
+            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
             var specialEffectList = Program.CurrentConfig.SpecialEffectNames;
             foreach(var info in specialEffectList)
             {
@@ -42,7 +42,6 @@ namespace CczEditor.Controls.DataControls
             {
                 SpecialSkillList.Items.Add(string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, info.Index, info.Description));
             }
-
             var temp = Program.GameData.UnitNameList(true).ToList();
             temp.Add("400, 미사용");
             var unitList = temp.ToArray();
@@ -58,6 +57,8 @@ namespace CczEditor.Controls.DataControls
             var forceList = ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2);
             forceList.Add(0xFF, "FF, 미사용");
             SpecialEffectForceBox.Items.AddRange(forceList.Values.ToArray());
+            Data.ExeData.Close();
+
         }
 
         #region SpecialEffect
@@ -79,7 +80,8 @@ namespace CczEditor.Controls.DataControls
             SpecialEffectName.Text = ConfigUtils.GetSpecialEffectName(index);
 
             int offset = Program.CurrentConfig.Exe.SpecialEffectOffset;
-            
+            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+
             SpecialEffectUnitBox1.SelectedIndex = Data.ExeData.ReadWord(0, offset + index * 0x08);
             SpecialEffectUnitBox2.SelectedIndex = Data.ExeData.ReadWord(0, offset + index * 0x08 + 0x02);
             SpecialEffectUnitBox3.SelectedIndex = Data.ExeData.ReadWord(0, offset + index * 0x08 + 0x04);
@@ -88,6 +90,8 @@ namespace CczEditor.Controls.DataControls
             if (force == 0xFF) force = 0x50;
             SpecialEffectForceBox.SelectedIndex = force;
             SpecialEffectValueBox.Value = Data.ExeData.ReadByte(0, offset + index * 0x08 + 0x7);
+
+            Data.ExeData.Close();
         }
 
         private void SaveSpecialEffect(int index)
@@ -98,6 +102,7 @@ namespace CczEditor.Controls.DataControls
             Data.ExeData.WriteText(SpecialEffectName.Text, info.Offset, 0x0D);
 
             int offset = Program.CurrentConfig.Exe.SpecialEffectOffset;
+            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
             Data.ExeData.WriteWord(SpecialEffectUnitBox1.SelectedIndex, 0, offset + index * 0x08);
             Data.ExeData.WriteWord(SpecialEffectUnitBox2.SelectedIndex, 0, offset + index * 0x08 + 0x02);
             Data.ExeData.WriteWord(SpecialEffectUnitBox3.SelectedIndex, 0, offset + index * 0x08 + 0x04);
@@ -107,7 +112,8 @@ namespace CczEditor.Controls.DataControls
             Data.ExeData.WriteByte(force, 0, offset + index * 0x08 + 0x6);
 
             Data.ExeData.WriteByte((byte) SpecialEffectValueBox.Value, 0, offset + index * 0x08 + 0x7);
-            
+            Data.ExeData.Close();
+
             SpecialEffectList.Items.RemoveAt(index);
             SpecialEffectList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, index, SpecialEffectName.Text));
             SpecialEffectList.SelectedIndex = index;
@@ -158,7 +164,7 @@ namespace CczEditor.Controls.DataControls
         {
             if (index < 0 || index >= Program.CurrentConfig.SpecialSkillNames.Count)
                 return;
-
+            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
             SpecialSkillName.Text = ConfigUtils.GetSpecialSkillName(index);
 
             bool isPhysics = index <= Program.CurrentConfig.Exe.SpecialSkillPhysicsCount;
@@ -191,7 +197,7 @@ namespace CczEditor.Controls.DataControls
 
                 SpecialSkillValueBox.Value = Data.ExeData.ReadByte(0, offset + index * 0x10 + 0x0F);
             }
-            
+            Data.ExeData.Close();
         }
 
         private void SaveSpecialSkill(int index)
@@ -199,6 +205,7 @@ namespace CczEditor.Controls.DataControls
             var info = Program.CurrentConfig.SpecialSkillNames.Find(x => x.Index == index);
 
             byte[] result = new byte[0x0E];
+            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
             Data.ExeData.WriteText(SpecialSkillName.Text, info.Offset, 0x0E);
 
             bool isPhysics = index <= Program.CurrentConfig.Exe.SpecialSkillPhysicsCount;
@@ -219,6 +226,7 @@ namespace CczEditor.Controls.DataControls
 
                 Data.ExeData.WriteByte((byte)SpecialSkillValueBox.Value, 0, offset + index * 0x10 + 0x0F);
             }
+            Data.ExeData.Close();
         }
 
         private void SpecialSkillSaveApplyButton_Click(object sender, EventArgs e)
@@ -301,7 +309,8 @@ namespace CczEditor.Controls.DataControls
             var defence = defenceList[DefenceList.SelectedIndex];
             var terrain = terrainList[TerrainList.SelectedIndex];
             var etc = etcList[EtcList.SelectedIndex];
-            
+
+            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
             Data.ExeData.WriteByte((byte)Utils.GetId(AbilityAssistValue.SelectedItem), 0, abilityAssist.Offset);
             if (abilityAssist.SubEdit == 1)
             {
@@ -356,6 +365,8 @@ namespace CczEditor.Controls.DataControls
 
             Data.ExeData.WriteByte((byte)Utils.GetId(TerrainValue.SelectedItem), 0, terrain.Offset);
             Data.ExeData.WriteByte((byte)Utils.GetId(EtcValue.SelectedItem), 0, etc.Offset);
+
+            Data.ExeData.Close();
         }
 
         private void GetCode(Config.ConfigCodeEffectInfos info, ComboBox codeBox)
@@ -516,6 +527,7 @@ namespace CczEditor.Controls.DataControls
             StateEffectAttackAccValue3_2.Enabled = info.SubEdit == 1;
             StateEffectAttackAccValue4_2.Enabled = info.SubEdit == 1;
 
+            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
             if(info.SubEdit == 1)
             {
                 StateEffectAttackAccValue1_1.Value = (byte)Data.ExeData.ReadByte(0, Program.CurrentConfig.Exe.StateEffectAccOffset);
@@ -527,6 +539,7 @@ namespace CczEditor.Controls.DataControls
                 StateEffectAttackAccValue3_2.Value = (byte)Data.ExeData.ReadByte(6, Program.CurrentConfig.Exe.StateEffectAccOffset);
                 StateEffectAttackAccValue4_2.Value = (byte)Data.ExeData.ReadByte(7, Program.CurrentConfig.Exe.StateEffectAccOffset);
             }
+            Data.ExeData.Close();
         }
 
         private void DecreaseDmgList_SelectedIndexChanged(object sender, EventArgs e)
@@ -536,43 +549,6 @@ namespace CczEditor.Controls.DataControls
             GetCode(info, DecreaseDmgValue);
             DecreaseDmgValue.Enabled = info.Editable;
         }
-
-        private void InitTitleText()
-        {
-            TitleTextBox.Text = Data.ExeData.GetText(Program.CurrentConfig.Exe.TitleOffsets[1], 12);
-        }
-
-        private void TitleSaveButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!Data.ExeData.IsLocked)
-                {
-                    Data.ExeData.WriteText($"「{TitleTextBox.Text}」", Program.CurrentConfig.Exe.TitleOffsets[0], 16);
-                    Data.ExeData.WriteText(TitleTextBox.Text, Program.CurrentConfig.Exe.TitleOffsets[1], 12);
-                    Data.ExeData.WriteText(TitleTextBox.Text, Program.CurrentConfig.Exe.TitleOffsets[2], 12);
-                    Data.ExeData.WriteText($"종료「{TitleTextBox.Text}」", Program.CurrentConfig.Exe.TitleOffsets[3], 20);
-                    Data.ExeData.WriteText($"정말「{TitleTextBox.Text}」종료?", Program.CurrentConfig.Exe.TitleOffsets[4], 25);
-
-                }
-                if (!Data.Mp3Data.IsLocked)
-                {
-                    Data.Mp3Data.WriteText(TitleTextBox.Text, 0x5B9A, 12);
-                }
-                MessageBox.Show("수정 성공!");
-
-            }
-            catch
-            {
-                MessageBox.Show("오류가 발생했습니다!");
-
-            }
-        }
-
-        private void TitleTextBox_TextChanged(object sender, EventArgs e)
-        {
-            int length = Encoding.Default.GetByteCount(TitleTextBox.Text);
-            TitleLengthText.Text = $"{length}/12 byte";
-        }
+        
     }
 }
