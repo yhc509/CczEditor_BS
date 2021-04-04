@@ -1637,7 +1637,7 @@
             0,
             0});
             this.ncListControlCheckNumberMax.MaxNumberControl = null;
-            this.ncListControlCheckNumberMax.MinNumberControl = this.ncListControlCheckNumberMin;
+            this.ncListControlCheckNumberMax.MinNumberControl = null;
             this.ncListControlCheckNumberMax.Name = "ncListControlCheckNumberMax";
             this.ncListControlCheckNumberMax.Size = new System.Drawing.Size(45, 23);
             this.ncListControlCheckNumberMax.TabIndex = 2;
@@ -1652,7 +1652,7 @@
             0,
             0,
             0});
-            this.ncListControlCheckNumberMin.MaxNumberControl = this.ncListControlCheckNumberMax;
+            this.ncListControlCheckNumberMin.MaxNumberControl = null;
             this.ncListControlCheckNumberMin.MinNumberControl = null;
             this.ncListControlCheckNumberMin.Name = "ncListControlCheckNumberMin";
             this.ncListControlCheckNumberMin.Size = new System.Drawing.Size(45, 23);

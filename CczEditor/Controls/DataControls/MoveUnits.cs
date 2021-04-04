@@ -137,5 +137,31 @@ namespace CczEditor.Controls.DataControls
             
             ClearItems();
         }
+
+        private void sourceSearchButton_Click(object sender, EventArgs e)
+        {
+            var list = Program.GameData.UnitNameList(false);
+            var index = list.FindIndex(x => x == sourceSearchBox.Text);
+            if (index == -1)
+            {
+                MessageBox.Show("찾기에 실패했습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            sourceUnitListBox.SelectedIndex = index;
+
+        }
+
+        private void destSearchButton_Click(object sender, EventArgs e)
+        {
+            var list = Program.GameData.UnitNameList(false);
+            var index = list.FindIndex(x => x == destSearchBox.Text);
+            if (index == -1)
+            {
+                MessageBox.Show("찾기에 실패했습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            destUnitListBox.SelectedIndex = index;
+
+        }
     }
 }

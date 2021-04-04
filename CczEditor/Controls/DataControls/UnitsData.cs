@@ -215,15 +215,43 @@ namespace CczEditor.Controls.DataControls
 
         private void CopyUnit(int index, int[] targetIndexes, bool isTailNumber)
         {
-            var unit = new CczEditor.Data.Wrapper.UnitData();
-            unit.Read(index);
-
+            var origin = new CczEditor.Data.Wrapper.UnitData();
+            origin.Read(index);
+            
             int nameNumber = 1;
 
             foreach(var targetIndex in targetIndexes)
             {
-                if(isTailNumber)
-                    unit.Name = $"{txtName.Text}{nameNumber++}";
+
+                var unit = new CczEditor.Data.Wrapper.UnitData();
+                unit.Read(targetIndex);
+
+                if (cbbName.Checked)
+                {
+                    if(isTailNumber)
+                        unit.Name = $"{txtName.Text}{nameNumber++}";
+                    else
+                        unit.Name = origin.Name;
+                }
+                if (cbbFace.Checked) unit.Face = origin.Face;
+                if (cbbCritical.Checked) unit.CriticalIndex = origin.CriticalIndex;
+                if (cbbStr.Checked) unit.Str = origin.Str;
+                if (cbbVit.Checked) unit.Vit = origin.Vit;
+                if (cbbInt.Checked) unit.Int = origin.Int;
+                if (cbbAvg.Checked) unit.Avg = origin.Avg;
+                if (cbbLuk.Checked) unit.Luk = origin.Luk;
+                if (cbbHp.Checked) unit.Hp = origin.Hp;
+                if (cbbMp.Checked) unit.Mp = origin.Mp;
+                if (cbbForce.Checked) unit.Force = origin.Force;
+                if (cbbPmapObj.Checked) unit.Pmapobj = origin.Pmapobj;
+                if (cbbBattleObj.Checked) unit.BattleObj = origin.BattleObj;
+                if (cbbCharacter.Checked) unit.CharacterType = origin.CharacterType;
+                if (cbbCutin.Checked) unit.Cutin = origin.Cutin;
+                if (cbbCost.Checked) unit.Cost = origin.Cost;
+                if (cbbVoice.Checked) unit.Voice = origin.Voice;
+                if (cbbImsg.Checked && rbtnImsgType1.Checked) unit.Imsg = origin.Imsg;
+
+                
                 unit.Write(targetIndex);
 
                 clbList.Items.RemoveAt(targetIndex);

@@ -101,6 +101,7 @@
             this.sourceSearchButton.Text = "검색";
             this.sourceSearchButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.sourceSearchButton.UseVisualStyleBackColor = true;
+            this.sourceSearchButton.Click += new System.EventHandler(this.sourceSearchButton_Click);
             // 
             // destSearchButton
             // 
@@ -112,6 +113,7 @@
             this.destSearchButton.Text = "검색";
             this.destSearchButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.destSearchButton.UseVisualStyleBackColor = true;
+            this.destSearchButton.Click += new System.EventHandler(this.destSearchButton_Click);
             // 
             // ExchangeButton
             // 
@@ -220,7 +222,7 @@
             0,
             0});
             this.destEndValueBox.MaxNumberControl = null;
-            this.destEndValueBox.MinNumberControl = this.destStartValueBox;
+            this.destEndValueBox.MinNumberControl = null;
             this.destEndValueBox.Name = "destEndValueBox";
             this.destEndValueBox.Size = new System.Drawing.Size(45, 23);
             this.destEndValueBox.TabIndex = 84;
@@ -235,7 +237,7 @@
             0,
             0,
             0});
-            this.destStartValueBox.MaxNumberControl = this.destEndValueBox;
+            this.destStartValueBox.MaxNumberControl = null;
             this.destStartValueBox.MinNumberControl = null;
             this.destStartValueBox.Name = "destStartValueBox";
             this.destStartValueBox.Size = new System.Drawing.Size(45, 23);
@@ -252,7 +254,7 @@
             0,
             0});
             this.sourceEndValueBox.MaxNumberControl = null;
-            this.sourceEndValueBox.MinNumberControl = this.sourceStartValueBox;
+            this.sourceEndValueBox.MinNumberControl = null;
             this.sourceEndValueBox.Name = "sourceEndValueBox";
             this.sourceEndValueBox.Size = new System.Drawing.Size(45, 23);
             this.sourceEndValueBox.TabIndex = 79;
@@ -267,7 +269,7 @@
             0,
             0,
             0});
-            this.sourceStartValueBox.MaxNumberControl = this.sourceEndValueBox;
+            this.sourceStartValueBox.MaxNumberControl = null;
             this.sourceStartValueBox.MinNumberControl = null;
             this.sourceStartValueBox.Name = "sourceStartValueBox";
             this.sourceStartValueBox.Size = new System.Drawing.Size(45, 23);
