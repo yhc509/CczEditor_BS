@@ -407,7 +407,7 @@ namespace CczEditor.Controls.DataControls
                 else
                 {
                     BattleObjText2.Visible = BattleObjText3.Visible = spcimg2.Visible = spcimg3.Visible = false;
-                    spc = 180 + (forceIndex - 0x1f) * 3 + teamIndex;
+                    spc = 180 + (forceIndex - 20) * 3 + teamIndex;
                     BattleObjText1.Text = (spc + 1).ToString();
                     spcimg1.Image = loader.GetImage(spc);
                 }
@@ -440,7 +440,7 @@ namespace CczEditor.Controls.DataControls
             int value;
 
             if (force < 60) value = force / 3;
-            else value = 20 + (force - 60) / 3;
+            else value = force - 60 + 20;
             return value;
         }
         #endregion

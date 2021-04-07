@@ -102,6 +102,7 @@
             this.TitleSaveButton.TabIndex = 2;
             this.TitleSaveButton.Text = "저장";
             this.TitleSaveButton.UseVisualStyleBackColor = true;
+            this.TitleSaveButton.Click += new System.EventHandler(this.TitleSaveButton_Click);
             // 
             // TitleLengthText
             // 
@@ -118,6 +119,7 @@
             this.TitleTextBox.Name = "TitleTextBox";
             this.TitleTextBox.Size = new System.Drawing.Size(256, 21);
             this.TitleTextBox.TabIndex = 0;
+            this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             // 
             // groupBox16
             // 

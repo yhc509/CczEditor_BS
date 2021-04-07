@@ -62,6 +62,8 @@ namespace CczEditor.Controls.DataControls
         {
             int length = Encoding.Default.GetByteCount(TitleTextBox.Text);
             TitleLengthText.Text = $"{length}/12 byte";
+
         }
+        
     }
 }
