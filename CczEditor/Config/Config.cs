@@ -20,6 +20,8 @@ namespace CczEditor
 
         public string ExeFileName;
 
+        public bool UseE5Directory;
+        
         public ConfigCodeOptions CodeOptionContainer = new ConfigCodeOptions();
 
         public ConfigDataInfos Data = new ConfigDataInfos();
@@ -29,7 +31,7 @@ namespace CczEditor
         public ConfigItemInfos Items = new ConfigItemInfos();
 
         public ConfigExeInfos Exe = new ConfigExeInfos();
-
+        
         public ConfigSaveInfos Save = new ConfigSaveInfos();
 
         public List<ConfigItemEffectNameInfos> ItemEffects = new List<ConfigItemEffectNameInfos>();
@@ -48,6 +50,7 @@ namespace CczEditor
         
         public List<ConfigSpecialSkillNameInfos> SpecialSkillNames = new List<ConfigSpecialSkillNameInfos>();
 
+        public Dictionary<string, ConfigExeCodeInfo[]> Codes = new Dictionary<string, ConfigExeCodeInfo[]>();
 
         public static Config Read(string fileName)
         {
@@ -185,18 +188,45 @@ namespace CczEditor
             public int GoldDefenceRateOffset;
             public int MpDefenceRecoverOffest;
             public int StateEffectAccOffset;
+            
 
             public int[] TitleOffsets;
+            public ConfigExeAbilityGradeInfos[] AbilityGrades;
+            public int[] ClassUpLevel1Offsets;
+            public int[] ClassUpLevel2Offsets;
+            public int[] MaxUnitLevelOffsets;
+            public int[] MaxUnitExpOffsets;
+            public int[] NormalEquipExpOffsets;
+            public int[] SpecialEquipExpOffsets;
+            public int[] NormalEquipMaxLevelOffsets;
+            public int[] SpecialEquipMaxLevelOffsets;
+            public int[] SecondEquipStartLevelOffsets;
+            public int[] NewUnitExploitOffsets;
+            public int[] EnemyUnitExploitOffsets;
+            public int[] NormalEquipUpLevelOffsets;
+            public int[] SpecialEquipUpLevelOffsets;
+
 
             public ConfigExeForceInfos Force = new ConfigExeForceInfos();
             public ConfigExeMagicInfos Magic = new ConfigExeMagicInfos();
         }
+        
 
         [Serializable]
         public class ConfigSaveInfos
         {
             public int SpecialSkillOffset;
-            public int SpecialEffectOffset;            
+            public int SpecialEffectOffset;
+            public int BattleObjOffset;
+            public int PmapObjOffset;
+            public int FaceObjOffset;
+        }
+
+        [Serializable]
+        public class ConfigExeAbilityGradeInfos
+        {
+            public string Name;
+            public int Offset;
         }
 
         [Serializable]
@@ -328,6 +358,13 @@ namespace CczEditor
             public int Offset;
             public byte Length;
             public string Description;
+        }
+
+        [Serializable]
+        public class ConfigExeCodeInfo
+        {
+            public int offset;
+            public string CodeArr;
         }
     }
 }

@@ -41,5 +41,4 @@ C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Debug\CczEditor.exe.mani
 C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Debug\CczEditor.application
 C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Debug\CczEditor.exe
 C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Debug\CczEditor.pdb
-C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Debug\CczEditor.csprojResolveAssemblyReference.cache
 C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Debug\CczEditor.Controls.DataControls.ProjectController.resources

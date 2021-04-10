@@ -77,24 +77,21 @@ namespace CczEditor.Controls
         {
             get { return StarData != null && StarData.CurrentFile != null && StarData.CurrentStream != null; }
         }
+
         protected void GetResourcesItemIcon()
         {
             if (ItemIcons != null)
             {
                 return;
             }
-            if (GameData != null && GameData.CurrentFile != null && !string.IsNullOrEmpty(GameData.CurrentFile.DirectoryName))
-            {
-                ItemIcons = new ItemResources(Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_ITEM));
-            }
-            else if (ImsgData != null && ImsgData.CurrentFile != null && !string.IsNullOrEmpty(ImsgData.CurrentFile.DirectoryName))
-            {
-                ItemIcons = new ItemResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_ITEM));
-            }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
-            {
-                ItemIcons = new ItemResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_ITEM));
-            }
+
+            string path;
+            if (Program.CurrentConfig.UseE5Directory)
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_ITEM);
+            else
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_ITEM);
+            ItemIcons = new ItemResources(path);
+            
         }
 
         protected void GetResourcesFace()
@@ -103,18 +100,14 @@ namespace CczEditor.Controls
             {
                 return;
             }
-            if (GameData != null && GameData.CurrentFile != null && !string.IsNullOrEmpty(GameData.CurrentFile.DirectoryName))
-            {
-                Faces = new FaceResources(Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_FACE));
-            }
-            else if (ImsgData != null && ImsgData.CurrentFile != null && !string.IsNullOrEmpty(ImsgData.CurrentFile.DirectoryName))
-            {
-                Faces = new FaceResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_FACE));
-            }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
-            {
-                Faces = new FaceResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_FACE));
-            }
+
+            string path;
+            if (Program.CurrentConfig.UseE5Directory)
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_FACE);
+            else
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_FACE);
+            Faces = new FaceResources(path);
+            
         }
 
         protected void GetResourcesFaceLarge()
@@ -123,18 +116,14 @@ namespace CczEditor.Controls
             {
                 return;
             }
-            if (GameData != null && GameData.CurrentFile != null && !string.IsNullOrEmpty(GameData.CurrentFile.DirectoryName))
-            {
-                FaceLarges = new FaceResources(Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_FACE_LARGE));
-            }
-            else if (ImsgData != null && ImsgData.CurrentFile != null && !string.IsNullOrEmpty(ImsgData.CurrentFile.DirectoryName))
-            {
-                FaceLarges = new FaceResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_FACE_LARGE));
-            }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
-            {
-                FaceLarges = new FaceResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_FACE_LARGE));
-            }
+
+            string path;
+            if (Program.CurrentConfig.UseE5Directory)
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_FACE_LARGE);
+            else
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_FACE_LARGE);
+            FaceLarges = new FaceResources(path);
+            
         }
 
 
@@ -144,18 +133,14 @@ namespace CczEditor.Controls
             {
                 return;
             }
-            if (GameData != null && GameData.CurrentFile != null && !string.IsNullOrEmpty(GameData.CurrentFile.DirectoryName))
-            {
-                Pmapobjs = new PmapobjResources(Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_PMAPOBJ));
-            }
-            else if (ImsgData != null && ImsgData.CurrentFile != null && !string.IsNullOrEmpty(ImsgData.CurrentFile.DirectoryName))
-            {
-                Pmapobjs = new PmapobjResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_PMAPOBJ));
-            }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
-            {
-                Pmapobjs = new PmapobjResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_PMAPOBJ));
-            }
+
+            string path;
+            if (Program.CurrentConfig.UseE5Directory)
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_PMAPOBJ);
+            else
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_PMAPOBJ);
+            Pmapobjs = new PmapobjResources(path);
+            
         }
 
         protected void GetResourcesHitarea()
@@ -164,18 +149,13 @@ namespace CczEditor.Controls
             {
                 return;
             }
-            if (GameData != null && GameData.CurrentFile != null && !string.IsNullOrEmpty(GameData.CurrentFile.DirectoryName))
-            {
-                Hitareas = new HitareaResources(Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_HITAREA));
-            }
-            else if (ImsgData != null && ImsgData.CurrentFile != null && !string.IsNullOrEmpty(ImsgData.CurrentFile.DirectoryName))
-            {
-                Hitareas = new HitareaResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_HITAREA));
-            }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
-            {
-                Hitareas = new HitareaResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_HITAREA));
-            }
+
+            string path;
+            if (Program.CurrentConfig.UseE5Directory)
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_HITAREA);
+            else
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_HITAREA);
+            Hitareas = new HitareaResources(path);
         }
 
         protected void GetResourcesEffarea()
@@ -184,78 +164,58 @@ namespace CczEditor.Controls
             {
                 return;
             }
-            if (GameData != null && GameData.CurrentFile != null && !string.IsNullOrEmpty(GameData.CurrentFile.DirectoryName))
-            {
-                Effareas = new EffareaResources(Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_EFFAREA));
-            }
-            else if (ImsgData != null && ImsgData.CurrentFile != null && !string.IsNullOrEmpty(ImsgData.CurrentFile.DirectoryName))
-            {
-                Effareas = new EffareaResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_EFFAREA));
-            }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
-            {
-                Effareas = new EffareaResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_EFFAREA));
-            }
+
+            string path;
+            if (Program.CurrentConfig.UseE5Directory)
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_EFFAREA);
+            else
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_EFFAREA);
+            Effareas = new EffareaResources(path);
         }
 
         protected void GetResourcesImageAtk()
         {
-            if (Effareas != null)
+            if (UnitAtk != null)
             {
                 return;
             }
-            if (GameData != null && GameData.CurrentFile != null && !string.IsNullOrEmpty(GameData.CurrentFile.DirectoryName))
-            {
-                UnitAtk = new UnitAtkResources(Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEATK));
-            }
-            else if (ImsgData != null && ImsgData.CurrentFile != null && !string.IsNullOrEmpty(ImsgData.CurrentFile.DirectoryName))
-            {
-                UnitAtk = new UnitAtkResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEATK));
-            }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
-            {
-                UnitAtk = new UnitAtkResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_IMAGEATK));
-            }
+
+            string path;
+            if (Program.CurrentConfig.UseE5Directory)
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_IMAGEATK);
+            else
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEATK);
+            UnitAtk = new UnitAtkResources(path);
         }
 
         protected void GetResourcesImageMov()
         {
-            if (Effareas != null)
+            if (UnitMov != null)
             {
                 return;
             }
-            if (GameData != null && GameData.CurrentFile != null && !string.IsNullOrEmpty(GameData.CurrentFile.DirectoryName))
-            {
-                UnitMov = new UnitMovResources(Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEMOV));
-            }
-            else if (ImsgData != null && ImsgData.CurrentFile != null && !string.IsNullOrEmpty(ImsgData.CurrentFile.DirectoryName))
-            {
-                UnitMov = new UnitMovResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEMOV));
-            }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
-            {
-                UnitMov = new UnitMovResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_IMAGEMOV));
-            }
+
+            string path;
+            if (Program.CurrentConfig.UseE5Directory)
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_IMAGEMOV);
+            else
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEMOV);
+            UnitMov = new UnitMovResources(path);
         }
 
         protected void GetResourcesImageSpc()
         {
-            if (Effareas != null)
+            if (UnitSpc != null)
             {
                 return;
             }
-            if (GameData != null && GameData.CurrentFile != null && !string.IsNullOrEmpty(GameData.CurrentFile.DirectoryName))
-            {
-                UnitSpc = new UnitSpcResources(Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGESPC));
-            }
-            else if (ImsgData != null && ImsgData.CurrentFile != null && !string.IsNullOrEmpty(ImsgData.CurrentFile.DirectoryName))
-            {
-                UnitSpc = new UnitSpcResources(Path.Combine(ImsgData.CurrentFile.DirectoryName, Program.FILENAME_IMAGESPC));
-            }
-            else if (Program.CurrentConfig != null && !string.IsNullOrEmpty(Program.CurrentConfig.DirectoryPath) && Directory.Exists(Program.CurrentConfig.DirectoryPath))
-            {
-                UnitSpc = new UnitSpcResources(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_IMAGESPC));
-            }
+
+            string path;
+            if (Program.CurrentConfig.UseE5Directory)
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_IMAGESPC);
+            else
+                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGESPC);
+            UnitSpc = new UnitSpcResources(path);
         }
 
         private void InitializeComponent()

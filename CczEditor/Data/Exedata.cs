@@ -190,6 +190,27 @@ namespace CczEditor.Data
                 Stream.Write(binary, 0, length);
             }
         }
+
+        public static void Write(byte[] values, int offset)
+        {
+            if (Stream == null)
+            {
+                var CurrentFile = new FileInfo(ExePath);
+                using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
+                {
+                    stream.Seek(offset, SeekOrigin.Begin);
+                    stream.Write(values, 0, values.Length);
+                    stream.Flush();
+                    stream.Close();
+                }
+            }
+            else
+            {
+                Stream.Seek(offset, SeekOrigin.Begin);
+                Stream.Write(values, 0, values.Length);
+            }
+
+        }
         
         public static byte[] Read(int offset, int length)
         {

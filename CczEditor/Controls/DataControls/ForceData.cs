@@ -165,6 +165,7 @@ namespace CczEditor.Controls.DataControls
             //EXE
             if (!Data.ExeData.IsLocked)
             {
+                Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
                 int forcenum = 0;
                 if (lbList.SelectedIndex < 60)
                 {
@@ -185,7 +186,7 @@ namespace CczEditor.Controls.DataControls
                 Data.ExeData.WriteText(forceName, forceInfo.Offset, forceInfo.Length);
 
                 string forceCategoryName;
-                var forceCategoryInfo = Program.CurrentConfig.ForceCategoryNames.Find(x => x.Index == index);
+                var forceCategoryInfo = Program.CurrentConfig.ForceCategoryNames.Find(x => x.Index == forcenum);
                 if (ForceCategoryNameBox.Text.Length > forceInfo.Length)
                     forceCategoryName = ForceCategoryNameBox.Text.Substring(0, forceInfo.Length);
                 else
@@ -208,7 +209,9 @@ namespace CczEditor.Controls.DataControls
                 Data.ExeData.WriteByte((byte)eff.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
 
                 Data.ExeData.WriteByte((byte)SpecialSkillForce.SelectedIndex, forcenum, Program.CurrentConfig.Exe.SpecialSkillForceOffset);
-                
+
+                Data.ExeData.Close();
+
                 lbList.Items.RemoveAt(index);
                 lbList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, index, forceName));
                 lbList.SelectedIndex = index;

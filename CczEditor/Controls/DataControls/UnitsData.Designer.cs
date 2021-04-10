@@ -42,6 +42,7 @@
             this.cbbImsg = new System.Windows.Forms.CheckBox();
             this.rbtnImsgType1 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.SaveApply = new System.Windows.Forms.Button();
             this.VoicePlayButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -135,8 +136,8 @@
             this.btnListControlCheckClear = new System.Windows.Forms.Button();
             this.btnListControlCheckAll = new System.Windows.Forms.Button();
             this.ncListControlCheckNumberMax = new CczEditor.Controls.NumericControl();
-            this.ncListControlCheckNumberMin = new CczEditor.Controls.NumericControl();
             this.btnListControlCheckNumber = new System.Windows.Forms.Button();
+            this.ncListControlCheckNumberMin = new CczEditor.Controls.NumericControl();
             this.tlpMainContainer.SuspendLayout();
             this.pList.SuspendLayout();
             this.gbImsg.SuspendLayout();
@@ -360,6 +361,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.SaveApply);
             this.groupBox1.Controls.Add(this.VoicePlayButton);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
@@ -386,6 +388,17 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "인물 편집";
+            // 
+            // SaveApply
+            // 
+            this.SaveApply.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.SaveApply.Location = new System.Drawing.Point(604, 374);
+            this.SaveApply.Name = "SaveApply";
+            this.SaveApply.Size = new System.Drawing.Size(149, 23);
+            this.SaveApply.TabIndex = 85;
+            this.SaveApply.Text = "조형 세이브 갱신";
+            this.SaveApply.UseVisualStyleBackColor = true;
+            this.SaveApply.Click += new System.EventHandler(this.SaveApply_Click);
             // 
             // VoicePlayButton
             // 
@@ -1563,7 +1576,7 @@
             // btnRestore
             // 
             this.btnRestore.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnRestore.Location = new System.Drawing.Point(668, 1);
+            this.btnRestore.Location = new System.Drawing.Point(668, 2);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(66, 23);
             this.btnRestore.TabIndex = 5;
@@ -1586,7 +1599,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSave.Location = new System.Drawing.Point(597, 1);
+            this.btnSave.Location = new System.Drawing.Point(597, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(66, 23);
             this.btnSave.TabIndex = 4;
@@ -1643,6 +1656,17 @@
             this.ncListControlCheckNumberMax.TabIndex = 2;
             this.ncListControlCheckNumberMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // btnListControlCheckNumber
+            // 
+            this.btnListControlCheckNumber.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnListControlCheckNumber.Location = new System.Drawing.Point(168, 3);
+            this.btnListControlCheckNumber.Name = "btnListControlCheckNumber";
+            this.btnListControlCheckNumber.Size = new System.Drawing.Size(45, 23);
+            this.btnListControlCheckNumber.TabIndex = 3;
+            this.btnListControlCheckNumber.Text = "선택";
+            this.btnListControlCheckNumber.UseVisualStyleBackColor = true;
+            this.btnListControlCheckNumber.Click += new System.EventHandler(this.btnListControlCheckNumber_Click);
+            // 
             // ncListControlCheckNumberMin
             // 
             this.ncListControlCheckNumberMin.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -1658,17 +1682,6 @@
             this.ncListControlCheckNumberMin.Size = new System.Drawing.Size(45, 23);
             this.ncListControlCheckNumberMin.TabIndex = 1;
             this.ncListControlCheckNumberMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnListControlCheckNumber
-            // 
-            this.btnListControlCheckNumber.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnListControlCheckNumber.Location = new System.Drawing.Point(168, 3);
-            this.btnListControlCheckNumber.Name = "btnListControlCheckNumber";
-            this.btnListControlCheckNumber.Size = new System.Drawing.Size(45, 23);
-            this.btnListControlCheckNumber.TabIndex = 3;
-            this.btnListControlCheckNumber.Text = "선택";
-            this.btnListControlCheckNumber.UseVisualStyleBackColor = true;
-            this.btnListControlCheckNumber.Click += new System.EventHandler(this.btnListControlCheckNumber_Click);
             // 
             // UnitsData
             // 
@@ -1831,5 +1844,6 @@
         private System.Windows.Forms.ComboBox CutinComboBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button VoicePlayButton;
+        private System.Windows.Forms.Button SaveApply;
     }
 }

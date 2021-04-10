@@ -572,12 +572,15 @@ namespace CczEditor.Controls.DataControls
 
             pbFace.Image = Faces.GetImage(faceIndex);
 
-            if (FaceLarges == null || clbList.SelectedIndex < 0)
+            if (Program.CurrentConfig.CodeOptionContainer.UseLargeFace)
             {
-                return;
-            }
+                if (FaceLarges == null || clbList.SelectedIndex < 0)
+                {
+                    return;
+                }
 
-            pbFaceL.Image = FaceLarges.GetImage(faceIndex);
+                pbFaceL.Image = FaceLarges.GetImage(faceIndex);
+            }
 
         }
         #endregion
@@ -980,5 +983,12 @@ namespace CczEditor.Controls.DataControls
             }
         }
         #endregion
+
+        private void SaveApply_Click(object sender, EventArgs e)
+        {
+            var popup = new SaveApplyPopup();
+            popup._applyType = SaveApplyPopup.ApplyType.UnitObj;
+            popup.ShowDialog();
+        }
     }
 }

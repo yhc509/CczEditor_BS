@@ -2,64 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
-using System.IO;
 
-namespace CczEditor
+namespace CczEditor.Config
 {
-    [Serializable]
-    public class SystemConfig
+    public class ConfigCreateHandler
     {
-        private SystemConfig() { }
-        public static SystemConfig Inst { get; private set; }
-
-        public string CurrentConfig;
-
-        public static string DefaultSystemConfigFileName = "CczEditor.json";
-        public static readonly string DefaultConfigName = "CczEditor-BS 1.0.json";
-
-        public static SystemConfig Read(string fileName)
+        Config result;
+        public ConfigCreateHandler()
         {
-            if (File.Exists(fileName))
-            {
-                var json = File.ReadAllText(fileName);
-                Inst = JsonConvert.DeserializeObject<SystemConfig>(json);
-            }
-            else
-            {
-                Inst = CreateDefaultSystemConfig();
-                Write(DefaultSystemConfigFileName);
-            }
-            return Inst;
+            result = new Config();
         }
 
-        public static void Write(string fileName)
+        public Config Execute()
         {
-            if(Inst == null)
-                Inst = CreateDefaultSystemConfig();
-            var json = JsonConvert.SerializeObject(Inst, Formatting.Indented);
-            File.WriteAllText(fileName, json);
-        }
-
-        private static SystemConfig CreateDefaultSystemConfig()
-        {
-            var result = new SystemConfig();
-            Config defaultConfig;
-            if (File.Exists(DefaultConfigName))
-                defaultConfig = Config.Read(DefaultConfigName);
-            else
-                defaultConfig = CreateDefaultConfig();
-
-            Config.Write(defaultConfig, DefaultConfigName);
-
-            result.CurrentConfig = DefaultConfigName;
-            return result;
-        }
-
-        public static Config CreateDefaultConfig()
-        {
-            Config result = new Config();
-
             result.VersionName = "BS 1.0";
             result.DisplayName = "비상조조전 1.0";
             result.DirectoryPath = string.Empty;
@@ -241,7 +196,7 @@ namespace CczEditor
             result.Exe.Force.AtkPincOffset = 0xA39D8;
             result.Exe.Force.SynastryOffset = 0xA3280;
             result.Exe.Force.AiTypeOffset = 0x4D0CC;
-            
+
             result.Exe.Magic.MeffStartIndex = 0x00;
             result.Exe.Magic.MeffEndIndex = 0x49;
             result.Exe.Magic.MeffOffset = 0x858BE;
@@ -425,7 +380,7 @@ namespace CczEditor
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 87, Length = 8, Offset = 0x8AD4E });
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 88, Length = 6, Offset = 0x8AD4E });
             #endregion
-            
+
             #region ForceName Setting
             result.ForceNames.Add(new Config.ConfigForceNameInfos { Index = 0, Length = 8, Offset = 0xD18D0 });
             result.ForceNames.Add(new Config.ConfigForceNameInfos { Index = 1, Length = 8, Offset = 0xD18D9 });
@@ -515,8 +470,12 @@ namespace CczEditor
             result.ForceNames.Add(new Config.ConfigForceNameInfos { Index = 78, Length = 8, Offset = 0xD1B8E });
             result.ForceNames.Add(new Config.ConfigForceNameInfos { Index = 79, Length = 8, Offset = 0xD1B97 });
             #endregion
+                                                            
+            return result;
+        }
 
-            #region ForceCategoryName Setting
+        private void CreateForceCategoryName()
+        {
             result.ForceCategoryNames.Add(new Config.ConfigForceCategoryNameInfos { Index = 0, Length = 8, Offset = 0x8B010 });
             result.ForceCategoryNames.Add(new Config.ConfigForceCategoryNameInfos { Index = 1, Length = 8, Offset = 0x8B019 });
             result.ForceCategoryNames.Add(new Config.ConfigForceCategoryNameInfos { Index = 2, Length = 8, Offset = 0x8B022 });
@@ -560,9 +519,10 @@ namespace CczEditor
             result.ForceCategoryNames.Add(new Config.ConfigForceCategoryNameInfos { Index = 37, Length = 8, Offset = 0x8B15D });
             result.ForceCategoryNames.Add(new Config.ConfigForceCategoryNameInfos { Index = 38, Length = 8, Offset = 0x8B166 });
             result.ForceCategoryNames.Add(new Config.ConfigForceCategoryNameInfos { Index = 39, Length = 8, Offset = 0x8B16F });
-            #endregion
+        }
 
-            #region HitAreaName Setting
+        private void CreateHitAreaName()
+        {
             result.HitAreaNames.Add("군웅 경기병");
             result.HitAreaNames.Add("보병");
             result.HitAreaNames.Add("궁병 노기병");
@@ -596,9 +556,10 @@ namespace CczEditor
             result.HitAreaNames.Add("사방죽궁");
             result.HitAreaNames.Add("남만궁");
             result.HitAreaNames.Add("12격");
-            #endregion
+        }
 
-            #region EffAreaName Setting
+        private void CreateEffectAreaName()
+        {
             result.EffAreaNames.Add("무");
             result.EffAreaNames.Add("십자");
             result.EffAreaNames.Add("구궁");
@@ -608,9 +569,10 @@ namespace CczEditor
             result.EffAreaNames.Add("대몰우전");
             result.EffAreaNames.Add("삼격");
             result.EffAreaNames.Add("방괴");
-            #endregion
+        }
 
-            #region SpecialEffect Setting
+        private void CreateSpecialEffect()
+        {
             result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 0, Length = 0x10, Offset = 0xF9430 });
             result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 1, Length = 0x10, Offset = 0xF9440 });
             result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 2, Length = 0x10, Offset = 0xF9450 });
@@ -715,10 +677,11 @@ namespace CczEditor
             result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 92, Length = 0x10, Offset = 0xF99F0 });
             result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 93, Length = 0x10, Offset = 0xF9A00 });
             result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 94, Length = 0x10, Offset = 0xF9A10 });
-            #endregion
-            
-            #region SpecialSkillName Setting
-            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 0, Length = 0x10, Offset = 0xD0F11, Description = "공격력상승"});
+        }
+
+        private void CreateSpecialSkillName()
+        {
+            result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 0, Length = 0x10, Offset = 0xD0F11, Description = "공격력상승" });
             result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 1, Length = 0x10, Offset = 0xD0F21, Description = "방어력상승" });
             result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 2, Length = 0x10, Offset = 0xD0F31, Description = "정신력상승" });
             result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 3, Length = 0x10, Offset = 0xD0F41, Description = "순발력상승" });
@@ -759,10 +722,11 @@ namespace CczEditor
             result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 34, Length = 0x10, Offset = 0xD1131, Description = "우화팔진도" });
             result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 35, Length = 0x10, Offset = 0xD1141, Description = "모든 아군 회귀" });
             result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 36, Length = 0x10, Offset = 0xD1151, Description = "랜덤" });
-            #endregion
+        }
 
-            #region CodeEffName Setting
-            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5BF8, TypeIndex = (int) Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "공격력보조", Editable = false, SubEdit = 1 });
+        private void CreateCodeEffectName()
+        {
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5BF8, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "공격력보조", Editable = false, SubEdit = 1 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5C00, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "방어력보조", Editable = false, SubEdit = 1 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5C08, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "정신력보조", Editable = false, SubEdit = 1 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5C10, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "순발력보조", Editable = false, SubEdit = 1 });
@@ -800,7 +764,7 @@ namespace CczEditor
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC24F, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "허점공격", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC283, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "약점공격", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC360, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "무조건반격", Editable = true, SubEdit = 0 });
-            
+
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3AA7A, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AttackAcc, Description = "공격백발백중", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3AA92, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AttackAcc, Description = "공격명중보조", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3AAB7, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AttackAcc, Description = "공격방어보조", Editable = true, SubEdit = 0 });
@@ -872,9 +836,10 @@ namespace CczEditor
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x78277, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "은신방어", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x4EDD1, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "공격유도", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC32F, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "도구범위고정", Editable = true, SubEdit = 0 });
-            #endregion
+        }
 
-            #region Codes
+        private void CreateCodes()
+        {
             result.Codes.Add("Even", new Config.ConfigExeCodeInfo[]
             {
                 new Config.ConfigExeCodeInfo { offset = 0x665, CodeArr = "37 73 1E 3C 28 73 04 B0 64 EB 08 2C 27 6B C0 28 83 C0 64" },
@@ -908,11 +873,8 @@ namespace CczEditor
                 new Config.ConfigExeCodeInfo { offset = 0x614D2, CodeArr = "6E 73 E6 3C 50 73 0E 83 FE 32 72 22 83 EE 32 FE 44 11 21 EB E5 2C 4F 6B C0 0A 83 C0 37" },
                 new Config.ConfigExeCodeInfo { offset = 0xD2613, CodeArr = "46" },
             });
+            
 
-            #endregion
-
-            return result;
         }
-        
     }
 }

@@ -3,6 +3,7 @@
   "DisplayName": "비상조조전 1.0",
   "DirectoryPath": "C:\\Users\\yhc50\\Desktop\\Mod\\신조조전_MNEngine",
   "ExeFileName": "Ekd5.exe",
+  "UseE5Directory": false,
   "CodeOptionContainer": {
     "ItemCustomRange": false,
     "MpExtension": false,
@@ -91,6 +92,41 @@
       578144,
       578168
     ],
+    "AbilityGrades": [
+      {
+        "Name": "X",
+        "Offset": 26369
+      },
+      {
+        "Name": "S",
+        "Offset": 26377
+      },
+      {
+        "Name": "A",
+        "Offset": 26385
+      },
+      {
+        "Name": "B",
+        "Offset": 26393
+      },
+      {
+        "Name": "C",
+        "Offset": 0
+      }
+    ],
+    "ClassUpLevel1Offsets": null,
+    "ClassUpLevel2Offsets": null,
+    "MaxUnitLevelOffsets": null,
+    "MaxUnitExpOffsets": null,
+    "NormalEquipExpOffsets": null,
+    "SpecialEquipExpOffsets": null,
+    "NormalEquipMaxLevelOffsets": null,
+    "SpecialEquipMaxLevelOffsets": null,
+    "SecondEquipStartLevelOffsets": null,
+    "NewUnitExploitOffsets": null,
+    "EnemyUnitExploitOffsets": null,
+    "NormalEquipUpLevelOffsets": null,
+    "SpecialEquipUpLevelOffsets": null,
     "Force": {
       "AtkEffectOffset": 27777,
       "MoveSoundOffset": 669888,
@@ -142,7 +178,10 @@
   },
   "Save": {
     "SpecialSkillOffset": 30720,
-    "SpecialEffectOffset": 31152
+    "SpecialEffectOffset": 31152,
+    "BattleObjOffset": 0,
+    "PmapObjOffset": 0,
+    "FaceObjOffset": 0
   },
   "ItemEffects": [
     {
@@ -2879,5 +2918,6 @@
       "Description": "랜덤"
     }
   ],
+  "Codes": {},
   "FileName": "CczEditor-BS 1.0.json"
 }

@@ -32,24 +32,26 @@
             this.TitleSaveButton = new System.Windows.Forms.Button();
             this.TitleLengthText = new System.Windows.Forms.Label();
             this.TitleTextBox = new System.Windows.Forms.TextBox();
-            this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown22 = new System.Windows.Forms.NumericUpDown();
+            this.SecondEquipStartLevel = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.LevelSaveButton = new System.Windows.Forms.Button();
+            this.SpecialEquipStLevel = new System.Windows.Forms.NumericUpDown();
             this.label34 = new System.Windows.Forms.Label();
-            this.numericUpDown21 = new System.Windows.Forms.NumericUpDown();
+            this.NormalEquipStLevel = new System.Windows.Forms.NumericUpDown();
             this.label33 = new System.Windows.Forms.Label();
-            this.numericUpDown19 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown20 = new System.Windows.Forms.NumericUpDown();
+            this.EnemyUnitExploit = new System.Windows.Forms.NumericUpDown();
+            this.NewUnitExploit = new System.Windows.Forms.NumericUpDown();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
-            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown16 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown17 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown18 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
+            this.SpecialEquipMaxLevel = new System.Windows.Forms.NumericUpDown();
+            this.SpecialEquipExp = new System.Windows.Forms.NumericUpDown();
+            this.NormalEquipMaxLevel = new System.Windows.Forms.NumericUpDown();
+            this.NormalEquipExp = new System.Windows.Forms.NumericUpDown();
+            this.MaxUnitExp = new System.Windows.Forms.NumericUpDown();
+            this.MaxUnitLevel = new System.Windows.Forms.NumericUpDown();
+            this.ClassUpLevel2 = new System.Windows.Forms.NumericUpDown();
+            this.ClassUpLevel1 = new System.Windows.Forms.NumericUpDown();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -59,26 +61,27 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.AbilitySave = new System.Windows.Forms.Button();
+            this.EvenType = new System.Windows.Forms.RadioButton();
+            this.OddType = new System.Windows.Forms.RadioButton();
+            this.AbilityGradeListView = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox14.SuspendLayout();
             this.groupBox15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondEquipStartLevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialEquipStLevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NormalEquipStLevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnemyUnitExploit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NewUnitExploit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialEquipMaxLevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialEquipExp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NormalEquipMaxLevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NormalEquipExp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxUnitExp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxUnitLevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ClassUpLevel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ClassUpLevel1)).BeginInit();
             this.groupBox18.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,34 +124,27 @@
             this.TitleTextBox.TabIndex = 0;
             this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             // 
-            // groupBox16
-            // 
-            this.groupBox16.Location = new System.Drawing.Point(146, 332);
-            this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(733, 172);
-            this.groupBox16.TabIndex = 7;
-            this.groupBox16.TabStop = false;
-            this.groupBox16.Text = "보조도구 착용 가능 병종";
-            this.groupBox16.Visible = false;
-            // 
             // groupBox15
             // 
-            this.groupBox15.Controls.Add(this.numericUpDown22);
+            this.groupBox15.Controls.Add(this.SecondEquipStartLevel);
+            this.groupBox15.Controls.Add(this.label1);
+            this.groupBox15.Controls.Add(this.LevelSaveButton);
+            this.groupBox15.Controls.Add(this.SpecialEquipStLevel);
             this.groupBox15.Controls.Add(this.label34);
-            this.groupBox15.Controls.Add(this.numericUpDown21);
+            this.groupBox15.Controls.Add(this.NormalEquipStLevel);
             this.groupBox15.Controls.Add(this.label33);
-            this.groupBox15.Controls.Add(this.numericUpDown19);
-            this.groupBox15.Controls.Add(this.numericUpDown20);
+            this.groupBox15.Controls.Add(this.EnemyUnitExploit);
+            this.groupBox15.Controls.Add(this.NewUnitExploit);
             this.groupBox15.Controls.Add(this.label31);
             this.groupBox15.Controls.Add(this.label32);
-            this.groupBox15.Controls.Add(this.numericUpDown15);
-            this.groupBox15.Controls.Add(this.numericUpDown16);
-            this.groupBox15.Controls.Add(this.numericUpDown17);
-            this.groupBox15.Controls.Add(this.numericUpDown18);
-            this.groupBox15.Controls.Add(this.numericUpDown14);
-            this.groupBox15.Controls.Add(this.numericUpDown13);
-            this.groupBox15.Controls.Add(this.numericUpDown12);
-            this.groupBox15.Controls.Add(this.numericUpDown11);
+            this.groupBox15.Controls.Add(this.SpecialEquipMaxLevel);
+            this.groupBox15.Controls.Add(this.SpecialEquipExp);
+            this.groupBox15.Controls.Add(this.NormalEquipMaxLevel);
+            this.groupBox15.Controls.Add(this.NormalEquipExp);
+            this.groupBox15.Controls.Add(this.MaxUnitExp);
+            this.groupBox15.Controls.Add(this.MaxUnitLevel);
+            this.groupBox15.Controls.Add(this.ClassUpLevel2);
+            this.groupBox15.Controls.Add(this.ClassUpLevel1);
             this.groupBox15.Controls.Add(this.label29);
             this.groupBox15.Controls.Add(this.label30);
             this.groupBox15.Controls.Add(this.label28);
@@ -163,132 +159,192 @@
             this.groupBox15.TabIndex = 6;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "레벨 / 경험치 설정";
-            this.groupBox15.Visible = false;
             // 
-            // numericUpDown22
+            // SecondEquipStartLevel
             // 
-            this.numericUpDown22.Location = new System.Drawing.Point(428, 188);
-            this.numericUpDown22.Name = "numericUpDown22";
-            this.numericUpDown22.Size = new System.Drawing.Size(68, 21);
-            this.numericUpDown22.TabIndex = 23;
+            this.SecondEquipStartLevel.Location = new System.Drawing.Point(572, 125);
+            this.SecondEquipStartLevel.Name = "SecondEquipStartLevel";
+            this.SecondEquipStartLevel.ReadOnly = true;
+            this.SecondEquipStartLevel.Size = new System.Drawing.Size(68, 21);
+            this.SecondEquipStartLevel.TabIndex = 26;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(444, 131);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(113, 12);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "중급 장비 등장 레벨";
+            // 
+            // LevelSaveButton
+            // 
+            this.LevelSaveButton.Location = new System.Drawing.Point(639, 195);
+            this.LevelSaveButton.Name = "LevelSaveButton";
+            this.LevelSaveButton.Size = new System.Drawing.Size(75, 23);
+            this.LevelSaveButton.TabIndex = 24;
+            this.LevelSaveButton.Text = "저장";
+            this.LevelSaveButton.UseVisualStyleBackColor = true;
+            this.LevelSaveButton.Click += new System.EventHandler(this.LevelSaveButton_Click);
+            // 
+            // SpecialEquipStLevel
+            // 
+            this.SpecialEquipStLevel.Location = new System.Drawing.Point(356, 159);
+            this.SpecialEquipStLevel.Name = "SpecialEquipStLevel";
+            this.SpecialEquipStLevel.Size = new System.Drawing.Size(68, 21);
+            this.SpecialEquipStLevel.TabIndex = 23;
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(300, 190);
+            this.label34.Location = new System.Drawing.Point(228, 165);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(113, 12);
             this.label34.TabIndex = 22;
             this.label34.Text = "특수 장비 기준 레벨";
             // 
-            // numericUpDown21
+            // NormalEquipStLevel
             // 
-            this.numericUpDown21.Location = new System.Drawing.Point(428, 92);
-            this.numericUpDown21.Name = "numericUpDown21";
-            this.numericUpDown21.Size = new System.Drawing.Size(68, 21);
-            this.numericUpDown21.TabIndex = 21;
+            this.NormalEquipStLevel.Location = new System.Drawing.Point(356, 125);
+            this.NormalEquipStLevel.Name = "NormalEquipStLevel";
+            this.NormalEquipStLevel.Size = new System.Drawing.Size(68, 21);
+            this.NormalEquipStLevel.TabIndex = 21;
+            this.NormalEquipStLevel.ValueChanged += new System.EventHandler(this.NormalEquipStLevel_ValueChanged);
             // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(300, 94);
+            this.label33.Location = new System.Drawing.Point(228, 131);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(113, 12);
             this.label33.TabIndex = 20;
             this.label33.Text = "일반 장비 기준 레벨";
             // 
-            // numericUpDown19
+            // EnemyUnitExploit
             // 
-            this.numericUpDown19.Location = new System.Drawing.Point(165, 192);
-            this.numericUpDown19.Name = "numericUpDown19";
-            this.numericUpDown19.Size = new System.Drawing.Size(68, 21);
-            this.numericUpDown19.TabIndex = 19;
+            this.EnemyUnitExploit.Location = new System.Drawing.Point(356, 195);
+            this.EnemyUnitExploit.Name = "EnemyUnitExploit";
+            this.EnemyUnitExploit.Size = new System.Drawing.Size(68, 21);
+            this.EnemyUnitExploit.TabIndex = 19;
             // 
-            // numericUpDown20
+            // NewUnitExploit
             // 
-            this.numericUpDown20.Location = new System.Drawing.Point(165, 161);
-            this.numericUpDown20.Name = "numericUpDown20";
-            this.numericUpDown20.Size = new System.Drawing.Size(68, 21);
-            this.numericUpDown20.TabIndex = 18;
+            this.NewUnitExploit.Location = new System.Drawing.Point(147, 195);
+            this.NewUnitExploit.Name = "NewUnitExploit";
+            this.NewUnitExploit.Size = new System.Drawing.Size(68, 21);
+            this.NewUnitExploit.TabIndex = 18;
             // 
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(47, 194);
+            this.label31.Location = new System.Drawing.Point(256, 200);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(97, 12);
+            this.label31.Size = new System.Drawing.Size(85, 12);
             this.label31.TabIndex = 17;
-            this.label31.Text = "적군 보너스 공훈";
+            this.label31.Text = "적군 무장 공훈";
             // 
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(19, 163);
+            this.label32.Location = new System.Drawing.Point(47, 200);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(125, 12);
+            this.label32.Size = new System.Drawing.Size(85, 12);
             this.label32.TabIndex = 16;
-            this.label32.Text = "신규 아군 보너스 공훈";
+            this.label32.Text = "신규 무장 공훈";
             // 
-            // numericUpDown15
+            // SpecialEquipMaxLevel
             // 
-            this.numericUpDown15.Location = new System.Drawing.Point(428, 154);
-            this.numericUpDown15.Name = "numericUpDown15";
-            this.numericUpDown15.Size = new System.Drawing.Size(68, 21);
-            this.numericUpDown15.TabIndex = 15;
+            this.SpecialEquipMaxLevel.Location = new System.Drawing.Point(147, 158);
+            this.SpecialEquipMaxLevel.Name = "SpecialEquipMaxLevel";
+            this.SpecialEquipMaxLevel.Size = new System.Drawing.Size(68, 21);
+            this.SpecialEquipMaxLevel.TabIndex = 15;
             // 
-            // numericUpDown16
+            // SpecialEquipExp
             // 
-            this.numericUpDown16.Location = new System.Drawing.Point(428, 123);
-            this.numericUpDown16.Name = "numericUpDown16";
-            this.numericUpDown16.Size = new System.Drawing.Size(68, 21);
-            this.numericUpDown16.TabIndex = 14;
+            this.SpecialEquipExp.Location = new System.Drawing.Point(356, 91);
+            this.SpecialEquipExp.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.SpecialEquipExp.Name = "SpecialEquipExp";
+            this.SpecialEquipExp.Size = new System.Drawing.Size(68, 21);
+            this.SpecialEquipExp.TabIndex = 14;
             // 
-            // numericUpDown17
+            // NormalEquipMaxLevel
             // 
-            this.numericUpDown17.Location = new System.Drawing.Point(428, 60);
-            this.numericUpDown17.Name = "numericUpDown17";
-            this.numericUpDown17.Size = new System.Drawing.Size(68, 21);
-            this.numericUpDown17.TabIndex = 13;
+            this.NormalEquipMaxLevel.Location = new System.Drawing.Point(147, 125);
+            this.NormalEquipMaxLevel.Name = "NormalEquipMaxLevel";
+            this.NormalEquipMaxLevel.Size = new System.Drawing.Size(68, 21);
+            this.NormalEquipMaxLevel.TabIndex = 13;
+            this.NormalEquipMaxLevel.ValueChanged += new System.EventHandler(this.NormalEquipMaxLevel_ValueChanged);
             // 
-            // numericUpDown18
+            // NormalEquipExp
             // 
-            this.numericUpDown18.Location = new System.Drawing.Point(428, 29);
-            this.numericUpDown18.Name = "numericUpDown18";
-            this.numericUpDown18.Size = new System.Drawing.Size(68, 21);
-            this.numericUpDown18.TabIndex = 12;
+            this.NormalEquipExp.Location = new System.Drawing.Point(147, 91);
+            this.NormalEquipExp.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.NormalEquipExp.Name = "NormalEquipExp";
+            this.NormalEquipExp.Size = new System.Drawing.Size(68, 21);
+            this.NormalEquipExp.TabIndex = 12;
             // 
-            // numericUpDown14
+            // MaxUnitExp
             // 
-            this.numericUpDown14.Location = new System.Drawing.Point(165, 123);
-            this.numericUpDown14.Name = "numericUpDown14";
-            this.numericUpDown14.Size = new System.Drawing.Size(68, 21);
-            this.numericUpDown14.TabIndex = 11;
+            this.MaxUnitExp.Location = new System.Drawing.Point(356, 58);
+            this.MaxUnitExp.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.MaxUnitExp.Name = "MaxUnitExp";
+            this.MaxUnitExp.Size = new System.Drawing.Size(68, 21);
+            this.MaxUnitExp.TabIndex = 11;
             // 
-            // numericUpDown13
+            // MaxUnitLevel
             // 
-            this.numericUpDown13.Location = new System.Drawing.Point(165, 92);
-            this.numericUpDown13.Name = "numericUpDown13";
-            this.numericUpDown13.Size = new System.Drawing.Size(68, 21);
-            this.numericUpDown13.TabIndex = 10;
+            this.MaxUnitLevel.Location = new System.Drawing.Point(147, 58);
+            this.MaxUnitLevel.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            this.MaxUnitLevel.Name = "MaxUnitLevel";
+            this.MaxUnitLevel.Size = new System.Drawing.Size(68, 21);
+            this.MaxUnitLevel.TabIndex = 10;
             // 
-            // numericUpDown12
+            // ClassUpLevel2
             // 
-            this.numericUpDown12.Location = new System.Drawing.Point(165, 60);
-            this.numericUpDown12.Name = "numericUpDown12";
-            this.numericUpDown12.Size = new System.Drawing.Size(68, 21);
-            this.numericUpDown12.TabIndex = 9;
+            this.ClassUpLevel2.Location = new System.Drawing.Point(261, 26);
+            this.ClassUpLevel2.Maximum = new decimal(new int[] {
+            126,
+            0,
+            0,
+            0});
+            this.ClassUpLevel2.Name = "ClassUpLevel2";
+            this.ClassUpLevel2.ReadOnly = true;
+            this.ClassUpLevel2.Size = new System.Drawing.Size(68, 21);
+            this.ClassUpLevel2.TabIndex = 9;
             // 
-            // numericUpDown11
+            // ClassUpLevel1
             // 
-            this.numericUpDown11.Location = new System.Drawing.Point(165, 29);
-            this.numericUpDown11.Name = "numericUpDown11";
-            this.numericUpDown11.Size = new System.Drawing.Size(68, 21);
-            this.numericUpDown11.TabIndex = 8;
+            this.ClassUpLevel1.Location = new System.Drawing.Point(147, 26);
+            this.ClassUpLevel1.Maximum = new decimal(new int[] {
+            63,
+            0,
+            0,
+            0});
+            this.ClassUpLevel1.Name = "ClassUpLevel1";
+            this.ClassUpLevel1.Size = new System.Drawing.Size(68, 21);
+            this.ClassUpLevel1.TabIndex = 8;
+            this.ClassUpLevel1.ValueChanged += new System.EventHandler(this.ClassUpLevel1_ValueChanged);
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(300, 156);
+            this.label29.Location = new System.Drawing.Point(19, 165);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(113, 12);
             this.label29.TabIndex = 7;
@@ -297,7 +353,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(316, 125);
+            this.label30.Location = new System.Drawing.Point(244, 98);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(97, 12);
             this.label30.TabIndex = 6;
@@ -306,7 +362,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(300, 62);
+            this.label28.Location = new System.Drawing.Point(19, 132);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(113, 12);
             this.label28.TabIndex = 5;
@@ -315,7 +371,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(316, 31);
+            this.label27.Location = new System.Drawing.Point(35, 98);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(97, 12);
             this.label27.TabIndex = 4;
@@ -324,7 +380,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(69, 125);
+            this.label26.Location = new System.Drawing.Point(272, 64);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(69, 12);
             this.label26.TabIndex = 3;
@@ -333,7 +389,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(81, 94);
+            this.label25.Location = new System.Drawing.Point(81, 64);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(57, 12);
             this.label25.TabIndex = 2;
@@ -342,7 +398,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(115, 62);
+            this.label24.Location = new System.Drawing.Point(228, 31);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(23, 12);
             this.label24.TabIndex = 1;
@@ -359,68 +415,71 @@
             // 
             // groupBox18
             // 
-            this.groupBox18.Controls.Add(this.button2);
-            this.groupBox18.Controls.Add(this.radioButton3);
-            this.groupBox18.Controls.Add(this.radioButton4);
-            this.groupBox18.Controls.Add(this.listView1);
+            this.groupBox18.Controls.Add(this.AbilitySave);
+            this.groupBox18.Controls.Add(this.EvenType);
+            this.groupBox18.Controls.Add(this.OddType);
+            this.groupBox18.Controls.Add(this.AbilityGradeListView);
             this.groupBox18.Location = new System.Drawing.Point(13, 96);
             this.groupBox18.Name = "groupBox18";
             this.groupBox18.Size = new System.Drawing.Size(127, 330);
             this.groupBox18.TabIndex = 5;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "열전 특화 설정";
-            this.groupBox18.Visible = false;
             // 
-            // button2
+            // AbilitySave
             // 
-            this.button2.Location = new System.Drawing.Point(6, 297);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "저장";
-            this.button2.UseVisualStyleBackColor = true;
+            this.AbilitySave.Location = new System.Drawing.Point(6, 297);
+            this.AbilitySave.Name = "AbilitySave";
+            this.AbilitySave.Size = new System.Drawing.Size(112, 23);
+            this.AbilitySave.TabIndex = 1;
+            this.AbilitySave.Text = "저장";
+            this.AbilitySave.UseVisualStyleBackColor = true;
+            this.AbilitySave.Click += new System.EventHandler(this.AbilitySave_Click);
             // 
-            // radioButton3
+            // EvenType
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 275);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(75, 16);
-            this.radioButton3.TabIndex = 10;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "짝수 열전";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.EvenType.AutoSize = true;
+            this.EvenType.Location = new System.Drawing.Point(6, 275);
+            this.EvenType.Name = "EvenType";
+            this.EvenType.Size = new System.Drawing.Size(75, 16);
+            this.EvenType.TabIndex = 10;
+            this.EvenType.TabStop = true;
+            this.EvenType.Text = "짝수 열전";
+            this.EvenType.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // OddType
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(6, 253);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(75, 16);
-            this.radioButton4.TabIndex = 1;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "홀수 열전";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.OddType.AutoSize = true;
+            this.OddType.Location = new System.Drawing.Point(6, 253);
+            this.OddType.Name = "OddType";
+            this.OddType.Size = new System.Drawing.Size(75, 16);
+            this.OddType.TabIndex = 1;
+            this.OddType.TabStop = true;
+            this.OddType.Text = "홀수 열전";
+            this.OddType.UseVisualStyleBackColor = true;
+            this.OddType.CheckedChanged += new System.EventHandler(this.OddType_CheckedChanged);
             // 
-            // listView1
+            // AbilityGradeListView
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.AbilityGradeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3,
             this.columnHeader4});
-            this.listView1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView1.LabelEdit = true;
-            this.listView1.LabelWrap = false;
-            this.listView1.Location = new System.Drawing.Point(6, 20);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.ShowGroups = false;
-            this.listView1.Size = new System.Drawing.Size(112, 227);
-            this.listView1.TabIndex = 9;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.AbilityGradeListView.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.AbilityGradeListView.FullRowSelect = true;
+            this.AbilityGradeListView.GridLines = true;
+            this.AbilityGradeListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.AbilityGradeListView.LabelEdit = true;
+            this.AbilityGradeListView.LabelWrap = false;
+            this.AbilityGradeListView.Location = new System.Drawing.Point(6, 20);
+            this.AbilityGradeListView.MultiSelect = false;
+            this.AbilityGradeListView.Name = "AbilityGradeListView";
+            this.AbilityGradeListView.ShowGroups = false;
+            this.AbilityGradeListView.Size = new System.Drawing.Size(112, 227);
+            this.AbilityGradeListView.TabIndex = 9;
+            this.AbilityGradeListView.UseCompatibleStateImageBehavior = false;
+            this.AbilityGradeListView.View = System.Windows.Forms.View.Details;
+            this.AbilityGradeListView.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.AbilityGradeListView_AfterLabelEdit);
+            this.AbilityGradeListView.ItemActivate += new System.EventHandler(this.AbilityGradeListView_ItemActivate);
             // 
             // columnHeader3
             // 
@@ -436,7 +495,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox16);
             this.Controls.Add(this.groupBox15);
             this.Controls.Add(this.groupBox18);
             this.Controls.Add(this.groupBox14);
@@ -447,18 +505,19 @@
             this.groupBox14.PerformLayout();
             this.groupBox15.ResumeLayout(false);
             this.groupBox15.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondEquipStartLevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialEquipStLevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NormalEquipStLevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnemyUnitExploit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NewUnitExploit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialEquipMaxLevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpecialEquipExp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NormalEquipMaxLevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NormalEquipExp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxUnitExp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxUnitLevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ClassUpLevel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ClassUpLevel1)).EndInit();
             this.groupBox18.ResumeLayout(false);
             this.groupBox18.PerformLayout();
             this.ResumeLayout(false);
@@ -471,24 +530,23 @@
         private System.Windows.Forms.Button TitleSaveButton;
         private System.Windows.Forms.Label TitleLengthText;
         private System.Windows.Forms.TextBox TitleTextBox;
-        private System.Windows.Forms.GroupBox groupBox16;
         private System.Windows.Forms.GroupBox groupBox15;
-        private System.Windows.Forms.NumericUpDown numericUpDown22;
+        private System.Windows.Forms.NumericUpDown SpecialEquipStLevel;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.NumericUpDown numericUpDown21;
+        private System.Windows.Forms.NumericUpDown NormalEquipStLevel;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.NumericUpDown numericUpDown19;
-        private System.Windows.Forms.NumericUpDown numericUpDown20;
+        private System.Windows.Forms.NumericUpDown EnemyUnitExploit;
+        private System.Windows.Forms.NumericUpDown NewUnitExploit;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.NumericUpDown numericUpDown15;
-        private System.Windows.Forms.NumericUpDown numericUpDown16;
-        private System.Windows.Forms.NumericUpDown numericUpDown17;
-        private System.Windows.Forms.NumericUpDown numericUpDown18;
-        private System.Windows.Forms.NumericUpDown numericUpDown14;
-        private System.Windows.Forms.NumericUpDown numericUpDown13;
-        private System.Windows.Forms.NumericUpDown numericUpDown12;
-        private System.Windows.Forms.NumericUpDown numericUpDown11;
+        private System.Windows.Forms.NumericUpDown SpecialEquipMaxLevel;
+        private System.Windows.Forms.NumericUpDown SpecialEquipExp;
+        private System.Windows.Forms.NumericUpDown NormalEquipMaxLevel;
+        private System.Windows.Forms.NumericUpDown NormalEquipExp;
+        private System.Windows.Forms.NumericUpDown MaxUnitExp;
+        private System.Windows.Forms.NumericUpDown MaxUnitLevel;
+        private System.Windows.Forms.NumericUpDown ClassUpLevel2;
+        private System.Windows.Forms.NumericUpDown ClassUpLevel1;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label28;
@@ -498,11 +556,14 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.GroupBox groupBox18;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Button AbilitySave;
+        private System.Windows.Forms.RadioButton EvenType;
+        private System.Windows.Forms.RadioButton OddType;
+        private System.Windows.Forms.ListView AbilityGradeListView;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Button LevelSaveButton;
+        private System.Windows.Forms.NumericUpDown SecondEquipStartLevel;
+        private System.Windows.Forms.Label label1;
     }
 }
