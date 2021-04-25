@@ -147,6 +147,8 @@ namespace CczEditor
             {
                 var config = Config.Read(configFileName);
                 SystemConfig.Inst.CurrentConfig = configFileName;
+                SystemConfig.Write(SystemConfig.DefaultSystemConfigFileName);
+                Program.CurrentConfig = config;
                 SetControlsVisible(false, false, false);
                 pMainContainer.Controls.Clear();
                 Text = Program.TitleNameCurrent = string.Format("{0} - {1}", Program.TITLE_NAME_ORIGINAL, Program.CurrentConfig.DisplayName);
@@ -264,7 +266,7 @@ namespace CczEditor
 			tsmiMainMenu_Data_Units_Click(tsmiMainMenu_Data_Units, new EventArgs());
 		}
 
-        private void LoadConfigurationTypeNames()
+        public void LoadConfigurationTypeNames()
         {
             tscbMainMenu_Config_Selector.Items.Clear();
             ConfigList = ConfigManager.GetConfigs();
@@ -304,6 +306,17 @@ namespace CczEditor
         private void 프로젝트편집ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowEditor(new Controls.DataControls.ProjectController());
+        }
+
+        private void 테스트용ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowEditor(new Controls.ConfigControls.ConfigPreset());
+        }
+
+        private void 코드입력기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowEditor(new Controls.DataControls.CodeApplierControl());
+
         }
     }
 }

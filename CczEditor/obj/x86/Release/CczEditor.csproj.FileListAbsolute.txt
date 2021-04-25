@@ -42,3 +42,7 @@ C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\bin\x86\Release\CczEditor.applic
 C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.exe.manifest
 C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.application
 C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.Controls.DataControls.ProjectController.resources
+C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.Controls.ConfigControls.ConfigPreset.resources
+C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.Controls.ConfigControls.CreatePreset.resources
+C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.Controls.DataControls.CodeApplierControl.resources
+C:\Users\yhc50\Documents\CczEditor_BS\CczEditor\obj\x86\Release\CczEditor.csprojResolveAssemblyReference.cache

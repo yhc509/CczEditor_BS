@@ -93,6 +93,10 @@ namespace CczEditor
             public bool UseVoice;
 
             public bool UseCost;
+
+            public bool UseMagicCondition;
+
+            public bool UseMeffAfterMcallExtension;
         }
 
         [Serializable]
@@ -248,48 +252,37 @@ namespace CczEditor
         [Serializable]
         public class ConfigExeMagicInfos
         {
-            public int MeffStartIndex;
-            public int MeffEndIndex;
+            public int[] UseMeffIndexes;
             public int MeffOffset;
 
-            public int McallStartIndex;
-            public int McallEndIndex;
+            public int[] UseMcallIndexes;
             public int McallOffset;
 
-            public int MagicTypeStartIndex;
-            public int MagicTypeEndIndex;
+            public int[] UseMagicTypeIndexes;
             public int MagicTypeOffset;
 
-            public int DamageTypeStartIndex;
-            public int DamageTypeEndIndex;
+            public int[] UseDamageTypeIndexes;
             public int DamageTypeOffset;
 
-            public int HealTypeStartIndex;
-            public int HealTypeEndIndex;
+            public int[] UseHealTypeIndexes;
             public int HealTypeOffset;
 
-            public int AiTypeStartIndex;
-            public int AiTypeEndIndex;
+            public int[] UseAiTypeIndexes;
             public int AiTypeOffset;
 
-            public int UseConditionStartIndex;
-            public int UseConditionEndIndex;
+            public int[] UseConditionIndexes;
             public int UseConditionOffset;
 
-            public int DamageValueStartIndex;
-            public int DamageValueEndIndex;
+            public int[] UseDamageValueIndexes;
             public int DamageValueOffset;
 
-            public int AccRateStartIndex;
-            public int AccRateEndIndex;
+            public int[] UseAccRateIndexes;
             public int AccRateOffset;
 
-            public int LearTypeStartIndex;
-            public int LearTypeEndIndex;
+            public int[] UseLearnTypeIndexes;
             public int LearTypeOffset;
 
-            public int ReflectTypeStartIndex;
-            public int ReflectTypeEndIndex;
+            public int[] UseReflectIndexes;
             public int ReflectTypeOffset;
         }
 

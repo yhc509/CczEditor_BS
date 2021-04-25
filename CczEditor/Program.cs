@@ -62,7 +62,7 @@ namespace CczEditor
             get { return EncoderS; }
 		}
         
-        public static string TitleNameCurrent = "CczEditor 4.0.2";
+        public static string TitleNameCurrent = "CczEditor 4.0.5";
 
 		#region
         

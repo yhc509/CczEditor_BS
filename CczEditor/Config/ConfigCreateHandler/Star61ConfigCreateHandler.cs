@@ -2,39 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace CczEditor.Config
+namespace CczEditor
 {
-    public class ConfigCreateHandler
+    public class Star61ConfigCreateHandler : ConfigCreateHandler
     {
-        Config result;
-        public ConfigCreateHandler()
+        protected override void CreateBaseInfo()
         {
-            result = new Config();
-        }
-
-        public Config Execute()
-        {
-            result.VersionName = "BS 1.0";
-            result.DisplayName = "비상조조전 1.0";
+            result.VersionName = "Star 6.1";
+            if(result.DisplayName == null) result.DisplayName = "신조조전 6.1";
             result.DirectoryPath = string.Empty;
             result.ExeFileName = "Ekd5.exe";
             result.UseE5Directory = false;
+        }
 
-            #region CodeOption Setting
+        protected override void CreateCodeOptionSettings()
+        {
             result.CodeOptionContainer.ItemCustomRange = false;
             result.CodeOptionContainer.MpExtension = false;
             result.CodeOptionContainer.AIExtension = true;
             result.CodeOptionContainer.MagicLearnExtension = true;
             result.CodeOptionContainer.SingularAttribute = false;
-            result.CodeOptionContainer.MagicReflect = true;
-            result.CodeOptionContainer.UseLargeFace = true;
-            result.CodeOptionContainer.UseCutin = true;
-            result.CodeOptionContainer.UseVoice = true;
-            result.CodeOptionContainer.UseCost = true;
-            #endregion
+            result.CodeOptionContainer.MagicReflect = false;
+            result.CodeOptionContainer.UseLargeFace = false;
+            result.CodeOptionContainer.UseCutin = false;
+            result.CodeOptionContainer.UseVoice = false;
+            result.CodeOptionContainer.UseCost = false;
+            result.CodeOptionContainer.UseMagicCondition = true;
+            result.CodeOptionContainer.UseMeffAfterMcallExtension = false;
+        }
 
-            #region Data Setting
+        protected override void CreateDataSettings()
+        {
             result.Data.UnitCount = 0x400;
             result.Data.UnitOffset = 0x18C;
             result.Data.UnitLength = 0x20;
@@ -59,9 +62,10 @@ namespace CczEditor.Config
 
             result.Data.StarItemCount = 0x9A;
             result.Data.StarItemOffset = 0x00;
-            #endregion
+        }
 
-            #region Imsg Setting
+        protected override void CreateImsgSettings()
+        {
             result.Imsg.ItemOffset = 0x00;
             result.Imsg.MagicOffset = 0x7F58;
             result.Imsg.StageCount = 0x63;
@@ -73,9 +77,10 @@ namespace CczEditor.Config
             result.Imsg.CriticalOffset = 0x222E0;
             result.Imsg.CriticalCount = 0x14;
             result.Imsg.StaffOffset = 0x27100;
-            #endregion
+        }
 
-            #region Item Setting
+        protected override void CreateItemSettings()
+        {
             result.Items.WeaponIndexMin = 0;
             result.Items.WeaponIndexMax = 19;
             result.Items.ArmorIndexMin = 20;
@@ -88,18 +93,15 @@ namespace CczEditor.Config
             result.Items.MineControl = 86;
             result.Items.Mine = 87;
             result.Items.Bomb = 88;
-            #endregion
+        }
 
-            #region Exe Setting
+        protected override void CreateExeSettings()
+        {
             result.Exe.BattleObjTripleTypeCount = 0x20;
             result.Exe.UnitCharacterOffset = 0xE2800;
             result.Exe.UnitBattleObjOffset = 0xD2800;
             result.Exe.UnitPmapObjOffset = 0xE1000;
-
-            result.Exe.UnitCutinOffset = 0xF7F50;
-            result.Exe.UnitCostOffset = 0xF9330;
-            result.Exe.UnitVoiceOffset = 0xF80C0;
-
+            
             result.Exe.CriticalOffset = 0x89C30;
             result.Exe.CriticalCount = 0x14;
             result.Exe.TreasureCountOffset = 0x6FF8C;
@@ -118,71 +120,71 @@ namespace CczEditor.Config
             result.Exe.StateEffectAccOffset = 0xA0E88;
             result.Exe.TitleOffsets = new int[]
             {
-                0x8A120,
-                0x8B2D8,
-                0x8D248,
-                0x8D260,
-                0x8D278
+            0x8A120,
+            0x8B2D8,
+            0x8D248,
+            0x8D260,
+            0x8D278
             };
             result.Exe.AbilityGrades = new Config.ConfigExeAbilityGradeInfos[]
             {
-                new Config.ConfigExeAbilityGradeInfos { Name = "X", Offset = 0x6701 },
-                new Config.ConfigExeAbilityGradeInfos { Name = "S", Offset = 0x6709 },
-                new Config.ConfigExeAbilityGradeInfos { Name = "A", Offset = 0x6711 },
-                new Config.ConfigExeAbilityGradeInfos { Name = "B", Offset = 0x6719 },
-                new Config.ConfigExeAbilityGradeInfos { Name = "C", Offset = 0x0 },
+            new Config.ConfigExeAbilityGradeInfos { Name = "X", Offset = 0x6701 },
+            new Config.ConfigExeAbilityGradeInfos { Name = "S", Offset = 0x6709 },
+            new Config.ConfigExeAbilityGradeInfos { Name = "A", Offset = 0x6711 },
+            new Config.ConfigExeAbilityGradeInfos { Name = "B", Offset = 0x6719 },
+            new Config.ConfigExeAbilityGradeInfos { Name = "C", Offset = 0x0 },
             };
             result.Exe.ClassUpLevel1Offsets = new int[]
             {
-                0x7E67, 0xB7BD, 0x1C7E3, 0x41D03, 0x41D39, 0x680B8
+            0x7E67, 0xB7BD, 0x1C7E3, 0x41D03, 0x41D39, 0x680B8
             };
             result.Exe.ClassUpLevel2Offsets = new int[]
             {
-                0xB7AE, 0x41D21
+            0xB7AE, 0x41D21
             };
             result.Exe.MaxUnitLevelOffsets = new int[]
             {
-                0x68F1, 0x7CD3, 0x116C8, 0x117CE, 0x1B98E, 0xB7D6
+            0x68F1, 0x7CD3, 0x116C8, 0x117CE, 0x1B98E, 0xB7D6
             };
             result.Exe.MaxUnitExpOffsets = new int[]
             {
-                0x7CD6, 0x4F45A, 0x4FF33, 0x4FF48, 0x5001F, 0x5BAA3, 0x78958
+            0x7CD6, 0x4F45A, 0x4FF33, 0x4FF48, 0x5001F, 0x5BAA3, 0x78958
             };
             result.Exe.NormalEquipExpOffsets = new int[]
             {
-                0x771E, 0x1F61B, 0x1F648, 0x1F66B, 0x4F5A2, 0x4F609
+            0x771E, 0x1F61B, 0x1F648, 0x1F66B, 0x4F5A2, 0x4F609
             };
             result.Exe.SpecialEquipExpOffsets = new int[]
             {
-                0x7719, 0x1F616, 0x1F643, 0x1F666, 0x4F59D, 0x4F604
+            0x7719, 0x1F616, 0x1F643, 0x1F666, 0x4F59D, 0x4F604
             };
             result.Exe.NormalEquipMaxLevelOffsets = new int[]
             {
-                0x71D9, 0x7409, 0x744C, 0x74E6, 0x772B, 0xA138F
+            0x71D9, 0x7409, 0x744C, 0x74E6, 0x772B, 0xA138F
             };
             result.Exe.SpecialEquipMaxLevelOffsets = new int[]
             {
-                0x71AC, 0x7727, 0xA1378, 0xA138B
+            0x71AC, 0x7727, 0xA1378, 0xA138B
             };
             result.Exe.SecondEquipStartLevelOffsets = new int[]
             {
-                0x71A9, 0x73DE
+            0x71A9, 0x73DE
             };
             result.Exe.NewUnitExploitOffsets = new int[]
             {
-                0xB788, 0x4C18E
+            0xB788, 0x4C18E
             };
             result.Exe.EnemyUnitExploitOffsets = new int[]
             {
-                0x2A13C
+            0x2A13C
             };
             result.Exe.NormalEquipUpLevelOffsets = new int[]
             {
-                0x73A3
+            0x73A3
             };
             result.Exe.SpecialEquipUpLevelOffsets = new int[]
             {
-                0x7392
+            0x7392
             };
 
             result.Exe.Force.AtkEffectOffset = 0x6C81;
@@ -197,60 +199,106 @@ namespace CczEditor.Config
             result.Exe.Force.SynastryOffset = 0xA3280;
             result.Exe.Force.AiTypeOffset = 0x4D0CC;
 
-            result.Exe.Magic.MeffStartIndex = 0x00;
-            result.Exe.Magic.MeffEndIndex = 0x49;
+            result.Exe.Magic.UseMeffIndexes = new int[] {
+                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+                0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+                0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F,
+                0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
+                0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49
+            };
             result.Exe.Magic.MeffOffset = 0x858BE;
 
-            result.Exe.Magic.McallStartIndex = 0x03;
-            result.Exe.Magic.McallEndIndex = 0x43;
+            result.Exe.Magic.UseMcallIndexes = new int[] {
+                0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+                0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+                0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F,
+                0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
+                0x40, 0x41, 0x42, 0x43
+            };
             result.Exe.Magic.McallOffset = 0x20BBE;
 
-            result.Exe.Magic.MagicTypeStartIndex = 0x00;
-            result.Exe.Magic.MagicTypeEndIndex = 0x49;
+            result.Exe.Magic.UseMagicTypeIndexes = new int[] {
+                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+                0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+                0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F,
+                0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
+                0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49
+            };
             result.Exe.Magic.MagicTypeOffset = 0x24E53;
 
-            result.Exe.Magic.DamageTypeStartIndex = 0x00;
-            result.Exe.Magic.DamageTypeEndIndex = 0x49;
+            result.Exe.Magic.UseDamageTypeIndexes = new int[] {
+                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+                0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+                0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F,
+                0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
+                0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49
+            };
             result.Exe.Magic.DamageTypeOffset = 0x48FC3;
 
-            result.Exe.Magic.HealTypeStartIndex = 0x26;
-            result.Exe.Magic.HealTypeEndIndex = 0x43;
+            result.Exe.Magic.UseHealTypeIndexes = new int[] {
+                0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F,
+                0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
+                0x40, 0x41, 0x42, 0x43
+            };
             result.Exe.Magic.HealTypeOffset = 0x3BB14;
 
-            result.Exe.Magic.AiTypeStartIndex = 0x00;
-            result.Exe.Magic.AiTypeEndIndex = 0x48;
+            result.Exe.Magic.UseAiTypeIndexes = new int[] {
+                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+                0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+                0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F,
+                0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
+                0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48
+            };
             result.Exe.Magic.AiTypeOffset = 0x39580;
 
-            result.Exe.Magic.UseConditionStartIndex = 0x00;
-            result.Exe.Magic.UseConditionEndIndex = 0x49;
+            result.Exe.Magic.UseConditionIndexes = new int[] {
+                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+                0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+                0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F,
+                0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
+                0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49
+            };
             result.Exe.Magic.UseConditionOffset = 0x1F47C;
 
-            result.Exe.Magic.DamageValueStartIndex = 0x00;
-            result.Exe.Magic.DamageValueEndIndex = 0x48;
+            result.Exe.Magic.UseDamageValueIndexes = new int[] {
+                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+                0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+                0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F,
+                0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
+                0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48
+            };
             result.Exe.Magic.DamageValueOffset = 0x3B71E;
 
-            result.Exe.Magic.AccRateStartIndex = 0x00;
-            result.Exe.Magic.AccRateEndIndex = 0x49;
+            result.Exe.Magic.UseAccRateIndexes = new int[] {
+                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+                0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+                0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F,
+                0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
+                0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49
+            };
             result.Exe.Magic.AccRateOffset = 0x3AE07;
 
-            result.Exe.Magic.LearTypeStartIndex = 0x00;
-            result.Exe.Magic.LearTypeEndIndex = 0x49;
+            result.Exe.Magic.UseLearnTypeIndexes = new int[] {
+                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+                0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+                0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F,
+                0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
+                0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49
+            };
             result.Exe.Magic.LearTypeOffset = 0x65208;
+        }
 
-            result.Exe.Magic.ReflectTypeStartIndex = 0x00;
-            result.Exe.Magic.ReflectTypeEndIndex = 0x49;
-            result.Exe.Magic.ReflectTypeOffset = 0xC465;
-            #endregion
-
-            #region Save Setting
+        protected override void CreateSaveSettings()
+        {
             result.Save.SpecialSkillOffset = 0x7800;
             result.Save.SpecialEffectOffset = 0x79B0;
             result.Save.BattleObjOffset = 0x00;
             result.Save.FaceObjOffset = 0xE000;
             result.Save.PmapObjOffset = 0xE800;
-            #endregion
+        }
 
-            #region ItemEffName Setting
+        protected override void CreateItemEffectNames()
+        {
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 0, Length = 4, Offset = 0x8AC70 });
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 1, Length = 4, Offset = 0x8AC70 });
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 2, Length = 4, Offset = 0x8AC75 });
@@ -379,9 +427,11 @@ namespace CczEditor.Config
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 86, Length = 8, Offset = 0x8AD45 });
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 87, Length = 8, Offset = 0x8AD4E });
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 88, Length = 6, Offset = 0x8AD4E });
-            #endregion
 
-            #region ForceName Setting
+        }
+
+        protected override void CreateForceNames()
+        {
             result.ForceNames.Add(new Config.ConfigForceNameInfos { Index = 0, Length = 8, Offset = 0xD18D0 });
             result.ForceNames.Add(new Config.ConfigForceNameInfos { Index = 1, Length = 8, Offset = 0xD18D9 });
             result.ForceNames.Add(new Config.ConfigForceNameInfos { Index = 2, Length = 8, Offset = 0xD18E2 });
@@ -469,12 +519,9 @@ namespace CczEditor.Config
             result.ForceNames.Add(new Config.ConfigForceNameInfos { Index = 77, Length = 8, Offset = 0xD1B85 });
             result.ForceNames.Add(new Config.ConfigForceNameInfos { Index = 78, Length = 8, Offset = 0xD1B8E });
             result.ForceNames.Add(new Config.ConfigForceNameInfos { Index = 79, Length = 8, Offset = 0xD1B97 });
-            #endregion
-                                                            
-            return result;
         }
 
-        private void CreateForceCategoryName()
+        protected override void CreateForceCategoryNames()
         {
             result.ForceCategoryNames.Add(new Config.ConfigForceCategoryNameInfos { Index = 0, Length = 8, Offset = 0x8B010 });
             result.ForceCategoryNames.Add(new Config.ConfigForceCategoryNameInfos { Index = 1, Length = 8, Offset = 0x8B019 });
@@ -521,165 +568,102 @@ namespace CczEditor.Config
             result.ForceCategoryNames.Add(new Config.ConfigForceCategoryNameInfos { Index = 39, Length = 8, Offset = 0x8B16F });
         }
 
-        private void CreateHitAreaName()
+        protected override void CreateSpecialEffects()
         {
-            result.HitAreaNames.Add("군웅 경기병");
-            result.HitAreaNames.Add("보병");
-            result.HitAreaNames.Add("궁병 노기병");
-            result.HitAreaNames.Add("노병");
-            result.HitAreaNames.Add("연노병");
-            result.HitAreaNames.Add("폭염");
-            result.HitAreaNames.Add("몰우전");
-            result.HitAreaNames.Add("경포차");
-            result.HitAreaNames.Add("벽력차");
-            result.HitAreaNames.Add("궁기병");
-            result.HitAreaNames.Add("전체");
-            result.HitAreaNames.Add("무공격");
-            result.HitAreaNames.Add("대몰우전");
-            result.HitAreaNames.Add("거대몰우전");
-            result.HitAreaNames.Add("특수");
-            result.HitAreaNames.Add("대방괴");
-            result.HitAreaNames.Add("자객1");
-            result.HitAreaNames.Add("자객2");
-            result.HitAreaNames.Add("자객3");
-            result.HitAreaNames.Add("대폭염");
-            result.HitAreaNames.Add("방괴1");
-            result.HitAreaNames.Add("방괴2");
-            result.HitAreaNames.Add("방괴3");
-            result.HitAreaNames.Add("교차일격");
-            result.HitAreaNames.Add("교차이격");
-            result.HitAreaNames.Add("청정");
-            result.HitAreaNames.Add("운하");
-            result.HitAreaNames.Add("등궁");
-            result.HitAreaNames.Add("노");
-            result.HitAreaNames.Add("참월");
-            result.HitAreaNames.Add("사방죽궁");
-            result.HitAreaNames.Add("남만궁");
-            result.HitAreaNames.Add("12격");
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 0, Length = 0x10, Offset = 0xD1280 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 1, Length = 0x10, Offset = 0xD1290 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 2, Length = 0x10, Offset = 0xD12A0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 3, Length = 0x10, Offset = 0xD12B0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 4, Length = 0x10, Offset = 0xD12C0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 5, Length = 0x10, Offset = 0xD12D0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 6, Length = 0x10, Offset = 0xD12E0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 7, Length = 0x10, Offset = 0xD12F0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 8, Length = 0x10, Offset = 0xD1300 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 9, Length = 0x10, Offset = 0xD1310 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 10, Length = 0x10, Offset = 0xD1320 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 11, Length = 0x10, Offset = 0xD1330 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 12, Length = 0x10, Offset = 0xD1340 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 13, Length = 0x10, Offset = 0xD1350 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 14, Length = 0x10, Offset = 0xD1360 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 15, Length = 0x10, Offset = 0xD1370 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 16, Length = 0x10, Offset = 0xD1380 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 17, Length = 0x10, Offset = 0xD1390 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 18, Length = 0x10, Offset = 0xD13A0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 19, Length = 0x10, Offset = 0xD13B0 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 20, Length = 0x10, Offset = 0xD13C0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 21, Length = 0x10, Offset = 0xD13D0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 22, Length = 0x10, Offset = 0xD13E0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 23, Length = 0x10, Offset = 0xD13F0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 24, Length = 0x10, Offset = 0xD1400 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 25, Length = 0x10, Offset = 0xD1410 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 26, Length = 0x10, Offset = 0xD1420 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 27, Length = 0x10, Offset = 0xD1430 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 28, Length = 0x10, Offset = 0xD1440 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 29, Length = 0x10, Offset = 0xD1450 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 30, Length = 0x10, Offset = 0xD1460 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 31, Length = 0x10, Offset = 0xD1470 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 32, Length = 0x10, Offset = 0xD1480 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 33, Length = 0x10, Offset = 0xD1490 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 34, Length = 0x10, Offset = 0xD14A0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 35, Length = 0x10, Offset = 0xD14B0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 36, Length = 0x10, Offset = 0xD14C0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 37, Length = 0x10, Offset = 0xD14D0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 38, Length = 0x10, Offset = 0xD14E0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 39, Length = 0x10, Offset = 0xD14F0 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 40, Length = 0x10, Offset = 0xD1500 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 41, Length = 0x10, Offset = 0xD1510 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 42, Length = 0x10, Offset = 0xD1520 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 43, Length = 0x10, Offset = 0xD1530 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 44, Length = 0x10, Offset = 0xD1540 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 45, Length = 0x10, Offset = 0xD1550 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 46, Length = 0x10, Offset = 0xD1560 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 47, Length = 0x10, Offset = 0xD1570 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 48, Length = 0x10, Offset = 0xD1580 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 49, Length = 0x10, Offset = 0xD1590 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 50, Length = 0x10, Offset = 0xD15A0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 51, Length = 0x10, Offset = 0xD15B0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 52, Length = 0x10, Offset = 0xD15C0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 53, Length = 0x10, Offset = 0xD15D0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 54, Length = 0x10, Offset = 0xD15E0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 55, Length = 0x10, Offset = 0xD15F0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 56, Length = 0x10, Offset = 0xD1600 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 57, Length = 0x10, Offset = 0xD1610 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 58, Length = 0x10, Offset = 0xD1620 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 59, Length = 0x10, Offset = 0xD1630 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 60, Length = 0x10, Offset = 0xD1640 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 61, Length = 0x10, Offset = 0xD1650 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 62, Length = 0x10, Offset = 0xD1660 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 63, Length = 0x10, Offset = 0xD1670 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 64, Length = 0x10, Offset = 0xD1680 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 65, Length = 0x10, Offset = 0xD1690 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 66, Length = 0x10, Offset = 0xD16A0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 67, Length = 0x10, Offset = 0xD16B0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 68, Length = 0x10, Offset = 0xD16C0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 69, Length = 0x10, Offset = 0xD16D0 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 70, Length = 0x10, Offset = 0xD16E0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 71, Length = 0x10, Offset = 0xD16F0 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 72, Length = 0x10, Offset = 0xD1700 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 73, Length = 0x10, Offset = 0xD1710 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 74, Length = 0x10, Offset = 0xD1720 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 75, Length = 0x10, Offset = 0xD1730 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 76, Length = 0x10, Offset = 0xD1740 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 77, Length = 0x10, Offset = 0xD1750 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 78, Length = 0x10, Offset = 0xD1760 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 79, Length = 0x10, Offset = 0xD1770 });
+
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 80, Length = 0x10, Offset = 0xD1780 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 81, Length = 0x10, Offset = 0xD1790 });
+            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 82, Length = 0x10, Offset = 0xD17A0 });
         }
 
-        private void CreateEffectAreaName()
-        {
-            result.EffAreaNames.Add("무");
-            result.EffAreaNames.Add("십자");
-            result.EffAreaNames.Add("구궁");
-            result.EffAreaNames.Add("몰우전");
-            result.EffAreaNames.Add("이격");
-            result.EffAreaNames.Add("육격");
-            result.EffAreaNames.Add("대몰우전");
-            result.EffAreaNames.Add("삼격");
-            result.EffAreaNames.Add("방괴");
-        }
-
-        private void CreateSpecialEffect()
-        {
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 0, Length = 0x10, Offset = 0xF9430 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 1, Length = 0x10, Offset = 0xF9440 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 2, Length = 0x10, Offset = 0xF9450 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 3, Length = 0x10, Offset = 0xF9460 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 4, Length = 0x10, Offset = 0xF9470 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 5, Length = 0x10, Offset = 0xF9480 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 6, Length = 0x10, Offset = 0xF9490 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 7, Length = 0x10, Offset = 0xF94A0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 8, Length = 0x10, Offset = 0xF94B0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 9, Length = 0x10, Offset = 0xF94C0 });
-
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 10, Length = 0x10, Offset = 0xF94D0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 11, Length = 0x10, Offset = 0xF94E0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 12, Length = 0x10, Offset = 0xF94F0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 13, Length = 0x10, Offset = 0xF9500 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 14, Length = 0x10, Offset = 0xF9510 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 15, Length = 0x10, Offset = 0xF9520 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 16, Length = 0x10, Offset = 0xF9530 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 17, Length = 0x10, Offset = 0xF9540 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 18, Length = 0x10, Offset = 0xF9550 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 19, Length = 0x10, Offset = 0xF9560 });
-
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 20, Length = 0x10, Offset = 0xF9570 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 21, Length = 0x10, Offset = 0xF9580 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 22, Length = 0x10, Offset = 0xF9590 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 23, Length = 0x10, Offset = 0xF95A0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 24, Length = 0x10, Offset = 0xF95B0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 25, Length = 0x10, Offset = 0xF95C0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 26, Length = 0x10, Offset = 0xF95D0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 27, Length = 0x10, Offset = 0xF95E0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 28, Length = 0x10, Offset = 0xF95F0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 29, Length = 0x10, Offset = 0xF9600 });
-
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 30, Length = 0x10, Offset = 0xF9610 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 31, Length = 0x10, Offset = 0xF9620 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 32, Length = 0x10, Offset = 0xF9630 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 33, Length = 0x10, Offset = 0xF9640 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 34, Length = 0x10, Offset = 0xF9650 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 35, Length = 0x10, Offset = 0xF9660 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 36, Length = 0x10, Offset = 0xF9670 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 37, Length = 0x10, Offset = 0xF9680 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 38, Length = 0x10, Offset = 0xF9690 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 39, Length = 0x10, Offset = 0xF96A0 });
-
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 40, Length = 0x10, Offset = 0xF96B0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 41, Length = 0x10, Offset = 0xF96C0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 42, Length = 0x10, Offset = 0xF96D0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 43, Length = 0x10, Offset = 0xF96E0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 44, Length = 0x10, Offset = 0xF96F0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 45, Length = 0x10, Offset = 0xF9700 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 46, Length = 0x10, Offset = 0xF9710 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 47, Length = 0x10, Offset = 0xF9720 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 48, Length = 0x10, Offset = 0xF9730 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 49, Length = 0x10, Offset = 0xF9740 });
-
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 50, Length = 0x10, Offset = 0xF9750 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 51, Length = 0x10, Offset = 0xF9760 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 52, Length = 0x10, Offset = 0xF9770 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 53, Length = 0x10, Offset = 0xF9780 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 54, Length = 0x10, Offset = 0xF9790 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 55, Length = 0x10, Offset = 0xF97A0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 56, Length = 0x10, Offset = 0xF97B0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 57, Length = 0x10, Offset = 0xF97C0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 58, Length = 0x10, Offset = 0xF97D0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 59, Length = 0x10, Offset = 0xF97E0 });
-
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 60, Length = 0x10, Offset = 0xF97F0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 61, Length = 0x10, Offset = 0xF9800 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 62, Length = 0x10, Offset = 0xF9810 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 63, Length = 0x10, Offset = 0xF9820 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 64, Length = 0x10, Offset = 0xF9830 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 65, Length = 0x10, Offset = 0xF9840 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 66, Length = 0x10, Offset = 0xF9850 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 67, Length = 0x10, Offset = 0xF9860 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 68, Length = 0x10, Offset = 0xF9870 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 69, Length = 0x10, Offset = 0xF9880 });
-
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 70, Length = 0x10, Offset = 0xF9890 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 71, Length = 0x10, Offset = 0xF98A0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 72, Length = 0x10, Offset = 0xF98B0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 73, Length = 0x10, Offset = 0xF98C0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 74, Length = 0x10, Offset = 0xF98D0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 75, Length = 0x10, Offset = 0xF98E0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 76, Length = 0x10, Offset = 0xF98F0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 77, Length = 0x10, Offset = 0xF9900 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 78, Length = 0x10, Offset = 0xF9910 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 79, Length = 0x10, Offset = 0xF9920 });
-
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 80, Length = 0x10, Offset = 0xF9930 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 81, Length = 0x10, Offset = 0xF9940 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 82, Length = 0x10, Offset = 0xF9950 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 83, Length = 0x10, Offset = 0xF9960 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 84, Length = 0x10, Offset = 0xF9970 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 85, Length = 0x10, Offset = 0xF9980 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 86, Length = 0x10, Offset = 0xF9990 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 87, Length = 0x10, Offset = 0xF99A0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 88, Length = 0x10, Offset = 0xF99B0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 89, Length = 0x10, Offset = 0xF99C0 });
-
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 90, Length = 0x10, Offset = 0xF99D0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 91, Length = 0x10, Offset = 0xF99E0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 92, Length = 0x10, Offset = 0xF99F0 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 93, Length = 0x10, Offset = 0xF9A00 });
-            result.SpecialEffectNames.Add(new Config.ConfigSpecialEffectNameInfos { Index = 94, Length = 0x10, Offset = 0xF9A10 });
-        }
-
-        private void CreateSpecialSkillName()
+        protected override void CreateSpecialSkillNames()
         {
             result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 0, Length = 0x10, Offset = 0xD0F11, Description = "공격력상승" });
             result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 1, Length = 0x10, Offset = 0xD0F21, Description = "방어력상승" });
@@ -724,7 +708,7 @@ namespace CczEditor.Config
             result.SpecialSkillNames.Add(new Config.ConfigSpecialSkillNameInfos { Index = 36, Length = 0x10, Offset = 0xD1151, Description = "랜덤" });
         }
 
-        private void CreateCodeEffectName()
+        protected override void CreateCodeEffectNames()
         {
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5BF8, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "공격력보조", Editable = false, SubEdit = 1 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5C00, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist, Description = "방어력보조", Editable = false, SubEdit = 1 });
@@ -760,10 +744,6 @@ namespace CczEditor.Config
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3ED02, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "간접공격2", Editable = true, SubEdit = 1 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3ED14, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "간접공격3", Editable = true, SubEdit = 2 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B0B1, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "방어무시", Editable = false, SubEdit = 3 });
-            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC219, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "맹공일격", Editable = true, SubEdit = 0 });
-            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC24F, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "허점공격", Editable = true, SubEdit = 0 });
-            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC283, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "약점공격", Editable = true, SubEdit = 0 });
-            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC360, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack, Description = "무조건반격", Editable = true, SubEdit = 0 });
 
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3AA7A, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AttackAcc, Description = "공격백발백중", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3AA92, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.AttackAcc, Description = "공격명중보조", Editable = true, SubEdit = 0 });
@@ -782,8 +762,6 @@ namespace CczEditor.Config
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3D5B0, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "책략사용", Editable = false, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x384BF, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "연속책략", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x1F388, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "사신소환", Editable = false, SubEdit = 0 });
-            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC30F, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "책략범위고정", Editable = true, SubEdit = 0 });
-            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC388, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Magic, Description = "회복책략보조", Editable = true, SubEdit = 0 });
 
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3721F, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.StateEffectAttack, Description = "부동공격", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x37220, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.StateEffectAttack, Description = "금책공격", Editable = true, SubEdit = 0 });
@@ -806,8 +784,6 @@ namespace CczEditor.Config
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3721D, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "사기저하", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3721E, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "이동저하", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x72164, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "속성이상공격", Editable = true, SubEdit = 0 });
-            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC194, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "선제공격저하", Editable = true, SubEdit = 0 });
-            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC1D8, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DeburfAttack, Description = "선제정신저하", Editable = true, SubEdit = 0 });
 
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B1ED, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DecreaseDmg, Description = "간접피해감소", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B259, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DecreaseDmg, Description = "물리피해감소", Editable = true, SubEdit = 0 });
@@ -820,7 +796,6 @@ namespace CczEditor.Config
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x7205B, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "상태이상반사", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xA151A, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "MP방어", Editable = true, SubEdit = 2 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xA13AD, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "금전방어", Editable = true, SubEdit = 1 });
-            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC3D5, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "책략반사", Editable = true, SubEdit = 0 });
 
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3EC67, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TerrainAssist, Description = "지형효과보조", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xA0AD2, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.TerrainAssist, Description = "수전보조", Editable = true, SubEdit = 0 });
@@ -835,46 +810,43 @@ namespace CczEditor.Config
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x29FAB, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "공훈추가", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x78277, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "은신방어", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x4EDD1, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "공격유도", Editable = true, SubEdit = 0 });
-            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0xC32F, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Etc, Description = "도구범위고정", Editable = true, SubEdit = 0 });
         }
 
-        private void CreateCodes()
+        protected override void CreateCodes()
         {
             result.Codes.Add("Even", new Config.ConfigExeCodeInfo[]
             {
-                new Config.ConfigExeCodeInfo { offset = 0x665, CodeArr = "37 73 1E 3C 28 73 04 B0 64 EB 08 2C 27 6B C0 28 83 C0 64" },
-                new Config.ConfigExeCodeInfo { offset = 0x6539, CodeArr = "D1 E0" },
-                new Config.ConfigExeCodeInfo { offset = 0x1C4BB, CodeArr = "D1 F8" },
-                new Config.ConfigExeCodeInfo { offset = 0x1C5FB, CodeArr = "37 6A 00 EB 05 6A 32" },
-                new Config.ConfigExeCodeInfo { offset = 0x2A097, CodeArr = "37 73 31 8B 55 08 D1 E6 03 D6 3C 28 73 06 66 B8 64 00 EB 08 2C 27 6B C0 28 83 C0 64" },
-                new Config.ConfigExeCodeInfo { offset = 0x3B905, CodeArr = "32 76 10 83 EA 32 6B D2 02" },
-                new Config.ConfigExeCodeInfo { offset = 0x3BB60, CodeArr = "90 90 EB 2A 6A 00 8B 4D FC E8 72 17 FE FF 0F B6 C0 83 F8 32 7E 04 B0 0A EB 14 6A 00 8B 4D FC E8 5C 17 FE FF 90 90" },
-                new Config.ConfigExeCodeInfo { offset = 0x3C048, CodeArr = "2D 72 04 B0 05 EB 0A 3C 28" },
-                new Config.ConfigExeCodeInfo { offset = 0x4C030, CodeArr = "19 88 51 02 EB 09 0F B6 51 03 89 55 F8 D1 E2" },
-                new Config.ConfigExeCodeInfo { offset = 0x598AD, CodeArr = "D1 E2" },
-                new Config.ConfigExeCodeInfo { offset = 0x59949, CodeArr = "2D 74 01 42 52 FF 75 FC FF 15 E8 62 48 00 8B 4D 0C 8B 45 F4 33 D2 80 7C 08 21 23" },
-                new Config.ConfigExeCodeInfo { offset = 0x614D2, CodeArr = "37 73 E6 3C 28 73 0E 83 FE 64 72 22 83 EE 64 FE 44 11 21 EB E5 2C 27 6B C0 28 83 C0 64" },
-                new Config.ConfigExeCodeInfo { offset = 0xD2613, CodeArr = "23" },
+            new Config.ConfigExeCodeInfo { offset = 0x665, CodeArr = "37 73 1E 3C 28 73 04 B0 64 EB 08 2C 27 6B C0 28 83 C0 64" },
+            new Config.ConfigExeCodeInfo { offset = 0x6539, CodeArr = "D1 E0" },
+            new Config.ConfigExeCodeInfo { offset = 0x1C4BB, CodeArr = "D1 F8" },
+            new Config.ConfigExeCodeInfo { offset = 0x1C5FB, CodeArr = "37 6A 00 EB 05 6A 32" },
+            new Config.ConfigExeCodeInfo { offset = 0x2A097, CodeArr = "37 73 31 8B 55 08 D1 E6 03 D6 3C 28 73 06 66 B8 64 00 EB 08 2C 27 6B C0 28 83 C0 64" },
+            new Config.ConfigExeCodeInfo { offset = 0x3B905, CodeArr = "32 76 10 83 EA 32 6B D2 02" },
+            new Config.ConfigExeCodeInfo { offset = 0x3BB60, CodeArr = "90 90 EB 2A 6A 00 8B 4D FC E8 72 17 FE FF 0F B6 C0 83 F8 32 7E 04 B0 0A EB 14 6A 00 8B 4D FC E8 5C 17 FE FF 90 90" },
+            new Config.ConfigExeCodeInfo { offset = 0x3C048, CodeArr = "2D 72 04 B0 05 EB 0A 3C 28" },
+            new Config.ConfigExeCodeInfo { offset = 0x4C030, CodeArr = "19 88 51 02 EB 09 0F B6 51 03 89 55 F8 D1 E2" },
+            new Config.ConfigExeCodeInfo { offset = 0x598AD, CodeArr = "D1 E2" },
+            new Config.ConfigExeCodeInfo { offset = 0x59949, CodeArr = "2D 74 01 42 52 FF 75 FC FF 15 E8 62 48 00 8B 4D 0C 8B 45 F4 33 D2 80 7C 08 21 23" },
+            new Config.ConfigExeCodeInfo { offset = 0x614D2, CodeArr = "37 73 E6 3C 28 73 0E 83 FE 64 72 22 83 EE 64 FE 44 11 21 EB E5 2C 27 6B C0 28 83 C0 64" },
+            new Config.ConfigExeCodeInfo { offset = 0xD2613, CodeArr = "23" },
             });
 
             result.Codes.Add("Odd", new Config.ConfigExeCodeInfo[]
             {
-                new Config.ConfigExeCodeInfo { offset = 0x665, CodeArr = "6E 73 1E 3C 50 73 04 B0 32 EB 08 2C 4F 6B C0 0A 83 C0 37" },
-                new Config.ConfigExeCodeInfo { offset = 0x6539, CodeArr = "90 90" },
-                new Config.ConfigExeCodeInfo { offset = 0x1C4BB, CodeArr = "90 90" },
-                new Config.ConfigExeCodeInfo { offset = 0x1C5FB, CodeArr = "6E 6A 00 EB 05 6A 64" },
-                new Config.ConfigExeCodeInfo { offset = 0x2A097, CodeArr = "6E 73 31 8B 55 08 D1 E6 03 D6 3C 50 73 06 66 B8 32 00 EB 08 2C 4F 6B C0 0A 83 C0 37" },
-                new Config.ConfigExeCodeInfo { offset = 0x3B905, CodeArr = "64 76 10 83 EA 64 6B D2 01" },
-                new Config.ConfigExeCodeInfo { offset = 0x3BB60, CodeArr = "D1 E8 EB 2A 6A 00 8B 4D FC E8 72 17 FE FF 0F B6 C0 83 F8 64 7E 04 B0 0A EB 14 6A 00 8B 4D FC E8 5C 17 FE FF D1 E8" },
-                new Config.ConfigExeCodeInfo { offset = 0x3C048, CodeArr = "5A 72 04 B0 05 EB 0A 3C 50" },
-                new Config.ConfigExeCodeInfo { offset = 0x4C030, CodeArr = "32 88 51 02 EB 09 0F B6 51 03 89 55 F8 90 90" },
-                new Config.ConfigExeCodeInfo { offset = 0x598AD, CodeArr = "90 90" },
-                new Config.ConfigExeCodeInfo { offset = 0x59949, CodeArr = "5A 74 01 42 52 FF 75 FC FF 15 E8 62 48 00 8B 4D 0C 8B 45 F4 33 D2 80 7C 08 21 46" },
-                new Config.ConfigExeCodeInfo { offset = 0x614D2, CodeArr = "6E 73 E6 3C 50 73 0E 83 FE 32 72 22 83 EE 32 FE 44 11 21 EB E5 2C 4F 6B C0 0A 83 C0 37" },
-                new Config.ConfigExeCodeInfo { offset = 0xD2613, CodeArr = "46" },
+            new Config.ConfigExeCodeInfo { offset = 0x665, CodeArr = "6E 73 1E 3C 50 73 04 B0 32 EB 08 2C 4F 6B C0 0A 83 C0 37" },
+            new Config.ConfigExeCodeInfo { offset = 0x6539, CodeArr = "90 90" },
+            new Config.ConfigExeCodeInfo { offset = 0x1C4BB, CodeArr = "90 90" },
+            new Config.ConfigExeCodeInfo { offset = 0x1C5FB, CodeArr = "6E 6A 00 EB 05 6A 64" },
+            new Config.ConfigExeCodeInfo { offset = 0x2A097, CodeArr = "6E 73 31 8B 55 08 D1 E6 03 D6 3C 50 73 06 66 B8 32 00 EB 08 2C 4F 6B C0 0A 83 C0 37" },
+            new Config.ConfigExeCodeInfo { offset = 0x3B905, CodeArr = "64 76 10 83 EA 64 6B D2 01" },
+            new Config.ConfigExeCodeInfo { offset = 0x3BB60, CodeArr = "D1 E8 EB 2A 6A 00 8B 4D FC E8 72 17 FE FF 0F B6 C0 83 F8 64 7E 04 B0 0A EB 14 6A 00 8B 4D FC E8 5C 17 FE FF D1 E8" },
+            new Config.ConfigExeCodeInfo { offset = 0x3C048, CodeArr = "5A 72 04 B0 05 EB 0A 3C 50" },
+            new Config.ConfigExeCodeInfo { offset = 0x4C030, CodeArr = "32 88 51 02 EB 09 0F B6 51 03 89 55 F8 90 90" },
+            new Config.ConfigExeCodeInfo { offset = 0x598AD, CodeArr = "90 90" },
+            new Config.ConfigExeCodeInfo { offset = 0x59949, CodeArr = "5A 74 01 42 52 FF 75 FC FF 15 E8 62 48 00 8B 4D 0C 8B 45 F4 33 D2 80 7C 08 21 46" },
+            new Config.ConfigExeCodeInfo { offset = 0x614D2, CodeArr = "6E 73 E6 3C 50 73 0E 83 FE 32 72 22 83 EE 32 FE 44 11 21 EB E5 2C 4F 6B C0 0A 83 C0 37" },
+            new Config.ConfigExeCodeInfo { offset = 0xD2613, CodeArr = "46" },
             });
-            
-
         }
     }
 }

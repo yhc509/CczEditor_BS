@@ -586,17 +586,6 @@
             this.m4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.m4.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.m4.FormattingEnabled = true;
-            this.m4.Items.AddRange(new object[] {
-            "00, 화계1",
-            "01, 수계",
-            "02, 풍계",
-            "03, 지계",
-            "04, 랜덤",
-            "05, 번개",
-            "06, 화계2",
-            "07, 무표시",
-            "08, 회복",
-            "09, 사용안함"});
             this.m4.Location = new System.Drawing.Point(105, 236);
             this.m4.Name = "m4";
             this.m4.Size = new System.Drawing.Size(103, 23);
@@ -764,7 +753,7 @@
             "18, 명상",
             "19, 패기",
             "1A, 청룡",
-            "1B, 주작",
+            "1B, 장애물(6.2)",
             "1C, 현무",
             "1D, 백호",
             "1E, 제압",
@@ -772,7 +761,7 @@
             "20, 생명교환",
             "21, 경험상승",
             "22, 지속공격",
-            "23, 추가코드",
+            "23, 순간이동(6.2)",
             "24, 추가코드",
             "25, 추가코드",
             "26, 추가코드",

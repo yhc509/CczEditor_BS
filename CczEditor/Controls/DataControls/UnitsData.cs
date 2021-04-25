@@ -122,9 +122,9 @@ namespace CczEditor.Controls.DataControls
                 CharacterComboBox.SelectedIndex = unit.CharacterType;
                 BattleObjValueBox.Value = unit.BattleObj;
 
-                lblCutin.Visible = CutinComboBox.Visible = cbbCutin.Visible = index <= 255;
-                lblVoice.Visible = VoiceComboBox.Visible = cbbVoice.Visible = VoicePlayButton.Visible = index <= 255;
-                lblCost.Visible = CostValueBox.Visible = cbbCost.Visible = index <= 255;
+                lblCutin.Visible = CutinComboBox.Visible = cbbCutin.Visible = index <= 255 && Program.CurrentConfig.CodeOptionContainer.UseCutin;
+                lblVoice.Visible = VoiceComboBox.Visible = cbbVoice.Visible = VoicePlayButton.Visible = index <= 255 && Program.CurrentConfig.CodeOptionContainer.UseVoice;
+                lblCost.Visible = CostValueBox.Visible = cbbCost.Visible = index <= 255 && Program.CurrentConfig.CodeOptionContainer.UseCost;
                 if (index <= 255)
                 {
                     CutinComboBox.SelectedIndex = unit.Cutin;

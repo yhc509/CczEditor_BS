@@ -32,7 +32,10 @@ namespace CczEditor.Controls.DataControls
         #region Title
         private void InitTitleText()
         {
-            TitleTextBox.Text = Data.ExeData.GetText(Program.CurrentConfig.Exe.TitleOffsets[1], 12);
+            if(Program.CurrentConfig.Exe.TitleOffsets.Length == 1)
+                TitleTextBox.Text = Data.ExeData.GetText(Program.CurrentConfig.Exe.TitleOffsets[0], 12);
+            else
+                TitleTextBox.Text = Data.ExeData.GetText(Program.CurrentConfig.Exe.TitleOffsets[1], 12);
         }
 
         private void TitleSaveButton_Click(object sender, EventArgs e)
@@ -42,11 +45,18 @@ namespace CczEditor.Controls.DataControls
                 if (!Data.ExeData.IsLocked)
                 {
                     Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
-                    Data.ExeData.WriteText($"「{TitleTextBox.Text}」", Program.CurrentConfig.Exe.TitleOffsets[0], 16);
-                    Data.ExeData.WriteText(TitleTextBox.Text, Program.CurrentConfig.Exe.TitleOffsets[1], 12);
-                    Data.ExeData.WriteText(TitleTextBox.Text, Program.CurrentConfig.Exe.TitleOffsets[2], 12);
-                    Data.ExeData.WriteText($"종료「{TitleTextBox.Text}」", Program.CurrentConfig.Exe.TitleOffsets[3], 20);
-                    Data.ExeData.WriteText($"정말「{TitleTextBox.Text}」종료?", Program.CurrentConfig.Exe.TitleOffsets[4], 25);
+                    if(Program.CurrentConfig.Exe.TitleOffsets.Length == 1)
+                    {
+                        Data.ExeData.WriteText(TitleTextBox.Text, Program.CurrentConfig.Exe.TitleOffsets[0], 12);
+                    }
+                    else
+                    {
+                        Data.ExeData.WriteText($"「{TitleTextBox.Text}」", Program.CurrentConfig.Exe.TitleOffsets[0], 16);
+                        Data.ExeData.WriteText(TitleTextBox.Text, Program.CurrentConfig.Exe.TitleOffsets[1], 12);
+                        Data.ExeData.WriteText(TitleTextBox.Text, Program.CurrentConfig.Exe.TitleOffsets[2], 12);
+                        Data.ExeData.WriteText($"종료「{TitleTextBox.Text}」", Program.CurrentConfig.Exe.TitleOffsets[3], 20);
+                        Data.ExeData.WriteText($"정말「{TitleTextBox.Text}」종료?", Program.CurrentConfig.Exe.TitleOffsets[4], 25);
+                    }
                     Data.ExeData.Close();
                 }
                 if (!Data.Mp3Data.IsLocked)

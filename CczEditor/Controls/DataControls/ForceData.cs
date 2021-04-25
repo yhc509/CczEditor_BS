@@ -117,7 +117,7 @@ namespace CczEditor.Controls.DataControls
                 {
                     f9.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AiTypeOffset);
                 }
-                eff.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
+                eff.SelectedIndex = Data.ExeData.ReadByte(forceIndex, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
 
                 SpecialSkillForce.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.SpecialSkillForceOffset);
             }
@@ -206,7 +206,7 @@ namespace CczEditor.Controls.DataControls
                 {
                     Data.ExeData.WriteByte((byte)f9.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AiTypeOffset);
                 }
-                Data.ExeData.WriteByte((byte)eff.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
+                Data.ExeData.WriteByte((byte)eff.SelectedIndex, index, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
 
                 Data.ExeData.WriteByte((byte)SpecialSkillForce.SelectedIndex, forcenum, Program.CurrentConfig.Exe.SpecialSkillForceOffset);
 

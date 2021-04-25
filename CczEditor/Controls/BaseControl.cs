@@ -134,11 +134,7 @@ namespace CczEditor.Controls
                 return;
             }
 
-            string path;
-            if (Program.CurrentConfig.UseE5Directory)
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_PMAPOBJ);
-            else
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_PMAPOBJ);
+            string path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_PMAPOBJ);
             Pmapobjs = new PmapobjResources(path);
             
         }
@@ -180,11 +176,7 @@ namespace CczEditor.Controls
                 return;
             }
 
-            string path;
-            if (Program.CurrentConfig.UseE5Directory)
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_IMAGEATK);
-            else
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEATK);
+            string path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEATK);
             UnitAtk = new UnitAtkResources(path);
         }
 
@@ -195,11 +187,7 @@ namespace CczEditor.Controls
                 return;
             }
 
-            string path;
-            if (Program.CurrentConfig.UseE5Directory)
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_IMAGEMOV);
-            else
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEMOV);
+            string path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEMOV);
             UnitMov = new UnitMovResources(path);
         }
 
@@ -210,11 +198,7 @@ namespace CczEditor.Controls
                 return;
             }
 
-            string path;
-            if (Program.CurrentConfig.UseE5Directory)
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_IMAGESPC);
-            else
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGESPC);
+            string path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGESPC);
             UnitSpc = new UnitSpcResources(path);
         }
 

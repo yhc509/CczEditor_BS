@@ -29,7 +29,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>4.0.2.0</ApplicationVersion>
+    <ApplicationVersion>4.0.3.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -114,8 +114,12 @@
     <Compile Include="CompressionAlgorithms\Ls11IndexInfo.cs" />
     <Compile Include="CompressionAlgorithms\Ls11IndexInfoCollection.cs" />
     <Compile Include="Config\Config.cs" />
+    <Compile Include="Config\ConfigCreateHandler\Bs10ConfigCreateHandler.cs" />
+    <Compile Include="Config\ConfigCreateHandler\ConfigCreateHandler.cs" />
+    <Compile Include="Config\ConfigCreateHandler\Star61ConfigCreateHandler.cs" />
     <Compile Include="Config\ConfigManager.cs" />
     <Compile Include="Config\ConfigUtils.cs" />
+    <Compile Include="Config\ConfigCreateHandler\Star62ConfigCreateHandler.cs" />
     <Compile Include="Config\SystemConfig.cs" />
     <Compile Include="Controls\AboutBox.cs">
       <SubType>Form</SubType>
@@ -132,17 +136,35 @@
     <Compile Include="Controls\ConfigControls\ConfigEditor.Designer.cs">
       <DependentUpon>ConfigEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ConfigControls\ConfigPreset.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ConfigControls\ConfigPreset.Designer.cs">
+      <DependentUpon>ConfigPreset.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ConfigControls\CopyAndEditDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\ConfigControls\CopyAndEditDialog.Designer.cs">
       <DependentUpon>CopyAndEditDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ConfigControls\CreatePreset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ConfigControls\CreatePreset.Designer.cs">
+      <DependentUpon>CreatePreset.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DataControls\BaseDataControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\DataControls\BaseDataControl.Designer.cs">
       <DependentUpon>BaseDataControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataControls\CodeApplierControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataControls\CodeApplierControl.Designer.cs">
+      <DependentUpon>CodeApplierControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\DataControls\ExeSpecialDataController.cs">
       <SubType>UserControl</SubType>
@@ -340,12 +362,21 @@
       <DependentUpon>ConfigEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ConfigControls\ConfigPreset.resx">
+      <DependentUpon>ConfigPreset.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ConfigControls\CopyAndEditDialog.resx">
       <DependentUpon>CopyAndEditDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ConfigControls\CreatePreset.resx">
+      <DependentUpon>CreatePreset.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DataControls\BaseDataControl.resx">
       <DependentUpon>BaseDataControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataControls\CodeApplierControl.resx">
+      <DependentUpon>CodeApplierControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DataControls\ExeSpecialDataController.resx">
       <DependentUpon>ExeSpecialDataController.cs</DependentUpon>

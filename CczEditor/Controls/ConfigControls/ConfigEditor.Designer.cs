@@ -39,12 +39,14 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.UseCost = new System.Windows.Forms.CheckBox();
+            this.UseVoice = new System.Windows.Forms.CheckBox();
+            this.UseCutin = new System.Windows.Forms.CheckBox();
+            this.UseFaceLarge = new System.Windows.Forms.CheckBox();
+            this.SeperateE5 = new System.Windows.Forms.CheckBox();
             this.SingularAttribute = new System.Windows.Forms.CheckBox();
             this.MagicLearnExtension = new System.Windows.Forms.CheckBox();
             this.AIExtension = new System.Windows.Forms.CheckBox();
-            this.SpcExtension = new System.Windows.Forms.CheckBox();
-            this.ObjExtension = new System.Windows.Forms.CheckBox();
-            this.Starusing = new System.Windows.Forms.CheckBox();
             this.ItemCustomRange = new System.Windows.Forms.CheckBox();
             this.tcMain.SuspendLayout();
             this.tpSystemConfig.SuspendLayout();
@@ -100,9 +102,9 @@
             this.tlpSystemConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tlpSystemConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tlpSystemConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tlpSystemConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tlpSystemConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tlpSystemConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 222F));
+            this.tlpSystemConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 281F));
+            this.tlpSystemConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tlpSystemConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tlpSystemConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tlpSystemConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpSystemConfig.Size = new System.Drawing.Size(673, 513);
@@ -190,23 +192,75 @@
             // panel1
             // 
             this.tlpSystemConfig.SetColumnSpan(this.panel1, 6);
+            this.panel1.Controls.Add(this.UseCost);
+            this.panel1.Controls.Add(this.UseVoice);
+            this.panel1.Controls.Add(this.UseCutin);
+            this.panel1.Controls.Add(this.UseFaceLarge);
+            this.panel1.Controls.Add(this.SeperateE5);
             this.panel1.Controls.Add(this.SingularAttribute);
             this.panel1.Controls.Add(this.MagicLearnExtension);
             this.panel1.Controls.Add(this.AIExtension);
-            this.panel1.Controls.Add(this.SpcExtension);
-            this.panel1.Controls.Add(this.ObjExtension);
-            this.panel1.Controls.Add(this.Starusing);
             this.panel1.Controls.Add(this.ItemCustomRange);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(13, 100);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(657, 75);
+            this.panel1.Size = new System.Drawing.Size(657, 275);
             this.panel1.TabIndex = 13;
+            // 
+            // UseCost
+            // 
+            this.UseCost.AutoSize = true;
+            this.UseCost.Location = new System.Drawing.Point(456, 57);
+            this.UseCost.Name = "UseCost";
+            this.UseCost.Size = new System.Drawing.Size(118, 19);
+            this.UseCost.TabIndex = 11;
+            this.UseCost.Text = "무장 코스트 사용";
+            this.UseCost.UseVisualStyleBackColor = true;
+            // 
+            // UseVoice
+            // 
+            this.UseVoice.AutoSize = true;
+            this.UseVoice.Location = new System.Drawing.Point(314, 57);
+            this.UseVoice.Name = "UseVoice";
+            this.UseVoice.Size = new System.Drawing.Size(106, 19);
+            this.UseVoice.TabIndex = 10;
+            this.UseVoice.Text = "무장 음성 사용";
+            this.UseVoice.UseVisualStyleBackColor = true;
+            // 
+            // UseCutin
+            // 
+            this.UseCutin.AutoSize = true;
+            this.UseCutin.Location = new System.Drawing.Point(161, 57);
+            this.UseCutin.Name = "UseCutin";
+            this.UseCutin.Size = new System.Drawing.Size(78, 19);
+            this.UseCutin.TabIndex = 9;
+            this.UseCutin.Text = "컷인 사용";
+            this.UseCutin.UseVisualStyleBackColor = true;
+            // 
+            // UseFaceLarge
+            // 
+            this.UseFaceLarge.AutoSize = true;
+            this.UseFaceLarge.Location = new System.Drawing.Point(19, 57);
+            this.UseFaceLarge.Name = "UseFaceLarge";
+            this.UseFaceLarge.Size = new System.Drawing.Size(90, 19);
+            this.UseFaceLarge.TabIndex = 8;
+            this.UseFaceLarge.Text = "전신상 사용";
+            this.UseFaceLarge.UseVisualStyleBackColor = true;
+            // 
+            // SeperateE5
+            // 
+            this.SeperateE5.AutoSize = true;
+            this.SeperateE5.Location = new System.Drawing.Point(456, 13);
+            this.SeperateE5.Name = "SeperateE5";
+            this.SeperateE5.Size = new System.Drawing.Size(95, 19);
+            this.SeperateE5.TabIndex = 7;
+            this.SeperateE5.Text = "E5 폴더 분리";
+            this.SeperateE5.UseVisualStyleBackColor = true;
             // 
             // SingularAttribute
             // 
             this.SingularAttribute.AutoSize = true;
-            this.SingularAttribute.Location = new System.Drawing.Point(491, 13);
+            this.SingularAttribute.Location = new System.Drawing.Point(19, 13);
             this.SingularAttribute.Name = "SingularAttribute";
             this.SingularAttribute.Size = new System.Drawing.Size(114, 19);
             this.SingularAttribute.TabIndex = 6;
@@ -216,7 +270,7 @@
             // MagicLearnExtension
             // 
             this.MagicLearnExtension.AutoSize = true;
-            this.MagicLearnExtension.Location = new System.Drawing.Point(335, 47);
+            this.MagicLearnExtension.Location = new System.Drawing.Point(314, 13);
             this.MagicLearnExtension.Name = "MagicLearnExtension";
             this.MagicLearnExtension.Size = new System.Drawing.Size(98, 19);
             this.MagicLearnExtension.TabIndex = 5;
@@ -226,47 +280,17 @@
             // AIExtension
             // 
             this.AIExtension.AutoSize = true;
-            this.AIExtension.Location = new System.Drawing.Point(335, 13);
+            this.AIExtension.Location = new System.Drawing.Point(161, 13);
             this.AIExtension.Name = "AIExtension";
             this.AIExtension.Size = new System.Drawing.Size(122, 19);
             this.AIExtension.TabIndex = 4;
             this.AIExtension.Text = "병종인공지능확장";
             this.AIExtension.UseVisualStyleBackColor = true;
             // 
-            // SpcExtension
-            // 
-            this.SpcExtension.AutoSize = true;
-            this.SpcExtension.Location = new System.Drawing.Point(168, 47);
-            this.SpcExtension.Name = "SpcExtension";
-            this.SpcExtension.Size = new System.Drawing.Size(126, 19);
-            this.SpcExtension.TabIndex = 3;
-            this.SpcExtension.Text = "전투조형 한계돌파";
-            this.SpcExtension.UseVisualStyleBackColor = true;
-            // 
-            // ObjExtension
-            // 
-            this.ObjExtension.AutoSize = true;
-            this.ObjExtension.Location = new System.Drawing.Point(168, 13);
-            this.ObjExtension.Name = "ObjExtension";
-            this.ObjExtension.Size = new System.Drawing.Size(126, 19);
-            this.ObjExtension.TabIndex = 2;
-            this.ObjExtension.Text = "평상조형 한계돌파";
-            this.ObjExtension.UseVisualStyleBackColor = true;
-            // 
-            // Starusing
-            // 
-            this.Starusing.AutoSize = true;
-            this.Starusing.Location = new System.Drawing.Point(19, 47);
-            this.Starusing.Name = "Starusing";
-            this.Starusing.Size = new System.Drawing.Size(95, 19);
-            this.Starusing.TabIndex = 1;
-            this.Starusing.Text = "Star.e5 사용";
-            this.Starusing.UseVisualStyleBackColor = true;
-            // 
             // ItemCustomRange
             // 
             this.ItemCustomRange.AutoSize = true;
-            this.ItemCustomRange.Location = new System.Drawing.Point(19, 13);
+            this.ItemCustomRange.Location = new System.Drawing.Point(19, 107);
             this.ItemCustomRange.Name = "ItemCustomRange";
             this.ItemCustomRange.Size = new System.Drawing.Size(122, 19);
             this.ItemCustomRange.TabIndex = 0;
@@ -305,9 +329,11 @@
         private System.Windows.Forms.CheckBox SingularAttribute;
         private System.Windows.Forms.CheckBox MagicLearnExtension;
         private System.Windows.Forms.CheckBox AIExtension;
-        private System.Windows.Forms.CheckBox SpcExtension;
-        private System.Windows.Forms.CheckBox ObjExtension;
-        private System.Windows.Forms.CheckBox Starusing;
         private System.Windows.Forms.CheckBox ItemCustomRange;
-	}
+        private System.Windows.Forms.CheckBox UseCost;
+        private System.Windows.Forms.CheckBox UseVoice;
+        private System.Windows.Forms.CheckBox UseCutin;
+        private System.Windows.Forms.CheckBox UseFaceLarge;
+        private System.Windows.Forms.CheckBox SeperateE5;
+    }
 }

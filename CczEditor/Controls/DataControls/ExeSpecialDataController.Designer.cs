@@ -243,6 +243,11 @@
             // SpecialSkillLevelBox5
             // 
             this.SpecialSkillLevelBox5.Location = new System.Drawing.Point(346, 185);
+            this.SpecialSkillLevelBox5.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
             this.SpecialSkillLevelBox5.Name = "SpecialSkillLevelBox5";
             this.SpecialSkillLevelBox5.Size = new System.Drawing.Size(61, 21);
             this.SpecialSkillLevelBox5.TabIndex = 30;
@@ -277,6 +282,11 @@
             // SpecialSkillLevelBox4
             // 
             this.SpecialSkillLevelBox4.Location = new System.Drawing.Point(346, 152);
+            this.SpecialSkillLevelBox4.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
             this.SpecialSkillLevelBox4.Name = "SpecialSkillLevelBox4";
             this.SpecialSkillLevelBox4.Size = new System.Drawing.Size(61, 21);
             this.SpecialSkillLevelBox4.TabIndex = 26;
@@ -311,6 +321,11 @@
             // SpecialSkillLevelBox3
             // 
             this.SpecialSkillLevelBox3.Location = new System.Drawing.Point(346, 120);
+            this.SpecialSkillLevelBox3.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
             this.SpecialSkillLevelBox3.Name = "SpecialSkillLevelBox3";
             this.SpecialSkillLevelBox3.Size = new System.Drawing.Size(61, 21);
             this.SpecialSkillLevelBox3.TabIndex = 22;
@@ -327,6 +342,11 @@
             // SpecialSkillLevelBox2
             // 
             this.SpecialSkillLevelBox2.Location = new System.Drawing.Point(345, 84);
+            this.SpecialSkillLevelBox2.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
             this.SpecialSkillLevelBox2.Name = "SpecialSkillLevelBox2";
             this.SpecialSkillLevelBox2.Size = new System.Drawing.Size(61, 21);
             this.SpecialSkillLevelBox2.TabIndex = 20;
@@ -343,6 +363,11 @@
             // SpecialSkillLevelBox1
             // 
             this.SpecialSkillLevelBox1.Location = new System.Drawing.Point(345, 49);
+            this.SpecialSkillLevelBox1.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
             this.SpecialSkillLevelBox1.Name = "SpecialSkillLevelBox1";
             this.SpecialSkillLevelBox1.Size = new System.Drawing.Size(61, 21);
             this.SpecialSkillLevelBox1.TabIndex = 18;
@@ -390,6 +415,11 @@
             // SpecialSkillValueBox
             // 
             this.SpecialSkillValueBox.Location = new System.Drawing.Point(186, 214);
+            this.SpecialSkillValueBox.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.SpecialSkillValueBox.Name = "SpecialSkillValueBox";
             this.SpecialSkillValueBox.Size = new System.Drawing.Size(120, 21);
             this.SpecialSkillValueBox.TabIndex = 10;
@@ -549,6 +579,11 @@
             // SpecialEffectValueBox
             // 
             this.SpecialEffectValueBox.Location = new System.Drawing.Point(214, 201);
+            this.SpecialEffectValueBox.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.SpecialEffectValueBox.Name = "SpecialEffectValueBox";
             this.SpecialEffectValueBox.Size = new System.Drawing.Size(120, 21);
             this.SpecialEffectValueBox.TabIndex = 10;

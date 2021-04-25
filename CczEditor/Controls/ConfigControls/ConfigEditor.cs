@@ -33,12 +33,14 @@ namespace CczEditor.Controls.ConfigControls
             exename.Text = config.ExeFileName;
 
             ItemCustomRange.Checked = config.CodeOptionContainer.ItemCustomRange;
-            Starusing.Checked = true;
-            ObjExtension.Checked = true;
-            SpcExtension.Checked = true;
             AIExtension.Checked = config.CodeOptionContainer.AIExtension;
             MagicLearnExtension.Checked = config.CodeOptionContainer.MagicLearnExtension;
             SingularAttribute.Checked = config.CodeOptionContainer.SingularAttribute;
+            SeperateE5.Checked = config.UseE5Directory;
+            UseCost.Checked = config.CodeOptionContainer.UseCost;
+            UseCutin.Checked = config.CodeOptionContainer.UseCutin;
+            UseFaceLarge.Checked = config.CodeOptionContainer.UseLargeFace;
+            UseVoice.Checked = config.CodeOptionContainer.UseVoice;
 		}
 
 		private void btnSave_Click(object sender, EventArgs e)
@@ -54,6 +56,11 @@ namespace CczEditor.Controls.ConfigControls
             config.CodeOptionContainer.AIExtension = AIExtension.Checked;
             config.CodeOptionContainer.MagicLearnExtension = MagicLearnExtension.Checked;
             config.CodeOptionContainer.SingularAttribute = SingularAttribute.Checked;
+            config.UseE5Directory = SeperateE5.Checked;
+            config.CodeOptionContainer.UseCost = UseCost.Checked;
+            config.CodeOptionContainer.UseCutin = UseCutin.Checked;
+            config.CodeOptionContainer.UseLargeFace = UseFaceLarge.Checked;
+            config.CodeOptionContainer.UseVoice = UseVoice.Checked;
 
             Config.Write(config, ConfigFileName);
             Program.ReLoadData();

@@ -401,6 +401,7 @@ namespace CczEditor.Controls.DataControls
             var list = Program.CurrentConfig.CodeEffects.Where(x => x.TypeIndex == (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack).ToArray();
             var info = list[SpecialAtkList.SelectedIndex];
             GetCode(info, SpecialAtkValue);
+            SpecialAtkValue.Enabled = info.Editable;
             SpecialAtkValue2.Enabled = info.SubEdit == 1 || info.SubEdit == 2;
             if (info.SubEdit == 1)
             {
