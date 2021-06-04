@@ -115,6 +115,7 @@
     <Compile Include="CompressionAlgorithms\Ls11IndexInfoCollection.cs" />
     <Compile Include="Config\Config.cs" />
     <Compile Include="Config\ConfigCreateHandler\Bs10ConfigCreateHandler.cs" />
+    <Compile Include="Config\ConfigCreateHandler\BS11ConfigCreateHandler.cs" />
     <Compile Include="Config\ConfigCreateHandler\ConfigCreateHandler.cs" />
     <Compile Include="Config\ConfigCreateHandler\Star61ConfigCreateHandler.cs" />
     <Compile Include="Config\ConfigManager.cs" />
@@ -337,6 +338,7 @@
     <Compile Include="Data\SaveData.cs" />
     <Compile Include="Data\SaveNewData.cs" />
     <Compile Include="Data\Stardata.cs" />
+    <Compile Include="Data\Wrapper\ItemData.cs" />
     <Compile Include="Data\Wrapper\UnitData.cs" />
     <Compile Include="Data\Wrapper\WrapperData.cs" />
     <Compile Include="MainForm.cs">

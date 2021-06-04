@@ -42,5 +42,15 @@ namespace CczEditor.Controls.ConfigControls
             popup.DefaultFileName = "BS 1.0";
             popup.ShowDialog();
         }
+
+        private void Bs11Button_Click(object sender, EventArgs e)
+        {
+            CreatePreset popup = new CreatePreset();
+            popup._presetType = CreatePreset.PresetType.Bs11;
+            popup.DefaultDisplayName = "비상조조전 1.1";
+            popup.DefaultFileName = "BS 1.1";
+            popup.ShowDialog();
+
+        }
     }
 }

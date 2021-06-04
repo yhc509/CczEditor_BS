@@ -21,6 +21,7 @@ namespace CczEditor
         {
             base.CreateCodeOptionSettings();
 
+            result.UseE5Directory = true;
             result.CodeOptionContainer.UseMagicCondition = false;
             result.CodeOptionContainer.UseMeffAfterMcallExtension = true;
         }
@@ -258,25 +259,25 @@ namespace CczEditor
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 126, Length = 8, Offset = 0xD1C81 });
             result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 127, Length = 8, Offset = 0xD1C8A });
 
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 71, Length = 6, Offset = 0x8ACC0 });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 72, Length = 6, Offset = 0x8ACC7 });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 73, Length = 8, Offset = 0x8ACCE });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 74, Length = 8, Offset = 0x8ACD7 });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 75, Length = 8, Offset = 0x8ACE0 });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 76, Length = 8, Offset = 0x8ACE9 });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 77, Length = 8, Offset = 0x8ACF2 });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 78, Length = 8, Offset = 0x8ACFB });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 79, Length = 8, Offset = 0x8AD04 });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 80, Length = 10, Offset = 0x8AD0D });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 71, Length = 6, Offset = 0x8ACBB });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 72, Length = 6, Offset = 0x8ACC2 });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 73, Length = 8, Offset = 0x8ACC9 });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 74, Length = 8, Offset = 0x8ACD2 });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 75, Length = 8, Offset = 0x8ACDB });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 76, Length = 8, Offset = 0x8ACE4 });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 77, Length = 8, Offset = 0x8ACED });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 78, Length = 8, Offset = 0x8ACF6 });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 79, Length = 8, Offset = 0x8AE01 });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 80, Length = 10, Offset = 0x8AD08 });
 
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 81, Length = 8, Offset = 0x8AD18 });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 82, Length = 8, Offset = 0x8AD21 });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 83, Length = 8, Offset = 0x8AD2A });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 84, Length = 8, Offset = 0x8AD33 });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 85, Length = 8, Offset = 0x8AD3C });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 86, Length = 8, Offset = 0x8AD45 });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 87, Length = 8, Offset = 0x8AD4E });
-            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 88, Length = 6, Offset = 0x8AD4E });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 81, Length = 8, Offset = 0x8AD13 });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 82, Length = 8, Offset = 0x8AD1C });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 83, Length = 8, Offset = 0x8AD25 });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 84, Length = 8, Offset = 0x8AD2E });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 85, Length = 8, Offset = 0x8AD37 });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 86, Length = 8, Offset = 0x8AD40 });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 87, Length = 8, Offset = 0x8AD49 });
+            result.ItemEffects.Add(new Config.ConfigItemEffectNameInfos { Index = 88, Length = 6, Offset = 0x8AD49 });
 
         }
         

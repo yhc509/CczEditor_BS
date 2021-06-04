@@ -23,11 +23,8 @@ namespace CczEditor
 
         protected override void CreateCodeOptionSettings()
         {
-            result.CodeOptionContainer.ItemCustomRange = false;
-            result.CodeOptionContainer.MpExtension = false;
-            result.CodeOptionContainer.AIExtension = true;
-            result.CodeOptionContainer.MagicLearnExtension = true;
-            result.CodeOptionContainer.SingularAttribute = false;
+            base.CreateCodeOptionSettings();
+
             result.CodeOptionContainer.MagicReflect = true;
             result.CodeOptionContainer.UseLargeFace = true;
             result.CodeOptionContainer.UseCutin = true;
