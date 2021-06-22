@@ -233,18 +233,6 @@
     <Compile Include="Controls\DataControls\UnitsData.Designer.cs">
       <DependentUpon>UnitsData.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ExtensionsControls\ForceCategoriesRestraint.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\ExtensionsControls\ForceCategoriesRestraint.Designer.cs">
-      <DependentUpon>ForceCategoriesRestraint.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ExtensionsControls\SpecialImageDesignated.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\ExtensionsControls\SpecialImageDesignated.Designer.cs">
-      <DependentUpon>SpecialImageDesignated.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\ImsgControls\BaseImsgControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -329,6 +317,7 @@
     <Compile Include="Controls\TextBoxControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Data\DataContainer.cs" />
     <Compile Include="Data\Exedata.cs" />
     <Compile Include="Data\FileData.cs" />
     <Compile Include="Data\GameData.cs" />
@@ -417,14 +406,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DataControls\UnitsData.resx">
       <DependentUpon>UnitsData.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ExtensionsControls\ForceCategoriesRestraint.resx">
-      <DependentUpon>ForceCategoriesRestraint.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ExtensionsControls\SpecialImageDesignated.resx">
-      <DependentUpon>SpecialImageDesignated.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ImsgControls\BaseImsgControl.resx">

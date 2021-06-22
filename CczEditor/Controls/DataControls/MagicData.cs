@@ -54,7 +54,7 @@ namespace CczEditor.Controls.DataControls
                 item.SubItems.Add(forceNames[i]);
                 lvLearnLv.Items.Add(item);
             }
-			lbList.Items.AddRange(GameData.MagicNameList(true).ToArray());
+			lbList.Items.AddRange(Program.GameData.MagicNameList(true).ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
 		}
@@ -65,7 +65,7 @@ namespace CczEditor.Controls.DataControls
 			{
 				return;
 			}            
-			var magic = GameData.MagicGet(lbList.SelectedIndex);
+			var magic = Program.GameData.MagicGet(lbList.SelectedIndex);
 			txtName.Text = Utils.ByteToString(magic, 0, 10);
 
 			ncMagicType.Value = magic[11];
@@ -263,7 +263,7 @@ namespace CczEditor.Controls.DataControls
 				return;
 			}
 			var index = lbList.SelectedIndex;
-			var magic = GameData.MagicGet(index);
+			var magic = Program.GameData.MagicGet(index);
 			Utils.ChangeByteValue(magic, Utils.GetBytes(txtName.Text), 0, 10);
 
 			magic[11] = (byte)ncMagicType.Value;
@@ -276,12 +276,12 @@ namespace CczEditor.Controls.DataControls
 			{
 				magic[17+i] = byte.Parse(lvLearnLv.Items[i].Text);
 			}
-			GameData.MagicSet(index, magic);
+            Program.GameData.MagicSet(index, magic);
 
             //Imsg
-            var msg = ImsgData.MagicGet(lbList.SelectedIndex);
+            var msg = Program.ImsgData.MagicGet(lbList.SelectedIndex);
             Utils.ChangeByteValue(msg, Utils.GetBytes(txtImsg.Text), 0, Program.IMSG_DATA_BLOCK_LENGTH);
-            ImsgData.MagicSet(lbList.SelectedIndex, msg);
+            Program.ImsgData.MagicSet(lbList.SelectedIndex, msg);
 
 
             //EXE
@@ -396,7 +396,7 @@ namespace CczEditor.Controls.DataControls
 			{
 				return;
 			}
-			var msg = ImsgData.MagicGet(lbList.SelectedIndex);
+			var msg = Program.ImsgData.MagicGet(lbList.SelectedIndex);
 			txtImsg.Text = Utils.ByteToString(msg, 0, Program.IMSG_DATA_BLOCK_LENGTH);
 		}
 
@@ -450,7 +450,7 @@ namespace CczEditor.Controls.DataControls
                 pbHitarea.Image = cbHitarea.SelectedIndex == -1 ? null : Hitareas.GetImage(cbHitarea.SelectedIndex);
             }
 
-			if (((GameData == null || GameData.CurrentFile == null) || !GameData.CurrentFile.Exists) || string.IsNullOrEmpty(GameData.CurrentFile.DirectoryName))
+			if (((Program.GameData == null || Program.GameData.CurrentFile == null) || !Program.GameData.CurrentFile.Exists) || string.IsNullOrEmpty(Program.GameData.CurrentFile.DirectoryName))
 			{
 				return;
 			}
@@ -462,7 +462,7 @@ namespace CczEditor.Controls.DataControls
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            var list = GameData.MagicNameList(false);
+            var list = Program.GameData.MagicNameList(false);
             var index = list.FindIndex(x => x == searchTextBox.Text);
             if (index == -1)
             {

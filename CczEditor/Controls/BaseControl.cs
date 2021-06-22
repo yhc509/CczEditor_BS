@@ -15,10 +15,6 @@ namespace CczEditor.Controls
     /// </summary>
     public class BaseControl : UserControl
     {
-        protected GameData GameData;
-        protected StarData StarData;
-        protected ImsgData ImsgData;
-
         protected HitareaResources Hitareas;
         protected EffareaResources Effareas;
         protected FaceResources Faces;
@@ -34,48 +30,21 @@ namespace CczEditor.Controls
         {
             Width = 794;
             Height = 550;
-            if (Program.GameData != null)
-            {
-                GameData = Program.GameData;
-            }
-            else
-            {
-                Program.LoadGameData();
-                GameData = Program.GameData;
-            }
-            if (Program.ImsgData != null)
-            {
-                ImsgData = Program.ImsgData;
-            }
-            else
-            {
-                Program.LoadImsgData();
-                ImsgData = Program.ImsgData;
-            }
-            if (Program.StarData != null)
-            {
-                StarData = Program.StarData;
-            }
-            else
-            {
-                Program.LoadStarData();
-                StarData = Program.StarData;
-            }
         }
 
         public bool GameDataLoaded
         {
-            get { return GameData != null && GameData.CurrentFile != null && GameData.CurrentStream != null; }
+            get { return Program.GameData != null; }
         }
 
         public bool ImsgDataLoaded
         {
-            get { return ImsgData != null && ImsgData.CurrentFile != null && ImsgData.CurrentStream != null; }
+            get { return Program.ImsgData != null; }
         }
 
         public bool StarDataLoaded
         {
-            get { return StarData != null && StarData.CurrentFile != null && StarData.CurrentStream != null; }
+            get { return Program.StarData != null; }
         }
 
         protected void GetResourcesItemIcon()
@@ -87,9 +56,9 @@ namespace CczEditor.Controls
 
             string path;
             if (Program.CurrentConfig.UseE5Directory)
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_ITEM);
+                path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_ITEM);
             else
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_ITEM);
+                path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, Program.FILENAME_ITEM);
             ItemIcons = new ItemResources(path);
             
         }
@@ -103,9 +72,9 @@ namespace CczEditor.Controls
 
             string path;
             if (Program.CurrentConfig.UseE5Directory)
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_FACE);
+                path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_FACE);
             else
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_FACE);
+                path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, Program.FILENAME_FACE);
             Faces = new FaceResources(path);
             
         }
@@ -119,9 +88,9 @@ namespace CczEditor.Controls
 
             string path;
             if (Program.CurrentConfig.UseE5Directory)
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_FACE_LARGE);
+                path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_FACE_LARGE);
             else
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_FACE_LARGE);
+                path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, Program.FILENAME_FACE_LARGE);
             FaceLarges = new FaceResources(path);
             
         }
@@ -134,7 +103,7 @@ namespace CczEditor.Controls
                 return;
             }
 
-            string path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_PMAPOBJ);
+            string path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, Program.FILENAME_PMAPOBJ);
             Pmapobjs = new PmapobjResources(path);
             
         }
@@ -148,9 +117,9 @@ namespace CczEditor.Controls
 
             string path;
             if (Program.CurrentConfig.UseE5Directory)
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_HITAREA);
+                path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_HITAREA);
             else
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_HITAREA);
+                path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, Program.FILENAME_HITAREA);
             Hitareas = new HitareaResources(path);
         }
 
@@ -163,9 +132,9 @@ namespace CczEditor.Controls
 
             string path;
             if (Program.CurrentConfig.UseE5Directory)
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_EFFAREA);
+                path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, "E5", Program.FILENAME_EFFAREA);
             else
-                path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_EFFAREA);
+                path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, Program.FILENAME_EFFAREA);
             Effareas = new EffareaResources(path);
         }
 
@@ -176,7 +145,7 @@ namespace CczEditor.Controls
                 return;
             }
 
-            string path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEATK);
+            string path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEATK);
             UnitAtk = new UnitAtkResources(path);
         }
 
@@ -187,7 +156,7 @@ namespace CczEditor.Controls
                 return;
             }
 
-            string path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEMOV);
+            string path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGEMOV);
             UnitMov = new UnitMovResources(path);
         }
 
@@ -198,7 +167,7 @@ namespace CczEditor.Controls
                 return;
             }
 
-            string path = Path.Combine(GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGESPC);
+            string path = Path.Combine(Program.GameData.CurrentFile.DirectoryName, Program.FILENAME_IMAGESPC);
             UnitSpc = new UnitSpcResources(path);
         }
 

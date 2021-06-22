@@ -20,7 +20,7 @@ namespace CczEditor.Controls.ImsgControls
 
 		private void RetreatImsg_Load(object sender, EventArgs e)
 		{
-			lbList.Items.AddRange(ImsgData.RetreatNameList(true).ToArray());
+			lbList.Items.AddRange(Program.ImsgData.RetreatNameList(true).ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
 		}
@@ -31,7 +31,7 @@ namespace CczEditor.Controls.ImsgControls
 			{
 				return;
 			}
-			var msg = ImsgData.RetreatGet(lbList.SelectedIndex);
+			var msg = Program.ImsgData.RetreatGet(lbList.SelectedIndex);
 			txtText.Text = Utils.ByteToString(msg, 0, Program.IMSG_DATA_BLOCK_LENGTH);
 			if (TopLevelControl != null)
 			{
@@ -46,9 +46,9 @@ namespace CczEditor.Controls.ImsgControls
 				return;
 			}
 			var index = lbList.SelectedIndex;
-			var msg = ImsgData.RetreatGet(index);
+			var msg = Program.ImsgData.RetreatGet(index);
 			Utils.ChangeByteValue(msg, Utils.GetBytes(txtText.Text), 0, Program.IMSG_DATA_BLOCK_LENGTH);
-			ImsgData.RetreatSet(index, msg);
+            Program.ImsgData.RetreatSet(index, msg);
 			lbList.Items.RemoveAt(index);
 			lbList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_DEC2, index, txtText.Text));
 			lbList.SelectedIndex = index;

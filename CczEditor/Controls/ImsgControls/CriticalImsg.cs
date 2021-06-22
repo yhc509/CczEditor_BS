@@ -19,7 +19,7 @@ namespace CczEditor.Controls.ImsgControls
 
 		private void CriticalImsg_Load(object sender, EventArgs e)
 		{
-			lbList.Items.AddRange(ImsgData.CriticalNameList.ToArray());
+			lbList.Items.AddRange(Program.ImsgData.CriticalNameList.ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
 		}
@@ -31,7 +31,7 @@ namespace CczEditor.Controls.ImsgControls
 				return;
 			}
 			var index = lbList.SelectedIndex;
-			var msg = ImsgData.CriticalGet(index);
+			var msg = Program.ImsgData.CriticalGet(index);
 			txtText.Text = Utils.ByteToString(msg, 0, Program.IMSG_DATA_BLOCK_LENGTH);
             /*
             if (ExeDataLoaded)
@@ -63,9 +63,9 @@ namespace CczEditor.Controls.ImsgControls
 				return;
 			}
 			var index = lbList.SelectedIndex;
-			var msg = ImsgData.CriticalGet(index);
+			var msg = Program.ImsgData.CriticalGet(index);
 			Utils.ChangeByteValue(msg, Utils.GetBytes(txtText.Text), 0, Program.IMSG_DATA_BLOCK_LENGTH);
-			ImsgData.CriticalSet(index, msg);
+            Program.ImsgData.CriticalSet(index, msg);
             /*
             if (ExeDataLoaded)
             {

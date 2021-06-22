@@ -16,9 +16,7 @@ using System.IO;
 namespace CczEditor.Controls.DataControls
 {
     public partial class UnitsData : BaseDataControl
-	{
-        private List<int> _itemIconList;
-        
+	{        
         public UnitsData()
 		{
 			InitializeComponent();
@@ -66,11 +64,10 @@ namespace CczEditor.Controls.DataControls
 
 		private void UnitsData_Load(object sender, EventArgs e)
 		{
-			_itemIconList = GameData.ItemIconList();
             cbForce.Items.Clear();
             cbForce.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
             
-            clbList.Items.AddRange(GameData.UnitNameList(true).ToArray());
+            clbList.Items.AddRange(Program.GameData.UnitNameList(true).ToArray());
 			clbList.SelectedIndex = 0;
             PmapObjActionComboBox.SelectedIndex = 0;
             BattleObjComboBox.SelectedIndex = 0;
@@ -315,12 +312,12 @@ namespace CczEditor.Controls.DataControls
                     }
                 } if (rbtnImsgType1.Checked)
                 {
-                    var msg = ImsgData.UnitExtensionGet(clbList.SelectedIndex);
+                    var msg = Program.ImsgData.UnitExtensionGet(clbList.SelectedIndex);
                     txtImsg.Text = Utils.ByteToString(msg, 0, Program.IMSG_DATA_BLOCK_LENGTH);
                 }
                 else if (rbtnImsgType2.Checked)
                 {
-                    var msg = ImsgData.RetreatGet(clbList.SelectedIndex);
+                    var msg = Program.ImsgData.RetreatGet(clbList.SelectedIndex);
                     txtImsg.Text = Utils.ByteToString(msg, 0, Program.IMSG_DATA_BLOCK_LENGTH);
                 }
 			}
@@ -588,7 +585,7 @@ namespace CczEditor.Controls.DataControls
         #region Search
         private void searchButton_Click(object sender, EventArgs e)
         {
-            var list = GameData.UnitNameList(false);
+            var list = Program.GameData.UnitNameList(false);
             var index = list.FindIndex(x => x == searchTextBox.Text);
             if (index == -1)
             {
@@ -737,7 +734,7 @@ namespace CczEditor.Controls.DataControls
             popup.FormClosed += (s, ev) =>
             {
                 clbList.Items.Clear();
-                clbList.Items.AddRange(GameData.UnitNameList(true).ToArray());
+                clbList.Items.AddRange(Program.GameData.UnitNameList(true).ToArray());
                 clbList.SelectedIndex = 0;
             };
             popup.ShowDialog();

@@ -158,127 +158,45 @@ namespace CczEditor
         
 		public const string FORMATSTRING_SAVEEQUIPMENT = "{0:X2}:[{1}]";
 
-		#endregion
+        #endregion
 
-		#endregion
-                
-		public static GameData GameData;
-        public static StarData StarData;
-        
-		public static ImsgData ImsgData;
-        
-        
-		public static void ReLoadData()
-		{
-			if (GameData != null && GameData.CurrentFile != null && !string.IsNullOrEmpty(GameData.CurrentFile.FullName) && GameData.CurrentFile.Exists)
-			{
-				GameData = new GameData(GameData.CurrentFile.FullName);
-			}
-			if (ImsgData != null && ImsgData.CurrentFile != null && !string.IsNullOrEmpty(ImsgData.CurrentFile.FullName) && ImsgData.CurrentFile.Exists)
-			{
-				ImsgData = new ImsgData(ImsgData.CurrentFile.FullName);
-			}
-            if (StarData != null && StarData.CurrentFile != null && !string.IsNullOrEmpty(StarData.CurrentFile.FullName) && StarData.CurrentFile.Exists)
+        #endregion
+
+        public static GameData GameData {
+            get
             {
-                StarData = new StarData(StarData.CurrentFile.FullName);
+                return DataContainer.GetGameData(CurrentConfig.DirectoryPath);
             }
-		}
-
-		public static void LoadGameData()
-		{
-			try
-			{
-				if (GameData == null || GameData.CurrentStream == null)
-				{
-					if (ImsgData != null && ImsgData.CurrentFile != null && ImsgData.CurrentFile.Exists && ImsgData.CurrentFile.DirectoryName != null)
-					{
-						GameData = new GameData(Path.Combine(ImsgData.CurrentFile.DirectoryName, FILENAME_DATA));
-						return;
-					}
-					if (CurrentConfig != null && !string.IsNullOrEmpty(CurrentConfig.DirectoryPath) && Directory.Exists(CurrentConfig.DirectoryPath))
-					{
-						GameData = new GameData(Path.Combine(CurrentConfig.DirectoryPath, FILENAME_DATA));
-						return;
-					}
-				}
-				else
-				{
-					if (ImsgData != null && ImsgData.CurrentFile != null && ImsgData.CurrentFile.Exists && ImsgData.CurrentFile.DirectoryName != null && GameData.CurrentFile.DirectoryName != ImsgData.CurrentFile.DirectoryName)
-					{
-						GameData = new GameData(Path.Combine(ImsgData.CurrentFile.DirectoryName, FILENAME_DATA));
-					}
-				}
-			}
-			catch (Exception)
-			{
-				GameData = null;
-				return;
-			}
-		}
-
-        public static void LoadStarData()
-        {
-                try
-                {
-                    if (StarData == null || StarData.CurrentStream == null)
-                    {
-                        if (ImsgData != null && ImsgData.CurrentFile != null && ImsgData.CurrentFile.Exists && ImsgData.CurrentFile.DirectoryName != null)
-                        {
-                            StarData = new StarData(Path.Combine(ImsgData.CurrentFile.DirectoryName, FILENAME_STAR));
-                            return;
-                        }
-                        if (CurrentConfig != null && !string.IsNullOrEmpty(CurrentConfig.DirectoryPath) && Directory.Exists(CurrentConfig.DirectoryPath))
-                        {
-                            StarData = new StarData(Path.Combine(CurrentConfig.DirectoryPath, FILENAME_STAR));
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        if (ImsgData != null && ImsgData.CurrentFile != null && ImsgData.CurrentFile.Exists && ImsgData.CurrentFile.DirectoryName != null && StarData.CurrentFile.DirectoryName != ImsgData.CurrentFile.DirectoryName)
-                        {
-                            StarData = new StarData(Path.Combine(ImsgData.CurrentFile.DirectoryName, FILENAME_STAR));
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    StarData = null;
-                    return;
-                }
         }
-        
-		public static void LoadImsgData()
-		{
-			try
-			{
-				if (ImsgData == null || ImsgData.CurrentStream == null)
-				{
-					if (GameData != null && GameData.CurrentFile != null && GameData.CurrentFile.Exists && GameData.CurrentFile.DirectoryName != null)
-					{
-						ImsgData = new ImsgData(Path.Combine(GameData.CurrentFile.DirectoryName, FILENAME_IMSG));
-						return;
-					}
-					if (CurrentConfig != null && !string.IsNullOrEmpty(CurrentConfig.DirectoryPath) && Directory.Exists(CurrentConfig.DirectoryPath))
-					{
-						ImsgData = new ImsgData(Path.Combine(CurrentConfig.DirectoryPath, FILENAME_IMSG));
-						return;
-					}
-				}
-				else
-				{
-					if (GameData != null && GameData.CurrentFile != null && GameData.CurrentFile.Exists && GameData.CurrentFile.DirectoryName != null && ImsgData.CurrentFile.DirectoryName != GameData.CurrentFile.DirectoryName)
-					{
-						ImsgData = new ImsgData(Path.Combine(GameData.CurrentFile.DirectoryName, FILENAME_IMSG));
-						return;
-					}
-				}
-			}
-			catch (Exception)
-			{
-				ImsgData = null;
-				return;
-			}
+
+        public static StarData StarData
+        {
+            get
+            {
+                return DataContainer.GetStarData(CurrentConfig.DirectoryPath);
+            }
+        }
+
+        public static ImsgData ImsgData
+        {
+            get
+            {
+                return DataContainer.GetImsgData(CurrentConfig.DirectoryPath);
+            }
+        }
+
+
+        public static void ReLoadData()
+        {
+            var path = CurrentConfig.DirectoryPath;
+
+            DataContainer.UnloadGameData(path);
+            DataContainer.UnloadStarData(path);
+            DataContainer.UnloadImsgData(path);
+
+            DataContainer.LoadGameData(path);
+            DataContainer.LoadStarData(path);
+            DataContainer.LoadImsgData(path);
 		}
 	}
 }

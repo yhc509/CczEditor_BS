@@ -21,7 +21,7 @@ namespace CczEditor.Controls.ImsgControls
 
 		private void StageImsg_Load(object sender, EventArgs e)
 		{
-			lbList.Items.AddRange(GameData.StoreNameList(true).ToArray());
+			lbList.Items.AddRange(Program.GameData.StoreNameList(true).ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
 		}
@@ -32,7 +32,7 @@ namespace CczEditor.Controls.ImsgControls
 			{
 				return;
 			}
-			var msg = ImsgData.StageGet(lbList.SelectedIndex);
+			var msg = Program.ImsgData.StageGet(lbList.SelectedIndex);
 			txtText.Text = Utils.ByteToString(msg, 0, Program.IMSG_STAGE_NAME_LENGTH);
 			if (TopLevelControl != null)
 			{
@@ -47,9 +47,9 @@ namespace CczEditor.Controls.ImsgControls
 				return;
 			}
 			var index = lbList.SelectedIndex;
-			var msg = ImsgData.StageGet(index);
+			var msg = Program.ImsgData.StageGet(index);
 			Utils.ChangeByteValue(msg, Utils.GetBytes(txtText.Text), 0, Program.IMSG_STAGE_NAME_LENGTH);
-			ImsgData.StageSet(index, msg);
+            Program.ImsgData.StageSet(index, msg);
 			lbList.Items.RemoveAt(index);
 			lbList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_DEC2, index, txtText.Text));
 			lbList.SelectedIndex = index;

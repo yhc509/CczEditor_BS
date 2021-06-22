@@ -31,10 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.msMainMenu = new System.Windows.Forms.MenuStrip();
             this.tsmiMainMenu_File = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiMainMenu_File_LoadFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiMainMenu_File_LoadFile_Data = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiMainMenu_File_LoadFile_Imsg = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiMainMenu_File_LoadFile_Save = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMainMenu_File_LoadFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.tss_File_1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiMainMenu_File_LoadData = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,7 +88,6 @@
             // tsmiMainMenu_File
             // 
             this.tsmiMainMenu_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiMainMenu_File_LoadFile,
             this.tsmiMainMenu_File_LoadFolder,
             this.tss_File_1,
             this.tsmiMainMenu_File_LoadData,
@@ -101,38 +96,6 @@
             this.tsmiMainMenu_File.Name = "tsmiMainMenu_File";
             this.tsmiMainMenu_File.Size = new System.Drawing.Size(61, 20);
             this.tsmiMainMenu_File.Text = "파일 (&F)";
-            // 
-            // tsmiMainMenu_File_LoadFile
-            // 
-            this.tsmiMainMenu_File_LoadFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiMainMenu_File_LoadFile_Data,
-            this.tsmiMainMenu_File_LoadFile_Imsg,
-            this.tsmiMainMenu_File_LoadFile_Save});
-            this.tsmiMainMenu_File_LoadFile.Name = "tsmiMainMenu_File_LoadFile";
-            this.tsmiMainMenu_File_LoadFile.Size = new System.Drawing.Size(169, 22);
-            this.tsmiMainMenu_File_LoadFile.Text = "파일 열기 (&F)";
-            // 
-            // tsmiMainMenu_File_LoadFile_Data
-            // 
-            this.tsmiMainMenu_File_LoadFile_Data.Name = "tsmiMainMenu_File_LoadFile_Data";
-            this.tsmiMainMenu_File_LoadFile_Data.Size = new System.Drawing.Size(148, 22);
-            this.tsmiMainMenu_File_LoadFile_Data.Text = "Data 파일 (&D)";
-            this.tsmiMainMenu_File_LoadFile_Data.Click += new System.EventHandler(this.tsmiMainMenu_File_LoadFile_Data_Click);
-            // 
-            // tsmiMainMenu_File_LoadFile_Imsg
-            // 
-            this.tsmiMainMenu_File_LoadFile_Imsg.Name = "tsmiMainMenu_File_LoadFile_Imsg";
-            this.tsmiMainMenu_File_LoadFile_Imsg.Size = new System.Drawing.Size(148, 22);
-            this.tsmiMainMenu_File_LoadFile_Imsg.Text = "Imsg 파일 (&I)";
-            this.tsmiMainMenu_File_LoadFile_Imsg.Click += new System.EventHandler(this.tsmiMainMenu_File_LoadFile_Imsg_Click);
-            // 
-            // tsmiMainMenu_File_LoadFile_Save
-            // 
-            this.tsmiMainMenu_File_LoadFile_Save.Name = "tsmiMainMenu_File_LoadFile_Save";
-            this.tsmiMainMenu_File_LoadFile_Save.Size = new System.Drawing.Size(148, 22);
-            this.tsmiMainMenu_File_LoadFile_Save.Text = "Save 파일 (&S)";
-            this.tsmiMainMenu_File_LoadFile_Save.Visible = false;
-            this.tsmiMainMenu_File_LoadFile_Save.Click += new System.EventHandler(this.tsmiMainMenu_File_LoadFile_Save_Click);
             // 
             // tsmiMainMenu_File_LoadFolder
             // 
@@ -264,7 +227,7 @@
             this.tsmiMainMenu_Imsg_Units_Original,
             this.tsmiMainMenu_Imsg_Units_Extension});
             this.tsmiMainMenu_Imsg_Units.Name = "tsmiMainMenu_Imsg_Units";
-            this.tsmiMainMenu_Imsg_Units.Size = new System.Drawing.Size(146, 22);
+            this.tsmiMainMenu_Imsg_Units.Size = new System.Drawing.Size(152, 22);
             this.tsmiMainMenu_Imsg_Units.Text = "인물 열전 (&U)";
             this.tsmiMainMenu_Imsg_Units.Visible = false;
             // 
@@ -285,21 +248,21 @@
             // tsmiMainMenu_Imsg_Retreat
             // 
             this.tsmiMainMenu_Imsg_Retreat.Name = "tsmiMainMenu_Imsg_Retreat";
-            this.tsmiMainMenu_Imsg_Retreat.Size = new System.Drawing.Size(146, 22);
+            this.tsmiMainMenu_Imsg_Retreat.Size = new System.Drawing.Size(152, 22);
             this.tsmiMainMenu_Imsg_Retreat.Text = "퇴각 대사 (&R)";
             this.tsmiMainMenu_Imsg_Retreat.Click += new System.EventHandler(this.tsmiMainMenu_Imsg_Retreat_Click);
             // 
             // tsmiMainMenu_Imsg_Critical
             // 
             this.tsmiMainMenu_Imsg_Critical.Name = "tsmiMainMenu_Imsg_Critical";
-            this.tsmiMainMenu_Imsg_Critical.Size = new System.Drawing.Size(146, 22);
+            this.tsmiMainMenu_Imsg_Critical.Size = new System.Drawing.Size(152, 22);
             this.tsmiMainMenu_Imsg_Critical.Text = "회심 대사 (&C)";
             this.tsmiMainMenu_Imsg_Critical.Click += new System.EventHandler(this.tsmiMainMenu_Imsg_Critical_Click);
             // 
             // tsmiMainMenu_Imsg_Staff
             // 
             this.tsmiMainMenu_Imsg_Staff.Name = "tsmiMainMenu_Imsg_Staff";
-            this.tsmiMainMenu_Imsg_Staff.Size = new System.Drawing.Size(146, 22);
+            this.tsmiMainMenu_Imsg_Staff.Size = new System.Drawing.Size(152, 22);
             this.tsmiMainMenu_Imsg_Staff.Text = "제작 인물 (&S)";
             this.tsmiMainMenu_Imsg_Staff.Click += new System.EventHandler(this.tsmiMainMenu_Imsg_Staff_Click);
             // 
@@ -414,10 +377,6 @@
 		private System.Windows.Forms.MenuStrip msMainMenu;
 		private System.Windows.Forms.Panel pMainContainer;
 		private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_File;
-		private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_File_LoadFile;
-		private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_File_LoadFile_Data;
-		private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_File_LoadFile_Imsg;
-		private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_File_LoadFile_Save;
 		private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_File_LoadFolder;
 		private System.Windows.Forms.ToolStripSeparator tss_File_1;
 		private System.Windows.Forms.ToolStripMenuItem tsmiMainMenu_File_LoadData;

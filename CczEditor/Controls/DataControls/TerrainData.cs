@@ -28,7 +28,7 @@ namespace CczEditor.Controls.DataControls
 			{
 				return;
 			}
-			var terrain = GameData.TerrainGet(lbList.SelectedIndex);
+			var terrain = Program.GameData.TerrainGet(lbList.SelectedIndex);
 			ncTerrain01.Value = terrain[0];
 			ncTerrain02.Value = terrain[1];
 			ncTerrain03.Value = terrain[2];
@@ -102,7 +102,7 @@ namespace CczEditor.Controls.DataControls
 				return;
 			}
 			var index = lbList.SelectedIndex;
-			var terrain = GameData.TerrainGet(index);
+			var terrain = Program.GameData.TerrainGet(index);
 			terrain[0] = (byte)ncTerrain01.Value;
 			terrain[1] = (byte)ncTerrain02.Value;
 			terrain[2] = (byte)ncTerrain03.Value;
@@ -163,7 +163,7 @@ namespace CczEditor.Controls.DataControls
 			terrain[57] = (byte)ncMobility28.Value;
 			terrain[58] = (byte)ncMobility29.Value;
 			terrain[59] = (byte)ncMobility30.Value;
-			GameData.TerrainSet(index, terrain);
+            Program.GameData.TerrainSet(index, terrain);
 		}
 
 		private void btnRestore_Click(object sender, EventArgs e)

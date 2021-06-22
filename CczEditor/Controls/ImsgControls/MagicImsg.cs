@@ -20,7 +20,7 @@ namespace CczEditor.Controls.ImsgControls
 
 		private void MagicImsg_Load(object sender, EventArgs e)
 		{
-			lbList.Items.AddRange(GameData.MagicNameList(true).ToArray());
+			lbList.Items.AddRange(Program.GameData.MagicNameList(true).ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
 		}
@@ -31,7 +31,7 @@ namespace CczEditor.Controls.ImsgControls
 			{
 				return;
 			}
-			var msg = ImsgData.MagicGet(lbList.SelectedIndex);
+			var msg = Program.ImsgData.MagicGet(lbList.SelectedIndex);
 			txtText.Text = Utils.ByteToString(msg, 0, Program.IMSG_DATA_BLOCK_LENGTH);
 			if (TopLevelControl != null)
 			{
@@ -45,9 +45,9 @@ namespace CczEditor.Controls.ImsgControls
 			{
 				return;
 			}
-			var msg = ImsgData.MagicGet(lbList.SelectedIndex);
+			var msg = Program.ImsgData.MagicGet(lbList.SelectedIndex);
 			Utils.ChangeByteValue(msg, Utils.GetBytes(txtText.Text), 0, Program.IMSG_DATA_BLOCK_LENGTH);
-			ImsgData.MagicSet(lbList.SelectedIndex, msg);
+            Program.ImsgData.MagicSet(lbList.SelectedIndex, msg);
 		}
 
 		private void btnRestore_Click(object sender, EventArgs e)

@@ -61,7 +61,7 @@ namespace CczEditor.Data.Wrapper
             result[29] = 0xFF;
             result[30] = 0xFF;
             result[31] = 0xFF;
-
+            
             if (Program.GameData.IsExist)
             {
                 Program.GameData.UnitSet(index, result);

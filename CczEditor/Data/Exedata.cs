@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CczEditor.Data
 {
-    public static class ExeData
+    public class ExeData
     {
         private static string ExePath
         {

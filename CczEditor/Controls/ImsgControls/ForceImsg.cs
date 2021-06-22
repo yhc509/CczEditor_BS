@@ -32,7 +32,7 @@ namespace CczEditor.Controls.ImsgControls
 			{
 				return;
 			}
-			var msg = ImsgData.ForceGet(lbList.SelectedIndex);
+			var msg = Program.ImsgData.ForceGet(lbList.SelectedIndex);
 			txtText.Text = Utils.ByteToString(msg, 0, Program.IMSG_DATA_BLOCK_LENGTH);
 			if (TopLevelControl != null)
 			{
@@ -46,9 +46,9 @@ namespace CczEditor.Controls.ImsgControls
 			{
 				return;
 			}
-			var msg = ImsgData.ForceGet(lbList.SelectedIndex);
+			var msg = Program.ImsgData.ForceGet(lbList.SelectedIndex);
 			Utils.ChangeByteValue(msg, Utils.GetBytes(txtText.Text), 0, Program.IMSG_DATA_BLOCK_LENGTH);
-			ImsgData.ForceSet(lbList.SelectedIndex, msg);
+            Program.ImsgData.ForceSet(lbList.SelectedIndex, msg);
 		}
 
 		private void btnRestore_Click(object sender, EventArgs e)

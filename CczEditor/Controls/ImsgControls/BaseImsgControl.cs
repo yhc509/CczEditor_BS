@@ -13,7 +13,7 @@ namespace CczEditor.Controls.ImsgControls
 			InitializeComponent();
             if (GameDataLoaded == true)
             {
-                comboBox1.Items.AddRange(GameData.UnitNameList(true).ToArray());
+                comboBox1.Items.AddRange(Program.GameData.UnitNameList(true).ToArray());
                 comboBox1.Items.Add("400,없음");
             }
 		}

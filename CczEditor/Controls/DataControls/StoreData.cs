@@ -22,18 +22,18 @@ namespace CczEditor.Controls.DataControls
 
 		private void StoreData_Load(object sender, EventArgs e)
 		{
-			_unitList = GameData.UnitNameList(true).ToArray();
+			_unitList = Program.GameData.UnitNameList(true).ToArray();
 
 			cbStorage.Items.AddRange(_unitList);
 			cbBusiness.Items.AddRange(_unitList);
-			clbEquipment.Items.AddRange(GameData.GetItemNames(ItemType.Weapons, true).ToArray());
-			clbEquipment.Items.AddRange(GameData.GetItemNames(ItemType.Armor, true).ToArray());
-			clbEquipment.Items.AddRange(GameData.GetItemNames(ItemType.Auxiliary, true).ToArray());
-            clbConsumables.Items.AddRange(GameData.GetItemNames(ItemType.Consumables, true).ToArray());
-            clbConsumables.Items.AddRange(GameData.GetItemNames(ItemType.bombs3, true).ToArray());
-            clbConsumables.Items.AddRange(GameData.GetItemNames(ItemType.bombs, true).ToArray());
-            clbConsumables.Items.AddRange(GameData.GetItemNames(ItemType.bombs2, true).ToArray()); 
-			lbList.Items.AddRange(GameData.StoreNameList(true).ToArray());
+			clbEquipment.Items.AddRange(Program.GameData.GetItemNames(ItemType.Weapons, true).ToArray());
+			clbEquipment.Items.AddRange(Program.GameData.GetItemNames(ItemType.Armor, true).ToArray());
+			clbEquipment.Items.AddRange(Program.GameData.GetItemNames(ItemType.Auxiliary, true).ToArray());
+            clbConsumables.Items.AddRange(Program.GameData.GetItemNames(ItemType.Consumables, true).ToArray());
+            clbConsumables.Items.AddRange(Program.GameData.GetItemNames(ItemType.bombs3, true).ToArray());
+            clbConsumables.Items.AddRange(Program.GameData.GetItemNames(ItemType.bombs, true).ToArray());
+            clbConsumables.Items.AddRange(Program.GameData.GetItemNames(ItemType.bombs2, true).ToArray()); 
+			lbList.Items.AddRange(Program.GameData.StoreNameList(true).ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
 		}
@@ -44,7 +44,7 @@ namespace CczEditor.Controls.DataControls
 			{
 				return;
 			}
-			var store = GameData.StoreGet(lbList.SelectedIndex);
+			var store = Program.GameData.StoreGet(lbList.SelectedIndex);
 			cbStorage.SelectedIndex = BitConverter.ToUInt16(store, 0);
 			cbBusiness.SelectedIndex = BitConverter.ToUInt16(store, 2);
 			var indexs = new int[clbEquipment.CheckedIndices.Count];
@@ -103,7 +103,7 @@ namespace CczEditor.Controls.DataControls
 				return;
 			}
 			var index = lbList.SelectedIndex;
-			var store = GameData.StoreGet(index);
+			var store = Program.GameData.StoreGet(index);
 			Utils.ChangeByteValue(store, BitConverter.GetBytes((ushort)cbStorage.SelectedIndex), 0);
 			Utils.ChangeByteValue(store, BitConverter.GetBytes((ushort)cbBusiness.SelectedIndex), 2);
 			var i = 4;
@@ -123,12 +123,12 @@ namespace CczEditor.Controls.DataControls
 			{
 				store[i] = 0xFF;
 			}
-			GameData.StoreSet(index, store);
+            Program.GameData.StoreSet(index, store);
 
             //Imsg
-            var stage = ImsgData.StageGet(index);
+            var stage = Program.ImsgData.StageGet(index);
             Utils.ChangeByteValue(stage, Utils.GetBytes(txtStageName.Text), 0, Program.IMSG_STAGE_NAME_LENGTH);
-            ImsgData.StageSet(index, stage);
+            Program.ImsgData.StageSet(index, stage);
             lbList.Items.RemoveAt(index);
             lbList.Items.Insert(index, string.Format("{0:D2},{1}", index, txtStageName.Text));
             lbList.SelectedIndex = index;
@@ -147,7 +147,7 @@ namespace CczEditor.Controls.DataControls
 			{
 				return;
 			}
-			var stage = ImsgData.StageGet(lbList.SelectedIndex);
+			var stage = Program.ImsgData.StageGet(lbList.SelectedIndex);
 			txtStageName.Text = Utils.ByteToString(stage);
 		}
 
@@ -182,7 +182,7 @@ namespace CczEditor.Controls.DataControls
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            var list = GameData.StoreNameList(false);
+            var list = Program.GameData.StoreNameList(false);
             var index = list.FindIndex(x => x == searchTextBox.Text);
             if (index == -1)
             {

@@ -43,7 +43,7 @@ namespace CczEditor.Controls.DataControls
             cbCorps.Items.AddRange(ConfigUtils.GetForceCategoryNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 
             cbItemHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
-			lbList.Items.AddRange(GameData.ItemNameList(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).ToArray());
+			lbList.Items.AddRange(Program.GameData.ItemNameList(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).ToArray());
 
             if (Program.StarData != null && Program.StarData.CurrentFile != null && Program.StarData.CurrentStream != null)
             {
@@ -53,7 +53,7 @@ namespace CczEditor.Controls.DataControls
                 cbBombEffects.Items.AddRange(ConfigUtils.GetBombsEffects3(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
                 EffectsRange.Items.AddRange(Program.CurrentConfig.EffAreaNames.ToArray());
                 AtkRange.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
-                lbList.Items.AddRange(StarData.ItemNameList(true).ToArray());
+                lbList.Items.AddRange(Program.StarData.ItemNameList(true).ToArray());
             }
 
             lbList.SelectedIndex = 0;
@@ -331,7 +331,7 @@ namespace CczEditor.Controls.DataControls
                 {
                     return;
                 }
-                var msg = ImsgData.ItemGet(lbList.SelectedIndex);
+                var msg = Program.ImsgData.ItemGet(lbList.SelectedIndex);
                 txtImsg.Text = Utils.ByteToString(msg, 0, Program.IMSG_DATA_BLOCK_LENGTH);
             }
             if (TopLevelControl != null)
@@ -349,18 +349,18 @@ namespace CczEditor.Controls.DataControls
             //Imsg저장
             if (ImsgDataLoaded)
             {
-                var msg = ImsgData.ItemGet(lbList.SelectedIndex);
+                var msg = Program.ImsgData.ItemGet(lbList.SelectedIndex);
                 Utils.ChangeByteValue(msg, Utils.GetBytes(txtImsg.Text), 0, Program.IMSG_DATA_BLOCK_LENGTH);
-                ImsgData.ItemSet(lbList.SelectedIndex, msg);
+                Program.ImsgData.ItemSet(lbList.SelectedIndex, msg);
             }
 
             //Data저장
             var index = lbList.SelectedIndex;
-            var item = GameData.ItemGet(index);
+            var item = Program.GameData.ItemGet(index);
             Utils.ChangeByteValue(item, Utils.GetBytes(txtName.Text), 0, 16);            
 			//16 0x00
 			//17,18,21,22,23
-			switch (GameData.GetItemType(item[17]))
+			switch (Program.GameData.GetItemType(item[17]))
 			{
 				case ItemType.Weapons:
 				case ItemType.Armor:
@@ -533,9 +533,9 @@ namespace CczEditor.Controls.DataControls
             }
 
             int bomulcount = 0;
-            GameData.WriteTreasureCount(bomulcount);
+            Program.GameData.WriteTreasureCount(bomulcount);
 
-            GameData.ItemSet(index, item);
+            Program.GameData.ItemSet(index, item);
 			lbList.Items.RemoveAt(index);
             lbList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, index, txtName.Text));
 			lbList.SelectedIndex = index;
@@ -548,7 +548,7 @@ namespace CczEditor.Controls.DataControls
                 return;
             }
 
-            var msg = ImsgData.ItemGet(lbList.SelectedIndex);
+            var msg = Program.ImsgData.ItemGet(lbList.SelectedIndex);
             txtImsg.Text = Utils.ByteToString(msg, 0, Program.IMSG_DATA_BLOCK_LENGTH);
 			lbList_SelectedIndexChanged(lbList, new EventArgs());
 
@@ -597,7 +597,7 @@ namespace CczEditor.Controls.DataControls
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            var list = GameData.ItemNameList(null);
+            var list = Program.GameData.ItemNameList(null);
             var index = list.FindIndex(x => x == searchTextBox.Text);
             if (index == -1)
             {

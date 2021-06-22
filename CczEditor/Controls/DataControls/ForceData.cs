@@ -68,7 +68,7 @@ namespace CczEditor.Controls.DataControls
 				return;
 			}
 
-			var force = GameData.ForceGet(lbList.SelectedIndex);
+			var force = Program.GameData.ForceGet(lbList.SelectedIndex);
 			ncMove.Value = force[0];
 			cbHitarea.SelectedIndex = force[1];
 			ncAtk.Value = force[2];
@@ -138,7 +138,7 @@ namespace CczEditor.Controls.DataControls
 
 			var index = lbList.SelectedIndex;
 
-			var force = GameData.ForceGet(index);
+			var force = Program.GameData.ForceGet(index);
 			force[0] = (byte)ncMove.Value;
 			force[1] = (byte)cbHitarea.SelectedIndex;
 			force[2] = (byte)ncAtk.Value;
@@ -153,14 +153,14 @@ namespace CczEditor.Controls.DataControls
 			{
 				force[di] = (byte)(clbEquipment.GetItemChecked(i) ? 0x01 : 0x00);
 			}
-			GameData.ForceSet(index, force);
+            Program.GameData.ForceSet(index, force);
 
             //Imsg
             if (ImsgDataLoaded)
             {
-                var msg = ImsgData.ForceGet(lbList.SelectedIndex);
+                var msg = Program.ImsgData.ForceGet(lbList.SelectedIndex);
                 Utils.ChangeByteValue(msg, Utils.GetBytes(txtImsg.Text), 0, Program.IMSG_DATA_BLOCK_LENGTH);
-                ImsgData.ForceSet(lbList.SelectedIndex, msg);
+                Program.ImsgData.ForceSet(lbList.SelectedIndex, msg);
             }
 
             //EXE
@@ -246,7 +246,7 @@ namespace CczEditor.Controls.DataControls
 			{
 				return;
 			}
-			var msg = ImsgData.ForceGet(lbList.SelectedIndex);
+			var msg = Program.ImsgData.ForceGet(lbList.SelectedIndex);
 			txtImsg.Text = Utils.ByteToString(msg, 0, Program.IMSG_DATA_BLOCK_LENGTH);
 		}
 

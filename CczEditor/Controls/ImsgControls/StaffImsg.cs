@@ -20,7 +20,7 @@ namespace CczEditor.Controls.ImsgControls
 
 		private void StaffImsg_Load(object sender, EventArgs e)
 		{
-			lbList.Items.AddRange(ImsgData.StaffNameList.ToArray());
+			lbList.Items.AddRange(Program.ImsgData.StaffNameList.ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
 			if (TopLevelControl != null)
@@ -35,7 +35,7 @@ namespace CczEditor.Controls.ImsgControls
 			{
 				return;
 			}
-			var msg = ImsgData.StaffGet(lbList.SelectedIndex);
+			var msg = Program.ImsgData.StaffGet(lbList.SelectedIndex);
 			txtText.Text = Utils.ByteToString(msg, 0, Program.IMSG_DATA_BLOCK_LENGTH);
 		}
 
@@ -46,9 +46,9 @@ namespace CczEditor.Controls.ImsgControls
 				return;
 			}
 			var index = lbList.SelectedIndex;
-			var msg = ImsgData.StaffGet(index);
+			var msg = Program.ImsgData.StaffGet(index);
 			Utils.ChangeByteValue(msg, Utils.GetBytes(txtText.Text), 0, Program.IMSG_DATA_BLOCK_LENGTH);
-			ImsgData.StaffSet(index, msg);
+            Program.ImsgData.StaffSet(index, msg);
 			lbList.Items.RemoveAt(index);
 			lbList.Items.Insert(index, txtText.Text);
 			lbList.SelectedIndex = index;

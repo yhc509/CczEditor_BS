@@ -12,8 +12,6 @@ namespace CczEditor.Controls.SaveControls
 {
 	public partial class UnitsSave : BaseSaveControl
 	{
-		private List<int> _itemIconList;
-
 		public UnitsSave()
 		{
 			InitializeComponent();
@@ -27,18 +25,17 @@ namespace CczEditor.Controls.SaveControls
 
 		private void UnitsSave_Load(object sender, EventArgs e)
 		{
-			_itemIconList = GameData.ItemIconList();
 			cbForce.Items.AddRange(Program.CurrentConfig.ForceNames.ToArray());
 			cbWeapon.Items.Add("FF,장비 없음");
-			cbWeapon.Items.AddRange(GameData.GetItemNames(ItemType.Weapons, true).ToArray());
-            cbWeapon.Items.AddRange(StarData.GetItemNames(ItemType.Weapons, true).ToArray());
+			cbWeapon.Items.AddRange(Program.GameData.GetItemNames(ItemType.Weapons, true).ToArray());
+            cbWeapon.Items.AddRange(Program.StarData.GetItemNames(ItemType.Weapons, true).ToArray());
 			cbArmor.Items.Add("FF,장비 없음");
-			cbArmor.Items.AddRange(GameData.GetItemNames(ItemType.Armor, true).ToArray());
-            cbArmor.Items.AddRange(StarData.GetItemNames(ItemType.Armor, true).ToArray());
+			cbArmor.Items.AddRange(Program.GameData.GetItemNames(ItemType.Armor, true).ToArray());
+            cbArmor.Items.AddRange(Program.StarData.GetItemNames(ItemType.Armor, true).ToArray());
 			cbAncillary.Items.Add("FF,장비 없음");
-			cbAncillary.Items.AddRange(GameData.GetItemNames(ItemType.Auxiliary, true).ToArray());
-            cbAncillary.Items.AddRange(StarData.GetItemNames(ItemType.Auxiliary, true).ToArray());
-			clbList.Items.AddRange(GameData.UnitNameList(true).ToArray());
+			cbAncillary.Items.AddRange(Program.GameData.GetItemNames(ItemType.Auxiliary, true).ToArray());
+            cbAncillary.Items.AddRange(Program.StarData.GetItemNames(ItemType.Auxiliary, true).ToArray());
+			clbList.Items.AddRange(Program.GameData.UnitNameList(true).ToArray());
 			clbList.SelectedIndex = 0;
 			clbList.Focus();
 		}
@@ -365,7 +362,7 @@ namespace CczEditor.Controls.SaveControls
 				return;
 			}
 			var index = Utils.GetId(cbWeapon.SelectedItem);
-			pbWeapon.Image = index >= 0 && index < _itemIconList.Count ? ItemIcons.GetImage(_itemIconList[index]) : null;
+			//pbWeapon.Image = index >= 0 && index < _itemIconList.Count ? ItemIcons.GetImage(_itemIconList[index]) : null;
 		}
 
 		private void cbArmor_SelectedIndexChanged(object sender, EventArgs e)
@@ -375,7 +372,7 @@ namespace CczEditor.Controls.SaveControls
 				return;
 			}
 			var index = Utils.GetId(cbArmor.SelectedItem);
-			pbArmor.Image = index >= 0 && index < _itemIconList.Count ? ItemIcons.GetImage(_itemIconList[index]) : null;
+			//pbArmor.Image = index >= 0 && index < _itemIconList.Count ? ItemIcons.GetImage(_itemIconList[index]) : null;
 		}
 
 		private void cbAncillary_SelectedIndexChanged(object sender, EventArgs e)
@@ -385,7 +382,7 @@ namespace CczEditor.Controls.SaveControls
 				return;
 			}
 			var index = Utils.GetId(cbAncillary.SelectedItem);
-			pbAncillary.Image = index >= 0 && index < _itemIconList.Count ? ItemIcons.GetImage(_itemIconList[index]) : null;
+			//pbAncillary.Image = index >= 0 && index < _itemIconList.Count ? ItemIcons.GetImage(_itemIconList[index]) : null;
 		}
 
 		#endregion

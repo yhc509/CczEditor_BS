@@ -151,5 +151,10 @@ namespace CczEditor.Data
 		{
 			return CurrentFile == null ? null : CurrentFile.Open(FileMode.Open, access, share);
 		}
+
+        public void Close()
+        {
+
+        }
 	}
 }

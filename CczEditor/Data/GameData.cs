@@ -55,13 +55,40 @@ namespace CczEditor.Data
 		public const int GAME_TERRAIN_LENGTH = Program.GAME_TERRAIN_LENGTH;
 		public const int GAME_MAGIC_LENGTH = Program.GAME_MAGIC_LENGTH;
 
-		public GameData(string fileName) : base(fileName)
+        private Config _config;
+
+        public GameData(string fileName) : base(fileName)
 		{
 			if (IsLsFile && IsCompression && Utils.QuestionUser(string.Format("이 파일 [{0}]은 아직 해독되지 않았습니다.해독합니까?", CurrentFile.FullName)))
 			{
 				Decompression();
 			}
 		}
+        public void Initialize(Config config)
+        {
+            _config = config;
+        }
+
+        #region Unit
+        public List<byte[]> UnitList
+        {
+            // 한번에 데이터를 입출력 해야할 때 사용. 캐싱해서 쓰지 말 것.
+            get
+            {
+                var count = _config.Data.UnitCount;
+                var offset = _config.Data.UnitOffset;
+                var length = GAME_UNIT_LENGTH;
+
+                var list = new List<byte[]>();
+                for (var i = 0; i < count; i++)
+                {
+                    byte[] unitBinary = new byte[length];
+                    CurrentStream.Read(unitBinary, offset, 1);
+                    list.Add(unitBinary);
+                }
+                return list;
+            }
+        }
 
 		public List<string> UnitNameList(bool hasFormater)
 		{
@@ -77,23 +104,7 @@ namespace CczEditor.Data
 			}
 			return list;
 		}
-
-		public List<byte> UnitForce
-		{
-			get
-            {
-                var count = Program.CurrentConfig.Data.UnitCount;
-                var offset = Program.CurrentConfig.Data.UnitOffset;
-                var list = new List<byte>();
-				for (var i = 0; i < count; i++)
-				{
-					CurrentStream.Seek(offset+i*GAME_UNIT_LENGTH+26, SeekOrigin.Begin);
-					list.Add((byte)CurrentStream.ReadByte());
-				}
-				return list;
-			}
-		}
-
+        
 		public byte[] UnitGet(int index)
         {
             var offset = Program.CurrentConfig.Data.UnitOffset;
@@ -109,8 +120,11 @@ namespace CczEditor.Data
             CurrentStream.Seek(offset+index*GAME_UNIT_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, GAME_UNIT_LENGTH);
 		}
+        #endregion
 
-		private readonly Dictionary<int, string> _weapons = ConfigUtils.GetWeaponsTypes(null);
+
+        #region Item
+        private readonly Dictionary<int, string> _weapons = ConfigUtils.GetWeaponsTypes(null);
 		private readonly Dictionary<int, string> _armor = ConfigUtils.GetArmorTypes(null);
         private readonly Dictionary<int, string> _auxiliary = ConfigUtils.GetAuxiliaryEffects(null);
         private readonly Dictionary<int, string> _consumables = ConfigUtils.GetConsumablesEffects(null);
@@ -247,52 +261,10 @@ namespace CczEditor.Data
 			}
 			return list;
 		}
-
-		public List<int> ItemIconList()
-		{
-            var count = Program.CurrentConfig.Data.ItemCount;
-            var offset = Program.CurrentConfig.Data.ItemOffset;
-			var list = new List<int>();
-			for (var i = 0; i < count; i++)
-			{
-				CurrentStream.Seek(offset+i*GAME_ITEM_LENGTH+20, SeekOrigin.Begin);
-				list.Add(CurrentStream.ReadByte());
-            }
-            if (Program.StarData != null && Program.StarData.CurrentFile != null && Program.StarData.CurrentStream != null)
-            {
-                Program.StarData.ItemIconList(list);
-            }
-            return list;
-		}
-
-		public List<bool> ItemIllustrationsShowList
-		{
-			get
-			{
-                var count = Program.CurrentConfig.Data.ItemCount;
-                var offset = Program.CurrentConfig.Data.ItemOffset;
-				var list = new List<bool>();
-				for (var i = 0; i < count; i++)
-				{
-					CurrentStream.Seek(offset+i*GAME_ITEM_LENGTH+24, SeekOrigin.Begin);
-					list.Add(CurrentStream.ReadByte() == 0x01 ? true : false);
-				}
-				return list;
-			}
-			set
-            {
-                var count = Program.CurrentConfig.Data.ItemCount;
-                var offset = Program.CurrentConfig.Data.ItemOffset;
-                count = count > value.Count ? value.Count : count;
-				for (var i = 0; i < count; i++)
-				{
-					CurrentStream.Seek(offset+i*GAME_ITEM_LENGTH+24, SeekOrigin.Begin);
-					CurrentStream.WriteByte((byte)(value[i] ? 0x01 : 0x00));
-				}
-			}
-		}
+        
         public void WriteTreasureCount(int bomul)
         {
+            //TODO ExeData로 옮겨야함.
             var item = new byte[1];
             int i = 0;
             for (; i < Program.CurrentConfig.Data.ItemCount; i++)
@@ -342,8 +314,10 @@ namespace CczEditor.Data
             }
 
 		}
+        #endregion
 
-		public List<string> StoreNameList(bool hasFormater)
+        #region Shop
+        public List<string> StoreNameList(bool hasFormater)
 		{
 			List<string> list;
 			if (Program.ImsgData == null || Program.ImsgData.CurrentStream == null)
@@ -377,8 +351,10 @@ namespace CczEditor.Data
             CurrentStream.Seek(offset+index*GAME_STORE_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, GAME_STORE_LENGTH);
 		}
+        #endregion
 
-		public byte[] ForceGet(int index)
+        #region Force
+        public byte[] ForceGet(int index)
 		{
             var offset = Program.CurrentConfig.Data.ForceOffset;
             var length = Program.CurrentConfig.Data.ForceLength;
@@ -395,8 +371,10 @@ namespace CczEditor.Data
             CurrentStream.Seek(offset+index*length, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, length);
 		}
+        #endregion
 
-		public byte[] TerrainGet(int index)
+        #region Terrain
+        public byte[] TerrainGet(int index)
 		{
             var offset = Program.CurrentConfig.Data.TerrainOffset;
 			var terrain = new byte[GAME_TERRAIN_LENGTH];
@@ -411,8 +389,10 @@ namespace CczEditor.Data
             CurrentStream.Seek(offset+index*GAME_TERRAIN_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, GAME_TERRAIN_LENGTH);
 		}
+        #endregion
 
-		public List<string> MagicNameList(bool hasFormater)
+        #region Magic
+        public List<string> MagicNameList(bool hasFormater)
 		{
             var count = Program.CurrentConfig.Data.MagicCount;
             var offset = Program.CurrentConfig.Data.MagicOffset;
@@ -445,5 +425,6 @@ namespace CczEditor.Data
 			CurrentStream.Seek(offset+index*length, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, length);
 		}
-	}
+        #endregion
+    }
 }

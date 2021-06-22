@@ -11,7 +11,6 @@ using CczEditor;
 using CczEditor.Controls;
 using CczEditor.Controls.ConfigControls;
 using CczEditor.Controls.DataControls;
-using CczEditor.Controls.ExtensionsControls;
 using CczEditor.Controls.ImsgControls;
 using CczEditor.Controls.SaveControls;
 using CczEditor.Data;
@@ -38,22 +37,7 @@ namespace CczEditor
 		#region 주메뉴 이벤트
 
 		#region 파일메뉴
-
-		private void tsmiMainMenu_File_LoadFile_Data_Click(object sender, EventArgs e)
-		{
-			LoadFileDialog(1);
-		}
-
-		private void tsmiMainMenu_File_LoadFile_Imsg_Click(object sender, EventArgs e)
-		{
-			LoadFileDialog(2);
-		}
-
-		private void tsmiMainMenu_File_LoadFile_Save_Click(object sender, EventArgs e)
-		{
-			LoadFileDialog(3);
-		}
-
+        
 		private void tsmiMainMenu_File_LoadFolder_Click(object sender, EventArgs e)
 		{
 			LoadFolderDialog();
@@ -61,7 +45,7 @@ namespace CczEditor
 
 		private void tsmiMainMenu_File_LoadData_Click(object sender, EventArgs e)
 		{
-			LoadDataFile(Path.Combine(Program.CurrentConfig.DirectoryPath, Program.FILENAME_DATA));
+			LoadDataFile();
 		}
         
 		private void tsmiMainMenu_File_ExitApplication_Click(object sender, EventArgs e)
@@ -149,7 +133,7 @@ namespace CczEditor
                 SystemConfig.Inst.CurrentConfig = configFileName;
                 SystemConfig.Write(SystemConfig.DefaultSystemConfigFileName);
                 Program.CurrentConfig = config;
-                SetControlsVisible(false, false, false);
+                SetControlsVisible(false);
                 pMainContainer.Controls.Clear();
                 Text = Program.TitleNameCurrent = string.Format("{0} - {1}", Program.TITLE_NAME_ORIGINAL, Program.CurrentConfig.DisplayName);
                 LoadFileList();
@@ -207,33 +191,12 @@ namespace CczEditor
 			}
 		}
 
-		private void SetControlsVisible(bool game, bool imsg, bool save)
+		private void SetControlsVisible(bool isShow)
 		{
-			tsmiMainMenu_Data.Enabled = tsmiMainMenu_Data.Visible = game;
-			tsmiMainMenu_Imsg.Enabled = tsmiMainMenu_Imsg.Visible = imsg;
+			tsmiMainMenu_Data.Enabled = tsmiMainMenu_Data.Visible =
+			tsmiMainMenu_Imsg.Enabled = tsmiMainMenu_Imsg.Visible = isShow;
 		}
-
-		private void LoadFileDialog(int index)
-		{
-			var ofd = new OpenFileDialog
-			          {
-			          	Filter = "조조전 구성 파일|*.e5",
-			          	InitialDirectory = Program.CurrentConfig.DirectoryPath
-			          };
-			if (DialogResult.OK == ofd.ShowDialog() && !string.IsNullOrEmpty(ofd.FileName) && File.Exists(ofd.FileName))
-			{
-				pMainContainer.Controls.Clear();
-				Text = Program.TITLE_NAME_ORIGINAL;
-                LoadDataFile(ofd.FileName);
-                GC.Collect();
-			}
-			else
-			{
-				SetControlsVisible(false, false, false);
-				pMainContainer.Controls.Clear();
-			}
-		}
-
+        
 		private void LoadFolderDialog()
 		{
 			var fbd = new FolderBrowserDialog
@@ -250,19 +213,13 @@ namespace CczEditor
 			LoadFileList();
 		}
 
-		private void LoadDataFile(string fileName)
+		private void LoadDataFile()
 		{
-			try
-			{
-				Program.GameData = new GameData(fileName);
-				Program.ImsgData = null;
-			}
-			catch (Exception ex)
-			{
-				Utils.ShowError(ex.Message);
-				return;
-			}
-			SetControlsVisible(true, true, false);
+            DataContainer.LoadGameData(Program.CurrentConfig.DirectoryPath);
+            DataContainer.LoadImsgData(Program.CurrentConfig.DirectoryPath);
+            DataContainer.LoadStarData(Program.CurrentConfig.DirectoryPath);
+
+            SetControlsVisible(true);
 			tsmiMainMenu_Data_Units_Click(tsmiMainMenu_Data_Units, new EventArgs());
 		}
 
