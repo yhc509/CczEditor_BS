@@ -192,6 +192,11 @@ namespace CczEditor
             public int GoldDefenceRateOffset;
             public int MpDefenceRecoverOffest;
             public int StateEffectAccOffset;
+
+            public int SpecialSkillDmg_SkillIndexOffset;
+            public int SpecialSkillDmg_ForceCategoryIndexOffset;
+            public int Knock_Back_ForceIndexOffset;
+            public int[] SpecialAppear_ForceIndexOffset;
             
 
             public int[] TitleOffsets;

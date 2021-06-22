@@ -286,6 +286,15 @@ namespace CczEditor
                 0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49
             };
             result.Exe.Magic.LearTypeOffset = 0x65208;
+
+
+            result.Exe.SpecialAppear_ForceIndexOffset = new int[]
+            {
+                0x56809, 0x56817
+            };
+            result.Exe.Knock_Back_ForceIndexOffset = 0x10482;
+            result.Exe.SpecialSkillDmg_ForceCategoryIndexOffset = 0x3AD94;
+            result.Exe.SpecialSkillDmg_SkillIndexOffset = 0x3AD88;
         }
 
         protected override void CreateSaveSettings()

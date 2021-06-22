@@ -67,6 +67,15 @@
             this.AbilityGradeListView = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.EtcSave = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.SpecialAppearForceList1 = new System.Windows.Forms.ComboBox();
+            this.SpecialAppearForceList2 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.KnockBackForceList = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.SpecialSkillDmgForceList = new System.Windows.Forms.ComboBox();
             this.groupBox14.SuspendLayout();
             this.groupBox15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SecondEquipStartLevel)).BeginInit();
@@ -83,6 +92,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ClassUpLevel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ClassUpLevel1)).BeginInit();
             this.groupBox18.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox14
@@ -491,10 +501,101 @@
             this.columnHeader4.Text = "등급";
             this.columnHeader4.Width = 50;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.SpecialSkillDmgForceList);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.KnockBackForceList);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.SpecialAppearForceList2);
+            this.groupBox1.Controls.Add(this.SpecialAppearForceList1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.EtcSave);
+            this.groupBox1.Location = new System.Drawing.Point(146, 332);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(557, 246);
+            this.groupBox1.TabIndex = 27;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "기타 설정";
+            // 
+            // EtcSave
+            // 
+            this.EtcSave.Location = new System.Drawing.Point(476, 217);
+            this.EtcSave.Name = "EtcSave";
+            this.EtcSave.Size = new System.Drawing.Size(75, 23);
+            this.EtcSave.TabIndex = 24;
+            this.EtcSave.Text = "저장";
+            this.EtcSave.UseVisualStyleBackColor = true;
+            this.EtcSave.Click += new System.EventHandler(this.EtcSave_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(19, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(109, 12);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "등장 특수효과 병종";
+            // 
+            // SpecialAppearForceList1
+            // 
+            this.SpecialAppearForceList1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SpecialAppearForceList1.FormattingEnabled = true;
+            this.SpecialAppearForceList1.Location = new System.Drawing.Point(144, 40);
+            this.SpecialAppearForceList1.Name = "SpecialAppearForceList1";
+            this.SpecialAppearForceList1.Size = new System.Drawing.Size(107, 20);
+            this.SpecialAppearForceList1.TabIndex = 28;
+            // 
+            // SpecialAppearForceList2
+            // 
+            this.SpecialAppearForceList2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SpecialAppearForceList2.FormattingEnabled = true;
+            this.SpecialAppearForceList2.Location = new System.Drawing.Point(258, 40);
+            this.SpecialAppearForceList2.Name = "SpecialAppearForceList2";
+            this.SpecialAppearForceList2.Size = new System.Drawing.Size(107, 20);
+            this.SpecialAppearForceList2.TabIndex = 29;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(19, 82);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 12);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "돌파공격 병종";
+            // 
+            // KnockBackForceList
+            // 
+            this.KnockBackForceList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KnockBackForceList.FormattingEnabled = true;
+            this.KnockBackForceList.Location = new System.Drawing.Point(144, 79);
+            this.KnockBackForceList.Name = "KnockBackForceList";
+            this.KnockBackForceList.Size = new System.Drawing.Size(107, 20);
+            this.KnockBackForceList.TabIndex = 31;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 119);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(113, 12);
+            this.label4.TabIndex = 32;
+            this.label4.Text = "유혹 책략 강화 병종";
+            // 
+            // SpecialSkillDmgForceList
+            // 
+            this.SpecialSkillDmgForceList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SpecialSkillDmgForceList.FormattingEnabled = true;
+            this.SpecialSkillDmgForceList.Location = new System.Drawing.Point(144, 116);
+            this.SpecialSkillDmgForceList.Name = "SpecialSkillDmgForceList";
+            this.SpecialSkillDmgForceList.Size = new System.Drawing.Size(107, 20);
+            this.SpecialSkillDmgForceList.TabIndex = 33;
+            // 
             // ProjectController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox15);
             this.Controls.Add(this.groupBox18);
             this.Controls.Add(this.groupBox14);
@@ -520,6 +621,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ClassUpLevel1)).EndInit();
             this.groupBox18.ResumeLayout(false);
             this.groupBox18.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -565,5 +668,14 @@
         private System.Windows.Forms.Button LevelSaveButton;
         private System.Windows.Forms.NumericUpDown SecondEquipStartLevel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button EtcSave;
+        private System.Windows.Forms.ComboBox SpecialSkillDmgForceList;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox KnockBackForceList;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox SpecialAppearForceList2;
+        private System.Windows.Forms.ComboBox SpecialAppearForceList1;
+        private System.Windows.Forms.Label label2;
     }
 }

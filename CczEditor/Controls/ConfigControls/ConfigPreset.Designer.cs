@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigPreset));
             this.Star61Button = new System.Windows.Forms.Button();
             this.Star62Button = new System.Windows.Forms.Button();
             this.Bs10Button = new System.Windows.Forms.Button();
@@ -37,45 +38,46 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.VersionHelperTab = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbBackup = new System.Windows.Forms.CheckBox();
+            this.btnExecute = new System.Windows.Forms.Button();
+            this.cbForceCategoryData = new System.Windows.Forms.CheckBox();
+            this.cbForceSyn = new System.Windows.Forms.CheckBox();
+            this.cbTerrainSyn = new System.Windows.Forms.CheckBox();
+            this.cbShopData = new System.Windows.Forms.CheckBox();
+            this.cbReflect = new System.Windows.Forms.CheckBox();
+            this.cbLearn = new System.Windows.Forms.CheckBox();
+            this.cbAcc = new System.Windows.Forms.CheckBox();
+            this.cbDmgValue = new System.Windows.Forms.CheckBox();
+            this.cbConditionType = new System.Windows.Forms.CheckBox();
+            this.cbAIType = new System.Windows.Forms.CheckBox();
+            this.cbDmgType = new System.Windows.Forms.CheckBox();
+            this.cbHealType = new System.Windows.Forms.CheckBox();
+            this.cbMagicType = new System.Windows.Forms.CheckBox();
+            this.cbMagicLv = new System.Windows.Forms.CheckBox();
+            this.cbEquip = new System.Windows.Forms.CheckBox();
+            this.cbForceName = new System.Windows.Forms.CheckBox();
+            this.cbForceCategoryName = new System.Windows.Forms.CheckBox();
+            this.cbSpecialEffect = new System.Windows.Forms.CheckBox();
+            this.cbCutin = new System.Windows.Forms.CheckBox();
+            this.cbVoice = new System.Windows.Forms.CheckBox();
+            this.cbCost = new System.Windows.Forms.CheckBox();
+            this.cbBattleObj = new System.Windows.Forms.CheckBox();
+            this.cbPmapObj = new System.Windows.Forms.CheckBox();
+            this.cbMagicData = new System.Windows.Forms.CheckBox();
+            this.cbForceData = new System.Windows.Forms.CheckBox();
+            this.cbItemData = new System.Windows.Forms.CheckBox();
+            this.cbUnitData = new System.Windows.Forms.CheckBox();
+            this.destVersionBox = new System.Windows.Forms.ComboBox();
+            this.originVersionBox = new System.Windows.Forms.ComboBox();
+            this.btnDestOpen = new System.Windows.Forms.Button();
+            this.btnOriginOpen = new System.Windows.Forms.Button();
+            this.tbDestPath = new System.Windows.Forms.TextBox();
+            this.tbOriginPath = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
-            this.checkBox13 = new System.Windows.Forms.CheckBox();
-            this.checkBox14 = new System.Windows.Forms.CheckBox();
-            this.checkBox15 = new System.Windows.Forms.CheckBox();
-            this.checkBox16 = new System.Windows.Forms.CheckBox();
-            this.checkBox17 = new System.Windows.Forms.CheckBox();
-            this.checkBox18 = new System.Windows.Forms.CheckBox();
-            this.checkBox19 = new System.Windows.Forms.CheckBox();
-            this.checkBox20 = new System.Windows.Forms.CheckBox();
-            this.checkBox21 = new System.Windows.Forms.CheckBox();
-            this.checkBox22 = new System.Windows.Forms.CheckBox();
-            this.checkBox23 = new System.Windows.Forms.CheckBox();
-            this.checkBox24 = new System.Windows.Forms.CheckBox();
-            this.checkBox25 = new System.Windows.Forms.CheckBox();
-            this.checkBox27 = new System.Windows.Forms.CheckBox();
-            this.checkBox28 = new System.Windows.Forms.CheckBox();
-            this.checkBox29 = new System.Windows.Forms.CheckBox();
-            this.checkBox26 = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.checkBox30 = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.VersionHelperTab.SuspendLayout();
@@ -169,43 +171,44 @@
             // 
             // VersionHelperTab
             // 
-            this.VersionHelperTab.Controls.Add(this.checkBox30);
-            this.VersionHelperTab.Controls.Add(this.button3);
-            this.VersionHelperTab.Controls.Add(this.checkBox26);
-            this.VersionHelperTab.Controls.Add(this.checkBox29);
-            this.VersionHelperTab.Controls.Add(this.checkBox28);
-            this.VersionHelperTab.Controls.Add(this.checkBox27);
-            this.VersionHelperTab.Controls.Add(this.checkBox25);
-            this.VersionHelperTab.Controls.Add(this.checkBox24);
-            this.VersionHelperTab.Controls.Add(this.checkBox23);
-            this.VersionHelperTab.Controls.Add(this.checkBox22);
-            this.VersionHelperTab.Controls.Add(this.checkBox21);
-            this.VersionHelperTab.Controls.Add(this.checkBox20);
-            this.VersionHelperTab.Controls.Add(this.checkBox19);
-            this.VersionHelperTab.Controls.Add(this.checkBox18);
-            this.VersionHelperTab.Controls.Add(this.checkBox17);
-            this.VersionHelperTab.Controls.Add(this.checkBox16);
-            this.VersionHelperTab.Controls.Add(this.checkBox15);
-            this.VersionHelperTab.Controls.Add(this.checkBox14);
-            this.VersionHelperTab.Controls.Add(this.checkBox13);
-            this.VersionHelperTab.Controls.Add(this.checkBox12);
-            this.VersionHelperTab.Controls.Add(this.checkBox11);
-            this.VersionHelperTab.Controls.Add(this.checkBox10);
-            this.VersionHelperTab.Controls.Add(this.checkBox9);
-            this.VersionHelperTab.Controls.Add(this.checkBox8);
-            this.VersionHelperTab.Controls.Add(this.checkBox7);
-            this.VersionHelperTab.Controls.Add(this.checkBox6);
-            this.VersionHelperTab.Controls.Add(this.checkBox5);
-            this.VersionHelperTab.Controls.Add(this.checkBox4);
-            this.VersionHelperTab.Controls.Add(this.checkBox3);
-            this.VersionHelperTab.Controls.Add(this.checkBox2);
-            this.VersionHelperTab.Controls.Add(this.checkBox1);
-            this.VersionHelperTab.Controls.Add(this.comboBox2);
-            this.VersionHelperTab.Controls.Add(this.comboBox1);
-            this.VersionHelperTab.Controls.Add(this.button2);
-            this.VersionHelperTab.Controls.Add(this.button1);
-            this.VersionHelperTab.Controls.Add(this.textBox2);
-            this.VersionHelperTab.Controls.Add(this.textBox1);
+            this.VersionHelperTab.Controls.Add(this.label7);
+            this.VersionHelperTab.Controls.Add(this.label6);
+            this.VersionHelperTab.Controls.Add(this.label5);
+            this.VersionHelperTab.Controls.Add(this.cbBackup);
+            this.VersionHelperTab.Controls.Add(this.btnExecute);
+            this.VersionHelperTab.Controls.Add(this.cbForceCategoryData);
+            this.VersionHelperTab.Controls.Add(this.cbForceSyn);
+            this.VersionHelperTab.Controls.Add(this.cbTerrainSyn);
+            this.VersionHelperTab.Controls.Add(this.cbShopData);
+            this.VersionHelperTab.Controls.Add(this.cbReflect);
+            this.VersionHelperTab.Controls.Add(this.cbLearn);
+            this.VersionHelperTab.Controls.Add(this.cbAcc);
+            this.VersionHelperTab.Controls.Add(this.cbDmgValue);
+            this.VersionHelperTab.Controls.Add(this.cbConditionType);
+            this.VersionHelperTab.Controls.Add(this.cbAIType);
+            this.VersionHelperTab.Controls.Add(this.cbDmgType);
+            this.VersionHelperTab.Controls.Add(this.cbHealType);
+            this.VersionHelperTab.Controls.Add(this.cbMagicType);
+            this.VersionHelperTab.Controls.Add(this.cbMagicLv);
+            this.VersionHelperTab.Controls.Add(this.cbEquip);
+            this.VersionHelperTab.Controls.Add(this.cbForceName);
+            this.VersionHelperTab.Controls.Add(this.cbForceCategoryName);
+            this.VersionHelperTab.Controls.Add(this.cbSpecialEffect);
+            this.VersionHelperTab.Controls.Add(this.cbCutin);
+            this.VersionHelperTab.Controls.Add(this.cbVoice);
+            this.VersionHelperTab.Controls.Add(this.cbCost);
+            this.VersionHelperTab.Controls.Add(this.cbBattleObj);
+            this.VersionHelperTab.Controls.Add(this.cbPmapObj);
+            this.VersionHelperTab.Controls.Add(this.cbMagicData);
+            this.VersionHelperTab.Controls.Add(this.cbForceData);
+            this.VersionHelperTab.Controls.Add(this.cbItemData);
+            this.VersionHelperTab.Controls.Add(this.cbUnitData);
+            this.VersionHelperTab.Controls.Add(this.destVersionBox);
+            this.VersionHelperTab.Controls.Add(this.originVersionBox);
+            this.VersionHelperTab.Controls.Add(this.btnDestOpen);
+            this.VersionHelperTab.Controls.Add(this.btnOriginOpen);
+            this.VersionHelperTab.Controls.Add(this.tbDestPath);
+            this.VersionHelperTab.Controls.Add(this.tbOriginPath);
             this.VersionHelperTab.Controls.Add(this.label4);
             this.VersionHelperTab.Controls.Add(this.label3);
             this.VersionHelperTab.Location = new System.Drawing.Point(4, 22);
@@ -216,14 +219,416 @@
             this.VersionHelperTab.Text = "Data Helper";
             this.VersionHelperTab.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // label7
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 12);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "이전 버전 경로";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(20, 411);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(488, 96);
+            this.label7.TabIndex = 42;
+            this.label7.Text = resources.GetString("label7.Text");
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(599, 78);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 12);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "버전";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(599, 29);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 12);
+            this.label5.TabIndex = 40;
+            this.label5.Text = "버전";
+            // 
+            // cbBackup
+            // 
+            this.cbBackup.AutoSize = true;
+            this.cbBackup.Checked = true;
+            this.cbBackup.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBackup.Location = new System.Drawing.Point(674, 443);
+            this.cbBackup.Name = "cbBackup";
+            this.cbBackup.Size = new System.Drawing.Size(104, 16);
+            this.cbBackup.TabIndex = 39;
+            this.cbBackup.Text = "백업 파일 생성";
+            this.cbBackup.UseVisualStyleBackColor = true;
+            // 
+            // btnExecute
+            // 
+            this.btnExecute.Enabled = false;
+            this.btnExecute.Location = new System.Drawing.Point(674, 465);
+            this.btnExecute.Name = "btnExecute";
+            this.btnExecute.Size = new System.Drawing.Size(158, 42);
+            this.btnExecute.TabIndex = 38;
+            this.btnExecute.Text = "실행";
+            this.btnExecute.UseVisualStyleBackColor = true;
+            this.btnExecute.Click += new System.EventHandler(this.btnExecute_Click);
+            // 
+            // cbForceCategoryData
+            // 
+            this.cbForceCategoryData.AutoSize = true;
+            this.cbForceCategoryData.Enabled = false;
+            this.cbForceCategoryData.Location = new System.Drawing.Point(147, 238);
+            this.cbForceCategoryData.Name = "cbForceCategoryData";
+            this.cbForceCategoryData.Size = new System.Drawing.Size(116, 16);
+            this.cbForceCategoryData.TabIndex = 37;
+            this.cbForceCategoryData.Text = "계열 기본 데이터";
+            this.cbForceCategoryData.UseVisualStyleBackColor = true;
+            // 
+            // cbForceSyn
+            // 
+            this.cbForceSyn.AutoSize = true;
+            this.cbForceSyn.Enabled = false;
+            this.cbForceSyn.Location = new System.Drawing.Point(335, 260);
+            this.cbForceSyn.Name = "cbForceSyn";
+            this.cbForceSyn.Size = new System.Drawing.Size(72, 16);
+            this.cbForceSyn.TabIndex = 36;
+            this.cbForceSyn.Text = "병종상성";
+            this.cbForceSyn.UseVisualStyleBackColor = true;
+            // 
+            // cbTerrainSyn
+            // 
+            this.cbTerrainSyn.AutoSize = true;
+            this.cbTerrainSyn.Enabled = false;
+            this.cbTerrainSyn.Location = new System.Drawing.Point(257, 260);
+            this.cbTerrainSyn.Name = "cbTerrainSyn";
+            this.cbTerrainSyn.Size = new System.Drawing.Size(72, 16);
+            this.cbTerrainSyn.TabIndex = 35;
+            this.cbTerrainSyn.Text = "지형상성";
+            this.cbTerrainSyn.UseVisualStyleBackColor = true;
+            // 
+            // cbShopData
+            // 
+            this.cbShopData.AutoSize = true;
+            this.cbShopData.Enabled = false;
+            this.cbShopData.Location = new System.Drawing.Point(148, 184);
+            this.cbShopData.Name = "cbShopData";
+            this.cbShopData.Size = new System.Drawing.Size(116, 16);
+            this.cbShopData.TabIndex = 34;
+            this.cbShopData.Text = "상점 기본 데이터";
+            this.cbShopData.UseVisualStyleBackColor = true;
+            // 
+            // cbReflect
+            // 
+            this.cbReflect.AutoSize = true;
+            this.cbReflect.Enabled = false;
+            this.cbReflect.Location = new System.Drawing.Point(246, 343);
+            this.cbReflect.Name = "cbReflect";
+            this.cbReflect.Size = new System.Drawing.Size(96, 16);
+            this.cbReflect.TabIndex = 31;
+            this.cbReflect.Text = "책략반사유형";
+            this.cbReflect.UseVisualStyleBackColor = true;
+            // 
+            // cbLearn
+            // 
+            this.cbLearn.AutoSize = true;
+            this.cbLearn.Enabled = false;
+            this.cbLearn.Location = new System.Drawing.Point(144, 343);
+            this.cbLearn.Name = "cbLearn";
+            this.cbLearn.Size = new System.Drawing.Size(96, 16);
+            this.cbLearn.TabIndex = 30;
+            this.cbLearn.Text = "책략습득유형";
+            this.cbLearn.UseVisualStyleBackColor = true;
+            // 
+            // cbAcc
+            // 
+            this.cbAcc.AutoSize = true;
+            this.cbAcc.Enabled = false;
+            this.cbAcc.Location = new System.Drawing.Point(78, 343);
+            this.cbAcc.Name = "cbAcc";
+            this.cbAcc.Size = new System.Drawing.Size(60, 16);
+            this.cbAcc.TabIndex = 29;
+            this.cbAcc.Text = "명중률";
+            this.cbAcc.UseVisualStyleBackColor = true;
+            // 
+            // cbDmgValue
+            // 
+            this.cbDmgValue.AutoSize = true;
+            this.cbDmgValue.Enabled = false;
+            this.cbDmgValue.Location = new System.Drawing.Point(22, 343);
+            this.cbDmgValue.Name = "cbDmgValue";
+            this.cbDmgValue.Size = new System.Drawing.Size(48, 16);
+            this.cbDmgValue.TabIndex = 28;
+            this.cbDmgValue.Text = "위력";
+            this.cbDmgValue.UseVisualStyleBackColor = true;
+            // 
+            // cbConditionType
+            // 
+            this.cbConditionType.AutoSize = true;
+            this.cbConditionType.Enabled = false;
+            this.cbConditionType.Location = new System.Drawing.Point(362, 321);
+            this.cbConditionType.Name = "cbConditionType";
+            this.cbConditionType.Size = new System.Drawing.Size(100, 16);
+            this.cbConditionType.TabIndex = 27;
+            this.cbConditionType.Text = "사용조건 유형";
+            this.cbConditionType.UseVisualStyleBackColor = true;
+            // 
+            // cbAIType
+            // 
+            this.cbAIType.AutoSize = true;
+            this.cbAIType.Enabled = false;
+            this.cbAIType.Location = new System.Drawing.Point(256, 321);
+            this.cbAIType.Name = "cbAIType";
+            this.cbAIType.Size = new System.Drawing.Size(100, 16);
+            this.cbAIType.TabIndex = 26;
+            this.cbAIType.Text = "인공지능 유형";
+            this.cbAIType.UseVisualStyleBackColor = true;
+            // 
+            // cbDmgType
+            // 
+            this.cbDmgType.AutoSize = true;
+            this.cbDmgType.Enabled = false;
+            this.cbDmgType.Location = new System.Drawing.Point(178, 321);
+            this.cbDmgType.Name = "cbDmgType";
+            this.cbDmgType.Size = new System.Drawing.Size(72, 16);
+            this.cbDmgType.TabIndex = 25;
+            this.cbDmgType.Text = "피해유형";
+            this.cbDmgType.UseVisualStyleBackColor = true;
+            // 
+            // cbHealType
+            // 
+            this.cbHealType.AutoSize = true;
+            this.cbHealType.Enabled = false;
+            this.cbHealType.Location = new System.Drawing.Point(100, 321);
+            this.cbHealType.Name = "cbHealType";
+            this.cbHealType.Size = new System.Drawing.Size(72, 16);
+            this.cbHealType.TabIndex = 24;
+            this.cbHealType.Text = "회복유형";
+            this.cbHealType.UseVisualStyleBackColor = true;
+            // 
+            // cbMagicType
+            // 
+            this.cbMagicType.AutoSize = true;
+            this.cbMagicType.Enabled = false;
+            this.cbMagicType.Location = new System.Drawing.Point(22, 321);
+            this.cbMagicType.Name = "cbMagicType";
+            this.cbMagicType.Size = new System.Drawing.Size(72, 16);
+            this.cbMagicType.TabIndex = 23;
+            this.cbMagicType.Text = "책략유형";
+            this.cbMagicType.UseVisualStyleBackColor = true;
+            // 
+            // cbMagicLv
+            // 
+            this.cbMagicLv.AutoSize = true;
+            this.cbMagicLv.Enabled = false;
+            this.cbMagicLv.Location = new System.Drawing.Point(145, 299);
+            this.cbMagicLv.Name = "cbMagicLv";
+            this.cbMagicLv.Size = new System.Drawing.Size(96, 16);
+            this.cbMagicLv.TabIndex = 22;
+            this.cbMagicLv.Text = "책략습득레벨";
+            this.cbMagicLv.UseVisualStyleBackColor = true;
+            // 
+            // cbEquip
+            // 
+            this.cbEquip.AutoSize = true;
+            this.cbEquip.Enabled = false;
+            this.cbEquip.Location = new System.Drawing.Point(155, 260);
+            this.cbEquip.Name = "cbEquip";
+            this.cbEquip.Size = new System.Drawing.Size(96, 16);
+            this.cbEquip.TabIndex = 21;
+            this.cbEquip.Text = "착용가능장비";
+            this.cbEquip.UseVisualStyleBackColor = true;
+            // 
+            // cbForceName
+            // 
+            this.cbForceName.AutoSize = true;
+            this.cbForceName.Enabled = false;
+            this.cbForceName.Location = new System.Drawing.Point(23, 260);
+            this.cbForceName.Name = "cbForceName";
+            this.cbForceName.Size = new System.Drawing.Size(60, 16);
+            this.cbForceName.TabIndex = 20;
+            this.cbForceName.Text = "병종명";
+            this.cbForceName.UseVisualStyleBackColor = true;
+            // 
+            // cbForceCategoryName
+            // 
+            this.cbForceCategoryName.AutoSize = true;
+            this.cbForceCategoryName.Enabled = false;
+            this.cbForceCategoryName.Location = new System.Drawing.Point(89, 260);
+            this.cbForceCategoryName.Name = "cbForceCategoryName";
+            this.cbForceCategoryName.Size = new System.Drawing.Size(60, 16);
+            this.cbForceCategoryName.TabIndex = 19;
+            this.cbForceCategoryName.Text = "계열명";
+            this.cbForceCategoryName.UseVisualStyleBackColor = true;
+            // 
+            // cbSpecialEffect
+            // 
+            this.cbSpecialEffect.AutoSize = true;
+            this.cbSpecialEffect.Enabled = false;
+            this.cbSpecialEffect.Location = new System.Drawing.Point(23, 206);
+            this.cbSpecialEffect.Name = "cbSpecialEffect";
+            this.cbSpecialEffect.Size = new System.Drawing.Size(196, 16);
+            this.cbSpecialEffect.TabIndex = 17;
+            this.cbSpecialEffect.Text = "보물 특수효과 코드번호 및 표기";
+            this.cbSpecialEffect.UseVisualStyleBackColor = true;
+            // 
+            // cbCutin
+            // 
+            this.cbCutin.AutoSize = true;
+            this.cbCutin.Enabled = false;
+            this.cbCutin.Location = new System.Drawing.Point(337, 150);
+            this.cbCutin.Name = "cbCutin";
+            this.cbCutin.Size = new System.Drawing.Size(72, 16);
+            this.cbCutin.TabIndex = 16;
+            this.cbCutin.Text = "컷인번호";
+            this.cbCutin.UseVisualStyleBackColor = true;
+            // 
+            // cbVoice
+            // 
+            this.cbVoice.AutoSize = true;
+            this.cbVoice.Enabled = false;
+            this.cbVoice.Location = new System.Drawing.Point(259, 150);
+            this.cbVoice.Name = "cbVoice";
+            this.cbVoice.Size = new System.Drawing.Size(72, 16);
+            this.cbVoice.TabIndex = 15;
+            this.cbVoice.Text = "전장음성";
+            this.cbVoice.UseVisualStyleBackColor = true;
+            // 
+            // cbCost
+            // 
+            this.cbCost.AutoSize = true;
+            this.cbCost.Enabled = false;
+            this.cbCost.Location = new System.Drawing.Point(179, 150);
+            this.cbCost.Name = "cbCost";
+            this.cbCost.Size = new System.Drawing.Size(74, 16);
+            this.cbCost.TabIndex = 14;
+            this.cbCost.Text = "출진Cost";
+            this.cbCost.UseVisualStyleBackColor = true;
+            // 
+            // cbBattleObj
+            // 
+            this.cbBattleObj.AutoSize = true;
+            this.cbBattleObj.Enabled = false;
+            this.cbBattleObj.Location = new System.Drawing.Point(101, 150);
+            this.cbBattleObj.Name = "cbBattleObj";
+            this.cbBattleObj.Size = new System.Drawing.Size(72, 16);
+            this.cbBattleObj.TabIndex = 13;
+            this.cbBattleObj.Text = "전투조형";
+            this.cbBattleObj.UseVisualStyleBackColor = true;
+            // 
+            // cbPmapObj
+            // 
+            this.cbPmapObj.AutoSize = true;
+            this.cbPmapObj.Enabled = false;
+            this.cbPmapObj.Location = new System.Drawing.Point(23, 150);
+            this.cbPmapObj.Name = "cbPmapObj";
+            this.cbPmapObj.Size = new System.Drawing.Size(72, 16);
+            this.cbPmapObj.TabIndex = 12;
+            this.cbPmapObj.Text = "평상조형";
+            this.cbPmapObj.UseVisualStyleBackColor = true;
+            // 
+            // cbMagicData
+            // 
+            this.cbMagicData.AutoSize = true;
+            this.cbMagicData.Enabled = false;
+            this.cbMagicData.Location = new System.Drawing.Point(23, 299);
+            this.cbMagicData.Name = "cbMagicData";
+            this.cbMagicData.Size = new System.Drawing.Size(116, 16);
+            this.cbMagicData.TabIndex = 11;
+            this.cbMagicData.Text = "책략 기본 데이터";
+            this.cbMagicData.UseVisualStyleBackColor = true;
+            // 
+            // cbForceData
+            // 
+            this.cbForceData.AutoSize = true;
+            this.cbForceData.Enabled = false;
+            this.cbForceData.Location = new System.Drawing.Point(23, 238);
+            this.cbForceData.Name = "cbForceData";
+            this.cbForceData.Size = new System.Drawing.Size(116, 16);
+            this.cbForceData.TabIndex = 10;
+            this.cbForceData.Text = "병종 기본 데이터";
+            this.cbForceData.UseVisualStyleBackColor = true;
+            // 
+            // cbItemData
+            // 
+            this.cbItemData.AutoSize = true;
+            this.cbItemData.Enabled = false;
+            this.cbItemData.Location = new System.Drawing.Point(24, 184);
+            this.cbItemData.Name = "cbItemData";
+            this.cbItemData.Size = new System.Drawing.Size(116, 16);
+            this.cbItemData.TabIndex = 9;
+            this.cbItemData.Text = "물품 기본 데이터";
+            this.cbItemData.UseVisualStyleBackColor = true;
+            // 
+            // cbUnitData
+            // 
+            this.cbUnitData.AutoSize = true;
+            this.cbUnitData.Enabled = false;
+            this.cbUnitData.Location = new System.Drawing.Point(24, 128);
+            this.cbUnitData.Name = "cbUnitData";
+            this.cbUnitData.Size = new System.Drawing.Size(116, 16);
+            this.cbUnitData.TabIndex = 8;
+            this.cbUnitData.Text = "인물 기본 데이터";
+            this.cbUnitData.UseVisualStyleBackColor = true;
+            // 
+            // destVersionBox
+            // 
+            this.destVersionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.destVersionBox.FormattingEnabled = true;
+            this.destVersionBox.Items.AddRange(new object[] {
+            "Star 6.1",
+            "Star 6.2 ",
+            "BS 1.0",
+            "BS 1.1"});
+            this.destVersionBox.Location = new System.Drawing.Point(634, 75);
+            this.destVersionBox.Name = "destVersionBox";
+            this.destVersionBox.Size = new System.Drawing.Size(121, 20);
+            this.destVersionBox.TabIndex = 7;
+            this.destVersionBox.SelectedIndexChanged += new System.EventHandler(this.destVersionBox_SelectedIndexChanged);
+            // 
+            // originVersionBox
+            // 
+            this.originVersionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.originVersionBox.FormattingEnabled = true;
+            this.originVersionBox.Items.AddRange(new object[] {
+            "Star 6.1",
+            "Star 6.2 ",
+            "BS 1.0",
+            "BS 1.1"});
+            this.originVersionBox.Location = new System.Drawing.Point(634, 26);
+            this.originVersionBox.Name = "originVersionBox";
+            this.originVersionBox.Size = new System.Drawing.Size(121, 20);
+            this.originVersionBox.TabIndex = 6;
+            this.originVersionBox.SelectedIndexChanged += new System.EventHandler(this.originVersionBox_SelectedIndexChanged);
+            // 
+            // btnDestOpen
+            // 
+            this.btnDestOpen.Location = new System.Drawing.Point(505, 73);
+            this.btnDestOpen.Name = "btnDestOpen";
+            this.btnDestOpen.Size = new System.Drawing.Size(75, 23);
+            this.btnDestOpen.TabIndex = 5;
+            this.btnDestOpen.Text = "열기";
+            this.btnDestOpen.UseVisualStyleBackColor = true;
+            // 
+            // btnOriginOpen
+            // 
+            this.btnOriginOpen.Location = new System.Drawing.Point(505, 24);
+            this.btnOriginOpen.Name = "btnOriginOpen";
+            this.btnOriginOpen.Size = new System.Drawing.Size(75, 23);
+            this.btnOriginOpen.TabIndex = 4;
+            this.btnOriginOpen.Text = "열기";
+            this.btnOriginOpen.UseVisualStyleBackColor = true;
+            // 
+            // tbDestPath
+            // 
+            this.tbDestPath.Location = new System.Drawing.Point(130, 75);
+            this.tbDestPath.Name = "tbDestPath";
+            this.tbDestPath.Size = new System.Drawing.Size(369, 21);
+            this.tbDestPath.TabIndex = 3;
+            // 
+            // tbOriginPath
+            // 
+            this.tbOriginPath.Location = new System.Drawing.Point(130, 26);
+            this.tbOriginPath.Name = "tbOriginPath";
+            this.tbOriginPath.Size = new System.Drawing.Size(369, 21);
+            this.tbOriginPath.TabIndex = 2;
             // 
             // label4
             // 
@@ -234,372 +639,14 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "신규 버전 경로";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(130, 26);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(369, 21);
-            this.textBox1.TabIndex = 2;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(130, 75);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(369, 21);
-            this.textBox2.TabIndex = 3;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(505, 24);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "경로 설정";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(505, 73);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "경로 설정";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Star 6.1",
-            "Star 6.2 ",
-            "BS 1.0",
-            "BS 1.1"});
-            this.comboBox1.Location = new System.Drawing.Point(586, 26);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 6;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Star 6.1",
-            "Star 6.2 ",
-            "BS 1.0",
-            "BS 1.1"});
-            this.comboBox2.Location = new System.Drawing.Point(586, 75);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 20);
-            this.comboBox2.TabIndex = 7;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(24, 142);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(116, 16);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "인물 기본 데이터";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(24, 211);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(116, 16);
-            this.checkBox2.TabIndex = 9;
-            this.checkBox2.Text = "물품 기본 데이터";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(24, 277);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(116, 16);
-            this.checkBox3.TabIndex = 10;
-            this.checkBox3.Text = "병종 기본 데이터";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(24, 359);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(116, 16);
-            this.checkBox4.TabIndex = 11;
-            this.checkBox4.Text = "책략 기본 데이터";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(23, 164);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(72, 16);
-            this.checkBox5.TabIndex = 12;
-            this.checkBox5.Text = "평상조형";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(101, 164);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(72, 16);
-            this.checkBox6.TabIndex = 13;
-            this.checkBox6.Text = "전투조형";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(179, 164);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(74, 16);
-            this.checkBox7.TabIndex = 14;
-            this.checkBox7.Text = "출진Cost";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(259, 164);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(72, 16);
-            this.checkBox8.TabIndex = 15;
-            this.checkBox8.Text = "전장음성";
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox9
-            // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(337, 164);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(72, 16);
-            this.checkBox9.TabIndex = 16;
-            this.checkBox9.Text = "컷인번호";
-            this.checkBox9.UseVisualStyleBackColor = true;
-            // 
-            // checkBox10
-            // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(23, 233);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(84, 16);
-            this.checkBox10.TabIndex = 17;
-            this.checkBox10.Text = "특수효과명";
-            this.checkBox10.UseVisualStyleBackColor = true;
-            // 
-            // checkBox11
-            // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(113, 233);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(96, 16);
-            this.checkBox11.TabIndex = 18;
-            this.checkBox11.Text = "특수효과번호";
-            this.checkBox11.UseVisualStyleBackColor = true;
-            // 
-            // checkBox12
-            // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(90, 299);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(60, 16);
-            this.checkBox12.TabIndex = 19;
-            this.checkBox12.Text = "계열명";
-            this.checkBox12.UseVisualStyleBackColor = true;
-            // 
-            // checkBox13
-            // 
-            this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(24, 299);
-            this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(60, 16);
-            this.checkBox13.TabIndex = 20;
-            this.checkBox13.Text = "병종명";
-            this.checkBox13.UseVisualStyleBackColor = true;
-            // 
-            // checkBox14
-            // 
-            this.checkBox14.AutoSize = true;
-            this.checkBox14.Location = new System.Drawing.Point(156, 299);
-            this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(96, 16);
-            this.checkBox14.TabIndex = 21;
-            this.checkBox14.Text = "착용가능장비";
-            this.checkBox14.UseVisualStyleBackColor = true;
-            // 
-            // checkBox15
-            // 
-            this.checkBox15.AutoSize = true;
-            this.checkBox15.Location = new System.Drawing.Point(24, 381);
-            this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(96, 16);
-            this.checkBox15.TabIndex = 22;
-            this.checkBox15.Text = "책략습득레벨";
-            this.checkBox15.UseVisualStyleBackColor = true;
-            // 
-            // checkBox16
-            // 
-            this.checkBox16.AutoSize = true;
-            this.checkBox16.Location = new System.Drawing.Point(24, 403);
-            this.checkBox16.Name = "checkBox16";
-            this.checkBox16.Size = new System.Drawing.Size(72, 16);
-            this.checkBox16.TabIndex = 23;
-            this.checkBox16.Text = "책략유형";
-            this.checkBox16.UseVisualStyleBackColor = true;
-            // 
-            // checkBox17
-            // 
-            this.checkBox17.AutoSize = true;
-            this.checkBox17.Location = new System.Drawing.Point(102, 403);
-            this.checkBox17.Name = "checkBox17";
-            this.checkBox17.Size = new System.Drawing.Size(72, 16);
-            this.checkBox17.TabIndex = 24;
-            this.checkBox17.Text = "회복유형";
-            this.checkBox17.UseVisualStyleBackColor = true;
-            // 
-            // checkBox18
-            // 
-            this.checkBox18.AutoSize = true;
-            this.checkBox18.Location = new System.Drawing.Point(180, 403);
-            this.checkBox18.Name = "checkBox18";
-            this.checkBox18.Size = new System.Drawing.Size(72, 16);
-            this.checkBox18.TabIndex = 25;
-            this.checkBox18.Text = "피해유형";
-            this.checkBox18.UseVisualStyleBackColor = true;
-            // 
-            // checkBox19
-            // 
-            this.checkBox19.AutoSize = true;
-            this.checkBox19.Location = new System.Drawing.Point(258, 403);
-            this.checkBox19.Name = "checkBox19";
-            this.checkBox19.Size = new System.Drawing.Size(100, 16);
-            this.checkBox19.TabIndex = 26;
-            this.checkBox19.Text = "인공지능 유형";
-            this.checkBox19.UseVisualStyleBackColor = true;
-            // 
-            // checkBox20
-            // 
-            this.checkBox20.AutoSize = true;
-            this.checkBox20.Location = new System.Drawing.Point(364, 403);
-            this.checkBox20.Name = "checkBox20";
-            this.checkBox20.Size = new System.Drawing.Size(100, 16);
-            this.checkBox20.TabIndex = 27;
-            this.checkBox20.Text = "사용조건 유형";
-            this.checkBox20.UseVisualStyleBackColor = true;
-            // 
-            // checkBox21
-            // 
-            this.checkBox21.AutoSize = true;
-            this.checkBox21.Location = new System.Drawing.Point(24, 425);
-            this.checkBox21.Name = "checkBox21";
-            this.checkBox21.Size = new System.Drawing.Size(48, 16);
-            this.checkBox21.TabIndex = 28;
-            this.checkBox21.Text = "위력";
-            this.checkBox21.UseVisualStyleBackColor = true;
-            // 
-            // checkBox22
-            // 
-            this.checkBox22.AutoSize = true;
-            this.checkBox22.Location = new System.Drawing.Point(80, 425);
-            this.checkBox22.Name = "checkBox22";
-            this.checkBox22.Size = new System.Drawing.Size(60, 16);
-            this.checkBox22.TabIndex = 29;
-            this.checkBox22.Text = "명중률";
-            this.checkBox22.UseVisualStyleBackColor = true;
-            // 
-            // checkBox23
-            // 
-            this.checkBox23.AutoSize = true;
-            this.checkBox23.Location = new System.Drawing.Point(146, 425);
-            this.checkBox23.Name = "checkBox23";
-            this.checkBox23.Size = new System.Drawing.Size(96, 16);
-            this.checkBox23.TabIndex = 30;
-            this.checkBox23.Text = "책략습득유형";
-            this.checkBox23.UseVisualStyleBackColor = true;
-            // 
-            // checkBox24
-            // 
-            this.checkBox24.AutoSize = true;
-            this.checkBox24.Location = new System.Drawing.Point(248, 425);
-            this.checkBox24.Name = "checkBox24";
-            this.checkBox24.Size = new System.Drawing.Size(96, 16);
-            this.checkBox24.TabIndex = 31;
-            this.checkBox24.Text = "책략반사유형";
-            this.checkBox24.UseVisualStyleBackColor = true;
-            // 
-            // checkBox25
-            // 
-            this.checkBox25.AutoSize = true;
-            this.checkBox25.Location = new System.Drawing.Point(350, 425);
-            this.checkBox25.Name = "checkBox25";
-            this.checkBox25.Size = new System.Drawing.Size(116, 16);
-            this.checkBox25.TabIndex = 32;
-            this.checkBox25.Text = "연무장 사용 유형";
-            this.checkBox25.UseVisualStyleBackColor = true;
-            // 
-            // checkBox27
-            // 
-            this.checkBox27.AutoSize = true;
-            this.checkBox27.Location = new System.Drawing.Point(148, 211);
-            this.checkBox27.Name = "checkBox27";
-            this.checkBox27.Size = new System.Drawing.Size(116, 16);
-            this.checkBox27.TabIndex = 34;
-            this.checkBox27.Text = "상점 기본 데이터";
-            this.checkBox27.UseVisualStyleBackColor = true;
-            // 
-            // checkBox28
-            // 
-            this.checkBox28.AutoSize = true;
-            this.checkBox28.Location = new System.Drawing.Point(258, 299);
-            this.checkBox28.Name = "checkBox28";
-            this.checkBox28.Size = new System.Drawing.Size(72, 16);
-            this.checkBox28.TabIndex = 35;
-            this.checkBox28.Text = "지형상성";
-            this.checkBox28.UseVisualStyleBackColor = true;
-            // 
-            // checkBox29
-            // 
-            this.checkBox29.AutoSize = true;
-            this.checkBox29.Location = new System.Drawing.Point(336, 299);
-            this.checkBox29.Name = "checkBox29";
-            this.checkBox29.Size = new System.Drawing.Size(72, 16);
-            this.checkBox29.TabIndex = 36;
-            this.checkBox29.Text = "병종상성";
-            this.checkBox29.UseVisualStyleBackColor = true;
-            // 
-            // checkBox26
-            // 
-            this.checkBox26.AutoSize = true;
-            this.checkBox26.Location = new System.Drawing.Point(148, 277);
-            this.checkBox26.Name = "checkBox26";
-            this.checkBox26.Size = new System.Drawing.Size(116, 16);
-            this.checkBox26.TabIndex = 37;
-            this.checkBox26.Text = "계열 기본 데이터";
-            this.checkBox26.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(674, 465);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(158, 42);
-            this.button3.TabIndex = 38;
-            this.button3.Text = "실행";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox30
-            // 
-            this.checkBox30.AutoSize = true;
-            this.checkBox30.Location = new System.Drawing.Point(674, 443);
-            this.checkBox30.Name = "checkBox30";
-            this.checkBox30.Size = new System.Drawing.Size(104, 16);
-            this.checkBox30.TabIndex = 39;
-            this.checkBox30.Text = "백업 파일 생성";
-            this.checkBox30.UseVisualStyleBackColor = true;
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(22, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 12);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "이전 버전 경로";
             // 
             // ConfigPreset
             // 
@@ -628,44 +675,45 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Bs11Button;
         private System.Windows.Forms.TabPage VersionHelperTab;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox cbUnitData;
+        private System.Windows.Forms.ComboBox destVersionBox;
+        private System.Windows.Forms.ComboBox originVersionBox;
+        private System.Windows.Forms.Button btnDestOpen;
+        private System.Windows.Forms.Button btnOriginOpen;
+        private System.Windows.Forms.TextBox tbDestPath;
+        private System.Windows.Forms.TextBox tbOriginPath;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox checkBox11;
-        private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.CheckBox checkBox9;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox13;
-        private System.Windows.Forms.CheckBox checkBox12;
-        private System.Windows.Forms.CheckBox checkBox14;
-        private System.Windows.Forms.CheckBox checkBox15;
-        private System.Windows.Forms.CheckBox checkBox16;
-        private System.Windows.Forms.CheckBox checkBox17;
-        private System.Windows.Forms.CheckBox checkBox18;
-        private System.Windows.Forms.CheckBox checkBox19;
-        private System.Windows.Forms.CheckBox checkBox20;
-        private System.Windows.Forms.CheckBox checkBox22;
-        private System.Windows.Forms.CheckBox checkBox21;
-        private System.Windows.Forms.CheckBox checkBox23;
-        private System.Windows.Forms.CheckBox checkBox25;
-        private System.Windows.Forms.CheckBox checkBox24;
-        private System.Windows.Forms.CheckBox checkBox29;
-        private System.Windows.Forms.CheckBox checkBox28;
-        private System.Windows.Forms.CheckBox checkBox27;
-        private System.Windows.Forms.CheckBox checkBox26;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.CheckBox checkBox30;
+        private System.Windows.Forms.CheckBox cbSpecialEffect;
+        private System.Windows.Forms.CheckBox cbCutin;
+        private System.Windows.Forms.CheckBox cbVoice;
+        private System.Windows.Forms.CheckBox cbCost;
+        private System.Windows.Forms.CheckBox cbBattleObj;
+        private System.Windows.Forms.CheckBox cbPmapObj;
+        private System.Windows.Forms.CheckBox cbMagicData;
+        private System.Windows.Forms.CheckBox cbForceData;
+        private System.Windows.Forms.CheckBox cbItemData;
+        private System.Windows.Forms.CheckBox cbForceName;
+        private System.Windows.Forms.CheckBox cbForceCategoryName;
+        private System.Windows.Forms.CheckBox cbEquip;
+        private System.Windows.Forms.CheckBox cbMagicLv;
+        private System.Windows.Forms.CheckBox cbMagicType;
+        private System.Windows.Forms.CheckBox cbHealType;
+        private System.Windows.Forms.CheckBox cbDmgType;
+        private System.Windows.Forms.CheckBox cbAIType;
+        private System.Windows.Forms.CheckBox cbConditionType;
+        private System.Windows.Forms.CheckBox cbAcc;
+        private System.Windows.Forms.CheckBox cbDmgValue;
+        private System.Windows.Forms.CheckBox cbLearn;
+        private System.Windows.Forms.CheckBox cbReflect;
+        private System.Windows.Forms.CheckBox cbForceSyn;
+        private System.Windows.Forms.CheckBox cbTerrainSyn;
+        private System.Windows.Forms.CheckBox cbShopData;
+        private System.Windows.Forms.CheckBox cbForceCategoryData;
+        private System.Windows.Forms.Button btnExecute;
+        private System.Windows.Forms.CheckBox cbBackup;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
     }
 }

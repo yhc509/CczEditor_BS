@@ -26,6 +26,7 @@ namespace CczEditor.Controls.DataControls
             InitTitleText();
             InitAbility();
             InitLevels();
+            InitEtc();
             Data.ExeData.Close();
         }
 
@@ -342,5 +343,48 @@ namespace CczEditor.Controls.DataControls
         }
         #endregion
 
+        #region Etc
+        private void InitEtc()
+        {
+            SpecialAppearForceList1.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
+            SpecialAppearForceList1.Items.Add("50,미사용");
+            SpecialAppearForceList2.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
+            SpecialAppearForceList2.Items.Add("50,미사용");
+            KnockBackForceList.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
+            KnockBackForceList.Items.Add("50,미사용");
+            SpecialSkillDmgForceList.Items.AddRange(ConfigUtils.GetForceCategoryNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
+            SpecialSkillDmgForceList.Items.Add("28,미사용");
+
+            var specialAppear1 = Data.ExeData.ReadByte(0, Program.CurrentConfig.Exe.SpecialAppear_ForceIndexOffset[0]);
+            var specialAppear2 = Data.ExeData.ReadByte(0, Program.CurrentConfig.Exe.SpecialAppear_ForceIndexOffset[1]);
+            SpecialAppearForceList1.SelectedIndex = SpecialAppearForceList1.FindString(Utils.GetString(specialAppear1));
+            SpecialAppearForceList2.SelectedIndex = SpecialAppearForceList2.FindString(Utils.GetString(specialAppear2));
+
+            var knockback = Data.ExeData.ReadByte(0, Program.CurrentConfig.Exe.Knock_Back_ForceIndexOffset);
+            KnockBackForceList.SelectedIndex = KnockBackForceList.FindString(Utils.GetString(knockback));
+
+            var specialSkillDmg = Data.ExeData.ReadByte(0, Program.CurrentConfig.Exe.SpecialSkillDmg_ForceCategoryIndexOffset);
+            SpecialSkillDmgForceList.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(specialSkillDmg));
+        }
+        #endregion
+
+        private void EtcSave_Click(object sender, EventArgs e)
+        {
+            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+
+            var offset = Program.CurrentConfig.Exe.SpecialAppear_ForceIndexOffset[0];
+            Data.ExeData.WriteByte((byte)SpecialAppearForceList1.SelectedIndex, 0, offset);
+
+            offset = Program.CurrentConfig.Exe.SpecialAppear_ForceIndexOffset[1];
+            Data.ExeData.WriteByte((byte)SpecialAppearForceList2.SelectedIndex, 0, offset);
+
+            offset = Program.CurrentConfig.Exe.Knock_Back_ForceIndexOffset;
+            Data.ExeData.WriteByte((byte)KnockBackForceList.SelectedIndex, 0, offset);
+
+            offset = Program.CurrentConfig.Exe.SpecialSkillDmg_ForceCategoryIndexOffset;
+            Data.ExeData.WriteByte((byte)SpecialSkillDmgForceList.SelectedIndex, 0, offset);
+
+            Data.ExeData.Close();
+        }
     }
 }

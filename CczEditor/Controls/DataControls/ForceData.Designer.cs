@@ -565,16 +565,6 @@
             this.eff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.eff.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.eff.FormattingEnabled = true;
-            this.eff.Items.AddRange(new object[] {
-            "일반",
-            "십자",
-            "구궁",
-            "몰우전",
-            "이격",
-            "육격",
-            "대몰우전",
-            "삼격",
-            "방괴"});
             this.eff.Location = new System.Drawing.Point(115, 127);
             this.eff.Name = "eff";
             this.eff.Size = new System.Drawing.Size(108, 23);

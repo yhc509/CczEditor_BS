@@ -55,6 +55,7 @@ namespace CczEditor.Controls.DataControls
 
 
             cbHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
+            eff.Items.AddRange(Program.CurrentConfig.EffAreaNames.ToArray());
             lbList.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();

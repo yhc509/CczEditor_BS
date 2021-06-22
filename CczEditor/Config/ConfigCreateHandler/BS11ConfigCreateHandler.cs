@@ -197,5 +197,12 @@ namespace CczEditor
 
         }
 
+        protected override void CreateEffectAreaNames()
+        {
+            base.CreateEffectAreaNames();
+
+            result.EffAreaNames.Add("09,환격");
+        }
+
     }
 }

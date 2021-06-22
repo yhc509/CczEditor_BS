@@ -40,7 +40,7 @@ namespace CczEditor.Controls.DataControls
             cbItemEffects.Items.AddRange(ConfigUtils.GetConsumablesEffects(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 
 			cbCorps.Items.Add("FF,모든 병종");
-            cbCorps.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
+            cbCorps.Items.AddRange(ConfigUtils.GetForceCategoryNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 
             cbItemHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
 			lbList.Items.AddRange(GameData.ItemNameList(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).ToArray());

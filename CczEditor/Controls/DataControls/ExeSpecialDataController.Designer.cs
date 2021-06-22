@@ -130,6 +130,8 @@
             this.AbilityAssistValue2 = new System.Windows.Forms.CheckBox();
             this.AbilityAssistValue = new System.Windows.Forms.ComboBox();
             this.AbilityAssistList = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -189,6 +191,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.SpecialSkillName);
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.SpecialSkillLevelBox5);
@@ -374,9 +377,9 @@
             // 
             // SpecialSkillSaveButton
             // 
-            this.SpecialSkillSaveButton.Location = new System.Drawing.Point(729, 238);
+            this.SpecialSkillSaveButton.Location = new System.Drawing.Point(680, 219);
             this.SpecialSkillSaveButton.Name = "SpecialSkillSaveButton";
-            this.SpecialSkillSaveButton.Size = new System.Drawing.Size(120, 23);
+            this.SpecialSkillSaveButton.Size = new System.Drawing.Size(180, 42);
             this.SpecialSkillSaveButton.TabIndex = 17;
             this.SpecialSkillSaveButton.Text = "저장";
             this.SpecialSkillSaveButton.UseVisualStyleBackColor = true;
@@ -384,19 +387,19 @@
             // 
             // SpecialSkillSaveApplyButton
             // 
-            this.SpecialSkillSaveApplyButton.Location = new System.Drawing.Point(585, 238);
+            this.SpecialSkillSaveApplyButton.Location = new System.Drawing.Point(680, 165);
             this.SpecialSkillSaveApplyButton.Name = "SpecialSkillSaveApplyButton";
-            this.SpecialSkillSaveApplyButton.Size = new System.Drawing.Size(120, 23);
+            this.SpecialSkillSaveApplyButton.Size = new System.Drawing.Size(180, 36);
             this.SpecialSkillSaveApplyButton.TabIndex = 16;
-            this.SpecialSkillSaveApplyButton.Text = "세이브 적용";
+            this.SpecialSkillSaveApplyButton.Text = "세이브로 적용하기";
             this.SpecialSkillSaveApplyButton.UseVisualStyleBackColor = true;
             this.SpecialSkillSaveApplyButton.Click += new System.EventHandler(this.SpecialSkillSaveApplyButton_Click);
             // 
             // SpecialSkillResetButton
             // 
-            this.SpecialSkillResetButton.Location = new System.Drawing.Point(445, 238);
+            this.SpecialSkillResetButton.Location = new System.Drawing.Point(494, 234);
             this.SpecialSkillResetButton.Name = "SpecialSkillResetButton";
-            this.SpecialSkillResetButton.Size = new System.Drawing.Size(120, 23);
+            this.SpecialSkillResetButton.Size = new System.Drawing.Size(180, 27);
             this.SpecialSkillResetButton.TabIndex = 15;
             this.SpecialSkillResetButton.Text = "초기화";
             this.SpecialSkillResetButton.UseVisualStyleBackColor = true;
@@ -499,6 +502,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.SpecialEffectName);
             this.groupBox1.Controls.Add(this.SpecialEffectSaveButton);
             this.groupBox1.Controls.Add(this.SpecialEffectSaveApplyButton);
@@ -532,9 +536,9 @@
             // 
             // SpecialEffectSaveButton
             // 
-            this.SpecialEffectSaveButton.Location = new System.Drawing.Point(729, 228);
+            this.SpecialEffectSaveButton.Location = new System.Drawing.Point(691, 206);
             this.SpecialEffectSaveButton.Name = "SpecialEffectSaveButton";
-            this.SpecialEffectSaveButton.Size = new System.Drawing.Size(120, 23);
+            this.SpecialEffectSaveButton.Size = new System.Drawing.Size(169, 45);
             this.SpecialEffectSaveButton.TabIndex = 17;
             this.SpecialEffectSaveButton.Text = "저장";
             this.SpecialEffectSaveButton.UseVisualStyleBackColor = true;
@@ -542,19 +546,19 @@
             // 
             // SpecialEffectSaveApplyButton
             // 
-            this.SpecialEffectSaveApplyButton.Location = new System.Drawing.Point(585, 228);
+            this.SpecialEffectSaveApplyButton.Location = new System.Drawing.Point(691, 148);
             this.SpecialEffectSaveApplyButton.Name = "SpecialEffectSaveApplyButton";
-            this.SpecialEffectSaveApplyButton.Size = new System.Drawing.Size(120, 23);
+            this.SpecialEffectSaveApplyButton.Size = new System.Drawing.Size(169, 34);
             this.SpecialEffectSaveApplyButton.TabIndex = 16;
-            this.SpecialEffectSaveApplyButton.Text = "세이브 적용";
+            this.SpecialEffectSaveApplyButton.Text = "세이브로 적용하기";
             this.SpecialEffectSaveApplyButton.UseVisualStyleBackColor = true;
             this.SpecialEffectSaveApplyButton.Click += new System.EventHandler(this.SpecialEffectSaveApplyButton_Click);
             // 
             // SpecialEffectResetButton
             // 
-            this.SpecialEffectResetButton.Location = new System.Drawing.Point(445, 228);
+            this.SpecialEffectResetButton.Location = new System.Drawing.Point(505, 218);
             this.SpecialEffectResetButton.Name = "SpecialEffectResetButton";
-            this.SpecialEffectResetButton.Size = new System.Drawing.Size(120, 23);
+            this.SpecialEffectResetButton.Size = new System.Drawing.Size(180, 33);
             this.SpecialEffectResetButton.TabIndex = 15;
             this.SpecialEffectResetButton.Text = "초기화";
             this.SpecialEffectResetButton.UseVisualStyleBackColor = true;
@@ -1206,6 +1210,24 @@
             this.AbilityAssistList.TabIndex = 1;
             this.AbilityAssistList.SelectedIndexChanged += new System.EventHandler(this.AbilityAssistList_SelectedIndexChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(680, 120);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(180, 35);
+            this.button1.TabIndex = 33;
+            this.button1.Text = "세이브에서 불러오기 (주의)";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(691, 108);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(169, 34);
+            this.button2.TabIndex = 19;
+            this.button2.Text = "세이브에서 불러오기 (주의)";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // ExeSpecialDataController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -1362,5 +1384,7 @@
         private System.Windows.Forms.TextBox SpecialEffectName;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.CheckBox SpecialAtkValue3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
