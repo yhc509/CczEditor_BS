@@ -1,6 +1,6 @@
 ﻿namespace CczEditor.Controls.DataControls
 {
-	partial class UnitsData
+	partial class UnitController
 	{
 		/// <summary>
 		/// 必需的设计器变量。

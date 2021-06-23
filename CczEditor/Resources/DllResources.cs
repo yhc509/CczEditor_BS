@@ -35,8 +35,19 @@ namespace CczEditor.Resources
                 return null;
             }
             string bitmapName = string.Format("#{0}", index);
-            Bitmap bitmap = Bitmap.FromResource(libHandle, bitmapName);
-            FreeLibrary(libHandle);
+            Bitmap bitmap= null;
+            try
+            {
+                bitmap = Bitmap.FromResource(libHandle, bitmapName);
+            }
+            catch(Exception e)
+            {
+
+            }
+            finally
+            {
+                FreeLibrary(libHandle);
+            }
             return bitmap;
         }
         

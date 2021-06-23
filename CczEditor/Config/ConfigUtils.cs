@@ -19,7 +19,7 @@ namespace CczEditor
                 var effect = effects.Find(x => x.Index == i);
                 if (effect == null) continue;
 
-                var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+                var effName = Program.ExeData.GetText(effect.Offset, effect.Length);
 
                 if (string.IsNullOrEmpty(format))
                     result.Add(effect.Index, effName);
@@ -41,7 +41,7 @@ namespace CczEditor
                 var effect = effects.Find(x => x.Index == i);
                 if (effect == null) continue;
 
-                var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+                var effName = Program.ExeData.GetText(effect.Offset, effect.Length);
 
                 if (string.IsNullOrEmpty(format))
                     result.Add(effect.Index, effName);
@@ -70,7 +70,7 @@ namespace CczEditor
                 else
                     prefixType = "특수";
 
-                itemTypeName = $"{prefixType}{Data.ExeData.GetText(effect.Offset, effect.Length)}";
+                itemTypeName = $"{prefixType}{Program.ExeData.GetText(effect.Offset, effect.Length)}";
 
                 if (string.IsNullOrEmpty(format))
                     result.Add(effect.Index, itemTypeName);
@@ -100,7 +100,7 @@ namespace CczEditor
                     && (i < consumablesMin || i > consumablesMax)
                     && effects.Exists(x => x.Index == i))  {
 
-                    var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+                    var effName = Program.ExeData.GetText(effect.Offset, effect.Length);
 
                     if (string.IsNullOrEmpty(format))
                         result.Add(effect.Index, effName);
@@ -121,7 +121,7 @@ namespace CczEditor
             var effect = effects.Find(x => x.Index == index);
             if (effect == null) return null;
 
-            var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+            var effName = Program.ExeData.GetText(effect.Offset, effect.Length);
             return effName;
         }
 
@@ -137,7 +137,7 @@ namespace CczEditor
                 var effect = effects.Find(x => x.Index == i);
                 if (effect == null) continue;
                 
-                var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+                var effName = Program.ExeData.GetText(effect.Offset, effect.Length);
 
                 if (string.IsNullOrEmpty(format))
                     result.Add(effect.Index, effName);
@@ -158,7 +158,7 @@ namespace CczEditor
                 var effect = effects.Find(x => x.Index == i);
                 if (effect == null) continue;
 
-                var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+                var effName = Program.ExeData.GetText(effect.Offset, effect.Length);
 
                 if (string.IsNullOrEmpty(format))
                     result.Add(effect.Index, effName);
@@ -180,7 +180,7 @@ namespace CczEditor
                 var effect = effects.Find(x => x.Index == i);
                 if (effect == null) return result;
 
-                var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+                var effName = Program.ExeData.GetText(effect.Offset, effect.Length);
 
                 if (string.IsNullOrEmpty(format))
                     result.Add(effect.Index, effName);
@@ -202,7 +202,7 @@ namespace CczEditor
                 var effect = effects.Find(x => x.Index == i);
                 if (effect == null) return result;
 
-                var effName = Data.ExeData.GetText(effect.Offset, effect.Length);
+                var effName = Program.ExeData.GetText(effect.Offset, effect.Length);
 
                 if (string.IsNullOrEmpty(format))
                     result.Add(effect.Index, effName);
@@ -217,20 +217,20 @@ namespace CczEditor
             var result = new Dictionary<int, string>();
             var forceOffsets = Program.CurrentConfig.ForceNames;
 
-            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
             for (int i = 0; i < forceOffsets.Count; i++)
             {
                 var forceName = GetForceName(i, format);
                 result.Add(forceOffsets[i].Index, forceName);
             }
-            Data.ExeData.Close();
+            Program.ExeData.Close();
             return result;
         }
 
         public static string GetForceName(int index, string format = null)
         {
             var forceOffsets = Program.CurrentConfig.ForceNames;
-            var forceName = Data.ExeData.GetText(forceOffsets[index].Offset, forceOffsets[index].Length);
+            var forceName = Program.ExeData.GetText(forceOffsets[index].Offset, forceOffsets[index].Length);
 
             if (string.IsNullOrEmpty(format))
                 return forceName;
@@ -243,20 +243,20 @@ namespace CczEditor
             var result = new Dictionary<int, string>();
             var forceCategoryOffsets = Program.CurrentConfig.ForceCategoryNames;
 
-            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
             for (int i = 0; i < forceCategoryOffsets.Count; i++)
             {
                 var forceCategoryName = GetForceCategoryName(i, format);
                 result.Add(forceCategoryOffsets[i].Index, forceCategoryName);
             }
-            Data.ExeData.Close();
+            Program.ExeData.Close();
             return result;
         }
 
         public static string GetForceCategoryName(int index, string format = null)
         {
             var forceCategoryOffsets = Program.CurrentConfig.ForceCategoryNames;
-            var forceCategoryName = Data.ExeData.GetText(forceCategoryOffsets[index].Offset, forceCategoryOffsets[index].Length);
+            var forceCategoryName = Program.ExeData.GetText(forceCategoryOffsets[index].Offset, forceCategoryOffsets[index].Length);
 
             if (string.IsNullOrEmpty(format))
                 return forceCategoryName;
@@ -270,13 +270,13 @@ namespace CczEditor
             var result = new Dictionary<int, string>();
             var specialEffectOffsets = Program.CurrentConfig.SpecialEffectNames;
 
-            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
             for (int i = 0; i < specialEffectOffsets.Count; i++)
             {
                 var specialEffectName = GetSpecialEffectName(i, format);
                 result.Add(specialEffectOffsets[i].Index, specialEffectName);
             }
-            Data.ExeData.Close();
+            Program.ExeData.Close();
             return result;
         }
 
@@ -284,7 +284,7 @@ namespace CczEditor
         public static string GetSpecialEffectName(int index, string format = null)
         {
             var specialEffectOffset = Program.CurrentConfig.SpecialEffectNames;
-            var specialEffectName = Data.ExeData.GetText(specialEffectOffset[index].Offset, specialEffectOffset[index].Length);
+            var specialEffectName = Program.ExeData.GetText(specialEffectOffset[index].Offset, specialEffectOffset[index].Length);
             if (string.IsNullOrEmpty(format))
                 return specialEffectName;
             else
@@ -294,7 +294,7 @@ namespace CczEditor
         public static string GetSpecialSkillName(int index, string format = null)
         {
             var specialSkillOffset = Program.CurrentConfig.SpecialSkillNames;
-            var specialSkillName = Data.ExeData.GetText(specialSkillOffset[index].Offset, specialSkillOffset[index].Length);
+            var specialSkillName = Program.ExeData.GetText(specialSkillOffset[index].Offset, specialSkillOffset[index].Length);
 
             if (string.IsNullOrEmpty(format))
                 return specialSkillName;

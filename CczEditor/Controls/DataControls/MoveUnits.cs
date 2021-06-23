@@ -118,7 +118,7 @@ namespace CczEditor.Controls.DataControls
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
             sw.Start();
 
-            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
             for (int i = 0; i < destUnitListBox.CheckedIndices.Count; i++)
             {
                 var dest = new CczEditor.Data.Wrapper.UnitData();
@@ -130,7 +130,7 @@ namespace CczEditor.Controls.DataControls
 
                 dest.Write(sourceList[i]);
             }
-            Data.ExeData.Close();
+            Program.ExeData.Close();
 
             sw.Stop();
             Console.WriteLine($"{sw.Elapsed.ToString()}");

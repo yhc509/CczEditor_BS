@@ -7,43 +7,16 @@ using System.IO;
 
 namespace CczEditor.Data
 {
-	/// <summary>
-	/// 물품유형
-	/// </summary>
 	public enum ItemType
 	{
-		/// <summary>
-		/// 무기
-		/// </summary>
 		Weapons = 0x1,
-		/// <summary>
-		/// 방어구
-		/// </summary>
 		Armor = 0x2,
-		/// <summary>
-		/// 보조도구
-		/// </summary>
 		Auxiliary = 0x3,
-		/// <summary>
-		/// 소모품
-		/// </summary>
 		Consumables = 0x4,
-        /// <summary>
-        /// 폭탄-매설/조종
-        /// </summary>
-        bombs = 0x5,
-        /// <summary>
-        /// 폭탄-지뢰
-        /// </summary>
-        bombs2 = 0x6,
-        /// <summary>
-        /// 폭탄-폭탄
-        /// </summary>
-        bombs3 = 0x7,
-		/// <summary>
-		/// 미지
-		/// </summary>
-		Unknow = 0x8
+        BombTools = 0x5,
+        Bombs = 0x6,
+        BombMines = 0x7,
+		None = 0x8
 	}
 
 	public class GameData : FileData
@@ -152,13 +125,13 @@ namespace CczEditor.Data
             }
             if (_bombs.ContainsKey(index))
             {
-                return ItemType.bombs;
+                return ItemType.BombTools;
             }
             if (_bombs2.ContainsKey(index))
             {
-                return ItemType.bombs2;
+                return ItemType.Bombs;
             }
-            return _bombs3.ContainsKey(index) ? ItemType.bombs3 : ItemType.Unknow;
+            return _bombs3.ContainsKey(index) ? ItemType.BombMines : ItemType.None;
         }
 
         public List<string> GetItemNames(ItemType type, bool hasFormater)
@@ -173,77 +146,20 @@ namespace CczEditor.Data
 			{
 				var t = data[17+GAME_ITEM_LENGTH*i];
 				var s = hasFormater ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, Utils.ByteToString(data, GAME_ITEM_LENGTH*i, 16)) : Utils.ByteToString(data, GAME_ITEM_LENGTH*i, 16);
-				switch (type)
-				{
-					case ItemType.Weapons:
-					{
-						if (_weapons.ContainsKey(t))
-						{
-							list.Add(s);
-                        }
-						break;
-					}
-					case ItemType.Armor:
-					{
-						if (_armor.ContainsKey(t))
-						{
-							list.Add(s);
-						}
-						break;
-					}
-					case ItemType.Auxiliary:
-					{
-						if (_auxiliary.ContainsKey(t))
-						{
-							list.Add(s);
-						}
-						break;
-					}
-					case ItemType.Consumables:
-					{
-						if (_consumables.ContainsKey(t))
-						{
-							list.Add(s);
-						}
-						break;
-					}
-                    case ItemType.bombs:
-                    {
-                        if (_bombs.ContainsKey(t))
-                        {
-                            list.Add(s);
-                        }
-                        break;
-                    }
-                    case ItemType.bombs2:
-                    {
-                        if (_bombs2.ContainsKey(t))
-                        {
-                            list.Add(s);
-                        }
-                        break;
-                    }
-                    case ItemType.bombs3:
-                    {
-                        if (_bombs3.ContainsKey(t))
-                        {
-                            list.Add(s);
-                        }
-                        break;
-                    }
-					default:
-						break;
-				}
-            }
 
-            if (Program.StarData != null && Program.StarData.CurrentFile != null && Program.StarData.CurrentStream != null)
-            {
-                list.AddRange(Program.StarData.GetItemNames(type, true));
+                if(type == ItemType.Weapons && _weapons.ContainsKey(t)) list.Add(s);
+                if (type == ItemType.Armor && _armor.ContainsKey(t)) list.Add(s);
+                if (type == ItemType.Auxiliary && _auxiliary.ContainsKey(t)) list.Add(s);
+                if (type == ItemType.Consumables && _consumables.ContainsKey(t)) list.Add(s);
+                if (type == ItemType.BombTools && _bombs.ContainsKey(t)) list.Add(s);
+                if (type == ItemType.Bombs && _bombs2.ContainsKey(t)) list.Add(s);
+                if (type == ItemType.BombMines && _bombs3.ContainsKey(t)) list.Add(s);
+                
             }
             return list;
 		}
 
-		public List<string> ItemNameList(string format)
+		public List<string> ItemNameList(bool hasFormatter)
 		{
             var count = Program.CurrentConfig.Data.ItemCount;
             var offset = Program.CurrentConfig.Data.ItemOffset;
@@ -253,37 +169,30 @@ namespace CczEditor.Data
 			{
                 CurrentStream.Seek(offset + i * GAME_ITEM_LENGTH, SeekOrigin.Begin);
                 CurrentStream.Read(name, 0, 16);
-
-                if (string.IsNullOrEmpty(format))
-                    list.Add(Utils.ByteToString(name));
-                else 
-                    list.Add(string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, Utils.ByteToString(name)));
+                list.Add(hasFormatter ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, Utils.ByteToString(name)) : Utils.ByteToString(name));
 			}
 			return list;
 		}
-        
-        public void WriteTreasureCount(int bomul)
+
+        public int GetTreasureCount()
         {
-            //TODO ExeData로 옮겨야함.
             var item = new byte[1];
+            int count = 0;
             int i = 0;
             for (; i < Program.CurrentConfig.Data.ItemCount; i++)
             {
-                    var offset = Program.CurrentConfig.Data.ItemOffset + 24;
-                    CurrentStream.Seek(offset + i * GAME_ITEM_LENGTH, SeekOrigin.Begin);
-                    CurrentStream.Read(item, 0, 1);
-                    if (item[0] == 1)
-                    {
-                        bomul++;
-                    }
-                    item[0] = 0;
+                var offset = Program.CurrentConfig.Data.ItemOffset + 24;
+                CurrentStream.Seek(offset + i * GAME_ITEM_LENGTH, SeekOrigin.Begin);
+                CurrentStream.Read(item, 0, 1);
+                if (item[0] == 1)
+                {
+                    count++;
+                }
+                item[0] = 0;
             }
-            if (Program.StarData != null && Program.StarData.CurrentFile != null && Program.StarData.CurrentStream != null)
-            {
-                Program.StarData.WriteTreasureCount(bomul, item, i);
-            }
+            return count;
         }
-
+        
 		public byte[] ItemGet(int index)
 		{
             var item = new byte[GAME_ITEM_LENGTH];

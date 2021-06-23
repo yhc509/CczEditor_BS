@@ -63,7 +63,7 @@ namespace CczEditor.Controls.ConfigControls
             config.CodeOptionContainer.UseVoice = UseVoice.Checked;
 
             Config.Write(config, ConfigFileName);
-            Program.ReLoadData();
+            Program.ReloadData();
         }
 
 		private void btnReLoad_Click(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace CczEditor.Controls.ConfigControls
 			ConfigEditor_Load(this, new EventArgs());
 			if (ConfigFileName == Program.CurrentConfig.FileName)
 			{
-				Program.ReLoadData();
+				Program.ReloadData();
 			}
 		}
 

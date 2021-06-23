@@ -11,10 +11,11 @@ using System.Text;
 
 namespace CczEditor.Controls.DataControls
 {
-	public partial class ItemsData : BaseDataControl
+	public partial class ItemController : BaseDataControl
 	{
+        Data.Wrapper.ItemData CurrentItemData;
 
-		public ItemsData()
+		public ItemController()
 		{
 			InitializeComponent();
             cbItemHitarea.Enabled = cbItemHitarea.Enabled = pbItemHitarea.Enabled = Program.CurrentConfig.CodeOptionContainer.ItemCustomRange;
@@ -43,7 +44,7 @@ namespace CczEditor.Controls.DataControls
             cbCorps.Items.AddRange(ConfigUtils.GetForceCategoryNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 
             cbItemHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
-			lbList.Items.AddRange(Program.GameData.ItemNameList(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).ToArray());
+			lbList.Items.AddRange(DataUtils.ItemNameList(true).ToArray());
 
             if (Program.StarData != null && Program.StarData.CurrentFile != null && Program.StarData.CurrentStream != null)
             {
@@ -53,8 +54,9 @@ namespace CczEditor.Controls.DataControls
                 cbBombEffects.Items.AddRange(ConfigUtils.GetBombsEffects3(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
                 EffectsRange.Items.AddRange(Program.CurrentConfig.EffAreaNames.ToArray());
                 AtkRange.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
-                lbList.Items.AddRange(Program.StarData.ItemNameList(true).ToArray());
             }
+
+            CurrentItemData = new Data.Wrapper.ItemData();
 
             lbList.SelectedIndex = 0;
 			lbList.Focus();
@@ -72,14 +74,13 @@ namespace CczEditor.Controls.DataControls
 
         private void LoadItem(int index)
         {
-            var item = new CczEditor.Data.Wrapper.ItemData();
-            item.Read(index);
+            CurrentItemData.Read(index);
 
-            switch(item.Type)
+            switch(CurrentItemData.Type)
             {
                 case ItemType.Weapons:
                 case ItemType.Armor:
-                    txtName.Text = item.Name;
+                    txtName.Text = CurrentItemData.Name;
                     cbItemType.Enabled = true;
                     cbSpecialEffects.Enabled = true;
                     cbItemEffects.Enabled = false;
@@ -94,12 +95,12 @@ namespace CczEditor.Controls.DataControls
                     BombType.Enabled = false;
                     ncSpecialEffectsValue.Maximum = 255;
 
-                    cbItemType.SelectedIndex = cbItemType.FindString(Utils.GetString(item.WeaponTypeIndex));
-                    cbSpecialEffects.SelectedIndex = cbSpecialEffects.FindString(Utils.GetString(item.SpecialEffectIndex));
+                    cbItemType.SelectedIndex = cbItemType.FindString(Utils.GetString(CurrentItemData.WeaponTypeIndex));
+                    cbSpecialEffects.SelectedIndex = cbSpecialEffects.FindString(Utils.GetString(CurrentItemData.SpecialEffectIndex));
                     cbItemEffects.SelectedIndex = -1;
-                    ncInitialValue.Value = item.InitValue;
-                    ncSpecialEffectsValue.Value = item.SpecialEffectValue;
-                    ncUpgradeValue.Value = item.IncreaseValue;
+                    ncInitialValue.Value = CurrentItemData.InitValue;
+                    ncSpecialEffectsValue.Value = CurrentItemData.SpecialEffectValue;
+                    ncUpgradeValue.Value = CurrentItemData.IncreaseValue;
                     cbCorps.SelectedIndex = -1;
                     cbItemHitarea.SelectedIndex = -1;
                     pbItemHitarea.Image = null;
@@ -110,11 +111,11 @@ namespace CczEditor.Controls.DataControls
                     BombType.SelectedIndex = -1;
                     cbBombEffects.SelectedIndex = -1;
 
-                    ncPrice.Value = item.Cost;
-                    ncItemIcon.Value = item.IconIndex;
+                    ncPrice.Value = CurrentItemData.Cost;
+                    ncItemIcon.Value = CurrentItemData.IconIndex;
                     break;
                 case ItemType.Auxiliary:
-                    txtName.Text = item.Name;
+                    txtName.Text = CurrentItemData.Name;
                     cbItemType.Enabled = false;
                     cbSpecialEffects.Enabled = true;
                     cbItemEffects.Enabled = false;
@@ -130,12 +131,12 @@ namespace CczEditor.Controls.DataControls
                     ncSpecialEffectsValue.Maximum = 255;
 
                     cbItemType.SelectedIndex = -1;
-                    cbSpecialEffects.SelectedIndex = cbSpecialEffects.FindString(Utils.GetString(item.SpecialEffectIndex));
+                    cbSpecialEffects.SelectedIndex = cbSpecialEffects.FindString(Utils.GetString(CurrentItemData.SpecialEffectIndex));
                     cbItemEffects.SelectedIndex = -1;
                     ncInitialValue.Value = 0;
-                    ncSpecialEffectsValue.Value = item.SpecialEffectValue;
+                    ncSpecialEffectsValue.Value = CurrentItemData.SpecialEffectValue;
                     ncUpgradeValue.Value = 0;
-                    cbCorps.SelectedIndex = cbCorps.FindString(Utils.GetString(item.EquipForceIndex));
+                    cbCorps.SelectedIndex = cbCorps.FindString(Utils.GetString(CurrentItemData.EquipForceIndex));
                     cbItemHitarea.SelectedIndex = -1;
                     pbItemHitarea.Image = null;
                     pbEffectRange.Image = null;
@@ -145,11 +146,11 @@ namespace CczEditor.Controls.DataControls
                     BombType.SelectedIndex = -1;
                     cbBombEffects.SelectedIndex = -1;
 
-                    ncPrice.Value = item.Cost;
-                    ncItemIcon.Value = item.IconIndex;
+                    ncPrice.Value = CurrentItemData.Cost;
+                    ncItemIcon.Value = CurrentItemData.IconIndex;
                     break;
                 case ItemType.Consumables:
-                    txtName.Text = item.Name;
+                    txtName.Text = CurrentItemData.Name;
                     cbItemType.Enabled = false;
                     cbSpecialEffects.Enabled = false;
                     cbItemEffects.Enabled = true;
@@ -166,14 +167,14 @@ namespace CczEditor.Controls.DataControls
 
                     cbItemType.SelectedIndex = -1;
                     cbSpecialEffects.SelectedIndex = -1;
-                    cbItemEffects.SelectedIndex = cbItemEffects.FindString(Utils.GetString(item.ItemEffectIndex));
-                    ncInitialValue.Value = item.InitValue;
+                    cbItemEffects.SelectedIndex = cbItemEffects.FindString(Utils.GetString(CurrentItemData.ItemEffectIndex));
+                    ncInitialValue.Value = CurrentItemData.InitValue;
                     ncSpecialEffectsValue.Value = 0;
                     ncUpgradeValue.Value = 0;
                     cbCorps.SelectedIndex = -1;
                     if (Program.CurrentConfig.CodeOptionContainer.ItemCustomRange)
                     {
-                        cbItemHitarea.SelectedIndex = item.ItemRange;
+                        cbItemHitarea.SelectedIndex = CurrentItemData.ItemRange;
                         cbItemHitarea_SelectedIndexChanged(cbItemHitarea, new EventArgs());
                     }
                     pbEffectRange.Image = null;
@@ -183,11 +184,11 @@ namespace CczEditor.Controls.DataControls
                     BombType.SelectedIndex = -1;
                     cbBombEffects.SelectedIndex = -1;
 
-                    ncPrice.Value = item.Cost;
-                    ncItemIcon.Value = item.IconIndex;
+                    ncPrice.Value = CurrentItemData.Cost;
+                    ncItemIcon.Value = CurrentItemData.IconIndex;
                     break;
-                case ItemType.bombs:
-                    txtName.Text = item.Name;
+                case ItemType.BombTools:
+                    txtName.Text = CurrentItemData.Name;
                     cbItemType.Enabled = false;
                     cbSpecialEffects.Enabled = false;
                     cbItemEffects.Enabled = false;
@@ -216,13 +217,13 @@ namespace CczEditor.Controls.DataControls
                     AtkRange.SelectedIndex = -1;
                     BombType.SelectedIndex = -1;
 
-                    cbBombEffects.SelectedIndex = item.BombEffectIndex - (Program.CurrentConfig.Items.MineInstall - 1);
-                    ncPrice.Value = item.Cost;
-                    ncItemIcon.Value = item.IconIndex;
-                    ncSpecialEffectsValue.Value = item.BombEffectValue;
+                    cbBombEffects.SelectedIndex = CurrentItemData.BombEffectIndex - (Program.CurrentConfig.Items.MineInstall - 1);
+                    ncPrice.Value = CurrentItemData.Cost;
+                    ncItemIcon.Value = CurrentItemData.IconIndex;
+                    ncSpecialEffectsValue.Value = CurrentItemData.BombEffectValue;
                     break;
-                case ItemType.bombs2:
-                    txtName.Text = item.Name;
+                case ItemType.Bombs:
+                    txtName.Text = CurrentItemData.Name;
                     cbItemType.Enabled = false;
                     cbSpecialEffects.Enabled = false;
                     cbItemEffects.Enabled = false;
@@ -247,15 +248,15 @@ namespace CczEditor.Controls.DataControls
                     AtkRange.SelectedIndex = -1;
                     pbItemHitarea.Image = null;
 
-                    BombType.SelectedIndex = item.BombTypeIndex;
-                    cbBombEffects.SelectedIndex = item.BombEffectIndex - (Program.CurrentConfig.Items.MineInstall - 1);
-                    ncPrice.Value = item.Cost;
-                    ncItemIcon.Value = item.IconIndex;
-                    ncSpecialEffectsValue.Value = item.BombEffectValue;
-                    EffectsRange.SelectedIndex = item.EffectRange;
+                    BombType.SelectedIndex = CurrentItemData.BombTypeIndex;
+                    cbBombEffects.SelectedIndex = CurrentItemData.BombEffectIndex - (Program.CurrentConfig.Items.MineInstall - 1);
+                    ncPrice.Value = CurrentItemData.Cost;
+                    ncItemIcon.Value = CurrentItemData.IconIndex;
+                    ncSpecialEffectsValue.Value = CurrentItemData.BombEffectValue;
+                    EffectsRange.SelectedIndex = CurrentItemData.EffectRange;
                     break;
-                case ItemType.bombs3:
-                    txtName.Text = item.Name;
+                case ItemType.BombMines:
+                    txtName.Text = CurrentItemData.Name;
                     cbItemType.Enabled = false;
                     cbSpecialEffects.Enabled = false;
                     cbItemEffects.Enabled = false;
@@ -280,15 +281,15 @@ namespace CczEditor.Controls.DataControls
                     BombType.SelectedIndex = -1;
                     pbItemHitarea.Image = null;
 
-                    AtkRange.SelectedIndex = item.AttackRange;
-                    cbBombEffects.SelectedIndex = item.BombEffectIndex - (Program.CurrentConfig.Items.MineInstall - 1);
-                    ncPrice.Value = item.Cost;
-                    ncItemIcon.Value = item.IconIndex;
-                    ncSpecialEffectsValue.Value = item.BombEffectValue;
-                    EffectsRange.SelectedIndex = item.EffectRange;
+                    AtkRange.SelectedIndex = CurrentItemData.AttackRange;
+                    cbBombEffects.SelectedIndex = CurrentItemData.BombEffectIndex - (Program.CurrentConfig.Items.MineInstall - 1);
+                    ncPrice.Value = CurrentItemData.Cost;
+                    ncItemIcon.Value = CurrentItemData.IconIndex;
+                    ncSpecialEffectsValue.Value = CurrentItemData.BombEffectValue;
+                    EffectsRange.SelectedIndex = CurrentItemData.EffectRange;
                     break;
                 default:
-                    txtName.Text = item.Name;
+                    txtName.Text = CurrentItemData.Name;
                     cbItemType.Enabled = true;
                     cbSpecialEffects.Enabled = true;
                     cbItemEffects.Enabled = true;
@@ -319,12 +320,12 @@ namespace CczEditor.Controls.DataControls
                     cbBombEffects.SelectedIndex = cbBombEffects.FindString(Utils.GetString(0xFF));
                     BombType.SelectedIndex = -1;
 
-                    ncPrice.Value = item.Cost;
-                    ncItemIcon.Value = item.IconIndex;
+                    ncPrice.Value = CurrentItemData.Cost;
+                    ncItemIcon.Value = CurrentItemData.IconIndex;
                     break;
             }
 
-            checkBox1.Checked = item.Treasure == 0x00 ? false : true;
+            checkBox1.Checked = CurrentItemData.Treasure == 0x00 ? false : true;
             if (ImsgDataLoaded)
             {
                 if (lbList.SelectedIndex < 0 || lbList.SelectedIndex >= lbList.Items.Count)
@@ -346,197 +347,156 @@ namespace CczEditor.Controls.DataControls
 			{
 				return;
 			}
-            //Imsg저장
-            if (ImsgDataLoaded)
-            {
-                var msg = Program.ImsgData.ItemGet(lbList.SelectedIndex);
-                Utils.ChangeByteValue(msg, Utils.GetBytes(txtImsg.Text), 0, Program.IMSG_DATA_BLOCK_LENGTH);
-                Program.ImsgData.ItemSet(lbList.SelectedIndex, msg);
-            }
-
-            //Data저장
+            
             var index = lbList.SelectedIndex;
-            var item = Program.GameData.ItemGet(index);
-            Utils.ChangeByteValue(item, Utils.GetBytes(txtName.Text), 0, 16);            
-			//16 0x00
-			//17,18,21,22,23
-			switch (Program.GameData.GetItemType(item[17]))
+            
+            switch (CurrentItemData.Type)
 			{
 				case ItemType.Weapons:
 				case ItemType.Armor:
-				{
-                    Utils.ChangeByteValue(item, Utils.GetBytes(txtName.Text), 0, 16);
-					item[17] = (byte)Utils.GetId(cbItemType.SelectedItem);
-					item[18] = (byte)Utils.GetId(cbSpecialEffects.SelectedItem);
-                    item[19] = (byte)ncPrice.Value;
-                    item[20] = (byte)ncItemIcon.Value;
-					item[21] = (byte)ncInitialValue.Value;
-					item[22] = (byte)ncSpecialEffectsValue.Value;
-					item[23] = (byte)ncUpgradeValue.Value;
-					break;
-				}
+                    CurrentItemData.Name = txtName.Text;
+                    CurrentItemData.WeaponTypeIndex = (byte)Utils.GetId(cbItemType.SelectedItem);
+                    CurrentItemData.SpecialEffectIndex = (byte)Utils.GetId(cbSpecialEffects.SelectedItem);
+                    CurrentItemData.Cost = (byte)ncPrice.Value;
+                    CurrentItemData.IconIndex = (byte)ncItemIcon.Value;
+                    CurrentItemData.InitValue = (byte)ncInitialValue.Value;
+                    CurrentItemData.SpecialEffectValue = (byte)ncSpecialEffectsValue.Value;
+                    CurrentItemData.IncreaseValue = (byte)ncUpgradeValue.Value;
+                    break;
 				case ItemType.Auxiliary:
-				{
-                    Utils.ChangeByteValue(item, Utils.GetBytes(txtName.Text), 0, 16);
-					item[17] = (byte)Utils.GetId(cbSpecialEffects.SelectedItem);
-					item[18] = 0xFF;
-                    item[19] = (byte)ncPrice.Value;
-                    item[20] = (byte)ncItemIcon.Value;
-					item[21] = (byte)ncSpecialEffectsValue.Value;
-					item[22] = 0x0;
-					item[23] = (byte)Utils.GetId(cbCorps.SelectedItem);
-					break;
-				}
+                    CurrentItemData.Name = txtName.Text;
+                    CurrentItemData.SpecialEffectIndex = (byte)Utils.GetId(cbSpecialEffects.SelectedItem);
+                    CurrentItemData.Cost = (byte)ncPrice.Value;
+                    CurrentItemData.IconIndex = (byte)ncItemIcon.Value;
+                    CurrentItemData.SpecialEffectValue = (byte)ncSpecialEffectsValue.Value;
+                    CurrentItemData.EquipForceIndex = (byte)Utils.GetId(cbCorps.SelectedItem);
+                    break;
 				case ItemType.Consumables:
-				{
-                    Utils.ChangeByteValue(item, Utils.GetBytes(txtName.Text), 0, 16);
-					item[17] = (byte)Utils.GetId(cbItemEffects.SelectedItem);
-					item[18] = 0xFF;
-                    item[19] = (byte)ncPrice.Value;
-                    item[20] = (byte)ncItemIcon.Value;
-					item[21] = (byte)ncInitialValue.Value;
-					item[22] = 0x0;
-					if (Program.CurrentConfig.CodeOptionContainer.ItemCustomRange)
-					{
-						item[23] = (byte)(cbItemHitarea.SelectedIndex == -1 ? 0 : cbItemHitarea.SelectedIndex);
-					}
-					else
-					{
-						item[23] = 0x0;
-					}
-					break;
-				}
-                case ItemType.bombs:
-                {
-                    Utils.ChangeByteValue(item, Utils.GetBytes(txtName.Text), 0, 15);
-                    item[16] = 0x00;
-                    item[17] = (byte)Utils.GetId(cbBombEffects.SelectedItem);
-                    item[18] = (byte)ncPrice.Value;
-                    item[19] = (byte)ncItemIcon.Value;
-                    item[20] = 0xFF;
-                    Utils.ChangeByteValue(item, BitConverter.GetBytes((ushort)ncSpecialEffectsValue.Value), 21);
-                    item[23] = 0x00;
+                    CurrentItemData.Name = txtName.Text;
+                    CurrentItemData.ItemEffectIndex = (byte)Utils.GetId(cbItemEffects.SelectedItem);
+                    CurrentItemData.Cost = (byte)ncPrice.Value;
+                    CurrentItemData.IconIndex = (byte)ncItemIcon.Value;
+                    CurrentItemData.InitValue = (byte)ncInitialValue.Value;
+                    CurrentItemData.ItemRange = (byte)(cbItemHitarea.SelectedIndex == -1 ? 0 : cbItemHitarea.SelectedIndex);
                     break;
-                }
-                case ItemType.bombs2:
-                {
-                    Utils.ChangeByteValue(item, Utils.GetBytes(txtName.Text), 0, 15);
-                    item[16] = (byte)(BombType.SelectedIndex == -1 ? 0 : BombType.SelectedIndex);
-                    item[17] = (byte)Utils.GetId(cbBombEffects.SelectedItem);
-                    item[18] = (byte)ncPrice.Value;
-                    item[19] = (byte)ncItemIcon.Value;
-                    item[20] = 0xFF;
-                    Utils.ChangeByteValue(item, BitConverter.GetBytes((ushort)ncSpecialEffectsValue.Value), 21);
-                    item[23] = (byte)(EffectsRange.SelectedIndex == -1 ? 0 : EffectsRange.SelectedIndex);
+                case ItemType.BombTools:
+                    CurrentItemData.Name = txtName.Text;
+                    CurrentItemData.BombEffectIndex = (byte)Utils.GetId(cbBombEffects.SelectedItem);
+                    CurrentItemData.Cost = (byte)ncPrice.Value;
+                    CurrentItemData.IconIndex = (byte)ncItemIcon.Value;
+                    CurrentItemData.BombEffectValue = (ushort)ncSpecialEffectsValue.Value;
                     break;
-                }
-                case ItemType.bombs3:
-                {
-                    Utils.ChangeByteValue(item, Utils.GetBytes(txtName.Text), 0, 15);
-                    item[16] = (byte)(AtkRange.SelectedIndex == -1 ? 0 : AtkRange.SelectedIndex);
-                    item[17] = (byte)Utils.GetId(cbBombEffects.SelectedItem);
-                    item[18] = (byte)ncPrice.Value;
-                    item[19] = (byte)ncItemIcon.Value;
-                    item[20] = 0xFF;
-                    Utils.ChangeByteValue(item, BitConverter.GetBytes((ushort)ncSpecialEffectsValue.Value), 21);
-                    item[23] = (byte)(EffectsRange.SelectedIndex == -1 ? 0 : EffectsRange.SelectedIndex);
+                case ItemType.Bombs:
+                    CurrentItemData.Name = txtName.Text;
+                    CurrentItemData.BombTypeIndex = (byte)(BombType.SelectedIndex == -1 ? 0 : BombType.SelectedIndex);
+                    CurrentItemData.BombEffectIndex = (byte)Utils.GetId(cbBombEffects.SelectedItem);
+                    CurrentItemData.Cost = (byte)ncPrice.Value;
+                    CurrentItemData.IconIndex = (byte)ncItemIcon.Value;
+                    CurrentItemData.BombEffectValue = (ushort)ncSpecialEffectsValue.Value;
+                    CurrentItemData.EffectRange = (byte) EffectsRange.SelectedIndex;
                     break;
-                }
-				case ItemType.Unknow:
-				{
+                case ItemType.BombMines:
+                    CurrentItemData.Name = txtName.Text;
+                    CurrentItemData.AttackRange = (byte) AtkRange.SelectedIndex;
+                    CurrentItemData.BombEffectIndex = (byte)Utils.GetId(cbBombEffects.SelectedItem);
+                    CurrentItemData.Cost = (byte)ncPrice.Value;
+                    CurrentItemData.IconIndex = (byte)ncItemIcon.Value;
+                    CurrentItemData.BombEffectValue = (ushort)ncSpecialEffectsValue.Value;
+                    CurrentItemData.EffectRange = (byte) EffectsRange.SelectedIndex;
+                    break;
+				case ItemType.None:
 					var type1 = (byte)Utils.GetId(cbItemType.SelectedItem);
 					var type2 = (byte)Utils.GetId(cbSpecialEffects.SelectedItem);
                     var type3 = (byte)Utils.GetId(cbItemEffects.SelectedItem);
                     var type4 = (byte)Utils.GetId(cbBombEffects.SelectedItem);
-					if (type1 == 0xFF && type2 == 0xFF && type3 != 0xFF && type4 == 0xFF)
+
+                    bool isConsumables = (type1 == 0xFF && type2 == 0xFF && type3 != 0xFF && type4 == 0xFF);
+                    bool isAuxiliary = (type1 == 0xFF && type2 != 0xFF && type3 == 0xFF && type4 == 0xFF);
+                    bool isWeaponOrArmor = (type1 != 0xFF && type3 == 0xFF && type4 == 0xFF);
+                    bool isBomb = (type1 == 0xFF && type2 == 0xFF && type3 == 0xFF && type4 != 0xFF);
+
+                    if (isConsumables)
                     {
-                        Utils.ChangeByteValue(item, Utils.GetBytes(txtName.Text), 0, 16);
-						item[17] = type3;
-						item[18] = 0xFF;
-						item[21] = (byte)ncInitialValue.Value;
-						item[22] = 0x0;
-						if (Program.CurrentConfig.CodeOptionContainer.ItemCustomRange)
-						{
-							item[23] = (byte)(cbItemHitarea.SelectedIndex == -1 ? 0 : cbItemHitarea.SelectedIndex);
-						}
-						else
-						{
-							item[23] = 0x0;
-						}
+                        CurrentItemData.Name = txtName.Text;
+                        CurrentItemData.Type = ItemType.Consumables;
+                        CurrentItemData.ItemEffectIndex = (byte)Utils.GetId(cbItemEffects.SelectedItem);
+                        CurrentItemData.Cost = (byte)ncPrice.Value;
+                        CurrentItemData.IconIndex = (byte)ncItemIcon.Value;
+                        CurrentItemData.InitValue = (byte)ncInitialValue.Value;
+                        CurrentItemData.ItemRange = (byte)(cbItemHitarea.SelectedIndex == -1 ? 0 : cbItemHitarea.SelectedIndex);
+                    }
+					else if (isAuxiliary)
+                    {
+                        CurrentItemData.Type = ItemType.Auxiliary;
+                        CurrentItemData.WeaponTypeIndex = (byte)Utils.GetId(cbItemType.SelectedItem);
+                        CurrentItemData.SpecialEffectIndex = (byte)Utils.GetId(cbSpecialEffects.SelectedItem);
+                        CurrentItemData.Cost = (byte)ncPrice.Value;
+                        CurrentItemData.IconIndex = (byte)ncItemIcon.Value;
+                        CurrentItemData.InitValue = (byte)ncInitialValue.Value;
+                        CurrentItemData.SpecialEffectValue = (byte)ncSpecialEffectsValue.Value;
+                        CurrentItemData.IncreaseValue = (byte)ncUpgradeValue.Value;
+                    }
+					else if (isWeaponOrArmor)
+                    {
+                        CurrentItemData.Name = txtName.Text;
+                        CurrentItemData.Type = type1 >= Program.CurrentConfig.Items.WeaponIndexMax ? ItemType.Armor : ItemType.Weapons;
+                        CurrentItemData.WeaponTypeIndex = (byte)Utils.GetId(cbItemType.SelectedItem);
+                        CurrentItemData.SpecialEffectIndex = (byte)Utils.GetId(cbSpecialEffects.SelectedItem);
+                        CurrentItemData.IconIndex = (byte)ncItemIcon.Value;
+                        CurrentItemData.InitValue = (byte)ncInitialValue.Value;
+                        CurrentItemData.SpecialEffectValue = (byte)ncSpecialEffectsValue.Value;
+                        CurrentItemData.IncreaseValue = (byte)ncUpgradeValue.Value;
 					}
-					else if (type1 == 0xFF && type2 != 0xFF && type3 == 0xFF && type4 == 0xFF)
+                    else if (isBomb)
                     {
-                        Utils.ChangeByteValue(item, Utils.GetBytes(txtName.Text), 0, 16);
-						item[17] = type2;
-						item[18] = 0xFF;
-						item[21] = (byte)ncSpecialEffectsValue.Value;
-						item[22] = 0x0;
-						item[23] = (byte)Utils.GetId(cbCorps.SelectedItem);
-					}
-					else if (type1 != 0xFF && type3 == 0xFF && type4 == 0xFF)
-                    {
-                        Utils.ChangeByteValue(item, Utils.GetBytes(txtName.Text), 0, 16);
-						item[17] = type1;
-						item[18] = type2;
-						item[21] = (byte)ncInitialValue.Value;
-						item[22] = (byte)ncSpecialEffectsValue.Value;
-						item[23] = (byte)ncUpgradeValue.Value;
-					}
-                    else if (type1 == 0xFF && type2 == 0xFF && type3 == 0xFF && type4 != 0xFF)
-                    {
-                        Utils.ChangeByteValue(item, Utils.GetBytes(txtName.Text), 0, 15);
+                        CurrentItemData.Name = txtName.Text;
                         if (type4 <= Program.CurrentConfig.Items.MineControl && type4 >= Program.CurrentConfig.Items.MineInstall)
                         {
-                            item[16] = 0x00;
-                            item[17] = type4;
-                            item[18] = (byte)ncPrice.Value;
-                            item[19] = (byte)ncItemIcon.Value;
-                            item[20] = 0xFF;
-                            Utils.ChangeByteValue(item, BitConverter.GetBytes((ushort)ncSpecialEffectsValue.Value), 21);
-                            item[23] = 0x00;
+                            CurrentItemData.Type = ItemType.BombTools;
+                            CurrentItemData.BombEffectIndex = (byte)Utils.GetId(cbBombEffects.SelectedItem);
+                            CurrentItemData.Cost = (byte)ncPrice.Value;
+                            CurrentItemData.IconIndex = (byte)ncItemIcon.Value;
+                            CurrentItemData.BombEffectValue = (ushort)ncSpecialEffectsValue.Value;
+
                         }
                         else if (type4 == Program.CurrentConfig.Items.Mine)
                         {
-                            item[16] = (byte)(BombType.SelectedIndex == -1 ? 0 : BombType.SelectedIndex);
-                            item[17] = type4;
-                            item[18] = (byte)ncPrice.Value;
-                            item[19] = (byte)ncItemIcon.Value;
-                            item[20] = 0xFF;
-                            Utils.ChangeByteValue(item, BitConverter.GetBytes((ushort)ncSpecialEffectsValue.Value), 21);
-                            item[23] = (byte)(EffectsRange.SelectedIndex == -1 ? 0 : EffectsRange.SelectedIndex);
+                            CurrentItemData.Type = ItemType.BombMines;
+                            CurrentItemData.BombTypeIndex = (byte)(BombType.SelectedIndex == -1 ? 0 : BombType.SelectedIndex);
+                            CurrentItemData.BombEffectIndex = (byte)Utils.GetId(cbBombEffects.SelectedItem);
+                            CurrentItemData.Cost = (byte)ncPrice.Value;
+                            CurrentItemData.IconIndex = (byte)ncItemIcon.Value;
+                            CurrentItemData.BombEffectValue = (ushort)ncSpecialEffectsValue.Value;
+                            CurrentItemData.EffectRange = (byte)EffectsRange.SelectedIndex;
                         }
                         else if (type4 == Program.CurrentConfig.Items.Bomb)
                         {
-                            item[16] = (byte)(AtkRange.SelectedIndex == -1 ? 0 : AtkRange.SelectedIndex);
-                            item[17] = type4;
-                            item[18] = (byte)ncPrice.Value;
-                            item[19] = (byte)ncItemIcon.Value;
-                            item[20] = 0xFF;
-                            Utils.ChangeByteValue(item, BitConverter.GetBytes((ushort)ncSpecialEffectsValue.Value), 21);
-                            item[23] = (byte)(EffectsRange.SelectedIndex == -1 ? 0 : EffectsRange.SelectedIndex);
+                            CurrentItemData.BombTypeIndex = (byte)(BombType.SelectedIndex == -1 ? 0 : BombType.SelectedIndex);
+                            CurrentItemData.BombEffectIndex = (byte)Utils.GetId(cbBombEffects.SelectedItem);
+                            CurrentItemData.Cost = (byte)ncPrice.Value;
+                            CurrentItemData.IconIndex = (byte)ncItemIcon.Value;
+                            CurrentItemData.BombEffectValue = (ushort)ncSpecialEffectsValue.Value;
+                            CurrentItemData.EffectRange = (byte)EffectsRange.SelectedIndex;
                         }
                     }
 					break;
-				}
+				
 				default:
 				{
 					break;
 				}
 			}
-            if (checkBox1.Checked == false)
-            {
-                item[24] = 0;
-            }
-            else
-            {
-                item[24] = 1;
-            }
+            CurrentItemData.Treasure = (byte) (checkBox1.Checked ? 1 : 0);
 
-            int bomulcount = 0;
-            Program.GameData.WriteTreasureCount(bomulcount);
+            CurrentItemData.Imsg = txtImsg.Text;
 
-            Program.GameData.ItemSet(index, item);
-			lbList.Items.RemoveAt(index);
+            int treasureCount = DataUtils.GetTreasureItemCount();
+            if (!Program.ExeData.IsLocked)
+                Program.ExeData.WriteByte(treasureCount, 0, Program.CurrentConfig.Exe.TreasureCountOffset);
+
+            CurrentItemData.Write(index);
+            
+            lbList.Items.RemoveAt(index);
             lbList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, index, txtName.Text));
 			lbList.SelectedIndex = index;
 		}
@@ -597,7 +557,7 @@ namespace CczEditor.Controls.DataControls
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            var list = Program.GameData.ItemNameList(null);
+            var list = DataUtils.ItemNameList(false);
             var index = list.FindIndex(x => x == searchTextBox.Text);
             if (index == -1)
             {
@@ -609,7 +569,7 @@ namespace CczEditor.Controls.DataControls
 
         private void cbSpecialEffects_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Data.ExeData.IsLocked || cbSpecialEffects.SelectedIndex < 0)
+            if (Program.ExeData.IsLocked || cbSpecialEffects.SelectedIndex < 0)
             {
                 SpecialEffListLabel.Text = string.Empty;
                 SpecialEffNameEditBox.Text = string.Empty;
@@ -640,7 +600,7 @@ namespace CczEditor.Controls.DataControls
             int count = 0;
             foreach(var eff in list)
             {
-                var checkCode = Data.ExeData.ReadByte(0, eff.Offset);
+                var checkCode = Program.ExeData.ReadByte(0, eff.Offset);
                 if (checkCode != code) continue;
                 sb.Append($"-{eff.Description}");
                 sb.Append("\n");
@@ -663,7 +623,7 @@ namespace CczEditor.Controls.DataControls
                 return;
             }
 
-            Data.ExeData.WriteText(SpecialEffNameEditBox.Text, target.Offset, target.Length);
+            Program.ExeData.WriteText(SpecialEffNameEditBox.Text, target.Offset, target.Length);
         }
 
         private void SpecialEffNameEditBox_TextChanged(object sender, EventArgs e)

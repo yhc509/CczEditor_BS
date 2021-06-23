@@ -51,12 +51,12 @@ namespace CczEditor.Controls.DataControls
                     System.IO.File.Copy(originPath, destPath);
                 }
 
-                Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+                Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
                 foreach (var code in codeList)
                 {
-                    Data.ExeData.Write(Utils.GetCode(code.CodeArr), code.offset);
+                    Program.ExeData.Write(Utils.GetCode(code.CodeArr), code.offset);
                 }
-                Data.ExeData.Close();
+                Program.ExeData.Close();
 
                 MessageBox.Show("코드 적용 완료");
             }

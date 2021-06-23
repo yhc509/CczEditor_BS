@@ -9,18 +9,18 @@ using System.Text;
 
 namespace CczEditor.Controls.DataControls
 {
-	public partial class ForceData : BaseDataControl
+	public partial class ForceController : BaseDataControl
 	{
-		public ForceData()
+		public ForceController()
 		{
 			InitializeComponent();
             if (Program.CurrentConfig.CodeOptionContainer.AIExtension)
             {
-                f9.Enabled = true;
+                forceAI.Enabled = true;
             }
             else
             {
-                f9.Enabled = false;
+                forceAI.Enabled = false;
             }
             txtImsg.Enabled = ImsgDataLoaded;
             GetResourcesHitarea();
@@ -55,7 +55,7 @@ namespace CczEditor.Controls.DataControls
 
 
             cbHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
-            eff.Items.AddRange(Program.CurrentConfig.EffAreaNames.ToArray());
+            cbEffArea.Items.AddRange(Program.CurrentConfig.EffAreaNames.ToArray());
             lbList.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
@@ -101,26 +101,26 @@ namespace CczEditor.Controls.DataControls
                 forceCategoryIndex = (lbList.SelectedIndex - ((ForceCount - ForceCategoryCount) / 2) * 3) + (ForceCount - ForceCategoryCount) / 2;
             }
 
-            f1.Enabled = f2.Enabled = f3.Enabled = f4.Enabled = f5.Enabled = f6.Enabled = f7.Enabled = f8.Enabled = eff.Enabled = button1.Enabled = !Data.ExeData.IsLocked;
-            if (!Data.ExeData.IsLocked)
+            forceMoveSound.Enabled = forceMoveSpeed.Enabled = forceAtkSound.Enabled = forceRangeAtk.Enabled = forceType.Enabled = forceMagicDmg.Enabled = forceAtkDelay.Enabled = forceAtkComm.Enabled = cbEffArea.Enabled = btnForceSyn.Enabled = !Program.ExeData.IsLocked;
+            if (!Program.ExeData.IsLocked)
             {
                 ForceNameBox.Text = ConfigUtils.GetForceName(forceIndex);
-                ForceCategoryNameBox.Text = ConfigUtils.GetForceCategoryName(forceCategoryIndex);
-                f1.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.MoveSoundOffset);
-                f2.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.MoveSpeedOffset);
-                f3.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkSoundOffset);
-                f4.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkTypeOffset);
-                f5.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.TypeOffset);
-                f6.Value = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.MagicDamageOffset);
-                f7.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkDelayOffset);
-                f8.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkPincOffset);
+                forceCategoryNameBox.Text = ConfigUtils.GetForceCategoryName(forceCategoryIndex);
+                forceMoveSound.SelectedIndex = Program.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.MoveSoundOffset);
+                forceMoveSpeed.SelectedIndex = Program.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.MoveSpeedOffset);
+                forceAtkSound.SelectedIndex = Program.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkSoundOffset);
+                forceRangeAtk.SelectedIndex = Program.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkTypeOffset);
+                forceType.SelectedIndex = Program.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.TypeOffset);
+                forceMagicDmg.Value = Program.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.MagicDamageOffset);
+                forceAtkDelay.SelectedIndex = Program.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkDelayOffset);
+                forceAtkComm.SelectedIndex = Program.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AtkPincOffset);
                 if (Program.CurrentConfig.CodeOptionContainer.AIExtension)
                 {
-                    f9.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AiTypeOffset);
+                    forceAI.SelectedIndex = Program.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.Force.AiTypeOffset);
                 }
-                eff.SelectedIndex = Data.ExeData.ReadByte(forceIndex, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
+                cbEffArea.SelectedIndex = Program.ExeData.ReadByte(forceIndex, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
 
-                SpecialSkillForce.SelectedIndex = Data.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.SpecialSkillForceOffset);
+                SpecialSkillForce.SelectedIndex = Program.ExeData.ReadByte(forceCategoryIndex, Program.CurrentConfig.Exe.SpecialSkillForceOffset);
             }
             if (TopLevelControl != null)
 			{
@@ -164,9 +164,9 @@ namespace CczEditor.Controls.DataControls
             }
 
             //EXE
-            if (!Data.ExeData.IsLocked)
+            if (!Program.ExeData.IsLocked)
             {
-                Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+                Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
                 int forcenum = 0;
                 if (lbList.SelectedIndex < 60)
                 {
@@ -184,34 +184,34 @@ namespace CczEditor.Controls.DataControls
                 else
                     forceName = ForceNameBox.Text;
 
-                Data.ExeData.WriteText(forceName, forceInfo.Offset, forceInfo.Length);
+                Program.ExeData.WriteText(forceName, forceInfo.Offset, forceInfo.Length);
 
                 string forceCategoryName;
                 var forceCategoryInfo = Program.CurrentConfig.ForceCategoryNames.Find(x => x.Index == forcenum);
-                if (ForceCategoryNameBox.Text.Length > forceInfo.Length)
-                    forceCategoryName = ForceCategoryNameBox.Text.Substring(0, forceInfo.Length);
+                if (forceCategoryNameBox.Text.Length > forceInfo.Length)
+                    forceCategoryName = forceCategoryNameBox.Text.Substring(0, forceInfo.Length);
                 else
-                    forceCategoryName = ForceCategoryNameBox.Text;
-            
-                Data.ExeData.WriteText(forceCategoryName, forceCategoryInfo.Offset, forceCategoryInfo.Length);
+                    forceCategoryName = forceCategoryNameBox.Text;
 
-                Data.ExeData.WriteByte((byte)f1.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.MoveSoundOffset);
-                Data.ExeData.WriteByte((byte)f2.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.MoveSpeedOffset);
-                Data.ExeData.WriteByte((byte)f3.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkSoundOffset);
-                Data.ExeData.WriteByte((byte)f4.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkTypeOffset);
-                Data.ExeData.WriteByte((byte)f5.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.TypeOffset);
-                Data.ExeData.WriteByte((byte)f6.Value, forcenum, Program.CurrentConfig.Exe.Force.MagicDamageOffset);
-                Data.ExeData.WriteByte((byte)f7.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkDelayOffset);
-                Data.ExeData.WriteByte((byte)f8.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkPincOffset);
+                Program.ExeData.WriteText(forceCategoryName, forceCategoryInfo.Offset, forceCategoryInfo.Length);
+
+                Program.ExeData.WriteByte((byte)forceMoveSound.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.MoveSoundOffset);
+                Program.ExeData.WriteByte((byte)forceMoveSpeed.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.MoveSpeedOffset);
+                Program.ExeData.WriteByte((byte)forceAtkSound.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkSoundOffset);
+                Program.ExeData.WriteByte((byte)forceRangeAtk.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkTypeOffset);
+                Program.ExeData.WriteByte((byte)forceType.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.TypeOffset);
+                Program.ExeData.WriteByte((byte)forceMagicDmg.Value, forcenum, Program.CurrentConfig.Exe.Force.MagicDamageOffset);
+                Program.ExeData.WriteByte((byte)forceAtkDelay.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkDelayOffset);
+                Program.ExeData.WriteByte((byte)forceAtkComm.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AtkPincOffset);
                 if (Program.CurrentConfig.CodeOptionContainer.AIExtension)
                 {
-                    Data.ExeData.WriteByte((byte)f9.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AiTypeOffset);
+                    Program.ExeData.WriteByte((byte)forceAI.SelectedIndex, forcenum, Program.CurrentConfig.Exe.Force.AiTypeOffset);
                 }
-                Data.ExeData.WriteByte((byte)eff.SelectedIndex, index, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
+                Program.ExeData.WriteByte((byte)cbEffArea.SelectedIndex, index, Program.CurrentConfig.Exe.Force.AtkEffectOffset);
 
-                Data.ExeData.WriteByte((byte)SpecialSkillForce.SelectedIndex, forcenum, Program.CurrentConfig.Exe.SpecialSkillForceOffset);
+                Program.ExeData.WriteByte((byte)SpecialSkillForce.SelectedIndex, forcenum, Program.CurrentConfig.Exe.SpecialSkillForceOffset);
 
-                Data.ExeData.Close();
+                Program.ExeData.Close();
 
                 lbList.Items.RemoveAt(index);
                 lbList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, index, forceName));
@@ -236,7 +236,7 @@ namespace CczEditor.Controls.DataControls
         {
             if (Effareas != null && Effareas.Exists)
             {
-                pbEffarea.Image = eff.SelectedIndex == -1 ? null : Effareas.GetImage(eff.SelectedIndex);
+                pbEffarea.Image = cbEffArea.SelectedIndex == -1 ? null : Effareas.GetImage(cbEffArea.SelectedIndex);
             }
         }
 

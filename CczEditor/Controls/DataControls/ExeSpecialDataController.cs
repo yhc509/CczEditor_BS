@@ -29,7 +29,7 @@ namespace CczEditor.Controls.DataControls
 
         private void InitSpecialTab()
         {
-            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
             var specialEffectList = Program.CurrentConfig.SpecialEffectNames;
             foreach(var info in specialEffectList)
             {
@@ -57,7 +57,7 @@ namespace CczEditor.Controls.DataControls
             var forceList = ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2);
             forceList.Add(0xFF, "FF, 미사용");
             SpecialEffectForceBox.Items.AddRange(forceList.Values.ToArray());
-            Data.ExeData.Close();
+            Program.ExeData.Close();
 
         }
 
@@ -80,18 +80,18 @@ namespace CczEditor.Controls.DataControls
             SpecialEffectName.Text = ConfigUtils.GetSpecialEffectName(index);
 
             int offset = Program.CurrentConfig.Exe.SpecialEffectOffset;
-            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
 
-            SpecialEffectUnitBox1.SelectedIndex = Data.ExeData.ReadWord(0, offset + index * 0x08);
-            SpecialEffectUnitBox2.SelectedIndex = Data.ExeData.ReadWord(0, offset + index * 0x08 + 0x02);
-            SpecialEffectUnitBox3.SelectedIndex = Data.ExeData.ReadWord(0, offset + index * 0x08 + 0x04);
+            SpecialEffectUnitBox1.SelectedIndex = Program.ExeData.ReadWord(0, offset + index * 0x08);
+            SpecialEffectUnitBox2.SelectedIndex = Program.ExeData.ReadWord(0, offset + index * 0x08 + 0x02);
+            SpecialEffectUnitBox3.SelectedIndex = Program.ExeData.ReadWord(0, offset + index * 0x08 + 0x04);
 
-            int force = Data.ExeData.ReadByte(0, offset + index * 0x08 + 0x6);
+            int force = Program.ExeData.ReadByte(0, offset + index * 0x08 + 0x6);
             if (force == 0xFF) force = 0x50;
             SpecialEffectForceBox.SelectedIndex = force;
-            SpecialEffectValueBox.Value = Data.ExeData.ReadByte(0, offset + index * 0x08 + 0x7);
+            SpecialEffectValueBox.Value = Program.ExeData.ReadByte(0, offset + index * 0x08 + 0x7);
 
-            Data.ExeData.Close();
+            Program.ExeData.Close();
         }
 
         private void SaveSpecialEffect(int index)
@@ -99,20 +99,20 @@ namespace CczEditor.Controls.DataControls
             var info = Program.CurrentConfig.SpecialEffectNames.Find(x => x.Index == index);
             
             byte[] result = new byte[0x0D];
-            Data.ExeData.WriteText(SpecialEffectName.Text, info.Offset, 0x0D);
+            Program.ExeData.WriteText(SpecialEffectName.Text, info.Offset, 0x0D);
 
             int offset = Program.CurrentConfig.Exe.SpecialEffectOffset;
-            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
-            Data.ExeData.WriteWord(SpecialEffectUnitBox1.SelectedIndex, 0, offset + index * 0x08);
-            Data.ExeData.WriteWord(SpecialEffectUnitBox2.SelectedIndex, 0, offset + index * 0x08 + 0x02);
-            Data.ExeData.WriteWord(SpecialEffectUnitBox3.SelectedIndex, 0, offset + index * 0x08 + 0x04);
+            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            Program.ExeData.WriteWord(SpecialEffectUnitBox1.SelectedIndex, 0, offset + index * 0x08);
+            Program.ExeData.WriteWord(SpecialEffectUnitBox2.SelectedIndex, 0, offset + index * 0x08 + 0x02);
+            Program.ExeData.WriteWord(SpecialEffectUnitBox3.SelectedIndex, 0, offset + index * 0x08 + 0x04);
 
             int force = SpecialEffectForceBox.SelectedIndex;
             if (force == 0x50) force = 0xFF;
-            Data.ExeData.WriteByte(force, 0, offset + index * 0x08 + 0x6);
+            Program.ExeData.WriteByte(force, 0, offset + index * 0x08 + 0x6);
 
-            Data.ExeData.WriteByte((byte) SpecialEffectValueBox.Value, 0, offset + index * 0x08 + 0x7);
-            Data.ExeData.Close();
+            Program.ExeData.WriteByte((byte) SpecialEffectValueBox.Value, 0, offset + index * 0x08 + 0x7);
+            Program.ExeData.Close();
 
             SpecialEffectList.Items.RemoveAt(index);
             SpecialEffectList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, index, SpecialEffectName.Text));
@@ -164,7 +164,7 @@ namespace CczEditor.Controls.DataControls
         {
             if (index < 0 || index >= Program.CurrentConfig.SpecialSkillNames.Count)
                 return;
-            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
             SpecialSkillName.Text = ConfigUtils.GetSpecialSkillName(index);
 
             bool isPhysics = index <= Program.CurrentConfig.Exe.SpecialSkillPhysicsCount;
@@ -184,20 +184,20 @@ namespace CczEditor.Controls.DataControls
             {
                 int offset = Program.CurrentConfig.Exe.SpecialSkillOffset;
 
-                SpecialSkillUnitBox1.SelectedIndex = Data.ExeData.ReadWord(0, offset + index * 0x10);
-                SpecialSkillLevelBox1.Value = Data.ExeData.ReadByte(0, offset + index * 0x10 + 0x02);
-                SpecialSkillUnitBox2.SelectedIndex = Data.ExeData.ReadWord(0, offset + index * 0x10 + 0x03);
-                SpecialSkillLevelBox2.Value = Data.ExeData.ReadByte(0, offset + index * 0x10 + 0x05);
-                SpecialSkillUnitBox3.SelectedIndex = Data.ExeData.ReadWord(0, offset + index * 0x10 + 0x06);
-                SpecialSkillLevelBox3.Value = Data.ExeData.ReadByte(0, offset + index * 0x10 + 0x08);
-                SpecialSkillUnitBox4.SelectedIndex = Data.ExeData.ReadWord(0, offset + index * 0x10 + 0x09);
-                SpecialSkillLevelBox4.Value = Data.ExeData.ReadByte(0, offset + index * 0x10 + 0x0B);
-                SpecialSkillUnitBox5.SelectedIndex = Data.ExeData.ReadWord(0, offset + index * 0x10 + 0x0C);
-                SpecialSkillLevelBox5.Value = Data.ExeData.ReadByte(0, offset + index * 0x10 + 0x0E);
+                SpecialSkillUnitBox1.SelectedIndex = Program.ExeData.ReadWord(0, offset + index * 0x10);
+                SpecialSkillLevelBox1.Value = Program.ExeData.ReadByte(0, offset + index * 0x10 + 0x02);
+                SpecialSkillUnitBox2.SelectedIndex = Program.ExeData.ReadWord(0, offset + index * 0x10 + 0x03);
+                SpecialSkillLevelBox2.Value = Program.ExeData.ReadByte(0, offset + index * 0x10 + 0x05);
+                SpecialSkillUnitBox3.SelectedIndex = Program.ExeData.ReadWord(0, offset + index * 0x10 + 0x06);
+                SpecialSkillLevelBox3.Value = Program.ExeData.ReadByte(0, offset + index * 0x10 + 0x08);
+                SpecialSkillUnitBox4.SelectedIndex = Program.ExeData.ReadWord(0, offset + index * 0x10 + 0x09);
+                SpecialSkillLevelBox4.Value = Program.ExeData.ReadByte(0, offset + index * 0x10 + 0x0B);
+                SpecialSkillUnitBox5.SelectedIndex = Program.ExeData.ReadWord(0, offset + index * 0x10 + 0x0C);
+                SpecialSkillLevelBox5.Value = Program.ExeData.ReadByte(0, offset + index * 0x10 + 0x0E);
 
-                SpecialSkillValueBox.Value = Data.ExeData.ReadByte(0, offset + index * 0x10 + 0x0F);
+                SpecialSkillValueBox.Value = Program.ExeData.ReadByte(0, offset + index * 0x10 + 0x0F);
             }
-            Data.ExeData.Close();
+            Program.ExeData.Close();
         }
 
         private void SaveSpecialSkill(int index)
@@ -205,28 +205,28 @@ namespace CczEditor.Controls.DataControls
             var info = Program.CurrentConfig.SpecialSkillNames.Find(x => x.Index == index);
 
             byte[] result = new byte[0x0E];
-            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
-            Data.ExeData.WriteText(SpecialSkillName.Text, info.Offset, 0x0E);
+            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            Program.ExeData.WriteText(SpecialSkillName.Text, info.Offset, 0x0E);
 
             bool isPhysics = index <= Program.CurrentConfig.Exe.SpecialSkillPhysicsCount;
 
             if(isPhysics)
             {
                 int offset = Program.CurrentConfig.Exe.SpecialSkillOffset;
-                Data.ExeData.WriteWord(SpecialSkillUnitBox1.SelectedIndex, 0, offset + index * 0x10);
-                Data.ExeData.WriteByte((byte) SpecialSkillLevelBox1.Value, 0, offset + index * 0x10 + 0x02);
-                Data.ExeData.WriteWord(SpecialSkillUnitBox2.SelectedIndex, 0, offset + index * 0x10 + 0x03);
-                Data.ExeData.WriteByte((byte)SpecialSkillLevelBox2.Value, 0, offset + index * 0x10 + 0x05);
-                Data.ExeData.WriteWord(SpecialSkillUnitBox3.SelectedIndex, 0, offset + index * 0x10 + 0x06);
-                Data.ExeData.WriteByte((byte)SpecialSkillLevelBox3.Value, 0, offset + index * 0x10 + 0x08);
-                Data.ExeData.WriteWord(SpecialSkillUnitBox4.SelectedIndex, 0, offset + index * 0x10 + 0x09);
-                Data.ExeData.WriteByte((byte)SpecialSkillLevelBox4.Value, 0, offset + index * 0x10 + 0x0C);
-                Data.ExeData.WriteWord(SpecialSkillUnitBox5.SelectedIndex, 0, offset + index * 0x10 + 0x0C);
-                Data.ExeData.WriteByte((byte)SpecialSkillLevelBox5.Value, 0, offset + index * 0x10 + 0x0E);
+                Program.ExeData.WriteWord(SpecialSkillUnitBox1.SelectedIndex, 0, offset + index * 0x10);
+                Program.ExeData.WriteByte((byte) SpecialSkillLevelBox1.Value, 0, offset + index * 0x10 + 0x02);
+                Program.ExeData.WriteWord(SpecialSkillUnitBox2.SelectedIndex, 0, offset + index * 0x10 + 0x03);
+                Program.ExeData.WriteByte((byte)SpecialSkillLevelBox2.Value, 0, offset + index * 0x10 + 0x05);
+                Program.ExeData.WriteWord(SpecialSkillUnitBox3.SelectedIndex, 0, offset + index * 0x10 + 0x06);
+                Program.ExeData.WriteByte((byte)SpecialSkillLevelBox3.Value, 0, offset + index * 0x10 + 0x08);
+                Program.ExeData.WriteWord(SpecialSkillUnitBox4.SelectedIndex, 0, offset + index * 0x10 + 0x09);
+                Program.ExeData.WriteByte((byte)SpecialSkillLevelBox4.Value, 0, offset + index * 0x10 + 0x0C);
+                Program.ExeData.WriteWord(SpecialSkillUnitBox5.SelectedIndex, 0, offset + index * 0x10 + 0x0C);
+                Program.ExeData.WriteByte((byte)SpecialSkillLevelBox5.Value, 0, offset + index * 0x10 + 0x0E);
 
-                Data.ExeData.WriteByte((byte)SpecialSkillValueBox.Value, 0, offset + index * 0x10 + 0x0F);
+                Program.ExeData.WriteByte((byte)SpecialSkillValueBox.Value, 0, offset + index * 0x10 + 0x0F);
             }
-            Data.ExeData.Close();
+            Program.ExeData.Close();
         }
 
         private void SpecialSkillSaveApplyButton_Click(object sender, EventArgs e)
@@ -284,7 +284,7 @@ namespace CczEditor.Controls.DataControls
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (Data.ExeData.IsLocked) return;
+            if (Program.ExeData.IsLocked) return;
 
             var abilityAssistList = Program.CurrentConfig.CodeEffects.Where(x => x.TypeIndex == (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist).ToArray();
             var specialAtkList = Program.CurrentConfig.CodeEffects.Where(x => x.TypeIndex == (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack).ToArray();
@@ -310,70 +310,70 @@ namespace CczEditor.Controls.DataControls
             var terrain = terrainList[TerrainList.SelectedIndex];
             var etc = etcList[EtcList.SelectedIndex];
 
-            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
-            Data.ExeData.WriteByte((byte)Utils.GetId(AbilityAssistValue.SelectedItem), 0, abilityAssist.Offset);
+            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            Program.ExeData.WriteByte((byte)Utils.GetId(AbilityAssistValue.SelectedItem), 0, abilityAssist.Offset);
             if (abilityAssist.SubEdit == 1)
             {
-                Data.ExeData.WriteByte(AbilityAssistValue2.Checked ? 2 : 1, AbilityAssistList.SelectedIndex, Program.CurrentConfig.Exe.AbilityAssistPercentOffset);
+                Program.ExeData.WriteByte(AbilityAssistValue2.Checked ? 2 : 1, AbilityAssistList.SelectedIndex, Program.CurrentConfig.Exe.AbilityAssistPercentOffset);
             }
 
-            Data.ExeData.WriteByte((byte)Utils.GetId(SpecialAtkValue.SelectedItem), 0, specialAtk.Offset);
+            Program.ExeData.WriteByte((byte)Utils.GetId(SpecialAtkValue.SelectedItem), 0, specialAtk.Offset);
 
             if (specialAtk.SubEdit == 1)
             {
-                Data.ExeData.WriteByte(SpecialAtkValue2.SelectedIndex, 0, Program.CurrentConfig.Exe.RangeAttack2TypeOffset);
+                Program.ExeData.WriteByte(SpecialAtkValue2.SelectedIndex, 0, Program.CurrentConfig.Exe.RangeAttack2TypeOffset);
             }
             else if (specialAtk.SubEdit == 2)
             {
-                Data.ExeData.WriteByte(SpecialAtkValue2.SelectedIndex, 0, Program.CurrentConfig.Exe.RangeAttack3TypeOffset);
+                Program.ExeData.WriteByte(SpecialAtkValue2.SelectedIndex, 0, Program.CurrentConfig.Exe.RangeAttack3TypeOffset);
             }
             else if (specialAtk.SubEdit == 3)
             {
-                Data.ExeData.WriteByte(SpecialAtkValue3.Checked ? 4 : 1, 0, Program.CurrentConfig.Exe.IgnoreDefenceOffset);
+                Program.ExeData.WriteByte(SpecialAtkValue3.Checked ? 4 : 1, 0, Program.CurrentConfig.Exe.IgnoreDefenceOffset);
             }
 
-            Data.ExeData.WriteByte((byte)Utils.GetId(AttackAccValue.SelectedItem), 0, attackAcc.Offset);
-            Data.ExeData.WriteByte((byte)Utils.GetId(MagicValue.SelectedItem), 0, magic.Offset);
-            Data.ExeData.WriteByte((byte)Utils.GetId(StateEffectAttackValue.SelectedItem), 0, stateEffectAttack.Offset);
+            Program.ExeData.WriteByte((byte)Utils.GetId(AttackAccValue.SelectedItem), 0, attackAcc.Offset);
+            Program.ExeData.WriteByte((byte)Utils.GetId(MagicValue.SelectedItem), 0, magic.Offset);
+            Program.ExeData.WriteByte((byte)Utils.GetId(StateEffectAttackValue.SelectedItem), 0, stateEffectAttack.Offset);
 
             if (stateEffectAttack.SubEdit == 1)
             {
-                Data.ExeData.WriteByte((byte) StateEffectAttackAccValue1_1.Value, 0, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                Data.ExeData.WriteByte((byte)StateEffectAttackAccValue2_1.Value, 1, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                Data.ExeData.WriteByte((byte)StateEffectAttackAccValue3_1.Value, 2, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                Data.ExeData.WriteByte((byte)StateEffectAttackAccValue4_1.Value, 3, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                Data.ExeData.WriteByte((byte)StateEffectAttackAccValue1_2.Value, 4, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                Data.ExeData.WriteByte((byte)StateEffectAttackAccValue2_2.Value, 5, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                Data.ExeData.WriteByte((byte)StateEffectAttackAccValue3_2.Value, 6, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                Data.ExeData.WriteByte((byte)StateEffectAttackAccValue4_2.Value, 7, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                Program.ExeData.WriteByte((byte) StateEffectAttackAccValue1_1.Value, 0, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                Program.ExeData.WriteByte((byte)StateEffectAttackAccValue2_1.Value, 1, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                Program.ExeData.WriteByte((byte)StateEffectAttackAccValue3_1.Value, 2, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                Program.ExeData.WriteByte((byte)StateEffectAttackAccValue4_1.Value, 3, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                Program.ExeData.WriteByte((byte)StateEffectAttackAccValue1_2.Value, 4, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                Program.ExeData.WriteByte((byte)StateEffectAttackAccValue2_2.Value, 5, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                Program.ExeData.WriteByte((byte)StateEffectAttackAccValue3_2.Value, 6, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                Program.ExeData.WriteByte((byte)StateEffectAttackAccValue4_2.Value, 7, Program.CurrentConfig.Exe.StateEffectAccOffset);
             }
 
-            Data.ExeData.WriteByte((byte)Utils.GetId(TurnCureValue.SelectedItem), 0, turnCure.Offset);
-            Data.ExeData.WriteByte((byte)Utils.GetId(DeburfValue.SelectedItem), 0, deburf.Offset);
-            Data.ExeData.WriteByte((byte)Utils.GetId(DecreaseDmgValue.SelectedItem), 0, decreaseDmg.Offset);
-            Data.ExeData.WriteByte((byte)Utils.GetId(DefenceValue.SelectedItem), 0, defence.Offset);
+            Program.ExeData.WriteByte((byte)Utils.GetId(TurnCureValue.SelectedItem), 0, turnCure.Offset);
+            Program.ExeData.WriteByte((byte)Utils.GetId(DeburfValue.SelectedItem), 0, deburf.Offset);
+            Program.ExeData.WriteByte((byte)Utils.GetId(DecreaseDmgValue.SelectedItem), 0, decreaseDmg.Offset);
+            Program.ExeData.WriteByte((byte)Utils.GetId(DefenceValue.SelectedItem), 0, defence.Offset);
 
             if (defence.SubEdit == 1)
             {
-                Data.ExeData.WriteByte((byte) DefenceValue2.Value, 0, Program.CurrentConfig.Exe.GoldDefenceRateOffset);
+                Program.ExeData.WriteByte((byte) DefenceValue2.Value, 0, Program.CurrentConfig.Exe.GoldDefenceRateOffset);
             }
             else if (defence.SubEdit == 2)
             {
                 var code = (byte)Utils.GetId(DefenceValue.SelectedItem);
-                Data.ExeData.WriteByte(DefenceValue3.Checked ? code : 0x48, 0, Program.CurrentConfig.Exe.MpDefenceRecoverOffest);
+                Program.ExeData.WriteByte(DefenceValue3.Checked ? code : 0x48, 0, Program.CurrentConfig.Exe.MpDefenceRecoverOffest);
             }
 
-            Data.ExeData.WriteByte((byte)Utils.GetId(TerrainValue.SelectedItem), 0, terrain.Offset);
-            Data.ExeData.WriteByte((byte)Utils.GetId(EtcValue.SelectedItem), 0, etc.Offset);
+            Program.ExeData.WriteByte((byte)Utils.GetId(TerrainValue.SelectedItem), 0, terrain.Offset);
+            Program.ExeData.WriteByte((byte)Utils.GetId(EtcValue.SelectedItem), 0, etc.Offset);
 
-            Data.ExeData.Close();
+            Program.ExeData.Close();
         }
 
         private void GetCode(Config.ConfigCodeEffectInfos info, ComboBox codeBox)
         {
-            if (Data.ExeData.IsLocked) return;
+            if (Program.ExeData.IsLocked) return;
 
-            var code = Data.ExeData.ReadByte(0, info.Offset);
+            var code = Program.ExeData.ReadByte(0, info.Offset);
             codeBox.SelectedIndex = codeBox.FindString(Utils.GetString(code));
         }
 
@@ -386,7 +386,7 @@ namespace CczEditor.Controls.DataControls
             if(info.SubEdit == 1)
             {
                 AbilityAssistValue2.Enabled = true;
-                var isChecked = Data.ExeData.ReadByte(AbilityAssistList.SelectedIndex, Program.CurrentConfig.Exe.AbilityAssistPercentOffset) == 2;
+                var isChecked = Program.ExeData.ReadByte(AbilityAssistList.SelectedIndex, Program.CurrentConfig.Exe.AbilityAssistPercentOffset) == 2;
                 AbilityAssistValue2.Checked = isChecked;
             }
             else
@@ -406,13 +406,13 @@ namespace CczEditor.Controls.DataControls
             if (info.SubEdit == 1)
             {
                 SpecialAtkValue2.Enabled = true;
-                var value = Data.ExeData.ReadByte(0, Program.CurrentConfig.Exe.RangeAttack2TypeOffset);
+                var value = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.RangeAttack2TypeOffset);
                 SpecialAtkValue2.SelectedIndex = value;
             }
             else if (info.SubEdit == 2)
             {
                 SpecialAtkValue2.Enabled = true;
-                var value = Data.ExeData.ReadByte(0, Program.CurrentConfig.Exe.RangeAttack3TypeOffset);
+                var value = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.RangeAttack3TypeOffset);
                 SpecialAtkValue2.SelectedIndex = value;
             }
             else
@@ -423,7 +423,7 @@ namespace CczEditor.Controls.DataControls
             if (info.SubEdit == 3)
             {
                 SpecialAtkValue3.Enabled = true;
-                var isChecked = Data.ExeData.ReadByte(0, Program.CurrentConfig.Exe.IgnoreDefenceOffset) == 4;
+                var isChecked = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.IgnoreDefenceOffset) == 4;
                 SpecialAtkValue3.Checked = isChecked;
             }
             else
@@ -468,7 +468,7 @@ namespace CczEditor.Controls.DataControls
             if (info.SubEdit == 1)
             {
                 DefenceValue2.Enabled = true;
-                var value = Data.ExeData.ReadByte(0, Program.CurrentConfig.Exe.GoldDefenceRateOffset);
+                var value = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.GoldDefenceRateOffset);
                 DefenceValue2.Value = value;
             }
             else
@@ -480,7 +480,7 @@ namespace CczEditor.Controls.DataControls
             {
                 DefenceValue3.Enabled = true;
                 var code = (byte)Utils.GetId(DefenceValue.SelectedItem);
-                var isChecked = Data.ExeData.ReadByte(0, Program.CurrentConfig.Exe.MpDefenceRecoverOffest) == code;
+                var isChecked = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.MpDefenceRecoverOffest) == code;
                 DefenceValue3.Checked = isChecked;
             }
             else
@@ -528,19 +528,19 @@ namespace CczEditor.Controls.DataControls
             StateEffectAttackAccValue3_2.Enabled = info.SubEdit == 1;
             StateEffectAttackAccValue4_2.Enabled = info.SubEdit == 1;
 
-            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
             if(info.SubEdit == 1)
             {
-                StateEffectAttackAccValue1_1.Value = (byte)Data.ExeData.ReadByte(0, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                StateEffectAttackAccValue2_1.Value = (byte)Data.ExeData.ReadByte(1, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                StateEffectAttackAccValue3_1.Value = (byte)Data.ExeData.ReadByte(2, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                StateEffectAttackAccValue4_1.Value = (byte)Data.ExeData.ReadByte(3, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                StateEffectAttackAccValue1_2.Value = (byte)Data.ExeData.ReadByte(4, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                StateEffectAttackAccValue2_2.Value = (byte)Data.ExeData.ReadByte(5, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                StateEffectAttackAccValue3_2.Value = (byte)Data.ExeData.ReadByte(6, Program.CurrentConfig.Exe.StateEffectAccOffset);
-                StateEffectAttackAccValue4_2.Value = (byte)Data.ExeData.ReadByte(7, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                StateEffectAttackAccValue1_1.Value = (byte)Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                StateEffectAttackAccValue2_1.Value = (byte)Program.ExeData.ReadByte(1, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                StateEffectAttackAccValue3_1.Value = (byte)Program.ExeData.ReadByte(2, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                StateEffectAttackAccValue4_1.Value = (byte)Program.ExeData.ReadByte(3, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                StateEffectAttackAccValue1_2.Value = (byte)Program.ExeData.ReadByte(4, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                StateEffectAttackAccValue2_2.Value = (byte)Program.ExeData.ReadByte(5, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                StateEffectAttackAccValue3_2.Value = (byte)Program.ExeData.ReadByte(6, Program.CurrentConfig.Exe.StateEffectAccOffset);
+                StateEffectAttackAccValue4_2.Value = (byte)Program.ExeData.ReadByte(7, Program.CurrentConfig.Exe.StateEffectAccOffset);
             }
-            Data.ExeData.Close();
+            Program.ExeData.Close();
         }
 
         private void DecreaseDmgList_SelectedIndexChanged(object sender, EventArgs e)

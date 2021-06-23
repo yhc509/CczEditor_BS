@@ -185,18 +185,27 @@ namespace CczEditor
             }
         }
 
+        public static ExeData ExeData
+        {
+            get
+            {
+                return DataContainer.GetExeData(CurrentConfig.DirectoryPath);
+            }
+        }
 
-        public static void ReLoadData()
+        public static void ReloadData()
         {
             var path = CurrentConfig.DirectoryPath;
 
             DataContainer.UnloadGameData(path);
             DataContainer.UnloadStarData(path);
             DataContainer.UnloadImsgData(path);
+            DataContainer.UnloadExeData(path);
 
+            DataContainer.LoadExeData(path);
             DataContainer.LoadGameData(path);
             DataContainer.LoadStarData(path);
             DataContainer.LoadImsgData(path);
-		}
-	}
+        }
+    }
 }

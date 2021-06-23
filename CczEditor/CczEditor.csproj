@@ -173,17 +173,17 @@
     <Compile Include="Controls\DataControls\ExeSpecialDataController.Designer.cs">
       <DependentUpon>ExeSpecialDataController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DataControls\ForceData.cs">
+    <Compile Include="Controls\DataControls\ForceController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\DataControls\ForceData.Designer.cs">
-      <DependentUpon>ForceData.cs</DependentUpon>
+    <Compile Include="Controls\DataControls\ForceController.Designer.cs">
+      <DependentUpon>ForceController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DataControls\ItemsData.cs">
+    <Compile Include="Controls\DataControls\ItemController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\DataControls\ItemsData.Designer.cs">
-      <DependentUpon>ItemsData.cs</DependentUpon>
+    <Compile Include="Controls\DataControls\ItemController.Designer.cs">
+      <DependentUpon>ItemController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\DataControls\MagicData.cs">
       <SubType>UserControl</SubType>
@@ -215,11 +215,11 @@
     <Compile Include="Controls\DataControls\SaveApplyPopup.Designer.cs">
       <DependentUpon>SaveApplyPopup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DataControls\StoreData.cs">
+    <Compile Include="Controls\DataControls\ShopController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\DataControls\StoreData.Designer.cs">
-      <DependentUpon>StoreData.cs</DependentUpon>
+    <Compile Include="Controls\DataControls\ShopController.Designer.cs">
+      <DependentUpon>ShopController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\DataControls\TerrainData.cs">
       <SubType>UserControl</SubType>
@@ -227,11 +227,11 @@
     <Compile Include="Controls\DataControls\TerrainData.Designer.cs">
       <DependentUpon>TerrainData.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DataControls\UnitsData.cs">
+    <Compile Include="Controls\DataControls\UnitController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\DataControls\UnitsData.Designer.cs">
-      <DependentUpon>UnitsData.cs</DependentUpon>
+    <Compile Include="Controls\DataControls\UnitController.Designer.cs">
+      <DependentUpon>UnitController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ImsgControls\BaseImsgControl.cs">
       <SubType>UserControl</SubType>
@@ -318,6 +318,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\DataContainer.cs" />
+    <Compile Include="Data\DataUtils.cs" />
     <Compile Include="Data\Exedata.cs" />
     <Compile Include="Data\FileData.cs" />
     <Compile Include="Data\GameData.cs" />
@@ -327,7 +328,9 @@
     <Compile Include="Data\SaveData.cs" />
     <Compile Include="Data\SaveNewData.cs" />
     <Compile Include="Data\Stardata.cs" />
+    <Compile Include="Data\Wrapper\ForceData.cs" />
     <Compile Include="Data\Wrapper\ItemData.cs" />
+    <Compile Include="Data\Wrapper\ShopData.cs" />
     <Compile Include="Data\Wrapper\UnitData.cs" />
     <Compile Include="Data\Wrapper\WrapperData.cs" />
     <Compile Include="MainForm.cs">
@@ -372,12 +375,12 @@
     <EmbeddedResource Include="Controls\DataControls\ExeSpecialDataController.resx">
       <DependentUpon>ExeSpecialDataController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataControls\ForceData.resx">
-      <DependentUpon>ForceData.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DataControls\ForceController.resx">
+      <DependentUpon>ForceController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataControls\ItemsData.resx">
-      <DependentUpon>ItemsData.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DataControls\ItemController.resx">
+      <DependentUpon>ItemController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DataControls\MagicData.resx">
@@ -396,16 +399,16 @@
     <EmbeddedResource Include="Controls\DataControls\SaveApplyPopup.resx">
       <DependentUpon>SaveApplyPopup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataControls\StoreData.resx">
-      <DependentUpon>StoreData.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DataControls\ShopController.resx">
+      <DependentUpon>ShopController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DataControls\TerrainData.resx">
       <DependentUpon>TerrainData.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataControls\UnitsData.resx">
-      <DependentUpon>UnitsData.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DataControls\UnitController.resx">
+      <DependentUpon>UnitController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ImsgControls\BaseImsgControl.resx">

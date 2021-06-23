@@ -22,6 +22,7 @@ namespace CczEditor.Data
         public StarData(string fileName) : base(fileName)
         {
         }
+
         public List<string> GetItemNames(ItemType type, bool hasFormater)
         {
             var count = Program.CurrentConfig.Data.StarItemCount;
@@ -36,72 +37,20 @@ namespace CczEditor.Data
                 var s = hasFormater ? 
                     string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, Utils.ByteToString(data, STAR_ITEM_LENGTH * (i - (Program.CurrentConfig.Data.ItemCount + 1)), 16))
                     : Utils.ByteToString(data, STAR_ITEM_LENGTH * (i - (Program.CurrentConfig.Data.ItemCount + 1)), 16);
-                switch (type)
-                {
-                    case ItemType.Weapons:
-                        {
-                            if (_weapons.ContainsKey(t))
-                            {
-                                list.Add(s);
-                            }
-                            break;
-                        }
-                    case ItemType.Armor:
-                        {
-                            if (_armor.ContainsKey(t))
-                            {
-                                list.Add(s);
-                            }
-                            break;
-                        }
-                    case ItemType.Auxiliary:
-                        {
-                            if (_auxiliary.ContainsKey(t))
-                            {
-                                list.Add(s);
-                            }
-                            break;
-                        }
-                    case ItemType.Consumables:
-                        {
-                            if (_consumables.ContainsKey(t))
-                            {
-                                list.Add(s);
-                            }
-                            break;
-                        }
-                    case ItemType.bombs:
-                        {
-                            if (_bombs.ContainsKey(t))
-                            {
-                                list.Add(s);
-                            }
-                            break;
-                        }
-                    case ItemType.bombs2:
-                        {
-                            if (_bombs2.ContainsKey(t))
-                            {
-                                list.Add(s);
-                            }
-                            break;
-                        }
-                    case ItemType.bombs3:
-                        {
-                            if (_bombs3.ContainsKey(t))
-                            {
-                                list.Add(s);
-                            }
-                            break;
-                        }
-                    default:
-                        break;
-                }
+                
+                if (type == ItemType.Weapons && _weapons.ContainsKey(t)) list.Add(s);
+                if (type == ItemType.Armor && _armor.ContainsKey(t)) list.Add(s);
+                if (type == ItemType.Auxiliary && _auxiliary.ContainsKey(t)) list.Add(s);
+                if (type == ItemType.Consumables && _consumables.ContainsKey(t)) list.Add(s);
+                if (type == ItemType.BombTools && _bombs.ContainsKey(t)) list.Add(s);
+                if (type == ItemType.Bombs && _bombs2.ContainsKey(t)) list.Add(s);
+                if (type == ItemType.BombMines && _bombs3.ContainsKey(t)) list.Add(s);
+
             }
             return list;
         }
 
-        public List<string> ItemNameList(bool hasFormater)//List<string> list
+        public List<string> ItemNameList(bool hasFormatter)//List<string> list
         {
             var count = Program.CurrentConfig.Data.StarItemCount;
             var offset = Program.CurrentConfig.Data.StarItemOffset;
@@ -111,7 +60,7 @@ namespace CczEditor.Data
             {
                 CurrentStream.Seek(offset + (i-Program.CurrentConfig.Data.ItemCount) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
                 CurrentStream.Read(name, 0, 16);
-                list.Add(hasFormater ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, Utils.ByteToString(name)) : Utils.ByteToString(name));
+                list.Add(hasFormatter ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, Utils.ByteToString(name)) : Utils.ByteToString(name));
             }
             return list;
         }
@@ -154,22 +103,26 @@ namespace CczEditor.Data
                 }
             }
         }
-        public void WriteTreasureCount(int bomul,byte[] item,int i)
+
+        public int GetTreasureCount()
         {
+            var item = new byte[1];
+            int count = 0;
+            int i = 0;
             for (; i < Program.CurrentConfig.Data.StarItemCount; i++)
             {
                 var offset = 24;
-                CurrentStream.Seek(offset + (i-Program.CurrentConfig.Data.ItemCount) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
+                CurrentStream.Seek(offset + (i - Program.CurrentConfig.Data.ItemCount) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
                 CurrentStream.Read(item, 0, 1);
                 if (item[0] == 1)
                 {
-                    bomul++;
+                    count++;
                 }
                 item[0] = 0;
             }
-            if(!ExeData.IsLocked)
-                ExeData.WriteByte(bomul, 0, Program.CurrentConfig.Exe.TreasureCountOffset);
+            return count;
         }
+        
         public byte[] ItemGet(int index,byte[] item)
         {
             var offset = Program.CurrentConfig.Data.StarItemOffset;

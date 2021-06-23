@@ -30,7 +30,7 @@ namespace CczEditor.Controls.DataControls
             for (var i = 0; i < Program.CurrentConfig.ForceCategoryNames.Count; i++)
             {
                 var offset = Program.CurrentConfig.Exe.Force.SynastryOffset + (listBox1.SelectedIndex * Program.CurrentConfig.ForceCategoryNames.Count) + i;
-                lvLearnLv.Items[i].Text = Data.ExeData.ReadByte(0, offset).ToString();
+                lvLearnLv.Items[i].Text = Program.ExeData.ReadByte(0, offset).ToString();
             }
         }
 
@@ -48,7 +48,7 @@ namespace CczEditor.Controls.DataControls
             {
                 byte value = byte.Parse(lvLearnLv.Items[i].Text);
                 var offset = Program.CurrentConfig.Exe.Force.SynastryOffset + (listBox1.SelectedIndex * Program.CurrentConfig.ForceCategoryNames.Count) + i;
-                Data.ExeData.WriteByte(value, 0, offset);
+                Program.ExeData.WriteByte(value, 0, offset);
             }
         }
         private void lvLearnLv_ItemActivate(object sender, EventArgs e)

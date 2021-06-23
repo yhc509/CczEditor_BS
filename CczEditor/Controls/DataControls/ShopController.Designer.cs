@@ -1,6 +1,6 @@
 ﻿namespace CczEditor.Controls.DataControls
 {
-	partial class StoreData
+	partial class ShopController
 	{
 		/// <summary>
 		/// 必需的设计器变量。
@@ -53,6 +53,8 @@
             this.searchTextBox = new CczEditor.Controls.TextBoxControl();
             this.searchButton = new System.Windows.Forms.Button();
             this.lbList = new System.Windows.Forms.ListBox();
+            this.btnStorageClear = new System.Windows.Forms.Button();
+            this.btnShopClear = new System.Windows.Forms.Button();
             this.tlpMainContainer.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -100,8 +102,8 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.57012F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.42988F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.92005F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.07995F));
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -117,6 +119,7 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.btnStorageClear, 1, 3);
             this.tableLayoutPanel3.Controls.Add(this.lblStorage, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.lblEquipmentCheckedCount, 0, 3);
             this.tableLayoutPanel3.Controls.Add(this.clbEquipment, 0, 2);
@@ -154,7 +157,7 @@
             this.lblEquipmentCheckedCount.Size = new System.Drawing.Size(103, 28);
             this.lblEquipmentCheckedCount.TabIndex = 14;
             this.lblEquipmentCheckedCount.Text = "선택중：0";
-            this.lblEquipmentCheckedCount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblEquipmentCheckedCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // clbEquipment
             // 
@@ -198,12 +201,13 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.btnShopClear, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.lblBusiness, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.cbBusiness, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblItems, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.clbConsumables, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.lblConsumablesCheckedCount, 0, 3);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(427, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(360, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -272,7 +276,7 @@
             this.lblConsumablesCheckedCount.Size = new System.Drawing.Size(104, 28);
             this.lblConsumablesCheckedCount.TabIndex = 15;
             this.lblConsumablesCheckedCount.Text = "선택중：0";
-            this.lblConsumablesCheckedCount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblConsumablesCheckedCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
@@ -395,10 +399,32 @@
             this.lbList.TabIndex = 0;
             this.lbList.SelectedIndexChanged += new System.EventHandler(this.lbList_SelectedIndexChanged);
             // 
-            // StoreData
+            // btnStorageClear
+            // 
+            this.btnStorageClear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnStorageClear.Location = new System.Drawing.Point(112, 353);
+            this.btnStorageClear.Name = "btnStorageClear";
+            this.btnStorageClear.Size = new System.Drawing.Size(104, 22);
+            this.btnStorageClear.TabIndex = 7;
+            this.btnStorageClear.Text = "전부 해제";
+            this.btnStorageClear.UseVisualStyleBackColor = true;
+            this.btnStorageClear.Click += new System.EventHandler(this.btnStorageClear_Click);
+            // 
+            // btnShopClear
+            // 
+            this.btnShopClear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnShopClear.Location = new System.Drawing.Point(113, 353);
+            this.btnShopClear.Name = "btnShopClear";
+            this.btnShopClear.Size = new System.Drawing.Size(104, 22);
+            this.btnShopClear.TabIndex = 15;
+            this.btnShopClear.Text = "전부 해제";
+            this.btnShopClear.UseVisualStyleBackColor = true;
+            this.btnShopClear.Click += new System.EventHandler(this.btnShopClear_Click);
+            // 
+            // ShopController
             // 
             this.Controls.Add(this.tlpMainContainer);
-            this.Name = "StoreData";
+            this.Name = "ShopController";
             this.Size = new System.Drawing.Size(892, 581);
             this.Load += new System.EventHandler(this.StoreData_Load);
             this.tlpMainContainer.ResumeLayout(false);
@@ -445,5 +471,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private TextBoxControl searchTextBox;
         private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.Button btnStorageClear;
+        private System.Windows.Forms.Button btnShopClear;
     }
 }

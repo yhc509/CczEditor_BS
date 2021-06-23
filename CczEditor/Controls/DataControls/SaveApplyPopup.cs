@@ -56,25 +56,25 @@ namespace CczEditor.Controls.DataControls
         {
             if (Data.SaveNewData.IsLocked(saveIndex)) return;
 
-            Data.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
             if (_applyType == ApplyType.SpecialEffect)
             {
                 int count = Program.CurrentConfig.SpecialEffectNames.Count;
-                var binary = Data.ExeData.Read(Program.CurrentConfig.Exe.SpecialEffectOffset, count * 0x08);
+                var binary = Program.ExeData.Read(Program.CurrentConfig.Exe.SpecialEffectOffset, count * 0x08);
                 Data.SaveNewData.Write(saveIndex, binary, Program.CurrentConfig.Save.SpecialEffectOffset, binary.Length);
             }
             else if(_applyType == ApplyType.SpecailSkill)
             {
-                var binary = Data.ExeData.Read(Program.CurrentConfig.Exe.SpecialSkillOffset, 10 * 0x1B);
+                var binary = Program.ExeData.Read(Program.CurrentConfig.Exe.SpecialSkillOffset, 10 * 0x1B);
                 Data.SaveNewData.Write(saveIndex, binary, Program.CurrentConfig.Save.SpecialSkillOffset, binary.Length);
             }
             else
             {
                 int count = Program.CurrentConfig.Data.UnitCount;
-                var binary = Data.ExeData.Read(Program.CurrentConfig.Exe.UnitBattleObjOffset, 2 * count);
+                var binary = Program.ExeData.Read(Program.CurrentConfig.Exe.UnitBattleObjOffset, 2 * count);
                 Data.SaveNewData.Write(saveIndex, binary, Program.CurrentConfig.Save.BattleObjOffset, binary.Length);
 
-                binary = Data.ExeData.Read(Program.CurrentConfig.Exe.UnitPmapObjOffset, 2 * count);
+                binary = Program.ExeData.Read(Program.CurrentConfig.Exe.UnitPmapObjOffset, 2 * count);
                 Data.SaveNewData.Write(saveIndex, binary, Program.CurrentConfig.Save.PmapObjOffset, binary.Length);
 
                 binary = new byte[count * 2];
@@ -87,7 +87,7 @@ namespace CczEditor.Controls.DataControls
                 }
                 Data.SaveNewData.Write(saveIndex, binary, Program.CurrentConfig.Save.FaceObjOffset, binary.Length);
             }
-            Data.ExeData.Close();
+            Program.ExeData.Close();
         }
     }
 }

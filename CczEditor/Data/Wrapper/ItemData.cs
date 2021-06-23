@@ -38,14 +38,16 @@ namespace CczEditor.Data.Wrapper
 
         public void Read(int index)
         {
+            byte[] result = new byte[0x19];
+            byte[] item;
+
             if (Program.GameData.IsExist)
             {
-                byte[] result = new byte[0x19];
-
-                var item = Program.GameData.ItemGet(index);
+                item = Program.GameData.ItemGet(index);
                 Name = Utils.ByteToString(item, 0, 16);
 
                 Type = Program.GameData.GetItemType(item[17]);
+
 
                 WeaponTypeIndex = byte.MaxValue;
                 SpecialEffectIndex = byte.MaxValue;
@@ -94,13 +96,13 @@ namespace CczEditor.Data.Wrapper
                         InitValue = item[21];
                         ItemRange = item[23];
                         break;
-                    case ItemType.bombs:
+                    case ItemType.BombTools:
                         BombEffectIndex = item[17];
                         Cost = item[18];
                         IconIndex = item[19];
                         BombEffectValue = item[21];
                         break;
-                    case ItemType.bombs2:
+                    case ItemType.Bombs:
                         BombTypeIndex = item[16];
                         BombEffectIndex = item[17];
                         Cost = item[18];
@@ -108,7 +110,7 @@ namespace CczEditor.Data.Wrapper
                         BombEffectValue = item[21];
                         EffectRange = item[23];
                         break;
-                    case ItemType.bombs3:
+                    case ItemType.BombMines:
                         AttackRange = item[16];
                         BombEffectIndex = item[17];
                         Cost = item[18];
@@ -116,7 +118,7 @@ namespace CczEditor.Data.Wrapper
                         BombEffectValue = item[21];
                         EffectRange = item[23];
                         break;
-                    case ItemType.Unknow:
+                    case ItemType.None:
                     default:
                         Cost = item[19];
                         IconIndex = item[20];
@@ -131,6 +133,13 @@ namespace CczEditor.Data.Wrapper
         }
 
         public void Write(int index)
+        {
+            WriteGameData(index, Program.GameData);
+            WriteImsgData(index, Program.ImsgData);
+            WriteExeData(index, Program.ExeData);
+        }
+
+        public void WriteGameData(int index, GameData targetData)
         {
             byte[] result = new byte[0x19];
 
@@ -170,7 +179,7 @@ namespace CczEditor.Data.Wrapper
                     else
                         result[23] = 0x0;
                     break;
-                case ItemType.bombs:
+                case ItemType.BombTools:
                     Utils.ChangeByteValue(result, Utils.GetBytes(Name), 0, 15);
                     result[16] = 0x00;
                     result[17] = BombEffectIndex;
@@ -180,7 +189,7 @@ namespace CczEditor.Data.Wrapper
                     Utils.ChangeByteValue(result, BitConverter.GetBytes(BombEffectValue), 21);
                     result[23] = 0x00;
                     break;
-                case ItemType.bombs2:
+                case ItemType.Bombs:
                     Utils.ChangeByteValue(result, Utils.GetBytes(Name), 0, 15);
                     result[16] = BombTypeIndex;
                     result[17] = BombEffectIndex;
@@ -190,7 +199,7 @@ namespace CczEditor.Data.Wrapper
                     Utils.ChangeByteValue(result, BitConverter.GetBytes(BombEffectValue), 21);
                     result[23] = EffectRange;
                     break;
-                case ItemType.bombs3:
+                case ItemType.BombMines:
                     Utils.ChangeByteValue(result, Utils.GetBytes(Name), 0, 15);
                     result[16] = AttackRange;
                     result[17] = BombEffectIndex;
@@ -200,7 +209,7 @@ namespace CczEditor.Data.Wrapper
                     Utils.ChangeByteValue(result, BitConverter.GetBytes(BombEffectValue), 21);
                     result[23] = EffectRange;
                     break;
-                case ItemType.Unknow:
+                case ItemType.None:
                 default:
                     Utils.ChangeByteValue(result, Utils.GetBytes(Name), 0, 15);
                     result[16] = 0xFF;
@@ -218,11 +227,10 @@ namespace CczEditor.Data.Wrapper
             {
                 Program.GameData.ItemSet(index, result);
             }
+        }
 
-            if (!ExeData.IsLocked)
-            {
-            }
-
+        public void WriteImsgData(int index, ImsgData targetData)
+        {
             if (Program.ImsgData.IsExist)
             {
                 if (Imsg != null)
@@ -231,15 +239,15 @@ namespace CczEditor.Data.Wrapper
                     Utils.ChangeByteValue(msg, Utils.GetBytes(Imsg), 0, Program.IMSG_DATA_BLOCK_LENGTH);
                     Program.ImsgData.ItemSet(index, msg);
                 }
-                
+
             }
         }
 
-        public ItemData Clone()
+        public void WriteExeData(int index, ExeData targetData)
         {
-            var result = this.Clone<ItemData>();
-            return result;
+            if (!Program.ExeData.IsLocked)
+            {
+            }
         }
-
     }
 }

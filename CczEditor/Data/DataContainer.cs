@@ -36,7 +36,7 @@ namespace CczEditor.Data
                 return _starDataContainer[path];
             }
 
-            var data = new StarData(Path.Combine(path, Program.FILENAME_DATA));
+            var data = new StarData(Path.Combine(path, Program.FILENAME_STAR));
             _starDataContainer.Add(path, data);
             return data;
         }
@@ -48,8 +48,20 @@ namespace CczEditor.Data
                 return _imsgDataContainer[path];
             }
 
-            var data = new ImsgData(Path.Combine(path, Program.FILENAME_DATA));
+            var data = new ImsgData(Path.Combine(path, Program.FILENAME_IMSG));
             _imsgDataContainer.Add(path, data);
+            return data;
+        }
+
+        public static ExeData LoadExeData(string path)
+        {
+            if (_exeDataContainer.ContainsKey(path))
+            {
+                return _exeDataContainer[path];
+            }
+
+            var data = new ExeData();
+            _exeDataContainer.Add(path, data);
             return data;
         }
         #endregion
@@ -78,7 +90,15 @@ namespace CczEditor.Data
             _imsgDataContainer.Remove(key);
             data.Close();
         }
-    
+
+        public static void UnloadExeData(string key)
+        {
+            var data = GetExeData(key);
+            if (data == null) return;
+            _exeDataContainer.Remove(key);
+            data.Close();
+        }
+
         #endregion
 
         #region Getter
@@ -100,6 +120,13 @@ namespace CczEditor.Data
         {
             ImsgData result = null;
             _imsgDataContainer.TryGetValue(key, out result);
+            return result;
+        }
+
+        public static ExeData GetExeData(string key)
+        {
+            ExeData result = null;
+            _exeDataContainer.TryGetValue(key, out result);
             return result;
         }
         #endregion

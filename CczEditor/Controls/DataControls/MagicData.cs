@@ -83,13 +83,13 @@ namespace CczEditor.Controls.DataControls
 				btnImsgRestore_Click();
 			}
             
-            if (!Data.ExeData.IsLocked)
+            if (!Program.ExeData.IsLocked)
             {
                 var list = Program.CurrentConfig.Exe.Magic.UseMagicTypeIndexes.ToList();
                 if (list.Contains(lbList.SelectedIndex))
                 {
                     m0.Enabled = true;
-                    m0.SelectedIndex = Data.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
+                    m0.SelectedIndex = Program.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
                         Program.CurrentConfig.Exe.Magic.MagicTypeOffset);
                 }
                 else
@@ -102,7 +102,7 @@ namespace CczEditor.Controls.DataControls
                 if (list.Contains(lbList.SelectedIndex))
                 {
                     m1.Enabled = true;
-                    m1.SelectedIndex = Data.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
+                    m1.SelectedIndex = Program.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
                         Program.CurrentConfig.Exe.Magic.DamageTypeOffset);
                 }
                 else
@@ -115,7 +115,7 @@ namespace CczEditor.Controls.DataControls
                 if (list.Contains(lbList.SelectedIndex))
                 {
                     m2.Enabled = true;
-                    m2.SelectedIndex = Data.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
+                    m2.SelectedIndex = Program.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
                         Program.CurrentConfig.Exe.Magic.HealTypeOffset);
                 }
                 else
@@ -128,7 +128,7 @@ namespace CczEditor.Controls.DataControls
                 if (list.Contains(lbList.SelectedIndex))
                 {
                     m3.Enabled = true;
-                    m3.Value = Data.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
+                    m3.Value = Program.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
                         Program.CurrentConfig.Exe.Magic.MeffOffset);
                 }
                 else
@@ -141,7 +141,7 @@ namespace CczEditor.Controls.DataControls
                 if (list.Contains(lbList.SelectedIndex))
                 {
                     m4.Enabled = true;
-                    var value = Data.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
+                    var value = Program.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
                         Program.CurrentConfig.Exe.Magic.McallOffset);
                     if (Program.CurrentConfig.CodeOptionContainer.UseMeffAfterMcallExtension && value != 0xFF)
                         value += 1;
@@ -158,7 +158,7 @@ namespace CczEditor.Controls.DataControls
                 if (list.Contains(lbList.SelectedIndex))
                 {
                     m5.Enabled = true;
-                    m5.SelectedIndex = Data.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
+                    m5.SelectedIndex = Program.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
                         Program.CurrentConfig.Exe.Magic.AiTypeOffset);
 
                 }
@@ -174,7 +174,7 @@ namespace CczEditor.Controls.DataControls
                     if (list.Contains(lbList.SelectedIndex))
                     {
                         m6.Enabled = true;
-                        m6.SelectedIndex = Data.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
+                        m6.SelectedIndex = Program.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
                             Program.CurrentConfig.Exe.Magic.UseConditionOffset);
                     }
                     else
@@ -193,7 +193,7 @@ namespace CczEditor.Controls.DataControls
                 if (list.Contains(lbList.SelectedIndex))
                 {
                     m7.Enabled = true;
-                    m7.Value = Data.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
+                    m7.Value = Program.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
                         Program.CurrentConfig.Exe.Magic.LearTypeOffset);
 
                 }
@@ -207,7 +207,7 @@ namespace CczEditor.Controls.DataControls
                 if (list.Contains(lbList.SelectedIndex))
                 {
                     m8.Enabled = true;
-                    m8.Value = Data.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
+                    m8.Value = Program.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
                         Program.CurrentConfig.Exe.Magic.DamageValueOffset);
 
                 }
@@ -221,7 +221,7 @@ namespace CczEditor.Controls.DataControls
                 if (list.Contains(lbList.SelectedIndex))
                 {
                     m9.Enabled = true;
-                    m9.Value = Data.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
+                    m9.Value = Program.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
                         Program.CurrentConfig.Exe.Magic.AccRateOffset);
 
                 }
@@ -237,7 +237,7 @@ namespace CczEditor.Controls.DataControls
                     if (list.Contains(lbList.SelectedIndex))
                     {
                         reflect.Enabled = true;
-                        reflect.SelectedIndex = Data.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
+                        reflect.SelectedIndex = Program.ExeData.ReadByte(list.IndexOf(lbList.SelectedIndex),
                             Program.CurrentConfig.Exe.Magic.ReflectTypeOffset);
 
                     }
@@ -285,12 +285,12 @@ namespace CczEditor.Controls.DataControls
 
 
             //EXE
-            if (!Data.ExeData.IsLocked)
+            if (!Program.ExeData.IsLocked)
             {
                 var list = Program.CurrentConfig.Exe.Magic.UseMagicTypeIndexes.ToList();
                 if (list.Contains(lbList.SelectedIndex))
                 {
-                    Data.ExeData.WriteByte(
+                    Program.ExeData.WriteByte(
                          (byte)m0.SelectedIndex,
                          list.IndexOf(lbList.SelectedIndex),
                          Program.CurrentConfig.Exe.Magic.MagicTypeOffset);
@@ -299,7 +299,7 @@ namespace CczEditor.Controls.DataControls
                 list = Program.CurrentConfig.Exe.Magic.UseDamageTypeIndexes.ToList();
                 if (list.Contains(lbList.SelectedIndex))
                 {
-                    Data.ExeData.WriteByte(
+                    Program.ExeData.WriteByte(
                          (byte)m1.SelectedIndex,
                          list.IndexOf(lbList.SelectedIndex),
                          Program.CurrentConfig.Exe.Magic.DamageTypeOffset);
@@ -308,7 +308,7 @@ namespace CczEditor.Controls.DataControls
                 list = Program.CurrentConfig.Exe.Magic.UseHealTypeIndexes.ToList();
                 if (list.Contains(lbList.SelectedIndex))
                 {
-                    Data.ExeData.WriteByte(
+                    Program.ExeData.WriteByte(
                          (byte)m2.SelectedIndex,
                          list.IndexOf(lbList.SelectedIndex),
                          Program.CurrentConfig.Exe.Magic.HealTypeOffset);
@@ -317,7 +317,7 @@ namespace CczEditor.Controls.DataControls
                 list = Program.CurrentConfig.Exe.Magic.UseMeffIndexes.ToList();
                 if (list.Contains(lbList.SelectedIndex))
                 {
-                    Data.ExeData.WriteByte(
+                    Program.ExeData.WriteByte(
                          (byte)m3.Value,
                          list.IndexOf(lbList.SelectedIndex),
                          Program.CurrentConfig.Exe.Magic.MeffOffset);
@@ -329,7 +329,7 @@ namespace CczEditor.Controls.DataControls
                     var value = Utils.GetId(m4.SelectedItem);
                     if (Program.CurrentConfig.CodeOptionContainer.UseMeffAfterMcallExtension)
                         value -= 1;
-                    Data.ExeData.WriteByte(
+                    Program.ExeData.WriteByte(
                          (byte)value,
                          list.IndexOf(lbList.SelectedIndex),
                          Program.CurrentConfig.Exe.Magic.McallOffset);
@@ -338,7 +338,7 @@ namespace CczEditor.Controls.DataControls
                 list = Program.CurrentConfig.Exe.Magic.UseAiTypeIndexes.ToList();
                 if (list.Contains(lbList.SelectedIndex))
                 {
-                    Data.ExeData.WriteByte(
+                    Program.ExeData.WriteByte(
                          (byte)m5.SelectedIndex,
                          list.IndexOf(lbList.SelectedIndex),
                          Program.CurrentConfig.Exe.Magic.AiTypeOffset);
@@ -347,7 +347,7 @@ namespace CczEditor.Controls.DataControls
                 list = Program.CurrentConfig.Exe.Magic.UseConditionIndexes.ToList();
                 if (list.Contains(lbList.SelectedIndex))
                 {
-                    Data.ExeData.WriteByte(
+                    Program.ExeData.WriteByte(
                          (byte)m6.SelectedIndex,
                          list.IndexOf(lbList.SelectedIndex),
                          Program.CurrentConfig.Exe.Magic.UseConditionOffset);
@@ -356,7 +356,7 @@ namespace CczEditor.Controls.DataControls
                 list = Program.CurrentConfig.Exe.Magic.UseLearnTypeIndexes.ToList();
                 if (list.Contains(lbList.SelectedIndex))
                 {
-                    Data.ExeData.WriteByte(
+                    Program.ExeData.WriteByte(
                          (byte)m7.Value,
                          list.IndexOf(lbList.SelectedIndex),
                          Program.CurrentConfig.Exe.Magic.LearTypeOffset);
@@ -365,7 +365,7 @@ namespace CczEditor.Controls.DataControls
                 list = Program.CurrentConfig.Exe.Magic.UseDamageValueIndexes.ToList();
                 if (list.Contains(lbList.SelectedIndex))
                 {
-                    Data.ExeData.WriteByte(
+                    Program.ExeData.WriteByte(
                          (byte)m8.Value,
                          list.IndexOf(lbList.SelectedIndex),
                          Program.CurrentConfig.Exe.Magic.DamageValueOffset);
@@ -374,7 +374,7 @@ namespace CczEditor.Controls.DataControls
                 list = Program.CurrentConfig.Exe.Magic.UseAccRateIndexes.ToList();
                 if (list.Contains(lbList.SelectedIndex))
                 {
-                    Data.ExeData.WriteByte(
+                    Program.ExeData.WriteByte(
                          (byte)m9.Value,
                          list.IndexOf(lbList.SelectedIndex),
                          Program.CurrentConfig.Exe.Magic.AccRateOffset);

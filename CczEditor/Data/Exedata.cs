@@ -12,7 +12,11 @@ namespace CczEditor.Data
 {
     public class ExeData
     {
-        private static string ExePath
+        public ExeData()
+        {
+        }
+
+        private string ExePath
         {
             get
             {
@@ -24,7 +28,7 @@ namespace CczEditor.Data
             }
         }
 
-        public static bool IsLocked
+        public bool IsLocked
         {
             get
             {
@@ -45,15 +49,15 @@ namespace CczEditor.Data
             }
         }
         
-        private static FileStream Stream;
+        private FileStream Stream;
 
-        public static void Open(FileAccess accessType)
+        public void Open(FileAccess accessType)
         {
             var CurrentFile = new FileInfo(ExePath);
             Stream = CurrentFile.Open(FileMode.Open, accessType, FileShare.ReadWrite);
         }
 
-        public static void Close()
+        public void Close()
         {
             if (Stream != null) {
                 Stream.Flush();
@@ -62,7 +66,7 @@ namespace CczEditor.Data
             }
         }
 
-        public static string GetText(int offset, int length)
+        public string GetText(int offset, int length)
         {
             byte[] text = new byte[length];
 
@@ -84,7 +88,7 @@ namespace CczEditor.Data
             return Utils.ByteToString(text);
         }
                          
-        public static ushort ReadWord(int select,int offset)
+        public ushort ReadWord(int select,int offset)
         {
             var binary = new byte[2];
 
@@ -106,7 +110,7 @@ namespace CczEditor.Data
             return (ushort) (binary[0] + binary[1] * 0x100);
         }
 
-        public static void WriteWord(int value,int select,int offset)
+        public void WriteWord(int value,int select,int offset)
         {
             var binary = BitConverter.GetBytes((short)value);
             if (Stream == null)
@@ -127,7 +131,7 @@ namespace CczEditor.Data
             }
         }
         
-        public static byte ReadByte(int select, int offset)
+        public byte ReadByte(int select, int offset)
         {
             var binary = new byte[1];
             if (Stream == null)
@@ -148,7 +152,7 @@ namespace CczEditor.Data
             return (binary[0]);
         }
 
-        public static void WriteByte(int value, int select, int offset)
+        public void WriteByte(int value, int select, int offset)
         {
             var binary = BitConverter.GetBytes((short)value);
             if (Stream == null)
@@ -169,7 +173,7 @@ namespace CczEditor.Data
             }
         }
 
-        public static void WriteText(string text, int offset, int length)
+        public void WriteText(string text, int offset, int length)
         {
             var binary = new byte[length];
             Utils.ChangeByteValue(binary, Utils.GetBytes(text), 0, length);
@@ -191,7 +195,7 @@ namespace CczEditor.Data
             }
         }
 
-        public static void Write(byte[] values, int offset)
+        public void Write(byte[] values, int offset)
         {
             if (Stream == null)
             {
@@ -212,7 +216,7 @@ namespace CczEditor.Data
 
         }
         
-        public static byte[] Read(int offset, int length)
+        public byte[] Read(int offset, int length)
         {
             var binary = new byte[length];
             if (Stream == null)

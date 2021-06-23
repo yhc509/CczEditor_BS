@@ -15,9 +15,9 @@ using System.IO;
 
 namespace CczEditor.Controls.DataControls
 {
-    public partial class UnitsData : BaseDataControl
+    public partial class UnitController : BaseDataControl
 	{        
-        public UnitsData()
+        public UnitController()
 		{
 			InitializeComponent();
 			tlpImsg.Enabled = ImsgDataLoaded;
@@ -106,14 +106,14 @@ namespace CczEditor.Controls.DataControls
             ncMp.Value = unit.Mp;
             cbForce.SelectedIndex = unit.Force;
 
-            PmapObjValueBox.Enabled = !ExeData.IsLocked;
-            CharacterComboBox.Enabled = !ExeData.IsLocked;
-            BattleObjValueBox.Enabled = !ExeData.IsLocked;
-            CutinComboBox.Enabled = !ExeData.IsLocked;
-            VoiceComboBox.Enabled = !ExeData.IsLocked;
-            CostValueBox.Enabled = !ExeData.IsLocked;
+            PmapObjValueBox.Enabled = !Program.ExeData.IsLocked;
+            CharacterComboBox.Enabled = !Program.ExeData.IsLocked;
+            BattleObjValueBox.Enabled = !Program.ExeData.IsLocked;
+            CutinComboBox.Enabled = !Program.ExeData.IsLocked;
+            VoiceComboBox.Enabled = !Program.ExeData.IsLocked;
+            CostValueBox.Enabled = !Program.ExeData.IsLocked;
 
-            if (!ExeData.IsLocked)
+            if (!Program.ExeData.IsLocked)
             {
                 PmapObjValueBox.Value = unit.Pmapobj;
                 CharacterComboBox.SelectedIndex = unit.CharacterType;

@@ -59,22 +59,22 @@ namespace CczEditor
 
 		private void tsmiMainMenu_Data_Units_Click(object sender, EventArgs e)
 		{
-			ShowEditor(new UnitsData());
+			ShowEditor(new UnitController());
 		}
 
 		private void tsmiMainMenu_Data_Items_Click(object sender, EventArgs e)
 		{
-			ShowEditor(new ItemsData());
+			ShowEditor(new ItemController());
 		}
 
 		private void tsmiMainMenu_Data_Store_Click(object sender, EventArgs e)
 		{
-			ShowEditor(new StoreData());
+			ShowEditor(new ShopController());
 		}
 
 		private void tsmiMainMenu_Data_Force_Click(object sender, EventArgs e)
 		{
-			ShowEditor(new ForceData());
+			ShowEditor(new ForceController());
 		}
 
 		private void tsmiMainMenu_Data_Terrain_Click(object sender, EventArgs e)
@@ -214,7 +214,8 @@ namespace CczEditor
 		}
 
 		private void LoadDataFile()
-		{
+        {
+            DataContainer.LoadExeData(Program.CurrentConfig.DirectoryPath);
             DataContainer.LoadGameData(Program.CurrentConfig.DirectoryPath);
             DataContainer.LoadImsgData(Program.CurrentConfig.DirectoryPath);
             DataContainer.LoadStarData(Program.CurrentConfig.DirectoryPath);

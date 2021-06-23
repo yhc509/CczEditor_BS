@@ -1,33 +1,33 @@
 ﻿namespace CczEditor.Controls.DataControls
 {
-	partial class ForceData
-	{
-		/// <summary>
-		/// 必需的设计器变量。
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+    partial class ForceController
+    {
+        /// <summary>
+        /// 必需的设计器变量。
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// 清理所有正在使用的资源。
-		/// </summary>
-		/// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing && (components != null))
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+        /// <summary>
+        /// 清理所有正在使用的资源。
+        /// </summary>
+        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows 窗体设计器生成的代码
+        #region Windows 窗体设计器生成的代码
 
-		/// <summary>
-		/// 设计器支持所需的方法 - 不要
-		/// 使用代码编辑器修改此方法的内容。
-		/// </summary>
-		private void InitializeComponent()
-		{
+        /// <summary>
+        /// 设计器支持所需的方法 - 不要
+        /// 使用代码编辑器修改此方法的内容。
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.tlpMainContainer = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -42,46 +42,46 @@
             this.lblAtk = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblDef = new System.Windows.Forms.Label();
-            this.ForceCategoryNameBox = new System.Windows.Forms.TextBox();
+            this.forceCategoryNameBox = new System.Windows.Forms.TextBox();
             this.lblHitarea = new System.Windows.Forms.Label();
             this.SpecialSkillForce = new System.Windows.Forms.ComboBox();
             this.lblMag = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.lblCrt = new System.Windows.Forms.Label();
-            this.f9 = new System.Windows.Forms.ComboBox();
+            this.forceAI = new System.Windows.Forms.ComboBox();
             this.lblMp = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.lblHp = new System.Windows.Forms.Label();
-            this.f8 = new System.Windows.Forms.ComboBox();
+            this.forceAtkComm = new System.Windows.Forms.ComboBox();
             this.ncMove = new CczEditor.Controls.NumericControl();
             this.cbHitarea = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.ncHp = new CczEditor.Controls.NumericControl();
-            this.f7 = new System.Windows.Forms.ComboBox();
+            this.forceAtkDelay = new System.Windows.Forms.ComboBox();
             this.ncMp = new CczEditor.Controls.NumericControl();
             this.label7 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.f6 = new System.Windows.Forms.NumericUpDown();
-            this.eff = new System.Windows.Forms.ComboBox();
+            this.forceMagicDmg = new System.Windows.Forms.NumericUpDown();
+            this.cbEffArea = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblMor = new System.Windows.Forms.Label();
-            this.f5 = new System.Windows.Forms.ComboBox();
+            this.forceType = new System.Windows.Forms.ComboBox();
             this.ncMor = new CczEditor.Controls.NumericControl();
             this.label5 = new System.Windows.Forms.Label();
             this.ncAtk = new CczEditor.Controls.NumericControl();
-            this.f4 = new System.Windows.Forms.ComboBox();
+            this.forceRangeAtk = new System.Windows.Forms.ComboBox();
             this.ncDef = new CczEditor.Controls.NumericControl();
             this.label4 = new System.Windows.Forms.Label();
             this.ncMag = new CczEditor.Controls.NumericControl();
-            this.f3 = new System.Windows.Forms.ComboBox();
+            this.forceAtkSound = new System.Windows.Forms.ComboBox();
             this.ncCrt = new CczEditor.Controls.NumericControl();
             this.label3 = new System.Windows.Forms.Label();
-            this.f2 = new System.Windows.Forms.ComboBox();
+            this.forceMoveSpeed = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.f1 = new System.Windows.Forms.ComboBox();
+            this.forceMoveSound = new System.Windows.Forms.ComboBox();
             this.clbEquipment = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnForceSyn = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnRestore = new System.Windows.Forms.Button();
@@ -99,7 +99,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ncMove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncHp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.f6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.forceMagicDmg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncAtk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncDef)).BeginInit();
@@ -198,46 +198,46 @@
             this.groupBox1.Controls.Add(this.lblAtk);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.lblDef);
-            this.groupBox1.Controls.Add(this.ForceCategoryNameBox);
+            this.groupBox1.Controls.Add(this.forceCategoryNameBox);
             this.groupBox1.Controls.Add(this.lblHitarea);
             this.groupBox1.Controls.Add(this.SpecialSkillForce);
             this.groupBox1.Controls.Add(this.lblMag);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.lblCrt);
-            this.groupBox1.Controls.Add(this.f9);
+            this.groupBox1.Controls.Add(this.forceAI);
             this.groupBox1.Controls.Add(this.lblMp);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.lblHp);
-            this.groupBox1.Controls.Add(this.f8);
+            this.groupBox1.Controls.Add(this.forceAtkComm);
             this.groupBox1.Controls.Add(this.ncMove);
             this.groupBox1.Controls.Add(this.cbHitarea);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.ncHp);
-            this.groupBox1.Controls.Add(this.f7);
+            this.groupBox1.Controls.Add(this.forceAtkDelay);
             this.groupBox1.Controls.Add(this.ncMp);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.f6);
-            this.groupBox1.Controls.Add(this.eff);
+            this.groupBox1.Controls.Add(this.forceMagicDmg);
+            this.groupBox1.Controls.Add(this.cbEffArea);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.lblMor);
-            this.groupBox1.Controls.Add(this.f5);
+            this.groupBox1.Controls.Add(this.forceType);
             this.groupBox1.Controls.Add(this.ncMor);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.ncAtk);
-            this.groupBox1.Controls.Add(this.f4);
+            this.groupBox1.Controls.Add(this.forceRangeAtk);
             this.groupBox1.Controls.Add(this.ncDef);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.ncMag);
-            this.groupBox1.Controls.Add(this.f3);
+            this.groupBox1.Controls.Add(this.forceAtkSound);
             this.groupBox1.Controls.Add(this.ncCrt);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.f2);
+            this.groupBox1.Controls.Add(this.forceMoveSpeed);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.f1);
+            this.groupBox1.Controls.Add(this.forceMoveSound);
             this.groupBox1.Controls.Add(this.clbEquipment);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnForceSyn);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Location = new System.Drawing.Point(124, 143);
             this.groupBox1.Name = "groupBox1";
@@ -326,12 +326,12 @@
             this.lblDef.Text = "방어력";
             this.lblDef.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ForceCategoryNameBox
+            // forceCategoryNameBox
             // 
-            this.ForceCategoryNameBox.Location = new System.Drawing.Point(593, 34);
-            this.ForceCategoryNameBox.Name = "ForceCategoryNameBox";
-            this.ForceCategoryNameBox.Size = new System.Drawing.Size(100, 23);
-            this.ForceCategoryNameBox.TabIndex = 71;
+            this.forceCategoryNameBox.Location = new System.Drawing.Point(593, 34);
+            this.forceCategoryNameBox.Name = "forceCategoryNameBox";
+            this.forceCategoryNameBox.Size = new System.Drawing.Size(100, 23);
+            this.forceCategoryNameBox.TabIndex = 71;
             // 
             // lblHitarea
             // 
@@ -386,22 +386,22 @@
             this.lblCrt.Text = "순발력";
             this.lblCrt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // f9
+            // forceAI
             // 
-            this.f9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.f9.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.f9.FormattingEnabled = true;
-            this.f9.Items.AddRange(new object[] {
+            this.forceAI.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.forceAI.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.forceAI.FormattingEnabled = true;
+            this.forceAI.Items.AddRange(new object[] {
             "1순위",
             "2순위",
             "3순위",
             "4순위",
             "5순위",
             "6순위"});
-            this.f9.Location = new System.Drawing.Point(593, 304);
-            this.f9.Name = "f9";
-            this.f9.Size = new System.Drawing.Size(149, 23);
-            this.f9.TabIndex = 68;
+            this.forceAI.Location = new System.Drawing.Point(593, 304);
+            this.forceAI.Name = "forceAI";
+            this.forceAI.Size = new System.Drawing.Size(149, 23);
+            this.forceAI.TabIndex = 68;
             // 
             // lblMp
             // 
@@ -435,18 +435,18 @@
             this.lblHp.Text = "HP 상승";
             this.lblHp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // f8
+            // forceAtkComm
             // 
-            this.f8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.f8.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.f8.FormattingEnabled = true;
-            this.f8.Items.AddRange(new object[] {
+            this.forceAtkComm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.forceAtkComm.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.forceAtkComm.FormattingEnabled = true;
+            this.forceAtkComm.Items.AddRange(new object[] {
             "한다",
             "안한다"});
-            this.f8.Location = new System.Drawing.Point(593, 274);
-            this.f8.Name = "f8";
-            this.f8.Size = new System.Drawing.Size(149, 23);
-            this.f8.TabIndex = 59;
+            this.forceAtkComm.Location = new System.Drawing.Point(593, 274);
+            this.forceAtkComm.Name = "forceAtkComm";
+            this.forceAtkComm.Size = new System.Drawing.Size(149, 23);
+            this.forceAtkComm.TabIndex = 59;
             // 
             // ncMove
             // 
@@ -499,18 +499,18 @@
             this.ncHp.Size = new System.Drawing.Size(108, 23);
             this.ncHp.TabIndex = 8;
             // 
-            // f7
+            // forceAtkDelay
             // 
-            this.f7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.f7.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.f7.FormattingEnabled = true;
-            this.f7.Items.AddRange(new object[] {
+            this.forceAtkDelay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.forceAtkDelay.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.forceAtkDelay.FormattingEnabled = true;
+            this.forceAtkDelay.Items.AddRange(new object[] {
             "안한다",
             "한다"});
-            this.f7.Location = new System.Drawing.Point(593, 244);
-            this.f7.Name = "f7";
-            this.f7.Size = new System.Drawing.Size(149, 23);
-            this.f7.TabIndex = 58;
+            this.forceAtkDelay.Location = new System.Drawing.Point(593, 244);
+            this.forceAtkDelay.Name = "forceAtkDelay";
+            this.forceAtkDelay.Size = new System.Drawing.Size(149, 23);
+            this.forceAtkDelay.TabIndex = 58;
             // 
             // ncMp
             // 
@@ -547,29 +547,29 @@
             this.label11.Text = "공격영향";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // f6
+            // forceMagicDmg
             // 
-            this.f6.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.f6.Location = new System.Drawing.Point(593, 214);
-            this.f6.Maximum = new decimal(new int[] {
+            this.forceMagicDmg.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.forceMagicDmg.Location = new System.Drawing.Point(593, 214);
+            this.forceMagicDmg.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.f6.Name = "f6";
-            this.f6.Size = new System.Drawing.Size(149, 23);
-            this.f6.TabIndex = 60;
+            this.forceMagicDmg.Name = "forceMagicDmg";
+            this.forceMagicDmg.Size = new System.Drawing.Size(149, 23);
+            this.forceMagicDmg.TabIndex = 60;
             // 
-            // eff
+            // cbEffArea
             // 
-            this.eff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.eff.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.eff.FormattingEnabled = true;
-            this.eff.Location = new System.Drawing.Point(115, 127);
-            this.eff.Name = "eff";
-            this.eff.Size = new System.Drawing.Size(108, 23);
-            this.eff.TabIndex = 64;
-            this.eff.SelectedIndexChanged += new System.EventHandler(this.eff_SelectedIndexChanged);
+            this.cbEffArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEffArea.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbEffArea.FormattingEnabled = true;
+            this.cbEffArea.Location = new System.Drawing.Point(115, 127);
+            this.cbEffArea.Name = "cbEffArea";
+            this.cbEffArea.Size = new System.Drawing.Size(108, 23);
+            this.cbEffArea.TabIndex = 64;
+            this.cbEffArea.SelectedIndexChanged += new System.EventHandler(this.eff_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -592,19 +592,19 @@
             this.lblMor.Text = "사기";
             this.lblMor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // f5
+            // forceType
             // 
-            this.f5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.f5.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.f5.FormattingEnabled = true;
-            this.f5.Items.AddRange(new object[] {
+            this.forceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.forceType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.forceType.FormattingEnabled = true;
+            this.forceType.Items.AddRange(new object[] {
             "만능",
             "문관",
             "무관"});
-            this.f5.Location = new System.Drawing.Point(593, 184);
-            this.f5.Name = "f5";
-            this.f5.Size = new System.Drawing.Size(149, 23);
-            this.f5.TabIndex = 57;
+            this.forceType.Location = new System.Drawing.Point(593, 184);
+            this.forceType.Name = "forceType";
+            this.forceType.Size = new System.Drawing.Size(149, 23);
+            this.forceType.TabIndex = 57;
             // 
             // ncMor
             // 
@@ -646,18 +646,18 @@
             this.ncAtk.Size = new System.Drawing.Size(108, 23);
             this.ncAtk.TabIndex = 3;
             // 
-            // f4
+            // forceRangeAtk
             // 
-            this.f4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.f4.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.f4.FormattingEnabled = true;
-            this.f4.Items.AddRange(new object[] {
+            this.forceRangeAtk.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.forceRangeAtk.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.forceRangeAtk.FormattingEnabled = true;
+            this.forceRangeAtk.Items.AddRange(new object[] {
             "안한다",
             "한다"});
-            this.f4.Location = new System.Drawing.Point(593, 154);
-            this.f4.Name = "f4";
-            this.f4.Size = new System.Drawing.Size(149, 23);
-            this.f4.TabIndex = 56;
+            this.forceRangeAtk.Location = new System.Drawing.Point(593, 154);
+            this.forceRangeAtk.Name = "forceRangeAtk";
+            this.forceRangeAtk.Size = new System.Drawing.Size(149, 23);
+            this.forceRangeAtk.TabIndex = 56;
             // 
             // ncDef
             // 
@@ -699,12 +699,12 @@
             this.ncMag.Size = new System.Drawing.Size(108, 23);
             this.ncMag.TabIndex = 5;
             // 
-            // f3
+            // forceAtkSound
             // 
-            this.f3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.f3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.f3.FormattingEnabled = true;
-            this.f3.Items.AddRange(new object[] {
+            this.forceAtkSound.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.forceAtkSound.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.forceAtkSound.FormattingEnabled = true;
+            this.forceAtkSound.Items.AddRange(new object[] {
             "검",
             "기타",
             "폭파1",
@@ -714,10 +714,10 @@
             "사격(점사)",
             "화염방사",
             "독기살포"});
-            this.f3.Location = new System.Drawing.Point(593, 124);
-            this.f3.Name = "f3";
-            this.f3.Size = new System.Drawing.Size(149, 23);
-            this.f3.TabIndex = 55;
+            this.forceAtkSound.Location = new System.Drawing.Point(593, 124);
+            this.forceAtkSound.Name = "forceAtkSound";
+            this.forceAtkSound.Size = new System.Drawing.Size(149, 23);
+            this.forceAtkSound.TabIndex = 55;
             // 
             // ncCrt
             // 
@@ -744,18 +744,18 @@
             this.label3.Text = "공격소리";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // f2
+            // forceMoveSpeed
             // 
-            this.f2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.f2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.f2.FormattingEnabled = true;
-            this.f2.Items.AddRange(new object[] {
+            this.forceMoveSpeed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.forceMoveSpeed.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.forceMoveSpeed.FormattingEnabled = true;
+            this.forceMoveSpeed.Items.AddRange(new object[] {
             "고속이동",
             "저속이동"});
-            this.f2.Location = new System.Drawing.Point(593, 94);
-            this.f2.Name = "f2";
-            this.f2.Size = new System.Drawing.Size(149, 23);
-            this.f2.TabIndex = 54;
+            this.forceMoveSpeed.Location = new System.Drawing.Point(593, 94);
+            this.forceMoveSpeed.Name = "forceMoveSpeed";
+            this.forceMoveSpeed.Size = new System.Drawing.Size(149, 23);
+            this.forceMoveSpeed.TabIndex = 54;
             // 
             // label2
             // 
@@ -767,12 +767,12 @@
             this.label2.Text = "이동속도";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // f1
+            // forceMoveSound
             // 
-            this.f1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.f1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.f1.FormattingEnabled = true;
-            this.f1.Items.AddRange(new object[] {
+            this.forceMoveSound.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.forceMoveSound.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.forceMoveSound.FormattingEnabled = true;
+            this.forceMoveSound.Items.AddRange(new object[] {
             "기병대",
             "포차대",
             "보병대",
@@ -780,10 +780,10 @@
             "전차대",
             "특수1",
             "특수2"});
-            this.f1.Location = new System.Drawing.Point(593, 64);
-            this.f1.Name = "f1";
-            this.f1.Size = new System.Drawing.Size(149, 23);
-            this.f1.TabIndex = 53;
+            this.forceMoveSound.Location = new System.Drawing.Point(593, 64);
+            this.forceMoveSound.Name = "forceMoveSound";
+            this.forceMoveSound.Size = new System.Drawing.Size(149, 23);
+            this.forceMoveSound.TabIndex = 53;
             // 
             // clbEquipment
             // 
@@ -805,16 +805,16 @@
             this.label1.Text = "이동소리";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button1
+            // btnForceSyn
             // 
-            this.button1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(314, 337);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(151, 32);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "병종상성설정";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnForceSyn.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnForceSyn.Location = new System.Drawing.Point(314, 337);
+            this.btnForceSyn.Name = "btnForceSyn";
+            this.btnForceSyn.Size = new System.Drawing.Size(151, 32);
+            this.btnForceSyn.TabIndex = 13;
+            this.btnForceSyn.Text = "병종상성설정";
+            this.btnForceSyn.UseVisualStyleBackColor = true;
+            this.btnForceSyn.Click += new System.EventHandler(this.button1_Click);
             // 
             // label12
             // 
@@ -907,10 +907,10 @@
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
-            // ForceData
+            // ForceController
             // 
             this.Controls.Add(this.tlpMainContainer);
-            this.Name = "ForceData";
+            this.Name = "ForceController";
             this.Size = new System.Drawing.Size(892, 581);
             this.Load += new System.EventHandler(this.ForceData_Load);
             this.tlpMainContainer.ResumeLayout(false);
@@ -924,7 +924,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ncMove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncHp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.f6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.forceMagicDmg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncAtk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncDef)).EndInit();
@@ -935,13 +935,13 @@
             this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
-		}
+        }
 
-		#endregion
+        #endregion
 
         private System.Windows.Forms.TableLayoutPanel tlpMainContainer;
-		private System.Windows.Forms.Button btnRestore;
-		private System.Windows.Forms.ListBox lbList;
+        private System.Windows.Forms.Button btnRestore;
+        private System.Windows.Forms.ListBox lbList;
         private TextBoxControl txtImsg;
         private System.Windows.Forms.Label lblImsgCount;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -965,7 +965,7 @@
         private NumericControl ncHp;
         private NumericControl ncMp;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox eff;
+        private System.Windows.Forms.ComboBox cbEffArea;
         private System.Windows.Forms.Label lblMor;
         private NumericControl ncMor;
         private NumericControl ncAtk;
@@ -977,28 +977,28 @@
         private System.Windows.Forms.CheckedListBox clbEquipment;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox f1;
+        private System.Windows.Forms.ComboBox forceMoveSound;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox f2;
+        private System.Windows.Forms.ComboBox forceMoveSpeed;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox f3;
+        private System.Windows.Forms.ComboBox forceAtkSound;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox f4;
+        private System.Windows.Forms.ComboBox forceRangeAtk;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox f5;
+        private System.Windows.Forms.ComboBox forceType;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown f6;
+        private System.Windows.Forms.NumericUpDown forceMagicDmg;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox f7;
+        private System.Windows.Forms.ComboBox forceAtkDelay;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox f8;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox forceAtkComm;
+        private System.Windows.Forms.Button btnForceSyn;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox f9;
+        private System.Windows.Forms.ComboBox forceAI;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox SpecialSkillForce;
-        private System.Windows.Forms.TextBox ForceCategoryNameBox;
+        private System.Windows.Forms.TextBox forceCategoryNameBox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox ForceNameBox;
     }
