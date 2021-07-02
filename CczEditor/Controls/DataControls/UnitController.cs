@@ -16,7 +16,9 @@ using System.IO;
 namespace CczEditor.Controls.DataControls
 {
     public partial class UnitController : BaseDataControl
-	{        
+	{
+        public Data.Wrapper.UnitData CurrentData;
+
         public UnitController()
 		{
 			InitializeComponent();
@@ -65,46 +67,53 @@ namespace CczEditor.Controls.DataControls
 		private void UnitsData_Load(object sender, EventArgs e)
 		{
             cbForce.Items.Clear();
-            cbForce.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
-            
+            cbForce.Items.AddRange(ConfigUtils.GetForceNames(Program.ExeData, Program.CurrentConfig, Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
             clbList.Items.AddRange(Program.GameData.UnitNameList(true).ToArray());
-			clbList.SelectedIndex = 0;
+		}
+
+        public override void Reset()
+        {
+            base.Reset();
+
+            CurrentData = new CczEditor.Data.Wrapper.UnitData();
+
+            clbList.SelectedIndex = 0;
             PmapObjActionComboBox.SelectedIndex = 0;
             BattleObjComboBox.SelectedIndex = 0;
             clbList.Focus();
-		}
+        }
+
 
         private void LoadUnit(int index)
         {
             if (index < 0 || index >= Program.CurrentConfig.Data.UnitCount)
                 return;
 
-            var unit = new CczEditor.Data.Wrapper.UnitData();
-            unit.Read(index);
+            CurrentData.Read(index, Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
 
-            txtName.Text = unit.Name;
-            ncFace.Value = unit.Face;
-            ncCritical.Value = unit.CriticalIndex;
+            txtName.Text = CurrentData.Name;
+            ncFace.Value = CurrentData.Face;
+            ncCritical.Value = CurrentData.CriticalIndex;
 
             if (Program.CurrentConfig.CodeOptionContainer.SingularAttribute)
             {
-                ncStr.Value = unit.Str;
-                ncVit.Value = unit.Vit;
-                ncInt.Value = unit.Int;
-                ncAvg.Value = unit.Avg;
-                ncLuk.Value = unit.Luk;
+                ncStr.Value = CurrentData.Str;
+                ncVit.Value = CurrentData.Vit;
+                ncInt.Value = CurrentData.Int;
+                ncAvg.Value = CurrentData.Avg;
+                ncLuk.Value = CurrentData.Luk;
             }
             else
             {
-                ncStr.Value = unit.Str * 2;
-                ncVit.Value = unit.Vit * 2;
-                ncInt.Value = unit.Int * 2;
-                ncAvg.Value = unit.Avg * 2;
-                ncLuk.Value = unit.Luk * 2;
+                ncStr.Value = CurrentData.Str * 2;
+                ncVit.Value = CurrentData.Vit * 2;
+                ncInt.Value = CurrentData.Int * 2;
+                ncAvg.Value = CurrentData.Avg * 2;
+                ncLuk.Value = CurrentData.Luk * 2;
             }
-            ncHp.Value = unit.Hp;
-            ncMp.Value = unit.Mp;
-            cbForce.SelectedIndex = unit.Force;
+            ncHp.Value = CurrentData.Hp;
+            ncMp.Value = CurrentData.Mp;
+            cbForce.SelectedIndex = CurrentData.Force;
 
             PmapObjValueBox.Enabled = !Program.ExeData.IsLocked;
             CharacterComboBox.Enabled = !Program.ExeData.IsLocked;
@@ -115,18 +124,18 @@ namespace CczEditor.Controls.DataControls
 
             if (!Program.ExeData.IsLocked)
             {
-                PmapObjValueBox.Value = unit.Pmapobj;
-                CharacterComboBox.SelectedIndex = unit.CharacterType;
-                BattleObjValueBox.Value = unit.BattleObj;
+                PmapObjValueBox.Value = CurrentData.Pmapobj;
+                CharacterComboBox.SelectedIndex = CurrentData.CharacterType;
+                BattleObjValueBox.Value = CurrentData.BattleObj;
 
                 lblCutin.Visible = CutinComboBox.Visible = cbbCutin.Visible = index <= 255 && Program.CurrentConfig.CodeOptionContainer.UseCutin;
                 lblVoice.Visible = VoiceComboBox.Visible = cbbVoice.Visible = VoicePlayButton.Visible = index <= 255 && Program.CurrentConfig.CodeOptionContainer.UseVoice;
                 lblCost.Visible = CostValueBox.Visible = cbbCost.Visible = index <= 255 && Program.CurrentConfig.CodeOptionContainer.UseCost;
                 if (index <= 255)
                 {
-                    CutinComboBox.SelectedIndex = unit.Cutin;
-                    VoiceComboBox.SelectedIndex = unit.Voice;
-                    CostValueBox.Value = unit.Cost;
+                    CutinComboBox.SelectedIndex = CurrentData.Cutin;
+                    VoiceComboBox.SelectedIndex = CurrentData.Voice;
+                    CostValueBox.Value = CurrentData.Cost;
                 }
             }
             
@@ -152,9 +161,9 @@ namespace CczEditor.Controls.DataControls
             }
 
             if (rbtnImsgType1.Checked)
-                txtImsg.Text = unit.Imsg;
+                txtImsg.Text = CurrentData.Imsg;
             else if (rbtnImsgType2.Checked)
-                txtImsg.Text = unit.Retreat;
+                txtImsg.Text = CurrentData.Retreat;
 
             SettingFaceType();
 
@@ -164,64 +173,62 @@ namespace CczEditor.Controls.DataControls
 
         private void SaveUnit(int index, bool isBatch = false)
         {
-            var unit = new CczEditor.Data.Wrapper.UnitData();
-
-            unit.Name = txtName.Text;
-            unit.Face = (ushort)ncFace.Value;
-            unit.CriticalIndex = (byte)ncCritical.Value;
-            unit.Str = (byte)ncStr.Value;
+            CurrentData.Name = txtName.Text;
+            CurrentData.Face = (ushort)ncFace.Value;
+            CurrentData.CriticalIndex = (byte)ncCritical.Value;
+            CurrentData.Str = (byte)ncStr.Value;
             
             if (Program.CurrentConfig.CodeOptionContainer.SingularAttribute)
             {
-                unit.Str = (byte)ncStr.Value;
-                unit.Vit = (byte)ncVit.Value;
-                unit.Int = (byte)ncInt.Value;
-                unit.Avg = (byte)ncAvg.Value;
-                unit.Luk = (byte)ncLuk.Value;
+                CurrentData.Str = (byte)ncStr.Value;
+                CurrentData.Vit = (byte)ncVit.Value;
+                CurrentData.Int = (byte)ncInt.Value;
+                CurrentData.Avg = (byte)ncAvg.Value;
+                CurrentData.Luk = (byte)ncLuk.Value;
             } else
             {
-                unit.Str = (byte) (ncStr.Value / 2);
-                unit.Vit = (byte) (ncVit.Value / 2);
-                unit.Int = (byte) (ncInt.Value / 2);
-                unit.Avg = (byte) (ncAvg.Value / 2);
-                unit.Luk = (byte) (ncLuk.Value / 2);
+                CurrentData.Str = (byte) (ncStr.Value / 2);
+                CurrentData.Vit = (byte) (ncVit.Value / 2);
+                CurrentData.Int = (byte) (ncInt.Value / 2);
+                CurrentData.Avg = (byte) (ncAvg.Value / 2);
+                CurrentData.Luk = (byte) (ncLuk.Value / 2);
             }
 
-            unit.Hp = (ushort)ncHp.Value;
-            unit.Mp = (byte)ncMp.Value;
-            unit.Force = (byte)cbForce.SelectedIndex;
+            CurrentData.Hp = (ushort)ncHp.Value;
+            CurrentData.Mp = (byte)ncMp.Value;
+            CurrentData.Force = (byte)cbForce.SelectedIndex;
 
-            unit.Pmapobj = (ushort) PmapObjValueBox.Value;
-            unit.BattleObj = (ushort) BattleObjValueBox.Value;
-            unit.CharacterType = (byte) CharacterComboBox.SelectedIndex;
-            unit.Cutin = (byte) CutinComboBox.SelectedIndex;
-            unit.Voice = (byte)VoiceComboBox.SelectedIndex;
-            unit.Cost = (byte) CostValueBox.Value;
+            CurrentData.Pmapobj = (ushort) PmapObjValueBox.Value;
+            CurrentData.BattleObj = (ushort) BattleObjValueBox.Value;
+            CurrentData.CharacterType = (byte) CharacterComboBox.SelectedIndex;
+            CurrentData.Cutin = (byte) CutinComboBox.SelectedIndex;
+            CurrentData.Voice = (byte)VoiceComboBox.SelectedIndex;
+            CurrentData.Cost = (byte) CostValueBox.Value;
 
             if (rbtnImsgType1.Checked)
-                unit.Imsg = txtImsg.Text;
+                CurrentData.Imsg = txtImsg.Text;
             else if (rbtnImsgType2.Checked)
-                unit.Retreat = txtImsg.Text;
+                CurrentData.Retreat = txtImsg.Text;
 
-            unit.Write(index);
+            CurrentData.Write(index, Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
 
             clbList.Items.RemoveAt(index);
-            clbList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX3, index, unit.Name));
+            clbList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX3, index, CurrentData.Name));
             clbList.SelectedIndex = index;
         }
 
         private void CopyUnit(int index, int[] targetIndexes, bool isTailNumber)
         {
             var origin = new CczEditor.Data.Wrapper.UnitData();
-            origin.Read(index);
-            
+            origin.Read(index, Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
+
             int nameNumber = 1;
 
             foreach(var targetIndex in targetIndexes)
             {
 
                 var unit = new CczEditor.Data.Wrapper.UnitData();
-                unit.Read(targetIndex);
+                unit.Read(targetIndex, Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
 
                 if (cbbName.Checked)
                 {
@@ -249,7 +256,7 @@ namespace CczEditor.Controls.DataControls
                 if (cbbImsg.Checked && rbtnImsgType1.Checked) unit.Imsg = origin.Imsg;
 
                 
-                unit.Write(targetIndex);
+                unit.Write(targetIndex, Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
 
                 clbList.Items.RemoveAt(targetIndex);
                 clbList.Items.Insert(targetIndex, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX3, targetIndex, unit.Name));
@@ -730,7 +737,7 @@ namespace CczEditor.Controls.DataControls
         
         private void exchangeButton_Click(object sender, EventArgs e)
         {
-            MoveUnits popup = new MoveUnits();
+            MoveUnitsPopup popup = new MoveUnitsPopup();
             popup.FormClosed += (s, ev) =>
             {
                 clbList.Items.Clear();

@@ -97,6 +97,8 @@ namespace CczEditor
             public bool UseMagicCondition;
 
             public bool UseMeffAfterMcallExtension;
+
+            public bool UseMp3Serv;
         }
 
         [Serializable]
@@ -197,7 +199,13 @@ namespace CczEditor
             public int SpecialSkillDmg_ForceCategoryIndexOffset;
             public int Knock_Back_ForceIndexOffset;
             public int[] SpecialAppear_ForceIndexOffset;
-            
+
+            public int Magic_Block_ForceIndexOffset;
+            public int Neighbor_MorIncrease_ForceIndexOffset;
+            public int Neighbor_HpRecover_ForceIndexOffset;
+            public int Neighbor_MpRecover_ForceIndexOffset;
+            public int Neighbor_Awaken_ForceIndexOffset;
+
 
             public int[] TitleOffsets;
             public ConfigExeAbilityGradeInfos[] AbilityGrades;

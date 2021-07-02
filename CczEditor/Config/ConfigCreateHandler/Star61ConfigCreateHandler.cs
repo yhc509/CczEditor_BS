@@ -34,6 +34,7 @@ namespace CczEditor
             result.CodeOptionContainer.UseCost = false;
             result.CodeOptionContainer.UseMagicCondition = true;
             result.CodeOptionContainer.UseMeffAfterMcallExtension = false;
+            result.CodeOptionContainer.UseMp3Serv = true;
         }
 
         protected override void CreateDataSettings()
@@ -295,6 +296,12 @@ namespace CczEditor
             result.Exe.Knock_Back_ForceIndexOffset = 0x10482;
             result.Exe.SpecialSkillDmg_ForceCategoryIndexOffset = 0x3AD94;
             result.Exe.SpecialSkillDmg_SkillIndexOffset = 0x3AD88;
+
+            result.Exe.Magic_Block_ForceIndexOffset = 0x3ACDB;
+            result.Exe.Neighbor_MorIncrease_ForceIndexOffset = 0xA1F52;
+            result.Exe.Neighbor_HpRecover_ForceIndexOffset = 0xA1F60;
+            result.Exe.Neighbor_MpRecover_ForceIndexOffset = 0xA1F6E;
+            result.Exe.Neighbor_Awaken_ForceIndexOffset = 0x3C5EA;
         }
 
         protected override void CreateSaveSettings()

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CczEditor.Data.Wrapper
 {
-    public class ItemData : WrapperData<ItemData>
+    public class ItemData
     {
 
         public string Name;
@@ -36,17 +36,24 @@ namespace CczEditor.Data.Wrapper
 
         public string Imsg;
 
-        public void Read(int index)
+        public void Read(int index, GameData gameData, ImsgData imsgData, ExeData exeData, Config config)
+        {
+            ReadGameData(index, gameData, config);
+            ReadImsgData(index, imsgData, config);
+            ReadExeData(index, exeData, config);
+        }
+
+        public void ReadGameData(int index, GameData targetData, Config config)
         {
             byte[] result = new byte[0x19];
             byte[] item;
 
-            if (Program.GameData.IsExist)
+            if (targetData.IsExist)
             {
-                item = Program.GameData.ItemGet(index);
+                item = targetData.ItemGet(index);
                 Name = Utils.ByteToString(item, 0, 16);
 
-                Type = Program.GameData.GetItemType(item[17]);
+                Type = targetData.GetItemType(item[17]);
 
 
                 WeaponTypeIndex = byte.MaxValue;
@@ -125,21 +132,28 @@ namespace CczEditor.Data.Wrapper
                         break;
                 }
             }
+        }
 
-            if (Program.ImsgData.IsExist)
+        public void ReadImsgData(int index, ImsgData targetData, Config config)
+        {
+            if (targetData.IsExist)
             {
-                Imsg = Utils.ByteToString(Program.ImsgData.ItemGet(index), 0, Program.IMSG_DATA_BLOCK_LENGTH);
+                Imsg = Utils.ByteToString(targetData.ItemGet(index), 0, Program.IMSG_DATA_BLOCK_LENGTH);
             }
         }
 
-        public void Write(int index)
+        public void ReadExeData(int index, ExeData targetData, Config config)
         {
-            WriteGameData(index, Program.GameData);
-            WriteImsgData(index, Program.ImsgData);
-            WriteExeData(index, Program.ExeData);
         }
 
-        public void WriteGameData(int index, GameData targetData)
+        public void Write(int index, GameData gameData, ImsgData imsgData, ExeData exeData, Config config)
+        {
+            WriteGameData(index, gameData, config);
+            WriteImsgData(index, imsgData, config);
+            WriteExeData(index, exeData, config);
+        }
+
+        public void WriteGameData(int index, GameData targetData, Config config)
         {
             byte[] result = new byte[0x19];
 
@@ -174,7 +188,7 @@ namespace CczEditor.Data.Wrapper
                     result[20] = IconIndex;
                     result[21] = InitValue;
                     result[22] = 0x0;
-                    if (Program.CurrentConfig.CodeOptionContainer.ItemCustomRange)
+                    if (config.CodeOptionContainer.ItemCustomRange)
                         result[23] = ItemRange;
                     else
                         result[23] = 0x0;
@@ -223,30 +237,33 @@ namespace CczEditor.Data.Wrapper
             }
             result[24] = Treasure;
 
-            if (Program.GameData.IsExist)
+            if (targetData.IsExist)
             {
-                Program.GameData.ItemSet(index, result);
+                targetData.ItemSet(index, result);
             }
         }
 
-        public void WriteImsgData(int index, ImsgData targetData)
+        public void WriteImsgData(int index, ImsgData targetData, Config config)
         {
-            if (Program.ImsgData.IsExist)
+            if (targetData.IsExist)
             {
                 if (Imsg != null)
                 {
                     var msg = new byte[Program.IMSG_DATA_BLOCK_LENGTH];
                     Utils.ChangeByteValue(msg, Utils.GetBytes(Imsg), 0, Program.IMSG_DATA_BLOCK_LENGTH);
-                    Program.ImsgData.ItemSet(index, msg);
+                    targetData.ItemSet(index, msg);
                 }
 
             }
         }
 
-        public void WriteExeData(int index, ExeData targetData)
+        public void WriteExeData(int index, ExeData targetData, Config config)
         {
-            if (!Program.ExeData.IsLocked)
+            if (!targetData.IsLocked)
             {
+                int treasureCount = DataUtils.GetTreasureItemCount();
+                if (!targetData.IsLocked)
+                    targetData.WriteByte(treasureCount, 0, config.Exe.TreasureCountOffset);
             }
         }
     }

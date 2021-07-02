@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 
 namespace CczEditor.Controls.DataControls
 {
-    public partial class CodeApplierControl : UserControl
+    public partial class CodeApplierControl : BaseControl
     {
         public CodeApplierControl()
         {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CczEditor.Data.Wrapper
 {
-    public class ShopData : WrapperData<ItemData>
+    public class ShopData
     {
         public ushort StorageUnitIndex;
         public ushort ShopUnitIndex;
@@ -16,21 +16,20 @@ namespace CczEditor.Data.Wrapper
         public string StageName;
 
         #region Write
-        public void Write(int index)
+        public void Write(int index, GameData gameData, ImsgData imsgData, ExeData exeData, Config config)
         {
-            // TODO 폐기 예정
-            WriteGameData(index, Program.GameData);
-            WriteImsgData(index, Program.ImsgData);
-            WriteExeData(index, Program.ExeData);
+            WriteGameData(index, gameData, config);
+            WriteImsgData(index, imsgData, config);
+            WriteExeData(index, exeData, config);
         }
 
-        public void WriteExeData(int index, ExeData targetData)
+        public void WriteExeData(int index, ExeData targetData, Config config)
         {
         }
 
-        public void WriteGameData(int index, GameData targetData)
+        public void WriteGameData(int index, GameData targetData, Config config)
         {
-            var store = Program.GameData.StoreGet(index);
+            var store = targetData.StoreGet(index);
             Utils.ChangeByteValue(store, BitConverter.GetBytes(StorageUnitIndex), 0);
             Utils.ChangeByteValue(store, BitConverter.GetBytes(ShopUnitIndex), 2);
 
@@ -51,62 +50,77 @@ namespace CczEditor.Data.Wrapper
             {
                 store[i] = 0xFF;
             }
-            Program.GameData.StoreSet(index, store);
+
+            if(targetData.IsExist)
+                targetData.StoreSet(index, store);
         }
 
-        public void WriteImsgData(int index, ImsgData targetData)
+        public void WriteImsgData(int index, ImsgData targetData, Config config)
         {
-            var stage = Program.ImsgData.StageGet(index);
-            Utils.ChangeByteValue(stage, Utils.GetBytes(StageName), 0, Program.IMSG_STAGE_NAME_LENGTH);
-            Program.ImsgData.StageSet(index, stage);
+            if (targetData.IsExist) {
+                var stage = new byte[Program.IMSG_STAGE_NAME_LENGTH];
+                Utils.ChangeByteValue(stage, Utils.GetBytes(StageName), 0, Program.IMSG_STAGE_NAME_LENGTH);
+                targetData.StageSet(index, stage); 
+            } 
         }
         #endregion
 
         #region Read
-        public void Read(int index)
+        public void Read(int index, GameData gameData, ImsgData imsgData, ExeData exeData, Config config)
         {
-            ReadGameData(index);
-            ReadImsgData(index);
-            ReadExeData(index);
+            ReadGameData(index, gameData, config);
+            ReadImsgData(index, imsgData, config);
+            ReadExeData(index, exeData, config);
         }
 
-        public void ReadGameData(int index)
+        public void ReadGameData(int index, GameData targetData, Config config)
         {
-            EquipItemList.Clear();
-            ConsumeItemList.Clear();
-
-            var store = Program.GameData.StoreGet(index);
-            StorageUnitIndex = BitConverter.ToUInt16(store, 0);
-            ShopUnitIndex = BitConverter.ToUInt16(store, 2);
-            
-            for (var i = 4; i < 20; i++)
+            if (targetData.IsExist)
             {
-                if (store[i] == 0xFF)
-                {
-                    continue;
-                }
-                EquipItemList.Add((byte) store[i]);
-            }
+                EquipItemList.Clear();
+                ConsumeItemList.Clear();
 
-            for (var i = 20; i < 36; i++)
+                var store = targetData.StoreGet(index);
+                StorageUnitIndex = BitConverter.ToUInt16(store, 0);
+                ShopUnitIndex = BitConverter.ToUInt16(store, 2);
+
+                for (var i = 4; i < 20; i++)
+                {
+                    if (store[i] == 0xFF)
+                    {
+                        continue;
+                    }
+                    EquipItemList.Add((byte)store[i]);
+                }
+
+                for (var i = 20; i < 36; i++)
+                {
+                    if (store[i] == 0xFF)
+                    {
+                        continue;
+                    }
+                    ConsumeItemList.Add((byte)store[i]);
+                }
+            }
+        }
+
+        public void ReadImsgData(int index, ImsgData targetData, Config config)
+        {
+            if (targetData.IsExist)
             {
-                if (store[i] == 0xFF)
-                {
-                    continue;
-                }
-                ConsumeItemList.Add((byte) store[i]);
+                var stage = targetData.StageGet(index);
+                StageName = Utils.ByteToString(stage);
             }
         }
 
-        public void ReadImsgData(int index)
+        public void ReadExeData(int index, ExeData targetData, Config config)
         {
-            var stage = Program.ImsgData.StageGet(index);
-            StageName = Utils.ByteToString(stage);
-        }
+            if(!targetData.IsLocked)
+            {
 
-        public void ReadExeData(int index)
-        {
+            }
         }
+        
         #endregion
 
 

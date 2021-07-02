@@ -38,6 +38,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.VersionHelperTab = new System.Windows.Forms.TabPage();
+            this.cbSpecialSkill = new System.Windows.Forms.CheckBox();
+            this.cbSpecialEffect = new System.Windows.Forms.CheckBox();
+            this.cbAbility = new System.Windows.Forms.CheckBox();
+            this.cbSpecialAppearForce = new System.Windows.Forms.CheckBox();
+            this.cbTitle = new System.Windows.Forms.CheckBox();
+            this.cbLevelExp = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -60,7 +66,7 @@
             this.cbEquip = new System.Windows.Forms.CheckBox();
             this.cbForceName = new System.Windows.Forms.CheckBox();
             this.cbForceCategoryName = new System.Windows.Forms.CheckBox();
-            this.cbSpecialEffect = new System.Windows.Forms.CheckBox();
+            this.cbSpecialCode = new System.Windows.Forms.CheckBox();
             this.cbCutin = new System.Windows.Forms.CheckBox();
             this.cbVoice = new System.Windows.Forms.CheckBox();
             this.cbCost = new System.Windows.Forms.CheckBox();
@@ -171,6 +177,12 @@
             // 
             // VersionHelperTab
             // 
+            this.VersionHelperTab.Controls.Add(this.cbSpecialSkill);
+            this.VersionHelperTab.Controls.Add(this.cbSpecialEffect);
+            this.VersionHelperTab.Controls.Add(this.cbAbility);
+            this.VersionHelperTab.Controls.Add(this.cbSpecialAppearForce);
+            this.VersionHelperTab.Controls.Add(this.cbTitle);
+            this.VersionHelperTab.Controls.Add(this.cbLevelExp);
             this.VersionHelperTab.Controls.Add(this.label7);
             this.VersionHelperTab.Controls.Add(this.label6);
             this.VersionHelperTab.Controls.Add(this.label5);
@@ -193,7 +205,7 @@
             this.VersionHelperTab.Controls.Add(this.cbEquip);
             this.VersionHelperTab.Controls.Add(this.cbForceName);
             this.VersionHelperTab.Controls.Add(this.cbForceCategoryName);
-            this.VersionHelperTab.Controls.Add(this.cbSpecialEffect);
+            this.VersionHelperTab.Controls.Add(this.cbSpecialCode);
             this.VersionHelperTab.Controls.Add(this.cbCutin);
             this.VersionHelperTab.Controls.Add(this.cbVoice);
             this.VersionHelperTab.Controls.Add(this.cbCost);
@@ -216,8 +228,74 @@
             this.VersionHelperTab.Padding = new System.Windows.Forms.Padding(3);
             this.VersionHelperTab.Size = new System.Drawing.Size(852, 513);
             this.VersionHelperTab.TabIndex = 1;
-            this.VersionHelperTab.Text = "Data Helper";
+            this.VersionHelperTab.Text = "마이그레이션 헬퍼";
             this.VersionHelperTab.UseVisualStyleBackColor = true;
+            // 
+            // cbSpecialSkill
+            // 
+            this.cbSpecialSkill.AutoSize = true;
+            this.cbSpecialSkill.Enabled = false;
+            this.cbSpecialSkill.Location = new System.Drawing.Point(394, 356);
+            this.cbSpecialSkill.Name = "cbSpecialSkill";
+            this.cbSpecialSkill.Size = new System.Drawing.Size(116, 16);
+            this.cbSpecialSkill.TabIndex = 49;
+            this.cbSpecialSkill.Text = "인물 필살기 설정";
+            this.cbSpecialSkill.UseVisualStyleBackColor = true;
+            // 
+            // cbSpecialEffect
+            // 
+            this.cbSpecialEffect.AutoSize = true;
+            this.cbSpecialEffect.Enabled = false;
+            this.cbSpecialEffect.Location = new System.Drawing.Point(256, 356);
+            this.cbSpecialEffect.Name = "cbSpecialEffect";
+            this.cbSpecialEffect.Size = new System.Drawing.Size(132, 16);
+            this.cbSpecialEffect.TabIndex = 48;
+            this.cbSpecialEffect.Text = "인물,병종 코드 설정";
+            this.cbSpecialEffect.UseVisualStyleBackColor = true;
+            // 
+            // cbAbility
+            // 
+            this.cbAbility.AutoSize = true;
+            this.cbAbility.Enabled = false;
+            this.cbAbility.Location = new System.Drawing.Point(147, 356);
+            this.cbAbility.Name = "cbAbility";
+            this.cbAbility.Size = new System.Drawing.Size(104, 16);
+            this.cbAbility.TabIndex = 47;
+            this.cbAbility.Text = "열전 특화 설정";
+            this.cbAbility.UseVisualStyleBackColor = true;
+            // 
+            // cbSpecialAppearForce
+            // 
+            this.cbSpecialAppearForce.AutoSize = true;
+            this.cbSpecialAppearForce.Enabled = false;
+            this.cbSpecialAppearForce.Location = new System.Drawing.Point(413, 228);
+            this.cbSpecialAppearForce.Name = "cbSpecialAppearForce";
+            this.cbSpecialAppearForce.Size = new System.Drawing.Size(104, 16);
+            this.cbSpecialAppearForce.TabIndex = 45;
+            this.cbSpecialAppearForce.Text = "병종 특수 설정";
+            this.cbSpecialAppearForce.UseVisualStyleBackColor = true;
+            // 
+            // cbTitle
+            // 
+            this.cbTitle.AutoSize = true;
+            this.cbTitle.Enabled = false;
+            this.cbTitle.Location = new System.Drawing.Point(22, 378);
+            this.cbTitle.Name = "cbTitle";
+            this.cbTitle.Size = new System.Drawing.Size(72, 16);
+            this.cbTitle.TabIndex = 44;
+            this.cbTitle.Text = "타이틀명";
+            this.cbTitle.UseVisualStyleBackColor = true;
+            // 
+            // cbLevelExp
+            // 
+            this.cbLevelExp.AutoSize = true;
+            this.cbLevelExp.Enabled = false;
+            this.cbLevelExp.Location = new System.Drawing.Point(22, 356);
+            this.cbLevelExp.Name = "cbLevelExp";
+            this.cbLevelExp.Size = new System.Drawing.Size(120, 16);
+            this.cbLevelExp.TabIndex = 43;
+            this.cbLevelExp.Text = "레벨, 경험치 설정";
+            this.cbLevelExp.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -275,7 +353,7 @@
             // 
             this.cbForceCategoryData.AutoSize = true;
             this.cbForceCategoryData.Enabled = false;
-            this.cbForceCategoryData.Location = new System.Drawing.Point(147, 238);
+            this.cbForceCategoryData.Location = new System.Drawing.Point(147, 206);
             this.cbForceCategoryData.Name = "cbForceCategoryData";
             this.cbForceCategoryData.Size = new System.Drawing.Size(116, 16);
             this.cbForceCategoryData.TabIndex = 37;
@@ -286,7 +364,7 @@
             // 
             this.cbForceSyn.AutoSize = true;
             this.cbForceSyn.Enabled = false;
-            this.cbForceSyn.Location = new System.Drawing.Point(335, 260);
+            this.cbForceSyn.Location = new System.Drawing.Point(335, 228);
             this.cbForceSyn.Name = "cbForceSyn";
             this.cbForceSyn.Size = new System.Drawing.Size(72, 16);
             this.cbForceSyn.TabIndex = 36;
@@ -297,7 +375,7 @@
             // 
             this.cbTerrainSyn.AutoSize = true;
             this.cbTerrainSyn.Enabled = false;
-            this.cbTerrainSyn.Location = new System.Drawing.Point(257, 260);
+            this.cbTerrainSyn.Location = new System.Drawing.Point(257, 228);
             this.cbTerrainSyn.Name = "cbTerrainSyn";
             this.cbTerrainSyn.Size = new System.Drawing.Size(72, 16);
             this.cbTerrainSyn.TabIndex = 35;
@@ -319,7 +397,7 @@
             // 
             this.cbReflect.AutoSize = true;
             this.cbReflect.Enabled = false;
-            this.cbReflect.Location = new System.Drawing.Point(246, 343);
+            this.cbReflect.Location = new System.Drawing.Point(246, 311);
             this.cbReflect.Name = "cbReflect";
             this.cbReflect.Size = new System.Drawing.Size(96, 16);
             this.cbReflect.TabIndex = 31;
@@ -330,7 +408,7 @@
             // 
             this.cbLearn.AutoSize = true;
             this.cbLearn.Enabled = false;
-            this.cbLearn.Location = new System.Drawing.Point(144, 343);
+            this.cbLearn.Location = new System.Drawing.Point(144, 311);
             this.cbLearn.Name = "cbLearn";
             this.cbLearn.Size = new System.Drawing.Size(96, 16);
             this.cbLearn.TabIndex = 30;
@@ -341,7 +419,7 @@
             // 
             this.cbAcc.AutoSize = true;
             this.cbAcc.Enabled = false;
-            this.cbAcc.Location = new System.Drawing.Point(78, 343);
+            this.cbAcc.Location = new System.Drawing.Point(78, 311);
             this.cbAcc.Name = "cbAcc";
             this.cbAcc.Size = new System.Drawing.Size(60, 16);
             this.cbAcc.TabIndex = 29;
@@ -352,7 +430,7 @@
             // 
             this.cbDmgValue.AutoSize = true;
             this.cbDmgValue.Enabled = false;
-            this.cbDmgValue.Location = new System.Drawing.Point(22, 343);
+            this.cbDmgValue.Location = new System.Drawing.Point(22, 311);
             this.cbDmgValue.Name = "cbDmgValue";
             this.cbDmgValue.Size = new System.Drawing.Size(48, 16);
             this.cbDmgValue.TabIndex = 28;
@@ -363,7 +441,7 @@
             // 
             this.cbConditionType.AutoSize = true;
             this.cbConditionType.Enabled = false;
-            this.cbConditionType.Location = new System.Drawing.Point(362, 321);
+            this.cbConditionType.Location = new System.Drawing.Point(362, 289);
             this.cbConditionType.Name = "cbConditionType";
             this.cbConditionType.Size = new System.Drawing.Size(100, 16);
             this.cbConditionType.TabIndex = 27;
@@ -374,7 +452,7 @@
             // 
             this.cbAIType.AutoSize = true;
             this.cbAIType.Enabled = false;
-            this.cbAIType.Location = new System.Drawing.Point(256, 321);
+            this.cbAIType.Location = new System.Drawing.Point(256, 289);
             this.cbAIType.Name = "cbAIType";
             this.cbAIType.Size = new System.Drawing.Size(100, 16);
             this.cbAIType.TabIndex = 26;
@@ -385,7 +463,7 @@
             // 
             this.cbDmgType.AutoSize = true;
             this.cbDmgType.Enabled = false;
-            this.cbDmgType.Location = new System.Drawing.Point(178, 321);
+            this.cbDmgType.Location = new System.Drawing.Point(178, 289);
             this.cbDmgType.Name = "cbDmgType";
             this.cbDmgType.Size = new System.Drawing.Size(72, 16);
             this.cbDmgType.TabIndex = 25;
@@ -396,7 +474,7 @@
             // 
             this.cbHealType.AutoSize = true;
             this.cbHealType.Enabled = false;
-            this.cbHealType.Location = new System.Drawing.Point(100, 321);
+            this.cbHealType.Location = new System.Drawing.Point(100, 289);
             this.cbHealType.Name = "cbHealType";
             this.cbHealType.Size = new System.Drawing.Size(72, 16);
             this.cbHealType.TabIndex = 24;
@@ -407,7 +485,7 @@
             // 
             this.cbMagicType.AutoSize = true;
             this.cbMagicType.Enabled = false;
-            this.cbMagicType.Location = new System.Drawing.Point(22, 321);
+            this.cbMagicType.Location = new System.Drawing.Point(22, 289);
             this.cbMagicType.Name = "cbMagicType";
             this.cbMagicType.Size = new System.Drawing.Size(72, 16);
             this.cbMagicType.TabIndex = 23;
@@ -418,7 +496,7 @@
             // 
             this.cbMagicLv.AutoSize = true;
             this.cbMagicLv.Enabled = false;
-            this.cbMagicLv.Location = new System.Drawing.Point(145, 299);
+            this.cbMagicLv.Location = new System.Drawing.Point(145, 267);
             this.cbMagicLv.Name = "cbMagicLv";
             this.cbMagicLv.Size = new System.Drawing.Size(96, 16);
             this.cbMagicLv.TabIndex = 22;
@@ -429,7 +507,7 @@
             // 
             this.cbEquip.AutoSize = true;
             this.cbEquip.Enabled = false;
-            this.cbEquip.Location = new System.Drawing.Point(155, 260);
+            this.cbEquip.Location = new System.Drawing.Point(155, 228);
             this.cbEquip.Name = "cbEquip";
             this.cbEquip.Size = new System.Drawing.Size(96, 16);
             this.cbEquip.TabIndex = 21;
@@ -440,7 +518,7 @@
             // 
             this.cbForceName.AutoSize = true;
             this.cbForceName.Enabled = false;
-            this.cbForceName.Location = new System.Drawing.Point(23, 260);
+            this.cbForceName.Location = new System.Drawing.Point(23, 228);
             this.cbForceName.Name = "cbForceName";
             this.cbForceName.Size = new System.Drawing.Size(60, 16);
             this.cbForceName.TabIndex = 20;
@@ -451,23 +529,23 @@
             // 
             this.cbForceCategoryName.AutoSize = true;
             this.cbForceCategoryName.Enabled = false;
-            this.cbForceCategoryName.Location = new System.Drawing.Point(89, 260);
+            this.cbForceCategoryName.Location = new System.Drawing.Point(89, 228);
             this.cbForceCategoryName.Name = "cbForceCategoryName";
             this.cbForceCategoryName.Size = new System.Drawing.Size(60, 16);
             this.cbForceCategoryName.TabIndex = 19;
             this.cbForceCategoryName.Text = "계열명";
             this.cbForceCategoryName.UseVisualStyleBackColor = true;
             // 
-            // cbSpecialEffect
+            // cbSpecialCode
             // 
-            this.cbSpecialEffect.AutoSize = true;
-            this.cbSpecialEffect.Enabled = false;
-            this.cbSpecialEffect.Location = new System.Drawing.Point(23, 206);
-            this.cbSpecialEffect.Name = "cbSpecialEffect";
-            this.cbSpecialEffect.Size = new System.Drawing.Size(196, 16);
-            this.cbSpecialEffect.TabIndex = 17;
-            this.cbSpecialEffect.Text = "보물 특수효과 코드번호 및 표기";
-            this.cbSpecialEffect.UseVisualStyleBackColor = true;
+            this.cbSpecialCode.AutoSize = true;
+            this.cbSpecialCode.Enabled = false;
+            this.cbSpecialCode.Location = new System.Drawing.Point(270, 184);
+            this.cbSpecialCode.Name = "cbSpecialCode";
+            this.cbSpecialCode.Size = new System.Drawing.Size(196, 16);
+            this.cbSpecialCode.TabIndex = 17;
+            this.cbSpecialCode.Text = "보물 특수효과 코드번호 및 표기";
+            this.cbSpecialCode.UseVisualStyleBackColor = true;
             // 
             // cbCutin
             // 
@@ -528,7 +606,7 @@
             // 
             this.cbMagicData.AutoSize = true;
             this.cbMagicData.Enabled = false;
-            this.cbMagicData.Location = new System.Drawing.Point(23, 299);
+            this.cbMagicData.Location = new System.Drawing.Point(23, 267);
             this.cbMagicData.Name = "cbMagicData";
             this.cbMagicData.Size = new System.Drawing.Size(116, 16);
             this.cbMagicData.TabIndex = 11;
@@ -539,7 +617,7 @@
             // 
             this.cbForceData.AutoSize = true;
             this.cbForceData.Enabled = false;
-            this.cbForceData.Location = new System.Drawing.Point(23, 238);
+            this.cbForceData.Location = new System.Drawing.Point(23, 206);
             this.cbForceData.Name = "cbForceData";
             this.cbForceData.Size = new System.Drawing.Size(116, 16);
             this.cbForceData.TabIndex = 10;
@@ -684,7 +762,7 @@
         private System.Windows.Forms.TextBox tbOriginPath;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox cbSpecialEffect;
+        private System.Windows.Forms.CheckBox cbSpecialCode;
         private System.Windows.Forms.CheckBox cbCutin;
         private System.Windows.Forms.CheckBox cbVoice;
         private System.Windows.Forms.CheckBox cbCost;
@@ -715,5 +793,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox cbSpecialAppearForce;
+        private System.Windows.Forms.CheckBox cbTitle;
+        private System.Windows.Forms.CheckBox cbLevelExp;
+        private System.Windows.Forms.CheckBox cbSpecialSkill;
+        private System.Windows.Forms.CheckBox cbSpecialEffect;
+        private System.Windows.Forms.CheckBox cbAbility;
     }
 }

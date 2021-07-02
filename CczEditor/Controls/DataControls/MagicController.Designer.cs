@@ -1,6 +1,6 @@
 ﻿namespace CczEditor.Controls.DataControls
 {
-	partial class MagicData
+	partial class MagicController
 	{
 		/// <summary>
 		/// 必需的设计器变量。
@@ -37,31 +37,31 @@
             this.lblEffarea = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblHitarea = new System.Windows.Forms.Label();
-            this.m7 = new System.Windows.Forms.NumericUpDown();
+            this.cbLearnType = new System.Windows.Forms.NumericUpDown();
             this.lblTarget = new System.Windows.Forms.Label();
-            this.reflect = new System.Windows.Forms.ComboBox();
+            this.cbReflect = new System.Windows.Forms.ComboBox();
             this.lblMagicType = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.cbHitarea = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.ncMagicType = new CczEditor.Controls.NumericControl();
-            this.m9 = new System.Windows.Forms.NumericUpDown();
+            this.cbAccRate = new System.Windows.Forms.NumericUpDown();
             this.ncMpCost = new CczEditor.Controls.NumericControl();
-            this.m8 = new System.Windows.Forms.NumericUpDown();
+            this.cbDmgValue = new System.Windows.Forms.NumericUpDown();
             this.lblName = new System.Windows.Forms.Label();
             this.cbTarget = new System.Windows.Forms.ComboBox();
-            this.m6 = new System.Windows.Forms.ComboBox();
+            this.cbCondition = new System.Windows.Forms.ComboBox();
             this.cbEffarea = new System.Windows.Forms.ComboBox();
-            this.m5 = new System.Windows.Forms.ComboBox();
+            this.cbAiType = new System.Windows.Forms.ComboBox();
             this.txtName = new CczEditor.Controls.TextBoxControl();
             this.label11 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.m3 = new System.Windows.Forms.NumericUpDown();
+            this.cbMeff = new System.Windows.Forms.NumericUpDown();
             this.pbEffarea = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.pbHitarea = new System.Windows.Forms.PictureBox();
-            this.m4 = new System.Windows.Forms.ComboBox();
+            this.cbMcall = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lblMagicIcon = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -72,9 +72,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.pbIcon = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.m2 = new System.Windows.Forms.ComboBox();
-            this.m0 = new System.Windows.Forms.ComboBox();
-            this.m1 = new System.Windows.Forms.ComboBox();
+            this.cbHealType = new System.Windows.Forms.ComboBox();
+            this.cbMagicType = new System.Windows.Forms.ComboBox();
+            this.cbDmgType = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.dp2 = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -99,12 +99,12 @@
             this.tlpMainContainer.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconSmall)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbLearnType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMagicType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbAccRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMpCost)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbDmgValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbMeff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEffarea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHitarea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMagicIcon)).BeginInit();
@@ -144,31 +144,31 @@
             this.groupBox1.Controls.Add(this.lblEffarea);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.lblHitarea);
-            this.groupBox1.Controls.Add(this.m7);
+            this.groupBox1.Controls.Add(this.cbLearnType);
             this.groupBox1.Controls.Add(this.lblTarget);
-            this.groupBox1.Controls.Add(this.reflect);
+            this.groupBox1.Controls.Add(this.cbReflect);
             this.groupBox1.Controls.Add(this.lblMagicType);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.cbHitarea);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.ncMagicType);
-            this.groupBox1.Controls.Add(this.m9);
+            this.groupBox1.Controls.Add(this.cbAccRate);
             this.groupBox1.Controls.Add(this.ncMpCost);
-            this.groupBox1.Controls.Add(this.m8);
+            this.groupBox1.Controls.Add(this.cbDmgValue);
             this.groupBox1.Controls.Add(this.lblName);
             this.groupBox1.Controls.Add(this.cbTarget);
-            this.groupBox1.Controls.Add(this.m6);
+            this.groupBox1.Controls.Add(this.cbCondition);
             this.groupBox1.Controls.Add(this.cbEffarea);
-            this.groupBox1.Controls.Add(this.m5);
+            this.groupBox1.Controls.Add(this.cbAiType);
             this.groupBox1.Controls.Add(this.txtName);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.m3);
+            this.groupBox1.Controls.Add(this.cbMeff);
             this.groupBox1.Controls.Add(this.pbEffarea);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.pbHitarea);
-            this.groupBox1.Controls.Add(this.m4);
+            this.groupBox1.Controls.Add(this.cbMcall);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.lblMagicIcon);
             this.groupBox1.Controls.Add(this.label3);
@@ -177,9 +177,9 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.pbIcon);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.m2);
-            this.groupBox1.Controls.Add(this.m0);
-            this.groupBox1.Controls.Add(this.m1);
+            this.groupBox1.Controls.Add(this.cbHealType);
+            this.groupBox1.Controls.Add(this.cbMagicType);
+            this.groupBox1.Controls.Add(this.cbDmgType);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.dp2);
             this.groupBox1.Controls.Add(this.label15);
@@ -274,16 +274,16 @@
             // 
             // m7
             // 
-            this.m7.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.m7.Location = new System.Drawing.Point(544, 222);
-            this.m7.Maximum = new decimal(new int[] {
+            this.cbLearnType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbLearnType.Location = new System.Drawing.Point(544, 222);
+            this.cbLearnType.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.m7.Name = "m7";
-            this.m7.Size = new System.Drawing.Size(133, 23);
-            this.m7.TabIndex = 63;
+            this.cbLearnType.Name = "m7";
+            this.cbLearnType.Size = new System.Drawing.Size(133, 23);
+            this.cbLearnType.TabIndex = 63;
             // 
             // lblTarget
             // 
@@ -298,17 +298,17 @@
             // 
             // reflect
             // 
-            this.reflect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.reflect.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.reflect.FormattingEnabled = true;
-            this.reflect.Items.AddRange(new object[] {
+            this.cbReflect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbReflect.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbReflect.FormattingEnabled = true;
+            this.cbReflect.Items.AddRange(new object[] {
             "00, 책략반사가능",
             "01, 책략반사불가"});
-            this.reflect.Location = new System.Drawing.Point(544, 251);
-            this.reflect.Name = "reflect";
-            this.reflect.Size = new System.Drawing.Size(133, 23);
-            this.reflect.TabIndex = 62;
-            this.reflect.Visible = false;
+            this.cbReflect.Location = new System.Drawing.Point(544, 251);
+            this.cbReflect.Name = "reflect";
+            this.cbReflect.Size = new System.Drawing.Size(133, 23);
+            this.cbReflect.TabIndex = 62;
+            this.cbReflect.Visible = false;
             // 
             // lblMagicType
             // 
@@ -370,12 +370,12 @@
             // 
             // m9
             // 
-            this.m9.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.m9.Location = new System.Drawing.Point(544, 193);
-            this.m9.Name = "m9";
-            this.m9.Size = new System.Drawing.Size(133, 23);
-            this.m9.TabIndex = 46;
-            this.m9.Value = new decimal(new int[] {
+            this.cbAccRate.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbAccRate.Location = new System.Drawing.Point(544, 193);
+            this.cbAccRate.Name = "m9";
+            this.cbAccRate.Size = new System.Drawing.Size(133, 23);
+            this.cbAccRate.TabIndex = 46;
+            this.cbAccRate.Value = new decimal(new int[] {
             100,
             0,
             0,
@@ -398,17 +398,17 @@
             // 
             // m8
             // 
-            this.m8.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.m8.Location = new System.Drawing.Point(544, 164);
-            this.m8.Maximum = new decimal(new int[] {
+            this.cbDmgValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbDmgValue.Location = new System.Drawing.Point(544, 164);
+            this.cbDmgValue.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.m8.Name = "m8";
-            this.m8.Size = new System.Drawing.Size(133, 23);
-            this.m8.TabIndex = 45;
-            this.m8.Value = new decimal(new int[] {
+            this.cbDmgValue.Name = "m8";
+            this.cbDmgValue.Size = new System.Drawing.Size(133, 23);
+            this.cbDmgValue.TabIndex = 45;
+            this.cbDmgValue.Value = new decimal(new int[] {
             255,
             0,
             0,
@@ -441,10 +441,10 @@
             // 
             // m6
             // 
-            this.m6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.m6.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.m6.FormattingEnabled = true;
-            this.m6.Items.AddRange(new object[] {
+            this.cbCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCondition.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbCondition.FormattingEnabled = true;
+            this.cbCondition.Items.AddRange(new object[] {
             "00, 비올 때 사용불가",
             "01, 명상",
             "02, 날씨열악 & 장비착용",
@@ -452,10 +452,10 @@
             "04, 날씨흐림 & 장비착용",
             "05, 장비착용",
             "06, 조건 없음"});
-            this.m6.Location = new System.Drawing.Point(544, 133);
-            this.m6.Name = "m6";
-            this.m6.Size = new System.Drawing.Size(133, 23);
-            this.m6.TabIndex = 41;
+            this.cbCondition.Location = new System.Drawing.Point(544, 133);
+            this.cbCondition.Name = "m6";
+            this.cbCondition.Size = new System.Drawing.Size(133, 23);
+            this.cbCondition.TabIndex = 41;
             // 
             // cbEffarea
             // 
@@ -470,10 +470,10 @@
             // 
             // m5
             // 
-            this.m5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.m5.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.m5.FormattingEnabled = true;
-            this.m5.Items.AddRange(new object[] {
+            this.cbAiType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAiType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbAiType.FormattingEnabled = true;
+            this.cbAiType.Items.AddRange(new object[] {
             "00, 화계 및 수계",
             "01, 풍계",
             "02, 지계",
@@ -490,10 +490,10 @@
             "0D, 사용 불가",
             "0E, 낮은 확률",
             "0F, 능력상승"});
-            this.m5.Location = new System.Drawing.Point(544, 104);
-            this.m5.Name = "m5";
-            this.m5.Size = new System.Drawing.Size(133, 23);
-            this.m5.TabIndex = 40;
+            this.cbAiType.Location = new System.Drawing.Point(544, 104);
+            this.cbAiType.Name = "m5";
+            this.cbAiType.Size = new System.Drawing.Size(133, 23);
+            this.cbAiType.TabIndex = 40;
             // 
             // txtName
             // 
@@ -536,17 +536,17 @@
             // 
             // m3
             // 
-            this.m3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.m3.Location = new System.Drawing.Point(105, 207);
-            this.m3.Maximum = new decimal(new int[] {
+            this.cbMeff.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbMeff.Location = new System.Drawing.Point(105, 207);
+            this.cbMeff.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.m3.Name = "m3";
-            this.m3.Size = new System.Drawing.Size(103, 23);
-            this.m3.TabIndex = 43;
-            this.m3.Value = new decimal(new int[] {
+            this.cbMeff.Name = "m3";
+            this.cbMeff.Size = new System.Drawing.Size(103, 23);
+            this.cbMeff.TabIndex = 43;
+            this.cbMeff.Value = new decimal(new int[] {
             255,
             0,
             0,
@@ -583,13 +583,13 @@
             // 
             // m4
             // 
-            this.m4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.m4.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.m4.FormattingEnabled = true;
-            this.m4.Location = new System.Drawing.Point(105, 236);
-            this.m4.Name = "m4";
-            this.m4.Size = new System.Drawing.Size(103, 23);
-            this.m4.TabIndex = 48;
+            this.cbMcall.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMcall.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbMcall.FormattingEnabled = true;
+            this.cbMcall.Location = new System.Drawing.Point(105, 236);
+            this.cbMcall.Name = "m4";
+            this.cbMcall.Size = new System.Drawing.Size(103, 23);
+            this.cbMcall.TabIndex = 48;
             // 
             // label8
             // 
@@ -706,26 +706,26 @@
             // 
             // m2
             // 
-            this.m2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.m2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.m2.FormattingEnabled = true;
-            this.m2.Items.AddRange(new object[] {
+            this.cbHealType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHealType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbHealType.FormattingEnabled = true;
+            this.cbHealType.Items.AddRange(new object[] {
             "00, 백호",
             "01, 소보급",
             "02, 대보급",
             "03, MP회복",
             "04, 회복 없음"});
-            this.m2.Location = new System.Drawing.Point(544, 77);
-            this.m2.Name = "m2";
-            this.m2.Size = new System.Drawing.Size(133, 23);
-            this.m2.TabIndex = 39;
+            this.cbHealType.Location = new System.Drawing.Point(544, 77);
+            this.cbHealType.Name = "m2";
+            this.cbHealType.Size = new System.Drawing.Size(133, 23);
+            this.cbHealType.TabIndex = 39;
             // 
             // m0
             // 
-            this.m0.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.m0.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.m0.FormattingEnabled = true;
-            this.m0.Items.AddRange(new object[] {
+            this.cbMagicType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMagicType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbMagicType.FormattingEnabled = true;
+            this.cbMagicType.Items.AddRange(new object[] {
             "00, HP감소",
             "01, 전범위공격",
             "02, 적군조종",
@@ -766,26 +766,26 @@
             "25, 추가코드",
             "26, 추가코드",
             "27. 추가코드"});
-            this.m0.Location = new System.Drawing.Point(544, 22);
-            this.m0.Name = "m0";
-            this.m0.Size = new System.Drawing.Size(133, 23);
-            this.m0.TabIndex = 37;
+            this.cbMagicType.Location = new System.Drawing.Point(544, 22);
+            this.cbMagicType.Name = "m0";
+            this.cbMagicType.Size = new System.Drawing.Size(133, 23);
+            this.cbMagicType.TabIndex = 37;
             // 
             // m1
             // 
-            this.m1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.m1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.m1.FormattingEnabled = true;
-            this.m1.Items.AddRange(new object[] {
+            this.cbDmgType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDmgType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbDmgType.FormattingEnabled = true;
+            this.cbDmgType.Items.AddRange(new object[] {
             "00, 일반 피해",
             "01, 확률 피해",
             "02, 팔진도",
             "03, 청룡,주작",
             "04, 피해 없음"});
-            this.m1.Location = new System.Drawing.Point(544, 50);
-            this.m1.Name = "m1";
-            this.m1.Size = new System.Drawing.Size(133, 23);
-            this.m1.TabIndex = 38;
+            this.cbDmgType.Location = new System.Drawing.Point(544, 50);
+            this.cbDmgType.Name = "m1";
+            this.cbDmgType.Size = new System.Drawing.Size(133, 23);
+            this.cbDmgType.TabIndex = 38;
             // 
             // label12
             // 
@@ -1073,12 +1073,12 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconSmall)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbLearnType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMagicType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbAccRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMpCost)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.m3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbDmgValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbMeff)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEffarea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHitarea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ncMagicIcon)).EndInit();
@@ -1135,15 +1135,15 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox m0;
-        private System.Windows.Forms.ComboBox m1;
-        private System.Windows.Forms.ComboBox m2;
-        private System.Windows.Forms.ComboBox m5;
-        private System.Windows.Forms.ComboBox m6;
-        private System.Windows.Forms.NumericUpDown m3;
-        private System.Windows.Forms.NumericUpDown m8;
-        private System.Windows.Forms.NumericUpDown m9;
-        private System.Windows.Forms.ComboBox m4;
+        private System.Windows.Forms.ComboBox cbMagicType;
+        private System.Windows.Forms.ComboBox cbDmgType;
+        private System.Windows.Forms.ComboBox cbHealType;
+        private System.Windows.Forms.ComboBox cbAiType;
+        private System.Windows.Forms.ComboBox cbCondition;
+        private System.Windows.Forms.NumericUpDown cbMeff;
+        private System.Windows.Forms.NumericUpDown cbDmgValue;
+        private System.Windows.Forms.NumericUpDown cbAccRate;
+        private System.Windows.Forms.ComboBox cbMcall;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox mda1;
         private System.Windows.Forms.Label label1;
@@ -1155,8 +1155,8 @@
         private System.Windows.Forms.ComboBox dp2;
         private System.Windows.Forms.ComboBox dp3;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox reflect;
-        private System.Windows.Forms.NumericUpDown m7;
+        private System.Windows.Forms.ComboBox cbReflect;
+        private System.Windows.Forms.NumericUpDown cbLearnType;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button searchButton;
         private TextBoxControl searchTextBox;

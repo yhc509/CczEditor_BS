@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace CczEditor.Controls.DataControls
 {
-    public partial class MoveUnits : Form
+    public partial class MoveUnitsPopup : Form
     {
-        public MoveUnits()
+        public MoveUnitsPopup()
         {
             InitializeComponent();
             ClearItems();
@@ -122,13 +122,13 @@ namespace CczEditor.Controls.DataControls
             for (int i = 0; i < destUnitListBox.CheckedIndices.Count; i++)
             {
                 var dest = new CczEditor.Data.Wrapper.UnitData();
-                dest.Read(destList[i]);
+                dest.Read(destList[i], Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
 
                 var source = new CczEditor.Data.Wrapper.UnitData();
-                source.Read(sourceList[i]);
-                source.Write(destList[i]);
+                source.Read(sourceList[i], Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig); ;
+                source.Write(destList[i], Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
 
-                dest.Write(sourceList[i]);
+                dest.Write(sourceList[i], Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
             }
             Program.ExeData.Close();
 

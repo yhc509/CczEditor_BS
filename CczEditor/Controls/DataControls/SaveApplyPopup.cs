@@ -81,7 +81,7 @@ namespace CczEditor.Controls.DataControls
                 for(int i = 0; i < count; i++)
                 {
                     var unit = new Data.Wrapper.UnitData();
-                    unit.Read(i);
+                    unit.Read(i, Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
 
                     Utils.ChangeByteValue(binary, BitConverter.GetBytes(unit.Face), i * 2);
                 }

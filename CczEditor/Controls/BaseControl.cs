@@ -47,6 +47,12 @@ namespace CczEditor.Controls
             get { return Program.StarData != null; }
         }
 
+
+        public virtual void Reset()
+        {
+
+        }
+
         protected void GetResourcesItemIcon()
         {
             if (ItemIcons != null)

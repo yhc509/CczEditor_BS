@@ -9,12 +9,14 @@ using System.Windows.Forms;
 
 namespace CczEditor.Controls.DataControls
 {
-    public partial class sangseong : Form
+    public partial class ForceSynastryController : Form
     {
-        public sangseong()
+        private Data.Wrapper.ForceSynastryData CurrentSynastryData;
+
+        public ForceSynastryController()
         {
             InitializeComponent();
-            var forceNames = ConfigUtils.GetForceCategoryNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2);
+            var forceNames = ConfigUtils.GetForceCategoryNames(Program.ExeData, Program.CurrentConfig, Program.FORMATSTRING_KEYVALUEPAIR_HEX2);
             listBox1.Items.AddRange(forceNames.Values.ToArray());
             for (var i = 0; i < forceNames.Count; i++)
             {
@@ -22,15 +24,18 @@ namespace CczEditor.Controls.DataControls
                 item.SubItems.Add(forceNames[i]);
                 lvLearnLv.Items.Add(item);
             }
+            CurrentSynastryData = new Data.Wrapper.ForceSynastryData();
             listBox1.SelectedIndex = 0;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (var i = 0; i < Program.CurrentConfig.ForceCategoryNames.Count; i++)
+            int index = listBox1.SelectedIndex;
+            CurrentSynastryData.Read(index, Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
+
+            for (var i = 0; i < CurrentSynastryData.Values.Length; i++)
             {
-                var offset = Program.CurrentConfig.Exe.Force.SynastryOffset + (listBox1.SelectedIndex * Program.CurrentConfig.ForceCategoryNames.Count) + i;
-                lvLearnLv.Items[i].Text = Program.ExeData.ReadByte(0, offset).ToString();
+                lvLearnLv.Items[i].Text = CurrentSynastryData.Values[i].ToString();
             }
         }
 
@@ -44,12 +49,12 @@ namespace CczEditor.Controls.DataControls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            for (var i = 0; i < Program.CurrentConfig.ForceCategoryNames.Count; i++)
+            int index = listBox1.SelectedIndex;
+            for (var i = 0; i < CurrentSynastryData.Values.Length; i++)
             {
-                byte value = byte.Parse(lvLearnLv.Items[i].Text);
-                var offset = Program.CurrentConfig.Exe.Force.SynastryOffset + (listBox1.SelectedIndex * Program.CurrentConfig.ForceCategoryNames.Count) + i;
-                Program.ExeData.WriteByte(value, 0, offset);
+                CurrentSynastryData.Values[i] = byte.Parse(lvLearnLv.Items[i].Text);
             }
+            CurrentSynastryData.Write(index, Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
         }
         private void lvLearnLv_ItemActivate(object sender, EventArgs e)
         {

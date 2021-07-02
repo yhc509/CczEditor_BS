@@ -68,14 +68,24 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.EtcSave = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.SpecialAppearForceList1 = new System.Windows.Forms.ComboBox();
-            this.SpecialAppearForceList2 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.KnockBackForceList = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.SpecialSkillDmgForceList = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.KnockBackForceList = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.SpecialAppearForceList2 = new System.Windows.Forms.ComboBox();
+            this.SpecialAppearForceList1 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.EtcSave = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbNeighborMorInc = new System.Windows.Forms.ComboBox();
+            this.cbNeighborAwaken = new System.Windows.Forms.ComboBox();
+            this.cbNeighborHPRec = new System.Windows.Forms.ComboBox();
+            this.cbNeighborMpRec = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cbMagicBlock = new System.Windows.Forms.ComboBox();
             this.groupBox14.SuspendLayout();
             this.groupBox15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SecondEquipStartLevel)).BeginInit();
@@ -503,6 +513,16 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbMagicBlock);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.cbNeighborMpRec);
+            this.groupBox1.Controls.Add(this.cbNeighborHPRec);
+            this.groupBox1.Controls.Add(this.cbNeighborAwaken);
+            this.groupBox1.Controls.Add(this.cbNeighborMorInc);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.SpecialSkillDmgForceList);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.KnockBackForceList);
@@ -513,65 +533,19 @@
             this.groupBox1.Controls.Add(this.EtcSave);
             this.groupBox1.Location = new System.Drawing.Point(146, 332);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(557, 246);
+            this.groupBox1.Size = new System.Drawing.Size(733, 246);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "기타 설정";
+            this.groupBox1.Text = "병종 특수 설정";
             // 
-            // EtcSave
+            // SpecialSkillDmgForceList
             // 
-            this.EtcSave.Location = new System.Drawing.Point(476, 217);
-            this.EtcSave.Name = "EtcSave";
-            this.EtcSave.Size = new System.Drawing.Size(75, 23);
-            this.EtcSave.TabIndex = 24;
-            this.EtcSave.Text = "저장";
-            this.EtcSave.UseVisualStyleBackColor = true;
-            this.EtcSave.Click += new System.EventHandler(this.EtcSave_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 43);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 12);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "등장 특수효과 병종";
-            // 
-            // SpecialAppearForceList1
-            // 
-            this.SpecialAppearForceList1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SpecialAppearForceList1.FormattingEnabled = true;
-            this.SpecialAppearForceList1.Location = new System.Drawing.Point(144, 40);
-            this.SpecialAppearForceList1.Name = "SpecialAppearForceList1";
-            this.SpecialAppearForceList1.Size = new System.Drawing.Size(107, 20);
-            this.SpecialAppearForceList1.TabIndex = 28;
-            // 
-            // SpecialAppearForceList2
-            // 
-            this.SpecialAppearForceList2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SpecialAppearForceList2.FormattingEnabled = true;
-            this.SpecialAppearForceList2.Location = new System.Drawing.Point(258, 40);
-            this.SpecialAppearForceList2.Name = "SpecialAppearForceList2";
-            this.SpecialAppearForceList2.Size = new System.Drawing.Size(107, 20);
-            this.SpecialAppearForceList2.TabIndex = 29;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 82);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 12);
-            this.label3.TabIndex = 30;
-            this.label3.Text = "돌파공격 병종";
-            // 
-            // KnockBackForceList
-            // 
-            this.KnockBackForceList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.KnockBackForceList.FormattingEnabled = true;
-            this.KnockBackForceList.Location = new System.Drawing.Point(144, 79);
-            this.KnockBackForceList.Name = "KnockBackForceList";
-            this.KnockBackForceList.Size = new System.Drawing.Size(107, 20);
-            this.KnockBackForceList.TabIndex = 31;
+            this.SpecialSkillDmgForceList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SpecialSkillDmgForceList.FormattingEnabled = true;
+            this.SpecialSkillDmgForceList.Location = new System.Drawing.Point(144, 116);
+            this.SpecialSkillDmgForceList.Name = "SpecialSkillDmgForceList";
+            this.SpecialSkillDmgForceList.Size = new System.Drawing.Size(107, 20);
+            this.SpecialSkillDmgForceList.TabIndex = 33;
             // 
             // label4
             // 
@@ -582,14 +556,150 @@
             this.label4.TabIndex = 32;
             this.label4.Text = "유혹 책략 강화 병종";
             // 
-            // SpecialSkillDmgForceList
+            // KnockBackForceList
             // 
-            this.SpecialSkillDmgForceList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SpecialSkillDmgForceList.FormattingEnabled = true;
-            this.SpecialSkillDmgForceList.Location = new System.Drawing.Point(144, 116);
-            this.SpecialSkillDmgForceList.Name = "SpecialSkillDmgForceList";
-            this.SpecialSkillDmgForceList.Size = new System.Drawing.Size(107, 20);
-            this.SpecialSkillDmgForceList.TabIndex = 33;
+            this.KnockBackForceList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KnockBackForceList.FormattingEnabled = true;
+            this.KnockBackForceList.Location = new System.Drawing.Point(144, 79);
+            this.KnockBackForceList.Name = "KnockBackForceList";
+            this.KnockBackForceList.Size = new System.Drawing.Size(107, 20);
+            this.KnockBackForceList.TabIndex = 31;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(19, 82);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 12);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "돌파공격 병종";
+            // 
+            // SpecialAppearForceList2
+            // 
+            this.SpecialAppearForceList2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SpecialAppearForceList2.FormattingEnabled = true;
+            this.SpecialAppearForceList2.Location = new System.Drawing.Point(258, 40);
+            this.SpecialAppearForceList2.Name = "SpecialAppearForceList2";
+            this.SpecialAppearForceList2.Size = new System.Drawing.Size(107, 20);
+            this.SpecialAppearForceList2.TabIndex = 29;
+            // 
+            // SpecialAppearForceList1
+            // 
+            this.SpecialAppearForceList1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SpecialAppearForceList1.FormattingEnabled = true;
+            this.SpecialAppearForceList1.Location = new System.Drawing.Point(144, 40);
+            this.SpecialAppearForceList1.Name = "SpecialAppearForceList1";
+            this.SpecialAppearForceList1.Size = new System.Drawing.Size(107, 20);
+            this.SpecialAppearForceList1.TabIndex = 28;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(19, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(109, 12);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "등장 특수효과 병종";
+            // 
+            // EtcSave
+            // 
+            this.EtcSave.Location = new System.Drawing.Point(639, 217);
+            this.EtcSave.Name = "EtcSave";
+            this.EtcSave.Size = new System.Drawing.Size(75, 23);
+            this.EtcSave.TabIndex = 24;
+            this.EtcSave.Text = "저장";
+            this.EtcSave.UseVisualStyleBackColor = true;
+            this.EtcSave.Click += new System.EventHandler(this.EtcSave_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(19, 157);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(113, 12);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "주위 사기 상승 병종";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(272, 157);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(101, 12);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "주위 HP회복 병종";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(272, 192);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(104, 12);
+            this.label7.TabIndex = 36;
+            this.label7.Text = "주위 MP회복 병종";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(19, 192);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(125, 12);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "주위 상태 회복 병종계";
+            // 
+            // cbNeighborMorInc
+            // 
+            this.cbNeighborMorInc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbNeighborMorInc.FormattingEnabled = true;
+            this.cbNeighborMorInc.Location = new System.Drawing.Point(144, 154);
+            this.cbNeighborMorInc.Name = "cbNeighborMorInc";
+            this.cbNeighborMorInc.Size = new System.Drawing.Size(107, 20);
+            this.cbNeighborMorInc.TabIndex = 38;
+            // 
+            // cbNeighborAwaken
+            // 
+            this.cbNeighborAwaken.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbNeighborAwaken.FormattingEnabled = true;
+            this.cbNeighborAwaken.Location = new System.Drawing.Point(144, 189);
+            this.cbNeighborAwaken.Name = "cbNeighborAwaken";
+            this.cbNeighborAwaken.Size = new System.Drawing.Size(107, 20);
+            this.cbNeighborAwaken.TabIndex = 39;
+            // 
+            // cbNeighborHPRec
+            // 
+            this.cbNeighborHPRec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbNeighborHPRec.FormattingEnabled = true;
+            this.cbNeighborHPRec.Location = new System.Drawing.Point(379, 154);
+            this.cbNeighborHPRec.Name = "cbNeighborHPRec";
+            this.cbNeighborHPRec.Size = new System.Drawing.Size(107, 20);
+            this.cbNeighborHPRec.TabIndex = 40;
+            // 
+            // cbNeighborMpRec
+            // 
+            this.cbNeighborMpRec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbNeighborMpRec.FormattingEnabled = true;
+            this.cbNeighborMpRec.Location = new System.Drawing.Point(379, 189);
+            this.cbNeighborMpRec.Name = "cbNeighborMpRec";
+            this.cbNeighborMpRec.Size = new System.Drawing.Size(107, 20);
+            this.cbNeighborMpRec.TabIndex = 41;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(272, 119);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 12);
+            this.label9.TabIndex = 42;
+            this.label9.Text = "책략면역 병종";
+            // 
+            // cbMagicBlock
+            // 
+            this.cbMagicBlock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMagicBlock.FormattingEnabled = true;
+            this.cbMagicBlock.Location = new System.Drawing.Point(379, 116);
+            this.cbMagicBlock.Name = "cbMagicBlock";
+            this.cbMagicBlock.Size = new System.Drawing.Size(107, 20);
+            this.cbMagicBlock.TabIndex = 43;
             // 
             // ProjectController
             // 
@@ -677,5 +787,15 @@
         private System.Windows.Forms.ComboBox SpecialAppearForceList2;
         private System.Windows.Forms.ComboBox SpecialAppearForceList1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbNeighborMpRec;
+        private System.Windows.Forms.ComboBox cbNeighborHPRec;
+        private System.Windows.Forms.ComboBox cbNeighborAwaken;
+        private System.Windows.Forms.ComboBox cbNeighborMorInc;
+        private System.Windows.Forms.ComboBox cbMagicBlock;
+        private System.Windows.Forms.Label label9;
     }
 }

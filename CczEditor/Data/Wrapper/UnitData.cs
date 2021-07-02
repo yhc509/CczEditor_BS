@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CczEditor.Data.Wrapper
 {
-    public class UnitData : WrapperData<UnitData>
+    public class UnitData
     {
         public string Name;
         public ushort Face;
@@ -38,15 +38,14 @@ namespace CczEditor.Data.Wrapper
 
 
         #region Write
-        public void Write(int index)
+        public void Write(int index, GameData gameData, ImsgData imsgData, ExeData exeData, Config config)
         {
-            // TODO 폐기 예정
-            WriteGameData(index, Program.GameData);
-            WriteImsgData(index, Program.ImsgData);
-            WriteExeData(index, Program.ExeData);
+            WriteGameData(index, gameData, config);
+            WriteImsgData(index, imsgData, config);
+            WriteExeData(index, exeData, config);
         }
 
-        public void WriteGameData(int index, GameData gameData)
+        public void WriteGameData(int index, GameData gameData, Config config)
         {
             byte[] result = new byte[0x48];
 
@@ -75,7 +74,7 @@ namespace CczEditor.Data.Wrapper
                 gameData.UnitSet(index, result);
         }
 
-        public void WriteImsgData(int index, ImsgData targetData)
+        public void WriteImsgData(int index, ImsgData targetData, Config config)
         {
             if (targetData.IsExist)
             {
@@ -98,39 +97,39 @@ namespace CczEditor.Data.Wrapper
             }
         }
 
-        public void WriteExeData(int index, ExeData targetData)
+        public void WriteExeData(int index, ExeData targetData, Config config)
         {
             if (!targetData.IsLocked)
             {
-                targetData.WriteWord(Pmapobj, index, Program.CurrentConfig.Exe.UnitPmapObjOffset);
-                targetData.WriteWord(BattleObj, index, Program.CurrentConfig.Exe.UnitBattleObjOffset);
-                targetData.WriteByte(CharacterType, index, Program.CurrentConfig.Exe.UnitCharacterOffset);
+                targetData.WriteWord(Pmapobj, index, config.Exe.UnitPmapObjOffset);
+                targetData.WriteWord(BattleObj, index, config.Exe.UnitBattleObjOffset);
+                targetData.WriteByte(CharacterType, index, config.Exe.UnitCharacterOffset);
                 if (index <= 255)
                 {
-                    if (Program.CurrentConfig.CodeOptionContainer.UseVoice)
-                        targetData.WriteByte(Voice, index, Program.CurrentConfig.Exe.UnitVoiceOffset);
-                    if (Program.CurrentConfig.CodeOptionContainer.UseCost)
-                        targetData.WriteByte(Cost, index, Program.CurrentConfig.Exe.UnitCostOffset);
-                    if (Program.CurrentConfig.CodeOptionContainer.UseCutin)
-                        targetData.WriteByte(Cutin, index, Program.CurrentConfig.Exe.UnitCutinOffset);
+                    if (config.CodeOptionContainer.UseVoice)
+                        targetData.WriteByte(Voice, index, config.Exe.UnitVoiceOffset);
+                    if (config.CodeOptionContainer.UseCost)
+                        targetData.WriteByte(Cost, index, config.Exe.UnitCostOffset);
+                    if (config.CodeOptionContainer.UseCutin)
+                        targetData.WriteByte(Cutin, index, config.Exe.UnitCutinOffset);
                 }
             }
         }
         #endregion
 
         #region Read
-        public void Read(int index)
+        public void Read(int index, GameData gameData, ImsgData imsgData, ExeData exeData, Config config)
         {
-            ReadGameData(index);
-            ReadImsgData(index);
-            ReadExeData(index);
+            ReadGameData(index, gameData, config);
+            ReadImsgData(index, imsgData, config);
+            ReadExeData(index, exeData, config);
         }
 
-        public void ReadGameData(int index)
+        public void ReadGameData(int index, GameData targetData, Config config)
         {
-            if (Program.GameData.IsExist)
+            if (targetData.IsExist)
             {
-                var unit = Program.GameData.UnitGet(index);
+                var unit = targetData.UnitGet(index);
                 Name = Utils.ByteToString(unit, 0, 12);
 
                 Face = BitConverter.ToUInt16(unit, 13);
@@ -148,37 +147,38 @@ namespace CczEditor.Data.Wrapper
             }
         }
 
-        public void ReadImsgData(int index)
+        public void ReadImsgData(int index, ImsgData targetData, Config config)
         {
-            if (Program.ImsgData.IsExist)
+            if (targetData.IsExist)
             {
-                Imsg = Utils.ByteToString(Program.ImsgData.UnitExtensionGet(index), 0, Program.IMSG_DATA_BLOCK_LENGTH);
+                Imsg = Utils.ByteToString(targetData.UnitExtensionGet(index), 0, Program.IMSG_DATA_BLOCK_LENGTH);
                 if (index < Program.IMSG_RETREAT_COUNT)
                 {
-                    Retreat = Utils.ByteToString(Program.ImsgData.RetreatGet(index), 0, Program.IMSG_DATA_BLOCK_LENGTH);
+                    Retreat = Utils.ByteToString(targetData.RetreatGet(index), 0, Program.IMSG_DATA_BLOCK_LENGTH);
                 }
             }
         }
 
-        public void ReadExeData(int index)
+        public void ReadExeData(int index, ExeData targetData, Config config)
         {
-            if (!Program.ExeData.IsLocked)
+            if (!targetData.IsLocked)
             {
-                Pmapobj = Program.ExeData.ReadWord(index, Program.CurrentConfig.Exe.UnitPmapObjOffset);
-                BattleObj = Program.ExeData.ReadWord(index, Program.CurrentConfig.Exe.UnitBattleObjOffset);
-                CharacterType = Program.ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitCharacterOffset);
+                Pmapobj = targetData.ReadWord(index, config.Exe.UnitPmapObjOffset);
+                BattleObj = targetData.ReadWord(index, config.Exe.UnitBattleObjOffset);
+                CharacterType = targetData.ReadByte(index, config.Exe.UnitCharacterOffset);
             }
             if (index <= 255)
             {
-                if (Program.CurrentConfig.CodeOptionContainer.UseVoice)
-                    Voice = Program.ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitVoiceOffset);
-                if (Program.CurrentConfig.CodeOptionContainer.UseCutin)
-                    Cutin = Program.ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitCutinOffset);
-                if (Program.CurrentConfig.CodeOptionContainer.UseCost)
-                    Cost = Program.ExeData.ReadByte(index, Program.CurrentConfig.Exe.UnitCostOffset);
+                if (config.CodeOptionContainer.UseVoice)
+                    Voice = targetData.ReadByte(index, config.Exe.UnitVoiceOffset);
+                if (config.CodeOptionContainer.UseCutin)
+                    Cutin = targetData.ReadByte(index, config.Exe.UnitCutinOffset);
+                if (config.CodeOptionContainer.UseCost)
+                    Cost = targetData.ReadByte(index, config.Exe.UnitCostOffset);
             }
         }
-        #endregion
         
+        #endregion
+
     }
 }

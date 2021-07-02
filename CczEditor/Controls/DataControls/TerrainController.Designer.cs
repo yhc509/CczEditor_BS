@@ -1,6 +1,6 @@
 ﻿namespace CczEditor.Controls.DataControls
 {
-	partial class TerrainData
+	partial class TerrainController
 	{
 		/// <summary>
 		/// 必需的设计器变量。

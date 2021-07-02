@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace CczEditor.Controls.DataControls
 {
-    public partial class ProjectController : UserControl
+    public partial class ProjectController : BaseControl
     {
-
+        private Data.Wrapper.ProjectData CurrentData;
         private bool _isEven;
 
         public ProjectController()
@@ -22,48 +22,52 @@ namespace CczEditor.Controls.DataControls
 
         private void ProjectController_Load(object sender, EventArgs e)
         {
-            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
+
+            var forceNames = ConfigUtils.GetForceNames(Program.ExeData, Program.CurrentConfig, Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray();
+            var forceCategoryNames = ConfigUtils.GetForceCategoryNames(Program.ExeData, Program.CurrentConfig, Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray();
+            SpecialAppearForceList1.Items.AddRange(forceNames);
+            SpecialAppearForceList1.Items.Add("50,미사용");
+            SpecialAppearForceList2.Items.AddRange(forceNames);
+            SpecialAppearForceList2.Items.Add("50,미사용");
+            KnockBackForceList.Items.AddRange(forceNames);
+            KnockBackForceList.Items.Add("50,미사용");
+            cbMagicBlock.Items.AddRange(forceNames);
+            cbMagicBlock.Items.Add("50,미사용");
+            cbNeighborAwaken.Items.AddRange(forceNames);
+            cbNeighborAwaken.Items.Add("50,미사용");
+            cbNeighborHPRec.Items.AddRange(forceNames);
+            cbNeighborHPRec.Items.Add("50,미사용");
+
+            SpecialSkillDmgForceList.Items.AddRange(forceCategoryNames);
+            SpecialSkillDmgForceList.Items.Add("28,미사용");
+            cbNeighborMpRec.Items.AddRange(forceNames);
+            cbNeighborMpRec.Items.Add("28,미사용");
+            cbNeighborMorInc.Items.AddRange(forceNames);
+            cbNeighborMorInc.Items.Add("28,미사용");
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+            CurrentData = new Data.Wrapper.ProjectData();
             InitTitleText();
             InitAbility();
             InitLevels();
             InitEtc();
-            Program.ExeData.Close();
         }
 
         #region Title
         private void InitTitleText()
         {
-            if(Program.CurrentConfig.Exe.TitleOffsets.Length == 1)
-                TitleTextBox.Text = Program.ExeData.GetText(Program.CurrentConfig.Exe.TitleOffsets[0], 12);
-            else
-                TitleTextBox.Text = Program.ExeData.GetText(Program.CurrentConfig.Exe.TitleOffsets[1], 12);
+            CurrentData.ReadTitle(Program.ExeData, Program.CurrentConfig);
+            TitleTextBox.Text = CurrentData.TitleText;
         }
 
         private void TitleSaveButton_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!Program.ExeData.IsLocked)
-                {
-                    Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
-                    if(Program.CurrentConfig.Exe.TitleOffsets.Length == 1)
-                    {
-                        Program.ExeData.WriteText(TitleTextBox.Text, Program.CurrentConfig.Exe.TitleOffsets[0], 12);
-                    }
-                    else
-                    {
-                        Program.ExeData.WriteText($"「{TitleTextBox.Text}」", Program.CurrentConfig.Exe.TitleOffsets[0], 16);
-                        Program.ExeData.WriteText(TitleTextBox.Text, Program.CurrentConfig.Exe.TitleOffsets[1], 12);
-                        Program.ExeData.WriteText(TitleTextBox.Text, Program.CurrentConfig.Exe.TitleOffsets[2], 12);
-                        Program.ExeData.WriteText($"종료「{TitleTextBox.Text}」", Program.CurrentConfig.Exe.TitleOffsets[3], 20);
-                        Program.ExeData.WriteText($"정말「{TitleTextBox.Text}」종료?", Program.CurrentConfig.Exe.TitleOffsets[4], 25);
-                    }
-                    Program.ExeData.Close();
-                }
-                if (!Data.Mp3Data.IsLocked)
-                {
-                    Data.Mp3Data.WriteText(TitleTextBox.Text, 0x5B9A, 12);
-                }
+                CurrentData.WriteTitle(Program.ExeData, Program.CurrentConfig);
                 MessageBox.Show("수정 성공!");
 
             }
@@ -85,6 +89,10 @@ namespace CczEditor.Controls.DataControls
         #region Ability
         private void InitAbility()
         {
+            AbilityGradeListView.Items.Clear();
+
+            CurrentData.ReadAbility(Program.ExeData, Program.CurrentConfig);
+
             var grades = Program.CurrentConfig.Exe.AbilityGrades;
             for (int i = 0; i < grades.Length; i++)
             {
@@ -96,7 +104,7 @@ namespace CczEditor.Controls.DataControls
 
             var evenCode = Program.CurrentConfig.Codes["Even"];
             var checkInfo = evenCode.Last();
-            _isEven = Program.ExeData.ReadByte(0, checkInfo.offset) == Utils.GetCode(checkInfo.CodeArr)[0];
+            _isEven = CurrentData.IsEven;
             EvenType.Checked = _isEven;
             OddType.Checked = !_isEven;
 
@@ -134,8 +142,8 @@ namespace CczEditor.Controls.DataControls
                 int value = 0;
                 if (i != grades.Length - 1)
                 {
-                    value = Program.ExeData.ReadByte(0, info.Offset);
-                    if (_isEven) value *= 2;
+                    value = CurrentData.AbilityGrades[i];
+                    if (CurrentData.IsEven) value *= 2;
                 }
                 AbilityGradeListView.Items[i].Text = value.ToString();
             }
@@ -149,85 +157,36 @@ namespace CczEditor.Controls.DataControls
 
         private void AbilitySave_Click(object sender, EventArgs e)
         {
-            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
-            if (_isEven)
-            {
-                var codes = Program.CurrentConfig.Codes["Even"];
-                foreach(var code in codes)
-                {
-                    Program.ExeData.Write(Utils.GetCode(code.CodeArr), code.offset);
-                }
-            }
-            else
-            {
-                var codes = Program.CurrentConfig.Codes["Odd"];
-                foreach (var code in codes)
-                {
-                    Program.ExeData.Write(Utils.GetCode(code.CodeArr), code.offset);
-                }
-            }
-
+            CurrentData.IsEven = _isEven;
 
             var grades = Program.CurrentConfig.Exe.AbilityGrades;
             for (int i = 0; i < grades.Length; i++)
             {
-                var info = grades[i];
-                
-                if (i != grades.Length - 1)
-                {
-                    byte value = byte.Parse(AbilityGradeListView.Items[i].Text);
-                    if (_isEven) value /= 2;
-                    Program.ExeData.WriteByte(value, 0, info.Offset);
-                }
+                CurrentData.AbilityGrades[i] = byte.Parse(AbilityGradeListView.Items[i].Text);
             }
 
-            Program.ExeData.Close();
+            CurrentData.WriteAbility(Program.ExeData, Program.CurrentConfig);
         }
         #endregion
 
         #region Level
         private void InitLevels()
         {
-            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            CurrentData.ReadLevels(Program.ExeData, Program.CurrentConfig);
 
-            var classUp1 = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.ClassUpLevel1Offsets[0]);
-            var classUp2 = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.ClassUpLevel2Offsets[0]);
-            ClassUpLevel1.Value = classUp1;
-            ClassUpLevel2.Value = classUp2;
-
-            var maxUnitLevel = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.MaxUnitLevelOffsets[0]);
-            MaxUnitLevel.Value = maxUnitLevel;
-            var maxUnitExp = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.MaxUnitExpOffsets[0]);
-            MaxUnitExp.Value = maxUnitExp;
-
-            var normalEquipExp = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.NormalEquipExpOffsets[0]);
-            NormalEquipExp.Value = normalEquipExp;
-
-            var specialEquipExp = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.SpecialEquipExpOffsets[0]);
-            SpecialEquipExp.Value = specialEquipExp;
-
-            var normalEquipLevel = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.NormalEquipMaxLevelOffsets[0]);
-            NormalEquipMaxLevel.Value = normalEquipLevel;
-
-            var specialEquipLevel = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.SpecialEquipMaxLevelOffsets[0]);
-            SpecialEquipMaxLevel.Value = specialEquipLevel;
-
-            var secondEquipLevel = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.SecondEquipStartLevelOffsets[0]);
-            SecondEquipStartLevel.Value = secondEquipLevel;
-
-            var newUnitExploit = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.NewUnitExploitOffsets[0]);
-            NewUnitExploit.Value = newUnitExploit;
-
-            var enemyUnitExploit = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.EnemyUnitExploitOffsets[0]);
-            EnemyUnitExploit.Value = enemyUnitExploit;
-
-            var normalEquipUpLevel = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.NormalEquipUpLevelOffsets[0]);
-            NormalEquipStLevel.Value = normalEquipUpLevel;
-
-            var specialEquipUpLevel = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.SpecialEquipUpLevelOffsets[0]);
-            SpecialEquipStLevel.Value = specialEquipUpLevel;
-
-            Program.ExeData.Close();
+            ClassUpLevel1.Value = CurrentData.ClassUp[0];
+            ClassUpLevel2.Value = CurrentData.ClassUp[1];
+            MaxUnitLevel.Value = CurrentData.MaxUnitLevel;
+            MaxUnitExp.Value = CurrentData.MaxUnitExp;
+            NormalEquipExp.Value = CurrentData.NormalEquipExp;
+            SpecialEquipExp.Value = CurrentData.SpecialEquipExp;
+            NormalEquipMaxLevel.Value = CurrentData.NormalEquipLevel;
+            SpecialEquipMaxLevel.Value = CurrentData.SpecialEquipLevel;
+            SecondEquipStartLevel.Value = CurrentData.SecondEquipLevel;
+            NewUnitExploit.Value = CurrentData.NewUnitExploit;
+            EnemyUnitExploit.Value = CurrentData.EnemyUnitExploit;
+            NormalEquipStLevel.Value = CurrentData.NormalEquipUpLevel;
+            SpecialEquipStLevel.Value = CurrentData.SpecialEquipUpLevel;
         }
 
         private void ClassUpLevel1_ValueChanged(object sender, EventArgs e)
@@ -252,139 +211,54 @@ namespace CczEditor.Controls.DataControls
 
         private void LevelSaveButton_Click(object sender, EventArgs e)
         {
-            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            CurrentData.ClassUp[0] = (byte)ClassUpLevel1.Value;
+            CurrentData.ClassUp[1] = (byte)ClassUpLevel2.Value;
 
-            var offsets = Program.CurrentConfig.Exe.ClassUpLevel1Offsets;
-            foreach (var offset in offsets)
-            {
-                Program.ExeData.WriteByte((byte)ClassUpLevel1.Value, 0, offset);
-            }
+            CurrentData.MaxUnitLevel = (byte)MaxUnitLevel.Value;
+            CurrentData.MaxUnitExp = (byte)MaxUnitExp.Value;
 
-            offsets = Program.CurrentConfig.Exe.ClassUpLevel1Offsets;
-            foreach (var offset in offsets)
-            {
-                Program.ExeData.WriteByte((byte)ClassUpLevel2.Value, 0, offset);
-            }
+            CurrentData.NormalEquipExp = (byte)NormalEquipExp.Value;
+            CurrentData.SpecialEquipExp = (byte)SpecialEquipExp.Value;
+            CurrentData.NormalEquipLevel = (byte)NormalEquipMaxLevel.Value;
+            CurrentData.SpecialEquipLevel = (byte)SpecialEquipMaxLevel.Value;
 
-            offsets = Program.CurrentConfig.Exe.MaxUnitLevelOffsets;
-            foreach (var offset in offsets)
-            {
-                if (offset == offsets.Last())
-                    Program.ExeData.WriteByte((byte)MaxUnitLevel.Value + 1, 0, offset);
-                else
-                    Program.ExeData.WriteByte((byte)MaxUnitLevel.Value, 0, offset);
-            }
-
-            offsets = Program.CurrentConfig.Exe.MaxUnitExpOffsets;
-            foreach (var offset in offsets)
-            {
-                Program.ExeData.WriteByte((byte)MaxUnitExp.Value, 0, offset);
-            }
-
-            offsets = Program.CurrentConfig.Exe.NormalEquipExpOffsets;
-            foreach (var offset in offsets)
-            {
-                Program.ExeData.WriteByte((byte)NormalEquipExp.Value, 0, offset);
-            }
-
-            offsets = Program.CurrentConfig.Exe.SpecialEquipExpOffsets;
-            foreach (var offset in offsets)
-            {
-                Program.ExeData.WriteByte((byte)SpecialEquipExp.Value, 0, offset);
-            }
-
-            offsets = Program.CurrentConfig.Exe.NormalEquipMaxLevelOffsets;
-            foreach (var offset in offsets)
-            {
-                Program.ExeData.WriteByte((byte)NormalEquipMaxLevel.Value, 0, offset);
-            }
-
-            offsets = Program.CurrentConfig.Exe.SpecialEquipMaxLevelOffsets;
-            foreach (var offset in offsets)
-            {
-                if(offset == offsets.Last())
-                    Program.ExeData.WriteByte((byte)SpecialEquipMaxLevel.Value + 1, 0, offset);
-                else
-                    Program.ExeData.WriteByte((byte)SpecialEquipMaxLevel.Value, 0, offset);
-            }
-
-            offsets = Program.CurrentConfig.Exe.SecondEquipStartLevelOffsets;
-            foreach (var offset in offsets)
-            {
-                Program.ExeData.WriteByte((byte)SecondEquipStartLevel.Value, 0, offset);
-            }
-
-            offsets = Program.CurrentConfig.Exe.NewUnitExploitOffsets;
-            foreach (var offset in offsets)
-            {
-                Program.ExeData.WriteByte((byte)NewUnitExploit.Value, 0, offset);
-            }
-
-            offsets = Program.CurrentConfig.Exe.EnemyUnitExploitOffsets;
-            foreach (var offset in offsets)
-            {
-                Program.ExeData.WriteByte((byte)EnemyUnitExploit.Value, 0, offset);
-            }
-
-            offsets = Program.CurrentConfig.Exe.NormalEquipUpLevelOffsets;
-            foreach (var offset in offsets)
-            {
-                Program.ExeData.WriteByte((byte)NormalEquipStLevel.Value, 0, offset);
-            }
-
-            offsets = Program.CurrentConfig.Exe.SpecialEquipUpLevelOffsets;
-            foreach (var offset in offsets)
-            {
-                Program.ExeData.WriteByte((byte)SpecialEquipStLevel.Value, 0, offset);
-            }
-
-            Program.ExeData.Close();
-
+            CurrentData.SecondEquipLevel = (byte)SecondEquipStartLevel.Value;
+            CurrentData.NewUnitExploit = (byte) NewUnitExploit.Value;
+            CurrentData.EnemyUnitExploit = (byte)EnemyUnitExploit.Value;
+            CurrentData.NormalEquipLevel = (byte)NormalEquipStLevel.Value;
+            CurrentData.SpecialEquipLevel = (byte)SpecialEquipStLevel.Value;
+            CurrentData.WriteLevel(Program.ExeData, Program.CurrentConfig);
         }
         #endregion
 
         #region Etc
         private void InitEtc()
         {
-            SpecialAppearForceList1.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
-            SpecialAppearForceList1.Items.Add("50,미사용");
-            SpecialAppearForceList2.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
-            SpecialAppearForceList2.Items.Add("50,미사용");
-            KnockBackForceList.Items.AddRange(ConfigUtils.GetForceNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
-            KnockBackForceList.Items.Add("50,미사용");
-            SpecialSkillDmgForceList.Items.AddRange(ConfigUtils.GetForceCategoryNames(Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
-            SpecialSkillDmgForceList.Items.Add("28,미사용");
+            CurrentData.ReadEtc(Program.ExeData, Program.CurrentConfig);
+            
+            SpecialAppearForceList1.SelectedIndex = SpecialAppearForceList1.FindString(Utils.GetString(CurrentData.SpecialAppearForce[0]));
+            SpecialAppearForceList2.SelectedIndex = SpecialAppearForceList2.FindString(Utils.GetString(CurrentData.SpecialAppearForce[1]));
+            
+            KnockBackForceList.SelectedIndex = KnockBackForceList.FindString(Utils.GetString(CurrentData.KnockBackForce));
+            
+            SpecialSkillDmgForceList.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(CurrentData.SpecialSkillDmgForce));
 
-            var specialAppear1 = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.SpecialAppear_ForceIndexOffset[0]);
-            var specialAppear2 = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.SpecialAppear_ForceIndexOffset[1]);
-            SpecialAppearForceList1.SelectedIndex = SpecialAppearForceList1.FindString(Utils.GetString(specialAppear1));
-            SpecialAppearForceList2.SelectedIndex = SpecialAppearForceList2.FindString(Utils.GetString(specialAppear2));
-
-            var knockback = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.Knock_Back_ForceIndexOffset);
-            KnockBackForceList.SelectedIndex = KnockBackForceList.FindString(Utils.GetString(knockback));
-
-            var specialSkillDmg = Program.ExeData.ReadByte(0, Program.CurrentConfig.Exe.SpecialSkillDmg_ForceCategoryIndexOffset);
-            SpecialSkillDmgForceList.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(specialSkillDmg));
+            cbMagicBlock.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(CurrentData.MagicBlockForce));
+            cbNeighborAwaken.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(CurrentData.NeighborAwakenForce));
+            cbNeighborHPRec.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(CurrentData.NeighborHpRecForce));
+            cbNeighborMpRec.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(CurrentData.NeighborMpRecForce));
+            cbNeighborMorInc.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(CurrentData.NeighborMorIncForce));
         }
         #endregion
 
         private void EtcSave_Click(object sender, EventArgs e)
         {
-            Program.ExeData.Open(System.IO.FileAccess.ReadWrite);
+            CurrentData.SpecialAppearForce[0] = (byte)SpecialAppearForceList1.SelectedIndex;
+            CurrentData.SpecialAppearForce[1] = (byte)SpecialAppearForceList2.SelectedIndex;
+            CurrentData.KnockBackForce = (byte)KnockBackForceList.SelectedIndex;
+            CurrentData.SpecialSkillDmgForce = (byte)SpecialSkillDmgForceList.SelectedIndex;
 
-            var offset = Program.CurrentConfig.Exe.SpecialAppear_ForceIndexOffset[0];
-            Program.ExeData.WriteByte((byte)SpecialAppearForceList1.SelectedIndex, 0, offset);
-
-            offset = Program.CurrentConfig.Exe.SpecialAppear_ForceIndexOffset[1];
-            Program.ExeData.WriteByte((byte)SpecialAppearForceList2.SelectedIndex, 0, offset);
-
-            offset = Program.CurrentConfig.Exe.Knock_Back_ForceIndexOffset;
-            Program.ExeData.WriteByte((byte)KnockBackForceList.SelectedIndex, 0, offset);
-
-            offset = Program.CurrentConfig.Exe.SpecialSkillDmg_ForceCategoryIndexOffset;
-            Program.ExeData.WriteByte((byte)SpecialSkillDmgForceList.SelectedIndex, 0, offset);
-
-            Program.ExeData.Close();
+            CurrentData.WriteEtc(Program.ExeData, Program.CurrentConfig);
         }
     }
 }

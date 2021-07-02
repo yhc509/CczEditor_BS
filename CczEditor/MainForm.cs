@@ -32,13 +32,24 @@ namespace CczEditor
              LoadConfigurationTypeNames();
 		}
 
-		#endregion
+        #endregion
 
-		#region 주메뉴 이벤트
+        UnitController UnitController;
+        ItemController ItemController;
+        ShopController ShopController;
+        ForceController ForceController;
+        TerrainController TerrainController;
+        MagicController MagicController;
+        SpecialDataController SpecialDataController;
+        ProjectController ProjectController;
+        ConfigPreset ConfigPreset;
+        CodeApplierControl CodeApplierControl;
 
-		#region 파일메뉴
-        
-		private void tsmiMainMenu_File_LoadFolder_Click(object sender, EventArgs e)
+        #region 주메뉴 이벤트
+
+        #region 파일메뉴
+
+        private void tsmiMainMenu_File_LoadFolder_Click(object sender, EventArgs e)
 		{
 			LoadFolderDialog();
 		}
@@ -58,34 +69,46 @@ namespace CczEditor
 		#region data메뉴
 
 		private void tsmiMainMenu_Data_Units_Click(object sender, EventArgs e)
-		{
-			ShowEditor(new UnitController());
+        {
+            if (UnitController == null)
+                UnitController = new UnitController();
+            ShowEditor(UnitController);
 		}
 
 		private void tsmiMainMenu_Data_Items_Click(object sender, EventArgs e)
-		{
-			ShowEditor(new ItemController());
-		}
+        {
+            if (ItemController == null)
+                ItemController = new ItemController();
+            ShowEditor(ItemController);
+        }
 
 		private void tsmiMainMenu_Data_Store_Click(object sender, EventArgs e)
-		{
-			ShowEditor(new ShopController());
-		}
+        {
+            if (ShopController == null)
+                ShopController = new ShopController();
+            ShowEditor(ShopController);
+        }
 
 		private void tsmiMainMenu_Data_Force_Click(object sender, EventArgs e)
-		{
-			ShowEditor(new ForceController());
-		}
+        {
+            if (ForceController == null)
+                ForceController = new ForceController();
+            ShowEditor(ForceController);
+        }
 
 		private void tsmiMainMenu_Data_Terrain_Click(object sender, EventArgs e)
-		{
-			ShowEditor(new TerrainData());
-		}
+        {
+            if (TerrainController == null)
+                TerrainController = new TerrainController();
+            ShowEditor(TerrainController);
+        }
 
 		private void tsmiMainMenu_Data_Magic_Click(object sender, EventArgs e)
-		{
-            ShowEditor(new Controls.DataControls.MagicData());
-		}
+        {
+            if (MagicController == null)
+                MagicController = new MagicController();
+            ShowEditor(MagicController);
+        }
 
 
 		#endregion
@@ -180,7 +203,7 @@ namespace CczEditor
         
 		#region 데이터 로드
 
-		private void ShowEditor(Control control)
+		private void ShowEditor(BaseControl control)
 		{
 			if (control != null)
 			{
@@ -188,6 +211,7 @@ namespace CczEditor
 				control.Dock = DockStyle.Fill;
 				pMainContainer.Controls.Clear();
                 pMainContainer.Controls.Add(control);
+                control.Reset();
 			}
 		}
 
@@ -255,25 +279,33 @@ namespace CczEditor
         }
 
         #endregion
-
+        
         private void ExeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowEditor(new Controls.DataControls.ExeSpecialDataController());
+            if (SpecialDataController == null)
+                SpecialDataController = new SpecialDataController();
+            ShowEditor(SpecialDataController);
         }
 
         private void 프로젝트편집ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowEditor(new Controls.DataControls.ProjectController());
+            if (ProjectController == null)
+                ProjectController = new ProjectController();
+            ShowEditor(ProjectController);
         }
 
         private void 테스트용ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowEditor(new Controls.ConfigControls.ConfigPreset());
+            if (ConfigPreset == null)
+                ConfigPreset = new ConfigPreset();
+            ShowEditor(ConfigPreset);
         }
 
         private void 코드입력기ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowEditor(new Controls.DataControls.CodeApplierControl());
+            if (CodeApplierControl == null)
+                CodeApplierControl = new CodeApplierControl();
+            ShowEditor(CodeApplierControl);
 
         }
     }

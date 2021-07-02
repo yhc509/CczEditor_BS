@@ -24,6 +24,7 @@ namespace CczEditor
             result.UseE5Directory = true;
             result.CodeOptionContainer.UseMagicCondition = false;
             result.CodeOptionContainer.UseMeffAfterMcallExtension = true;
+            result.CodeOptionContainer.UseMp3Serv = false;
         }
         protected override void CreateDataSettings()
         {

@@ -167,11 +167,11 @@
     <Compile Include="Controls\DataControls\CodeApplierControl.Designer.cs">
       <DependentUpon>CodeApplierControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DataControls\ExeSpecialDataController.cs">
+    <Compile Include="Controls\DataControls\SpecialDataController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\DataControls\ExeSpecialDataController.Designer.cs">
-      <DependentUpon>ExeSpecialDataController.cs</DependentUpon>
+    <Compile Include="Controls\DataControls\SpecialDataController.Designer.cs">
+      <DependentUpon>SpecialDataController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\DataControls\ForceController.cs">
       <SubType>UserControl</SubType>
@@ -185,17 +185,17 @@
     <Compile Include="Controls\DataControls\ItemController.Designer.cs">
       <DependentUpon>ItemController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DataControls\MagicData.cs">
+    <Compile Include="Controls\DataControls\MagicController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\DataControls\MagicData.Designer.cs">
-      <DependentUpon>MagicData.cs</DependentUpon>
+    <Compile Include="Controls\DataControls\MagicController.Designer.cs">
+      <DependentUpon>MagicController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DataControls\MoveUnits.cs">
+    <Compile Include="Controls\DataControls\MoveUnitsPopup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\DataControls\MoveUnits.Designer.cs">
-      <DependentUpon>MoveUnits.cs</DependentUpon>
+    <Compile Include="Controls\DataControls\MoveUnitsPopup.Designer.cs">
+      <DependentUpon>MoveUnitsPopup.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\DataControls\ProjectController.cs">
       <SubType>UserControl</SubType>
@@ -203,11 +203,11 @@
     <Compile Include="Controls\DataControls\ProjectController.Designer.cs">
       <DependentUpon>ProjectController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DataControls\sangseong.cs">
+    <Compile Include="Controls\DataControls\ForceSynastryController.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\DataControls\sangseong.designer.cs">
-      <DependentUpon>sangseong.cs</DependentUpon>
+    <Compile Include="Controls\DataControls\ForceSynastryController.designer.cs">
+      <DependentUpon>ForceSynastryController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\DataControls\SaveApplyPopup.cs">
       <SubType>Form</SubType>
@@ -221,11 +221,11 @@
     <Compile Include="Controls\DataControls\ShopController.Designer.cs">
       <DependentUpon>ShopController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DataControls\TerrainData.cs">
+    <Compile Include="Controls\DataControls\TerrainController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\DataControls\TerrainData.Designer.cs">
-      <DependentUpon>TerrainData.cs</DependentUpon>
+    <Compile Include="Controls\DataControls\TerrainController.Designer.cs">
+      <DependentUpon>TerrainController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\DataControls\UnitController.cs">
       <SubType>UserControl</SubType>
@@ -328,9 +328,16 @@
     <Compile Include="Data\SaveData.cs" />
     <Compile Include="Data\SaveNewData.cs" />
     <Compile Include="Data\Stardata.cs" />
+    <Compile Include="Data\Wrapper\CodeEffectData.cs" />
     <Compile Include="Data\Wrapper\ForceData.cs" />
+    <Compile Include="Data\Wrapper\ForceSynastryData.cs" />
     <Compile Include="Data\Wrapper\ItemData.cs" />
+    <Compile Include="Data\Wrapper\MagicData.cs" />
+    <Compile Include="Data\Wrapper\ProjectData.cs" />
     <Compile Include="Data\Wrapper\ShopData.cs" />
+    <Compile Include="Data\Wrapper\SpecialEffectData.cs" />
+    <Compile Include="Data\Wrapper\SpecialSkillData.cs" />
+    <Compile Include="Data\Wrapper\TerrainData.cs" />
     <Compile Include="Data\Wrapper\UnitData.cs" />
     <Compile Include="Data\Wrapper\WrapperData.cs" />
     <Compile Include="MainForm.cs">
@@ -372,8 +379,8 @@
     <EmbeddedResource Include="Controls\DataControls\CodeApplierControl.resx">
       <DependentUpon>CodeApplierControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataControls\ExeSpecialDataController.resx">
-      <DependentUpon>ExeSpecialDataController.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DataControls\SpecialDataController.resx">
+      <DependentUpon>SpecialDataController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DataControls\ForceController.resx">
       <DependentUpon>ForceController.cs</DependentUpon>
@@ -383,18 +390,18 @@
       <DependentUpon>ItemController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataControls\MagicData.resx">
-      <DependentUpon>MagicData.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DataControls\MagicController.resx">
+      <DependentUpon>MagicController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataControls\MoveUnits.resx">
-      <DependentUpon>MoveUnits.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DataControls\MoveUnitsPopup.resx">
+      <DependentUpon>MoveUnitsPopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DataControls\ProjectController.resx">
       <DependentUpon>ProjectController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataControls\sangseong.resx">
-      <DependentUpon>sangseong.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DataControls\ForceSynastryController.resx">
+      <DependentUpon>ForceSynastryController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DataControls\SaveApplyPopup.resx">
       <DependentUpon>SaveApplyPopup.cs</DependentUpon>
@@ -403,8 +410,8 @@
       <DependentUpon>ShopController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataControls\TerrainData.resx">
-      <DependentUpon>TerrainData.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DataControls\TerrainController.resx">
+      <DependentUpon>TerrainController.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DataControls\UnitController.resx">

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CczEditor.Controls.ConfigControls
 {
-    public partial class ConfigPreset : UserControl
+    public partial class ConfigPreset : BaseControl
     {
         private ConfigVersionType originConfigVersionType;
         private ConfigVersionType destConfigVersionType;
@@ -94,7 +94,7 @@ namespace CczEditor.Controls.ConfigControls
                 cbVoice.Enabled =
                 cbItemData.Enabled =
                 cbShopData.Enabled =
-                cbSpecialEffect.Enabled =
+                cbSpecialCode.Enabled =
                 cbForceData.Enabled =
                 cbForceCategoryData.Enabled =
                 cbForceName.Enabled =
@@ -112,7 +112,11 @@ namespace CczEditor.Controls.ConfigControls
                 cbDmgValue.Enabled =
                 cbAcc.Enabled = 
                 cbLearn.Enabled = 
-                cbReflect.Enabled = false;
+                cbReflect.Enabled =
+                cbAbility.Enabled = 
+                cbSpecialCode.Enabled =
+                cbSpecialEffect.Enabled =
+                cbSpecialSkill.Enabled = false;
 
                 return;
             }
@@ -132,8 +136,8 @@ namespace CczEditor.Controls.ConfigControls
             // Item
             cbItemData.Enabled = cbItemData.Checked = IsItemDataActive(originConfig, destConfig);
             cbShopData.Enabled = cbShopData.Checked = IsShopDataActive(originConfig, destConfig);
-            cbSpecialEffect.Enabled = cbSpecialEffect.Checked = IsItemEffectActive(originConfig, destConfig);
-
+            cbSpecialCode.Enabled = cbSpecialCode.Checked = IsItemEffectActive(originConfig, destConfig);
+            
             // force
             cbForceData.Enabled = cbForceData.Checked = IsForceDataActive(originConfig, destConfig);
             cbForceCategoryData.Enabled = cbForceCategoryData.Checked = IsForceCategoryDataActive(originConfig, destConfig);
@@ -142,6 +146,7 @@ namespace CczEditor.Controls.ConfigControls
             cbTerrainSyn.Enabled = cbTerrainSyn.Checked = IsForceTerrainActive(originConfig, destConfig);
             cbForceSyn.Enabled = cbForceSyn.Checked = IsForceSangsungActive(originConfig, destConfig);
             cbEquip.Enabled = cbEquip.Checked = IsForceEquipActive(originConfig, destConfig);
+            cbSpecialAppearForce.Enabled = cbSpecialAppearForce.Checked = IsForceDataActive(originConfig, destConfig);
 
             // magic
             cbMagicData.Enabled = cbMagicData.Checked = IsMagicDataActive(originConfig, destConfig);
@@ -155,6 +160,14 @@ namespace CczEditor.Controls.ConfigControls
             cbAcc.Enabled = cbAcc.Checked = IsAccActive(originConfig, destConfig);
             cbLearn.Enabled = cbLearn.Checked = IsLearnActive(originConfig, destConfig);
             cbReflect.Enabled = cbReflect.Checked = IsReflectActive(originConfig, destConfig);
+
+            // etc
+            cbLevelExp.Enabled = cbLevelExp.Checked = true;
+            cbTitle.Enabled = cbTitle.Checked = true;
+            cbAbility.Enabled = cbAbility.Checked = IsAbilityGradeActive(originConfig, destConfig);
+            cbSpecialCode.Enabled = cbSpecialCode.Checked = IsItemEffectActive(originConfig, destConfig);
+            cbSpecialEffect.Enabled = cbSpecialEffect.Checked = IsSpecialEffectActive(originConfig, destConfig);
+            cbSpecialSkill.Enabled = cbSpecialSkill.Checked = IsSpecialSkillActive(originConfig, destConfig);
         }
 
         private ConfigCreateHandler GetVersionConfig(ConfigVersionType type)
@@ -381,6 +394,27 @@ namespace CczEditor.Controls.ConfigControls
         }
         #endregion
 
+        #region Etc
+        private bool IsAbilityGradeActive(Config origin, Config dest)
+        {
+            if (origin.Exe.AbilityGrades.Length == dest.Exe.AbilityGrades.Length)
+                return true;
+            return false;
+        }
+
+        private bool IsSpecialEffectActive(Config origin, Config dest)
+        {
+            if (origin.SpecialEffectNames.Count == dest.SpecialEffectNames.Count)
+                return true;
+            return false;
+        }
+
+        private bool IsSpecialSkillActive(Config origin, Config dest)
+        {
+            return true;
+        }
+        #endregion
+
         private void btnExecute_Click(object sender, EventArgs e)
         {
             var originConfigHandler = GetVersionConfig(originConfigVersionType);
@@ -397,10 +431,23 @@ namespace CczEditor.Controls.ConfigControls
             Migration(tbOriginPath.Text, originConfig, tbDestPath.Text, destConfig);
         }
 
-        private void Migration(string originPath, Config origin, string destPath, Config dest)
+        private void Migration(string originPath, Config originConfig, string destPath, Config destConfig)
         {
-            
+            var originGameData = Data.DataContainer.GetGameData(originPath);
+            var originImsgData = Data.DataContainer.GetImsgData(originPath);
+            var originExeData = Data.DataContainer.GetExeData(originPath);
 
+            var destGameData = Data.DataContainer.GetGameData(destPath);
+            var destImsgData = Data.DataContainer.GetImsgData(destPath);
+            var destExeData = Data.DataContainer.GetExeData(destPath);
+
+            var data = new Data.Wrapper.UnitData();
+
+            data.Read(0, originGameData, originImsgData, originExeData, originConfig);
+
+
+            data.Write(0, destGameData, destImsgData, destExeData, destConfig);
+           
         }
     }
 }

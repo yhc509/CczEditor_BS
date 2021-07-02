@@ -1,6 +1,6 @@
 ﻿namespace CczEditor.Controls.DataControls
 {
-    partial class MoveUnits
+    partial class MoveUnitsPopup
     {
         /// <summary>
         /// Required designer variable.

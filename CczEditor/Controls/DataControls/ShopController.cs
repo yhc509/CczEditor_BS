@@ -13,8 +13,9 @@ namespace CczEditor.Controls.DataControls
 	public partial class ShopController : BaseDataControl
 	{
 		private string[] _unitList;
+        Data.Wrapper.ShopData CurrentData;
 
-		public ShopController()
+        public ShopController()
 		{
 			InitializeComponent();
 			txtStageName.MaxLength = Program.IMSG_STAGE_NAME_LENGTH/2;
@@ -35,11 +36,19 @@ namespace CczEditor.Controls.DataControls
             clbConsumables.Items.AddRange(DataUtils.GetItemNames(ItemType.BombTools, true).ToArray());
             clbConsumables.Items.AddRange(DataUtils.GetItemNames(ItemType.Bombs, true).ToArray()); 
 			lbList.Items.AddRange(Program.GameData.StoreNameList(true).ToArray());
-			lbList.SelectedIndex = 0;
-			lbList.Focus();
 		}
 
-		private void lbList_SelectedIndexChanged(object sender, EventArgs e)
+        public override void Reset()
+        {
+            base.Reset();
+
+            CurrentData = new Data.Wrapper.ShopData();
+
+            lbList.SelectedIndex = 0;
+            lbList.Focus();
+        }
+
+        private void lbList_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (lbList.SelectedIndex < 0 || lbList.SelectedIndex >= lbList.Items.Count)
 			{
@@ -47,31 +56,31 @@ namespace CczEditor.Controls.DataControls
 			}
 
             int index = lbList.SelectedIndex;
-            var shop = new Data.Wrapper.ShopData();
-            shop.Read(index);
 
-			var store = Program.GameData.StoreGet(lbList.SelectedIndex);
+            CurrentData.Read(index, Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
+
+            var store = Program.GameData.StoreGet(lbList.SelectedIndex);
 			cbStorage.SelectedIndex = BitConverter.ToUInt16(store, 0);
 			cbBusiness.SelectedIndex = BitConverter.ToUInt16(store, 2);
 
             ClearStorage();
             ClearShop();
 
-            foreach (var item in shop.EquipItemList)
+            foreach (var item in CurrentData.EquipItemList)
             {
                 var i = clbEquipment.FindString(Utils.GetString(item));
                 if (i == -1) continue;
                 clbEquipment.SetItemChecked(i, true);
             }
 
-            foreach (var item in shop.ConsumeItemList)
+            foreach (var item in CurrentData.ConsumeItemList)
             {
                 var i = clbConsumables.FindString(Utils.GetString(item));
                 if (i == -1) continue;
                 clbConsumables.SetItemChecked(i, true);
             }
 
-            txtStageName.Text = shop.StageName;
+            txtStageName.Text = CurrentData.StageName;
 
             if (TopLevelControl != null)
 			{
@@ -87,25 +96,24 @@ namespace CczEditor.Controls.DataControls
 			}
 
             var index = lbList.SelectedIndex;
+            
+            CurrentData.StageName = txtStageName.Text;
 
-            var shopData = new Data.Wrapper.ShopData();
-            shopData.StageName = txtStageName.Text;
+            CurrentData.StorageUnitIndex = (ushort) cbStorage.SelectedIndex;
+            CurrentData.ShopUnitIndex = (ushort) cbBusiness.SelectedIndex;
 
-            shopData.StorageUnitIndex = (ushort) cbStorage.SelectedIndex;
-            shopData.ShopUnitIndex = (ushort) cbBusiness.SelectedIndex;
-
-            shopData.ConsumeItemList.Clear();
-            shopData.EquipItemList.Clear();
+            CurrentData.ConsumeItemList.Clear();
+            CurrentData.EquipItemList.Clear();
             for (var j = 0; j < clbEquipment.CheckedItems.Count; j++)
             {
-                shopData.EquipItemList.Add((byte)Utils.GetId(clbEquipment.CheckedItems[j]));
+                CurrentData.EquipItemList.Add((byte)Utils.GetId(clbEquipment.CheckedItems[j]));
             }
             for (var j = 0; j < clbConsumables.CheckedItems.Count; j++)
             {
-                shopData.ConsumeItemList.Add((byte)Utils.GetId(clbConsumables.CheckedItems[j]));
+                CurrentData.ConsumeItemList.Add((byte)Utils.GetId(clbConsumables.CheckedItems[j]));
             }
 
-            shopData.Write(index);
+            CurrentData.Write(index, Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
 
             lbList.Items.RemoveAt(index);
             lbList.Items.Insert(index, string.Format("{0:D2},{1}", index, txtStageName.Text));
