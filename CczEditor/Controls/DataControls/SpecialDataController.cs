@@ -70,8 +70,22 @@ namespace CczEditor.Controls.DataControls
             CurrentSpecialEffectData = new Data.Wrapper.SpecialEffectData();
             CurrentSpecialSkillData = new Data.Wrapper.SpecialSkillData();
             CurrentCodeEffectData = new Data.Wrapper.CodeEffectData();
+
             SpecialEffectList.SelectedIndex = 0;
             SpecialSkillList.SelectedIndex = 0;
+
+            CurrentCodeEffectData.Read(Program.ExeData, Program.CurrentConfig);
+            AbilityAssistList.SelectedIndex = 0;
+            SpecialAtkList.SelectedIndex = 0;
+            AttackAccList.SelectedIndex = 0;
+            MagicList.SelectedIndex = 0;
+            StateEffectAttackList.SelectedIndex = 0;
+            TurnCureList.SelectedIndex = 0;
+            DeburfList.SelectedIndex = 0;
+            DecreaseDmgList.SelectedIndex = 0;
+            DefenceList.SelectedIndex = 0;
+            TerrainList.SelectedIndex = 0;
+            EtcList.SelectedIndex = 0;
         }
 
         #region SpecialEffect
@@ -166,7 +180,7 @@ namespace CczEditor.Controls.DataControls
             if (index < 0 || index >= Program.CurrentConfig.SpecialSkillNames.Count)
                 return;
             
-            CurrentSpecialSkillData.Read(index, Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
+            CurrentSpecialSkillData.Read(index, Program.ExeData, Program.CurrentConfig);
             SpecialSkillName.Text = CurrentSpecialSkillData.Name;
 
             bool isPhysics = index <= Program.CurrentConfig.Exe.SpecialSkillPhysicsCount;
@@ -240,8 +254,6 @@ namespace CczEditor.Controls.DataControls
         
         private void InitCodeEffectTab()
         {
-            CurrentCodeEffectData.Read(Program.ExeData, Program.CurrentConfig);
-
             AbilityAssistList.Items.AddRange(Program.CurrentConfig.CodeEffects.Where(x => x.TypeIndex == (int)Config.ConfigCodeEffectInfos.Type.AbilityAssist).Select(x=>x.Description).ToArray());
             SpecialAtkList.Items.AddRange(Program.CurrentConfig.CodeEffects.Where(x => x.TypeIndex == (int)Config.ConfigCodeEffectInfos.Type.SpecialAttack).Select(x => x.Description).ToArray());
             AttackAccList.Items.AddRange(Program.CurrentConfig.CodeEffects.Where(x => x.TypeIndex == (int)Config.ConfigCodeEffectInfos.Type.AttackAcc).Select(x => x.Description).ToArray());
@@ -271,17 +283,6 @@ namespace CczEditor.Controls.DataControls
             TerrainValue.Items.AddRange(codeList);
             EtcValue.Items.AddRange(codeList);
             
-            AbilityAssistList.SelectedIndex = 0;
-            SpecialAtkList.SelectedIndex = 0;
-            AttackAccList.SelectedIndex = 0;
-            MagicList.SelectedIndex = 0;
-            StateEffectAttackList.SelectedIndex = 0;
-            TurnCureList.SelectedIndex = 0;
-            DeburfList.SelectedIndex = 0;
-            DecreaseDmgList.SelectedIndex = 0;
-            DefenceList.SelectedIndex = 0;
-            TerrainList.SelectedIndex = 0;
-            EtcList.SelectedIndex = 0;
         }
 
         private void SaveButton_Click(object sender, EventArgs e)

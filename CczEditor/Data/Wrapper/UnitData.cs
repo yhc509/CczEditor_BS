@@ -28,9 +28,9 @@ namespace CczEditor.Data.Wrapper
         public ushort Pmapobj;
         public ushort BattleObj;
         public byte CharacterType;
-        public byte Cutin;
-        public byte Voice;
-        public byte Cost;
+        public byte Cutin = 0x63;
+        public byte Voice = 0x00;
+        public byte Cost = 0x00;
 
         // Imsg
         public string Imsg;
@@ -115,6 +115,7 @@ namespace CczEditor.Data.Wrapper
                 }
             }
         }
+        
         #endregion
 
         #region Read

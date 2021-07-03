@@ -28,18 +28,33 @@ namespace CczEditor.Data
 		public const int GAME_TERRAIN_LENGTH = Program.GAME_TERRAIN_LENGTH;
 		public const int GAME_MAGIC_LENGTH = Program.GAME_MAGIC_LENGTH;
 
+        private StarData _starData;
+        private ImsgData _imsgData;
+        private ExeData _exeData;
         private Config _config;
 
         public GameData(string fileName) : base(fileName)
-		{
-			if (IsLsFile && IsCompression && Utils.QuestionUser(string.Format("이 파일 [{0}]은 아직 해독되지 않았습니다.해독합니까?", CurrentFile.FullName)))
-			{
-				Decompression();
-			}
-		}
-        public void Initialize(Config config)
         {
+            if (IsLsFile && IsCompression && Utils.QuestionUser(string.Format("이 파일 [{0}]은 아직 해독되지 않았습니다.해독합니까?", CurrentFile.FullName)))
+            {
+                Decompression();
+            }
+        }
+
+        public void Initialize(StarData starData, ImsgData imsgData, ExeData exeData, Config config)
+        {
+            _starData = starData;
+            _imsgData = imsgData;
+            _exeData = exeData;
             _config = config;
+
+            _weapons = ConfigUtils.GetWeaponsTypes(_exeData, config, null);
+            _armor = ConfigUtils.GetArmorTypes(_exeData, config, null);
+            _auxiliary = ConfigUtils.GetAuxiliaryEffects(_exeData, config, null);
+            _consumables = ConfigUtils.GetConsumablesEffects(_exeData, config, null);
+            _bombs = ConfigUtils.GetBombsEffects(_exeData, config, null);
+            _bombs2 = ConfigUtils.GetBombsEffects2(_exeData, config, null);
+            _bombs3 = ConfigUtils.GetBombsEffects3(_exeData, config, null);
         }
 
         #region Unit
@@ -65,8 +80,8 @@ namespace CczEditor.Data
 
 		public List<string> UnitNameList(bool hasFormater)
 		{
-            var count = Program.CurrentConfig.Data.UnitCount;
-            var offset = Program.CurrentConfig.Data.UnitOffset;
+            var count = _config.Data.UnitCount;
+            var offset = _config.Data.UnitOffset;
 			var list = new List<string>();
 			var name = new byte[12];
 			for (var i = 0; i < count; i++)
@@ -80,7 +95,7 @@ namespace CczEditor.Data
         
 		public byte[] UnitGet(int index)
         {
-            var offset = Program.CurrentConfig.Data.UnitOffset;
+            var offset = _config.Data.UnitOffset;
             var unit = new byte[GAME_UNIT_LENGTH];
 			CurrentStream.Seek(offset+index*GAME_UNIT_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Read(unit, 0, GAME_UNIT_LENGTH);
@@ -89,7 +104,7 @@ namespace CczEditor.Data
 
 		public void UnitSet(int index, byte[] value)
         {
-            var offset = Program.CurrentConfig.Data.UnitOffset;
+            var offset = _config.Data.UnitOffset;
             CurrentStream.Seek(offset+index*GAME_UNIT_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, GAME_UNIT_LENGTH);
 		}
@@ -97,13 +112,13 @@ namespace CczEditor.Data
 
 
         #region Item
-        private readonly Dictionary<int, string> _weapons = ConfigUtils.GetWeaponsTypes(Program.ExeData, Program.CurrentConfig, null);
-		private readonly Dictionary<int, string> _armor = ConfigUtils.GetArmorTypes(Program.ExeData, Program.CurrentConfig, null);
-        private readonly Dictionary<int, string> _auxiliary = ConfigUtils.GetAuxiliaryEffects(Program.ExeData, Program.CurrentConfig, null);
-        private readonly Dictionary<int, string> _consumables = ConfigUtils.GetConsumablesEffects(Program.ExeData, Program.CurrentConfig, null);
-        private readonly Dictionary<int, string> _bombs = ConfigUtils.GetBombsEffects(Program.ExeData, Program.CurrentConfig, null);
-        private readonly Dictionary<int, string> _bombs2 = ConfigUtils.GetBombsEffects2(Program.ExeData, Program.CurrentConfig, null);
-        private readonly Dictionary<int, string> _bombs3 = ConfigUtils.GetBombsEffects3(Program.ExeData, Program.CurrentConfig, null);
+        private Dictionary<int, string> _weapons;
+        private Dictionary<int, string> _armor;
+        private Dictionary<int, string> _auxiliary;
+        private Dictionary<int, string> _consumables;
+        private Dictionary<int, string> _bombs;
+        private Dictionary<int, string> _bombs2;
+        private Dictionary<int, string> _bombs3;
 
 		public ItemType GetItemType(byte index)
 		{
@@ -136,8 +151,8 @@ namespace CczEditor.Data
 
         public List<string> GetItemNames(ItemType type, bool hasFormater)
 		{
-            var count = Program.CurrentConfig.Data.ItemCount;
-            var offset = Program.CurrentConfig.Data.ItemOffset;
+            var count = _config.Data.ItemCount;
+            var offset = _config.Data.ItemOffset;
 			var list = new List<string>();
 			var data = new byte[GAME_ITEM_LENGTH*count];
 			CurrentStream.Seek(offset, SeekOrigin.Begin);
@@ -161,8 +176,8 @@ namespace CczEditor.Data
 
 		public List<string> ItemNameList(bool hasFormatter)
 		{
-            var count = Program.CurrentConfig.Data.ItemCount;
-            var offset = Program.CurrentConfig.Data.ItemOffset;
+            var count = _config.Data.ItemCount;
+            var offset = _config.Data.ItemOffset;
 			var list = new List<string>();
 			var name = new byte[16];
 			for (var i = 0; i < count; i++)
@@ -179,9 +194,9 @@ namespace CczEditor.Data
             var item = new byte[1];
             int count = 0;
             int i = 0;
-            for (; i < Program.CurrentConfig.Data.ItemCount; i++)
+            for (; i < _config.Data.ItemCount; i++)
             {
-                var offset = Program.CurrentConfig.Data.ItemOffset + 24;
+                var offset = _config.Data.ItemOffset + 24;
                 CurrentStream.Seek(offset + i * GAME_ITEM_LENGTH, SeekOrigin.Begin);
                 CurrentStream.Read(item, 0, 1);
                 if (item[0] == 1)
@@ -198,13 +213,13 @@ namespace CczEditor.Data
             var item = new byte[GAME_ITEM_LENGTH];
             if (index < 104)
             {
-                var offset = Program.CurrentConfig.Data.ItemOffset;
+                var offset = _config.Data.ItemOffset;
                 CurrentStream.Seek(offset + index * GAME_ITEM_LENGTH, SeekOrigin.Begin);
                 CurrentStream.Read(item, 0, GAME_ITEM_LENGTH);
             }
             else
             {
-                Program.StarData.ItemGet(index+26,item);
+                _starData.ItemGet(index+26,item);
             }
 			return item;
 		}
@@ -213,13 +228,13 @@ namespace CczEditor.Data
 		{
             if (index < 104)
             {
-                var offset = Program.CurrentConfig.Data.ItemOffset;
+                var offset = _config.Data.ItemOffset;
                 CurrentStream.Seek(offset + index * GAME_ITEM_LENGTH, SeekOrigin.Begin);
                 CurrentStream.Write(value, 0, GAME_ITEM_LENGTH);
             }
             else
             {
-                Program.StarData.ItemSet(index+26, value);
+                _starData.ItemSet(index+26, value);
             }
 
 		}
@@ -229,10 +244,10 @@ namespace CczEditor.Data
         public List<string> StoreNameList(bool hasFormater)
 		{
 			List<string> list;
-			if (Program.ImsgData == null || Program.ImsgData.CurrentStream == null)
+			if (_imsgData == null || _imsgData.CurrentStream == null)
 			{
 				list = new List<string>();
-                var count = Program.CurrentConfig.Imsg.StageCount;
+                var count = _config.Imsg.StageCount;
 				for (var i = 0; i < count; i++)
 				{
 					list.Add(string.Format("R_{0}", i.ToString("D2")));
@@ -240,14 +255,14 @@ namespace CczEditor.Data
 			}
 			else
 			{
-				list = Program.ImsgData.StageNameList(hasFormater);
+				list = _imsgData.GetStageNameList(hasFormater);
 			}
 			return list;
 		}
 
 		public byte[] StoreGet(int index)
 		{
-            var offset = Program.CurrentConfig.Data.ShopOffset;
+            var offset = _config.Data.ShopOffset;
 			var store = new byte[GAME_STORE_LENGTH];
 			CurrentStream.Seek(offset+index*GAME_STORE_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Read(store, 0, GAME_STORE_LENGTH);
@@ -256,7 +271,7 @@ namespace CczEditor.Data
 
 		public void StoreSet(int index, byte[] value)
 		{
-			var offset = Program.CurrentConfig.Data.ShopOffset;
+			var offset = _config.Data.ShopOffset;
             CurrentStream.Seek(offset+index*GAME_STORE_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, GAME_STORE_LENGTH);
 		}
@@ -265,8 +280,8 @@ namespace CczEditor.Data
         #region Force
         public byte[] ForceGet(int index)
 		{
-            var offset = Program.CurrentConfig.Data.ForceOffset;
-            var length = Program.CurrentConfig.Data.ForceLength;
+            var offset = _config.Data.ForceOffset;
+            var length = _config.Data.ForceLength;
 			var force = new byte[length];
 			CurrentStream.Seek(offset+index*length, SeekOrigin.Begin);
 			CurrentStream.Read(force, 0, length);
@@ -275,8 +290,8 @@ namespace CczEditor.Data
 
 		public void ForceSet(int index, byte[] value)
 		{
-			var offset = Program.CurrentConfig.Data.ForceOffset;
-            var length = Program.CurrentConfig.Data.ForceLength;
+			var offset = _config.Data.ForceOffset;
+            var length = _config.Data.ForceLength;
             CurrentStream.Seek(offset+index*length, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, length);
 		}
@@ -285,7 +300,7 @@ namespace CczEditor.Data
         #region Terrain
         public byte[] TerrainGet(int index)
 		{
-            var offset = Program.CurrentConfig.Data.TerrainOffset;
+            var offset = _config.Data.TerrainOffset;
 			var terrain = new byte[GAME_TERRAIN_LENGTH];
 			CurrentStream.Seek(offset+index*GAME_TERRAIN_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Read(terrain, 0, GAME_TERRAIN_LENGTH);
@@ -294,7 +309,7 @@ namespace CczEditor.Data
 
 		public void TerrainSet(int index, byte[] value)
 		{
-			var offset = Program.CurrentConfig.Data.TerrainOffset;
+			var offset = _config.Data.TerrainOffset;
             CurrentStream.Seek(offset+index*GAME_TERRAIN_LENGTH, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, GAME_TERRAIN_LENGTH);
 		}
@@ -303,9 +318,9 @@ namespace CczEditor.Data
         #region Magic
         public List<string> MagicNameList(bool hasFormater)
 		{
-            var count = Program.CurrentConfig.Data.MagicCount;
-            var offset = Program.CurrentConfig.Data.MagicOffset;
-            var length = Program.CurrentConfig.Data.MagicLength;
+            var count = _config.Data.MagicCount;
+            var offset = _config.Data.MagicOffset;
+            var length = _config.Data.MagicLength;
 			var list = new List<string>();
 			var name = new byte[10];
 			for (var i = 0; i < count; i++)
@@ -319,8 +334,8 @@ namespace CczEditor.Data
 
 		public byte[] MagicGet(int index)
 		{
-            var offset = Program.CurrentConfig.Data.MagicOffset;
-            var length = Program.CurrentConfig.Data.MagicLength;
+            var offset = _config.Data.MagicOffset;
+            var length = _config.Data.MagicLength;
 			var magic = new byte[length];
 			CurrentStream.Seek(offset+index*length, SeekOrigin.Begin);
 			CurrentStream.Read(magic, 0, length);
@@ -329,8 +344,8 @@ namespace CczEditor.Data
 
 		public void MagicSet(int index, byte[] value)
 		{
-            var offset = Program.CurrentConfig.Data.MagicOffset;
-            var length = Program.CurrentConfig.Data.MagicLength;
+            var offset = _config.Data.MagicOffset;
+            var length = _config.Data.MagicLength;
 			CurrentStream.Seek(offset+index*length, SeekOrigin.Begin);
 			CurrentStream.Write(value, 0, length);
 		}

@@ -38,6 +38,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.VersionHelperTab = new System.Windows.Forms.TabPage();
+            this.btnDestPath = new System.Windows.Forms.Button();
+            this.btnOriginPath = new System.Windows.Forms.Button();
             this.cbSpecialSkill = new System.Windows.Forms.CheckBox();
             this.cbSpecialEffect = new System.Windows.Forms.CheckBox();
             this.cbAbility = new System.Windows.Forms.CheckBox();
@@ -78,12 +80,11 @@
             this.cbUnitData = new System.Windows.Forms.CheckBox();
             this.destVersionBox = new System.Windows.Forms.ComboBox();
             this.originVersionBox = new System.Windows.Forms.ComboBox();
-            this.btnDestOpen = new System.Windows.Forms.Button();
-            this.btnOriginOpen = new System.Windows.Forms.Button();
             this.tbDestPath = new System.Windows.Forms.TextBox();
             this.tbOriginPath = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.VersionHelperTab.SuspendLayout();
@@ -177,6 +178,9 @@
             // 
             // VersionHelperTab
             // 
+            this.VersionHelperTab.Controls.Add(this.progressBar1);
+            this.VersionHelperTab.Controls.Add(this.btnDestPath);
+            this.VersionHelperTab.Controls.Add(this.btnOriginPath);
             this.VersionHelperTab.Controls.Add(this.cbSpecialSkill);
             this.VersionHelperTab.Controls.Add(this.cbSpecialEffect);
             this.VersionHelperTab.Controls.Add(this.cbAbility);
@@ -217,8 +221,6 @@
             this.VersionHelperTab.Controls.Add(this.cbUnitData);
             this.VersionHelperTab.Controls.Add(this.destVersionBox);
             this.VersionHelperTab.Controls.Add(this.originVersionBox);
-            this.VersionHelperTab.Controls.Add(this.btnDestOpen);
-            this.VersionHelperTab.Controls.Add(this.btnOriginOpen);
             this.VersionHelperTab.Controls.Add(this.tbDestPath);
             this.VersionHelperTab.Controls.Add(this.tbOriginPath);
             this.VersionHelperTab.Controls.Add(this.label4);
@@ -230,6 +232,26 @@
             this.VersionHelperTab.TabIndex = 1;
             this.VersionHelperTab.Text = "마이그레이션 헬퍼";
             this.VersionHelperTab.UseVisualStyleBackColor = true;
+            // 
+            // btnDestPath
+            // 
+            this.btnDestPath.Location = new System.Drawing.Point(505, 73);
+            this.btnDestPath.Name = "btnDestPath";
+            this.btnDestPath.Size = new System.Drawing.Size(75, 23);
+            this.btnDestPath.TabIndex = 51;
+            this.btnDestPath.Text = "경로설정";
+            this.btnDestPath.UseVisualStyleBackColor = true;
+            this.btnDestPath.Click += new System.EventHandler(this.btnDestPath_Click);
+            // 
+            // btnOriginPath
+            // 
+            this.btnOriginPath.Location = new System.Drawing.Point(505, 24);
+            this.btnOriginPath.Name = "btnOriginPath";
+            this.btnOriginPath.Size = new System.Drawing.Size(75, 23);
+            this.btnOriginPath.TabIndex = 50;
+            this.btnOriginPath.Text = "경로설정";
+            this.btnOriginPath.UseVisualStyleBackColor = true;
+            this.btnOriginPath.Click += new System.EventHandler(this.btnOriginPath_Click);
             // 
             // cbSpecialSkill
             // 
@@ -311,27 +333,27 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(599, 78);
+            this.label6.Location = new System.Drawing.Point(634, 78);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 12);
+            this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 41;
-            this.label6.Text = "버전";
+            this.label6.Text = "컨피그";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(599, 29);
+            this.label5.Location = new System.Drawing.Point(634, 29);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 12);
+            this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 40;
-            this.label5.Text = "버전";
+            this.label5.Text = "컨피그";
             // 
             // cbBackup
             // 
             this.cbBackup.AutoSize = true;
             this.cbBackup.Checked = true;
             this.cbBackup.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBackup.Location = new System.Drawing.Point(674, 443);
+            this.cbBackup.Location = new System.Drawing.Point(681, 405);
             this.cbBackup.Name = "cbBackup";
             this.cbBackup.Size = new System.Drawing.Size(104, 16);
             this.cbBackup.TabIndex = 39;
@@ -341,7 +363,7 @@
             // btnExecute
             // 
             this.btnExecute.Enabled = false;
-            this.btnExecute.Location = new System.Drawing.Point(674, 465);
+            this.btnExecute.Location = new System.Drawing.Point(681, 427);
             this.btnExecute.Name = "btnExecute";
             this.btnExecute.Size = new System.Drawing.Size(158, 42);
             this.btnExecute.TabIndex = 38;
@@ -655,7 +677,7 @@
             "Star 6.2 ",
             "BS 1.0",
             "BS 1.1"});
-            this.destVersionBox.Location = new System.Drawing.Point(634, 75);
+            this.destVersionBox.Location = new System.Drawing.Point(681, 75);
             this.destVersionBox.Name = "destVersionBox";
             this.destVersionBox.Size = new System.Drawing.Size(121, 20);
             this.destVersionBox.TabIndex = 7;
@@ -670,32 +692,15 @@
             "Star 6.2 ",
             "BS 1.0",
             "BS 1.1"});
-            this.originVersionBox.Location = new System.Drawing.Point(634, 26);
+            this.originVersionBox.Location = new System.Drawing.Point(681, 26);
             this.originVersionBox.Name = "originVersionBox";
             this.originVersionBox.Size = new System.Drawing.Size(121, 20);
             this.originVersionBox.TabIndex = 6;
             this.originVersionBox.SelectedIndexChanged += new System.EventHandler(this.originVersionBox_SelectedIndexChanged);
             // 
-            // btnDestOpen
-            // 
-            this.btnDestOpen.Location = new System.Drawing.Point(505, 73);
-            this.btnDestOpen.Name = "btnDestOpen";
-            this.btnDestOpen.Size = new System.Drawing.Size(75, 23);
-            this.btnDestOpen.TabIndex = 5;
-            this.btnDestOpen.Text = "열기";
-            this.btnDestOpen.UseVisualStyleBackColor = true;
-            // 
-            // btnOriginOpen
-            // 
-            this.btnOriginOpen.Location = new System.Drawing.Point(505, 24);
-            this.btnOriginOpen.Name = "btnOriginOpen";
-            this.btnOriginOpen.Size = new System.Drawing.Size(75, 23);
-            this.btnOriginOpen.TabIndex = 4;
-            this.btnOriginOpen.Text = "열기";
-            this.btnOriginOpen.UseVisualStyleBackColor = true;
-            // 
             // tbDestPath
             // 
+            this.tbDestPath.Enabled = false;
             this.tbDestPath.Location = new System.Drawing.Point(130, 75);
             this.tbDestPath.Name = "tbDestPath";
             this.tbDestPath.Size = new System.Drawing.Size(369, 21);
@@ -703,6 +708,7 @@
             // 
             // tbOriginPath
             // 
+            this.tbOriginPath.Enabled = false;
             this.tbOriginPath.Location = new System.Drawing.Point(130, 26);
             this.tbOriginPath.Name = "tbOriginPath";
             this.tbOriginPath.Size = new System.Drawing.Size(369, 21);
@@ -725,6 +731,13 @@
             this.label3.Size = new System.Drawing.Size(85, 12);
             this.label3.TabIndex = 0;
             this.label3.Text = "이전 버전 경로";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(556, 475);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(283, 23);
+            this.progressBar1.TabIndex = 52;
             // 
             // ConfigPreset
             // 
@@ -756,8 +769,6 @@
         private System.Windows.Forms.CheckBox cbUnitData;
         private System.Windows.Forms.ComboBox destVersionBox;
         private System.Windows.Forms.ComboBox originVersionBox;
-        private System.Windows.Forms.Button btnDestOpen;
-        private System.Windows.Forms.Button btnOriginOpen;
         private System.Windows.Forms.TextBox tbDestPath;
         private System.Windows.Forms.TextBox tbOriginPath;
         private System.Windows.Forms.Label label4;
@@ -799,5 +810,8 @@
         private System.Windows.Forms.CheckBox cbSpecialSkill;
         private System.Windows.Forms.CheckBox cbSpecialEffect;
         private System.Windows.Forms.CheckBox cbAbility;
+        private System.Windows.Forms.Button btnDestPath;
+        private System.Windows.Forms.Button btnOriginPath;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

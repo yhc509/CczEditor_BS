@@ -219,6 +219,10 @@ namespace CczEditor
 		{
 			tsmiMainMenu_Data.Enabled = tsmiMainMenu_Data.Visible =
 			tsmiMainMenu_Imsg.Enabled = tsmiMainMenu_Imsg.Visible = isShow;
+
+            tsmiMainMenu_File_LoadData.Enabled = !isShow;
+            ProjectClose.Enabled = isShow;
+            PresetSetting.Enabled = !isShow;
 		}
         
 		private void LoadFolderDialog()
@@ -239,11 +243,14 @@ namespace CczEditor
 
 		private void LoadDataFile()
         {
-            DataContainer.LoadExeData(Program.CurrentConfig.DirectoryPath);
-            DataContainer.LoadGameData(Program.CurrentConfig.DirectoryPath);
-            DataContainer.LoadImsgData(Program.CurrentConfig.DirectoryPath);
-            DataContainer.LoadStarData(Program.CurrentConfig.DirectoryPath);
+            string path = Program.CurrentConfig.DirectoryPath;
 
+            var exeData = DataContainer.LoadExeData(path);
+            var gameData = DataContainer.LoadGameData(path);
+            var starData = DataContainer.LoadStarData(path);
+            var imsgData = DataContainer.LoadImsgData(path);
+
+            DataContainer.Initialize(gameData, starData, imsgData, exeData, Program.CurrentConfig);
             SetControlsVisible(true);
 			tsmiMainMenu_Data_Units_Click(tsmiMainMenu_Data_Units, new EventArgs());
 		}
@@ -307,6 +314,19 @@ namespace CczEditor
                 CodeApplierControl = new CodeApplierControl();
             ShowEditor(CodeApplierControl);
 
+        }
+
+        private void 프로젝트닫기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetControlsVisible(false);
+            pMainContainer.Controls.Clear();
+
+            var path = Program.CurrentConfig.DirectoryPath;
+
+            DataContainer.UnloadGameData(path);
+            DataContainer.UnloadStarData(path);
+            DataContainer.UnloadImsgData(path);
+            DataContainer.UnloadExeData(path);
         }
     }
 }

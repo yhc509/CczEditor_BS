@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace CczEditor.Controls.ConfigControls
 {
@@ -13,6 +14,8 @@ namespace CczEditor.Controls.ConfigControls
     {
         private ConfigVersionType originConfigVersionType;
         private ConfigVersionType destConfigVersionType;
+
+        BackgroundWorker bgw = new BackgroundWorker();
 
         private enum ConfigVersionType
         {
@@ -83,91 +86,95 @@ namespace CczEditor.Controls.ConfigControls
         {
             var originConfigHandler = GetVersionConfig(originConfigVersionType);
             var destConfigHandler = GetVersionConfig(destConfigVersionType);
-
+            
             if (originConfigHandler == null || destConfigHandler == null)
             {
-                cbUnitData.Enabled =
-                cbPmapObj.Enabled =
-                cbBattleObj.Enabled =
-                cbCost.Enabled =
-                cbCutin.Enabled =
-                cbVoice.Enabled =
-                cbItemData.Enabled =
-                cbShopData.Enabled =
-                cbSpecialCode.Enabled =
-                cbForceData.Enabled =
-                cbForceCategoryData.Enabled =
-                cbForceName.Enabled =
-                cbForceCategoryName.Enabled =
-                cbTerrainSyn.Enabled =
-                cbForceSyn.Enabled =
-                cbEquip.Enabled =
-                cbMagicData.Enabled =
-                cbMagicLv.Enabled =
-                cbMagicType.Enabled =
-                cbHealType.Enabled =
-                cbDmgType.Enabled =
-                cbAIType.Enabled = 
-                cbConditionType.Enabled =
-                cbDmgValue.Enabled =
-                cbAcc.Enabled = 
-                cbLearn.Enabled = 
-                cbReflect.Enabled =
-                cbAbility.Enabled = 
-                cbSpecialCode.Enabled =
-                cbSpecialEffect.Enabled =
-                cbSpecialSkill.Enabled = false;
+                cbUnitData.Checked =
+                cbPmapObj.Checked =
+                cbBattleObj.Checked =
+                cbCost.Checked =
+                cbCutin.Checked =
+                cbVoice.Checked =
+                cbItemData.Checked =
+                cbShopData.Checked =
+                cbSpecialCode.Checked =
+                cbForceData.Checked =
+                cbForceCategoryData.Checked =
+                cbForceName.Checked =
+                cbForceCategoryName.Checked =
+                cbTerrainSyn.Checked =
+                cbForceSyn.Checked =
+                cbEquip.Checked =
+                cbMagicData.Checked =
+                cbMagicLv.Checked =
+                cbMagicType.Checked =
+                cbHealType.Checked =
+                cbDmgType.Checked =
+                cbAIType.Checked = 
+                cbConditionType.Checked =
+                cbDmgValue.Checked =
+                cbAcc.Checked = 
+                cbLearn.Checked = 
+                cbReflect.Checked =
+                cbAbility.Checked = 
+                cbSpecialCode.Checked =
+                cbSpecialEffect.Checked =
+                cbSpecialSkill.Checked = 
+
+
+                btnExecute .Enabled = false;
 
                 return;
             }
+            btnExecute.Enabled = true;
 
             var originConfig = originConfigHandler.Execute();
             var destConfig = destConfigHandler.Execute();
             
 
             // Unit
-            cbUnitData.Enabled = cbUnitData.Checked = IsUnitDataActive(originConfig, destConfig);
-            cbPmapObj.Enabled = cbPmapObj.Checked = IsPmapObjActive(originConfig, destConfig);
-            cbBattleObj.Enabled = cbBattleObj.Checked = IsBattleObjActive(originConfig, destConfig);
-            cbCost.Enabled = cbCost.Checked = IsCostActive(originConfig, destConfig);
-            cbCutin.Enabled = cbCutin.Checked = IsCutinActive(originConfig, destConfig);
-            cbVoice.Enabled = cbVoice.Checked = IsVoiceActive(originConfig, destConfig);
+            cbUnitData.Checked = IsUnitDataActive(originConfig, destConfig);
+            cbPmapObj.Checked = IsPmapObjActive(originConfig, destConfig);
+            cbBattleObj.Checked = IsBattleObjActive(originConfig, destConfig);
+            cbCost.Checked = IsCostActive(originConfig, destConfig);
+            cbCutin.Checked = IsCutinActive(originConfig, destConfig);
+            cbVoice.Checked = IsVoiceActive(originConfig, destConfig);
 
             // Item
-            cbItemData.Enabled = cbItemData.Checked = IsItemDataActive(originConfig, destConfig);
-            cbShopData.Enabled = cbShopData.Checked = IsShopDataActive(originConfig, destConfig);
-            cbSpecialCode.Enabled = cbSpecialCode.Checked = IsItemEffectActive(originConfig, destConfig);
+            cbItemData.Checked = IsItemDataActive(originConfig, destConfig);
+            cbShopData.Checked = IsShopDataActive(originConfig, destConfig);
+            cbSpecialCode.Checked = IsItemEffectActive(originConfig, destConfig);
             
             // force
-            cbForceData.Enabled = cbForceData.Checked = IsForceDataActive(originConfig, destConfig);
-            cbForceCategoryData.Enabled = cbForceCategoryData.Checked = IsForceCategoryDataActive(originConfig, destConfig);
-            cbForceName.Enabled = cbForceName.Checked = IsForceNameDataActive(originConfig, destConfig);
-            cbForceCategoryName.Enabled = cbForceCategoryName.Checked = IsForceCategoryNameDataActive(originConfig, destConfig);
-            cbTerrainSyn.Enabled = cbTerrainSyn.Checked = IsForceTerrainActive(originConfig, destConfig);
-            cbForceSyn.Enabled = cbForceSyn.Checked = IsForceSangsungActive(originConfig, destConfig);
-            cbEquip.Enabled = cbEquip.Checked = IsForceEquipActive(originConfig, destConfig);
-            cbSpecialAppearForce.Enabled = cbSpecialAppearForce.Checked = IsForceDataActive(originConfig, destConfig);
+            cbForceData.Checked = IsForceDataActive(originConfig, destConfig);
+            cbForceCategoryData.Checked = IsForceCategoryDataActive(originConfig, destConfig);
+            cbForceName.Checked = IsForceNameDataActive(originConfig, destConfig);
+            cbForceCategoryName.Checked = IsForceCategoryNameDataActive(originConfig, destConfig);
+            cbTerrainSyn.Checked = IsForceTerrainActive(originConfig, destConfig);
+            cbForceSyn.Checked = IsForceSangsungActive(originConfig, destConfig);
+            cbEquip.Checked = IsForceEquipActive(originConfig, destConfig);
+            cbSpecialAppearForce.Checked = IsForceDataActive(originConfig, destConfig);
 
             // magic
-            cbMagicData.Enabled = cbMagicData.Checked = IsMagicDataActive(originConfig, destConfig);
-            cbMagicLv.Enabled = cbMagicLv.Checked = IsMagicLearnActive(originConfig, destConfig);
-            cbMagicType.Enabled = cbMagicType.Checked = IsMagicTypeActive(originConfig, destConfig);
-            cbHealType.Enabled = cbHealType.Checked = IsHealTypeActive(originConfig, destConfig);
-            cbDmgType.Enabled = cbDmgType.Checked = IsDmgTypeActive(originConfig, destConfig);
-            cbAIType.Enabled = cbAIType.Checked = IsAITypeActive(originConfig, destConfig);
-            cbConditionType.Enabled = cbConditionType.Checked = IsConditionTypeActive(originConfig, destConfig);
-            cbDmgValue.Enabled = cbDmgValue.Checked = IsDmgValueActive(originConfig, destConfig);
-            cbAcc.Enabled = cbAcc.Checked = IsAccActive(originConfig, destConfig);
-            cbLearn.Enabled = cbLearn.Checked = IsLearnActive(originConfig, destConfig);
-            cbReflect.Enabled = cbReflect.Checked = IsReflectActive(originConfig, destConfig);
+            cbMagicData.Checked = IsMagicDataActive(originConfig, destConfig);
+            cbMagicLv.Checked = IsMagicLearnActive(originConfig, destConfig);
+            cbMagicType.Checked = IsMagicTypeActive(originConfig, destConfig);
+            cbHealType.Checked = IsHealTypeActive(originConfig, destConfig);
+            cbDmgType.Checked = IsDmgTypeActive(originConfig, destConfig);
+            cbAIType.Checked = IsAITypeActive(originConfig, destConfig);
+            cbConditionType.Checked = IsConditionTypeActive(originConfig, destConfig);
+            cbDmgValue.Checked = IsDmgValueActive(originConfig, destConfig);
+            cbAcc.Checked = IsAccActive(originConfig, destConfig);
+            cbLearn.Checked = IsLearnActive(originConfig, destConfig);
+            cbReflect.Checked = IsReflectActive(originConfig, destConfig);
 
             // etc
-            cbLevelExp.Enabled = cbLevelExp.Checked = true;
-            cbTitle.Enabled = cbTitle.Checked = true;
-            cbAbility.Enabled = cbAbility.Checked = IsAbilityGradeActive(originConfig, destConfig);
-            cbSpecialCode.Enabled = cbSpecialCode.Checked = IsItemEffectActive(originConfig, destConfig);
-            cbSpecialEffect.Enabled = cbSpecialEffect.Checked = IsSpecialEffectActive(originConfig, destConfig);
-            cbSpecialSkill.Enabled = cbSpecialSkill.Checked = IsSpecialSkillActive(originConfig, destConfig);
+            cbLevelExp.Checked = true;
+            cbTitle.Checked = true;
+            cbAbility.Checked = IsAbilityGradeActive(originConfig, destConfig);
+            cbSpecialCode.Checked = IsItemEffectActive(originConfig, destConfig);
+            cbSpecialEffect.Checked = IsSpecialEffectActive(originConfig, destConfig);
+            cbSpecialSkill.Checked = IsSpecialSkillActive(originConfig, destConfig);
         }
 
         private ConfigCreateHandler GetVersionConfig(ConfigVersionType type)
@@ -427,27 +434,213 @@ namespace CczEditor.Controls.ConfigControls
 
             var originConfig = originConfigHandler.Execute();
             var destConfig = destConfigHandler.Execute();
+            originConfig.DirectoryPath = tbOriginPath.Text;
+            destConfig.DirectoryPath = tbDestPath.Text;
 
-            Migration(tbOriginPath.Text, originConfig, tbDestPath.Text, destConfig);
+            bgw.DoWork += new DoWorkEventHandler((object o, DoWorkEventArgs dwe) => Migration(originConfig, destConfig));
+            bgw.ProgressChanged += new ProgressChangedEventHandler(bgw_ProgressChanged);
+            bgw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
+            bgw.WorkerReportsProgress = true;
+            bgw.RunWorkerAsync();
+
         }
 
-        private void Migration(string originPath, Config originConfig, string destPath, Config destConfig)
+        private void Migration(Config originConfig, Config destConfig)
         {
-            var originGameData = Data.DataContainer.GetGameData(originPath);
-            var originImsgData = Data.DataContainer.GetImsgData(originPath);
-            var originExeData = Data.DataContainer.GetExeData(originPath);
+            var originPath = originConfig.DirectoryPath;
+            var destPath = destConfig.DirectoryPath;
 
-            var destGameData = Data.DataContainer.GetGameData(destPath);
-            var destImsgData = Data.DataContainer.GetImsgData(destPath);
-            var destExeData = Data.DataContainer.GetExeData(destPath);
+            var originGameData = Data.DataContainer.LoadGameData(originPath);
+            var originStarData = Data.DataContainer.LoadStarData(originPath);
+            var originImsgData = Data.DataContainer.LoadImsgData(originPath);
+            var originExeData = Data.DataContainer.LoadExeData(originPath);
 
-            var data = new Data.Wrapper.UnitData();
+            Data.DataContainer.Initialize(originGameData, originStarData, originImsgData, originExeData, originConfig);
 
-            data.Read(0, originGameData, originImsgData, originExeData, originConfig);
+            var destGameData = Data.DataContainer.LoadGameData(destPath);
+            var destStarData = Data.DataContainer.LoadStarData(destPath);
+            var destImsgData = Data.DataContainer.LoadImsgData(destPath);
+            var destExeData = Data.DataContainer.LoadExeData(destPath);
 
+            Data.DataContainer.Initialize(destGameData, destStarData, destImsgData, destExeData, destConfig);
 
-            data.Write(0, destGameData, destImsgData, destExeData, destConfig);
-           
+            bgw.ReportProgress(1);
+
+            if (cbUnitData.Checked)
+            {
+                var data = new Data.Wrapper.UnitData();
+
+                for(int i = 0; i < originConfig.Data.UnitCount; i++)
+                {
+                    data.Read(i, originGameData, originImsgData, originExeData, originConfig);
+                    data.Write(i, destGameData, destImsgData, destExeData, destConfig);
+                }
+            }
+            bgw.ReportProgress(10);
+
+            if (cbItemData.Checked)
+            {
+                var data = new Data.Wrapper.ItemData();
+                for (int i = 0; i < originConfig.Data.ItemCount; i++)
+                {
+                    data.Read(i, originGameData, originImsgData, originExeData, originConfig);
+                    data.Write(i, destGameData, destStarData, destImsgData, destExeData, destConfig);
+                }
+            }
+            bgw.ReportProgress(20);
+
+            if (cbShopData.Checked)
+            {
+                var data = new Data.Wrapper.ShopData();
+                for (int i = 0; i < originConfig.Data.ShopCount; i++)
+                {
+                    data.Read(i, originGameData, originImsgData, originExeData, originConfig);
+                    data.Write(i, destGameData, destImsgData, destExeData, destConfig);
+                }
+            }
+            bgw.ReportProgress(30);
+
+            if (cbForceData.Checked)
+            {
+                var data = new Data.Wrapper.ForceData();
+                for (int i = 0; i < originConfig.Data.ForceCount; i++)
+                {
+                    data.Read(i, originGameData, originImsgData, originExeData, originConfig);
+                    data.Write(i, destGameData, destImsgData, destExeData, destConfig);
+                }
+            }
+            bgw.ReportProgress(40);
+
+            if (cbTerrainSyn.Checked)
+            {
+                var data = new Data.Wrapper.TerrainData();
+                for (int i = 0; i < originConfig.ForceCategoryNames.Count; i++)
+                {
+                    data.Read(i, originGameData, originImsgData, originExeData, originConfig);
+                    data.Write(i, destGameData, destImsgData, destExeData, destConfig);
+                }
+            }
+            bgw.ReportProgress(50);
+
+            if (cbMagicData.Checked)
+            {
+                var data = new Data.Wrapper.MagicData();
+                for (int i = 0; i < originConfig.Data.MagicCount; i++)
+                {
+                    data.Read(i, originGameData, originImsgData, originExeData, originConfig);
+                    data.Write(i, destGameData, destImsgData, destExeData, destConfig);
+                }
+            }
+            bgw.ReportProgress(60);
+
+            if (cbSpecialEffect.Checked)
+            {
+                var data = new Data.Wrapper.SpecialEffectData();
+                for (int i = 0; i < originConfig.SpecialEffectNames.Count; i++)
+                {
+                    data.Read(i, originExeData, originConfig);
+                    data.Write(i, destExeData, destConfig);
+                }
+            }
+            bgw.ReportProgress(70);
+
+            if (cbSpecialSkill.Checked)
+            {
+                var data = new Data.Wrapper.SpecialSkillData();
+                for (int i = 0; i < originConfig.SpecialSkillNames.Count; i++)
+                {
+                    bool isPhysics = i <= Program.CurrentConfig.Exe.SpecialSkillPhysicsCount;
+                    if (!isPhysics) continue;
+                    data.Read(i, originExeData, originConfig);
+                    data.Write(i, destExeData, destConfig);
+                }
+            }
+            bgw.ReportProgress(80);
+
+            if (cbSpecialCode.Checked)
+            {
+                var data = new Data.Wrapper.CodeEffectData();
+                data.Read(originExeData, originConfig);
+                data.Write(destExeData, destConfig);
+            }
+
+            if (cbSpecialCode.Checked)
+            {
+                var data = new Data.Wrapper.CodeEffectNameData();
+                for (int i = 0; i < originConfig.ItemEffects.Count; i++)
+                {
+                    data.Read(i, originExeData, originConfig);
+                    data.Write(i, destExeData, destConfig);
+                }
+            }
+            bgw.ReportProgress(90);
+
+            {
+                var data = new Data.Wrapper.ProjectData();
+
+                if (cbTitle.Checked)
+                {
+                    data.ReadTitle(originExeData, originConfig);
+                    data.WriteTitle(destExeData, destConfig);
+                }
+                bgw.ReportProgress(94);
+
+                if (cbAbility.Checked)
+                {
+                    data.ReadAbility(originExeData, originConfig);
+                    data.WriteAbility(destExeData, destConfig);
+                }
+                bgw.ReportProgress(95);
+
+                if (cbLevelExp.Checked)
+                {
+                    data.ReadLevels(originExeData, originConfig);
+                    data.WriteLevel(destExeData, destConfig);
+                }
+                bgw.ReportProgress(97);
+
+                if (cbSpecialAppearForce.Checked)
+                {
+                    data.ReadEtc(originExeData, originConfig);
+                    data.WriteEtc(destExeData, destConfig);
+                }
+            }
+            bgw.ReportProgress(100);
+        }
+        
+        void bgw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar1.Value = e.ProgressPercentage;
+        }
+
+        void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //do the code when bgv completes its work
+            MessageBox.Show("마이그레이션이 완료되었습니다");
+        }
+
+        private void btnOriginPath_Click(object sender, EventArgs e)
+        {
+            tbOriginPath.Text = LoadFolder();
+        }
+
+        private void btnDestPath_Click(object sender, EventArgs e)
+        {
+            tbDestPath.Text = LoadFolder();
+        }
+
+        private string LoadFolder()
+        {
+            var fbd = new FolderBrowserDialog
+            {
+                SelectedPath = Program.CurrentConfig.DirectoryPath,
+                Description = "경로를 설정해주세요!"
+            };
+            if (DialogResult.OK != fbd.ShowDialog() || string.IsNullOrEmpty(fbd.SelectedPath) || !System.IO.Directory.Exists(fbd.SelectedPath))
+            {
+                return string.Empty;
+            }
+            return fbd.SelectedPath;
         }
     }
 }

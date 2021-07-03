@@ -8,24 +8,24 @@ namespace CczEditor.Data
     public static class DataUtils
     {
 
-        public static List<string> ItemNameList(bool hasFormatter)
+        public static List<string> ItemNameList(GameData gameData, StarData starData, bool hasFormatter)
         {
-            var list = Program.GameData.ItemNameList(hasFormatter);
-            list.AddRange(Program.StarData.ItemNameList(hasFormatter));
+            var list = gameData.ItemNameList(hasFormatter);
+            list.AddRange(starData.ItemNameList(hasFormatter));
             return list;
         }
 
-        public static List<string> GetItemNames(ItemType type, bool hasFormatter)
+        public static List<string> GetItemNames(GameData gameData, StarData starData, ItemType type, bool hasFormatter)
         {
-            var list = Program.GameData.GetItemNames(type, hasFormatter);
-            list.AddRange(Program.StarData.GetItemNames(type, hasFormatter));
+            var list = gameData.GetItemNames(type, hasFormatter);
+            list.AddRange(starData.GetItemNames(type, hasFormatter));
             return list;
 
         }
         
-        public static int GetTreasureItemCount()
+        public static int GetTreasureItemCount(GameData gameData, StarData starData)
         {
-            return Program.GameData.GetTreasureCount() + Program.StarData.GetTreasureCount();
+            return gameData.GetTreasureCount() + starData.GetTreasureCount();
         }
     }
 }

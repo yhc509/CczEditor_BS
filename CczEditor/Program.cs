@@ -202,10 +202,11 @@ namespace CczEditor
             DataContainer.UnloadImsgData(path);
             DataContainer.UnloadExeData(path);
 
-            DataContainer.LoadExeData(path);
-            DataContainer.LoadGameData(path);
-            DataContainer.LoadStarData(path);
-            DataContainer.LoadImsgData(path);
+            var exeData = DataContainer.LoadExeData(path);
+            var gameData = DataContainer.LoadGameData(path);
+            var starData = DataContainer.LoadStarData(path);
+            var imsgData = DataContainer.LoadImsgData(path);
+            DataContainer.Initialize(gameData, starData, imsgData, exeData, CurrentConfig);
         }
     }
 }

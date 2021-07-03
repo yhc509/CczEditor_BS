@@ -27,11 +27,11 @@ namespace CczEditor.Controls.SaveControls
 		{
 			cbForce.Items.AddRange(Program.CurrentConfig.ForceNames.ToArray());
 			cbWeapon.Items.Add("FF,장비 없음");
-			cbWeapon.Items.AddRange(DataUtils.GetItemNames(ItemType.Weapons, true).ToArray());
+			cbWeapon.Items.AddRange(DataUtils.GetItemNames(Program.GameData, Program.StarData, ItemType.Weapons, true).ToArray());
 			cbArmor.Items.Add("FF,장비 없음");
-			cbArmor.Items.AddRange(DataUtils.GetItemNames(ItemType.Armor, true).ToArray());
+			cbArmor.Items.AddRange(DataUtils.GetItemNames(Program.GameData, Program.StarData, ItemType.Armor, true).ToArray());
 			cbAncillary.Items.Add("FF,장비 없음");
-			cbAncillary.Items.AddRange(DataUtils.GetItemNames(ItemType.Auxiliary, true).ToArray());
+			cbAncillary.Items.AddRange(DataUtils.GetItemNames(Program.GameData, Program.StarData, ItemType.Auxiliary, true).ToArray());
 			clbList.Items.AddRange(Program.GameData.UnitNameList(true).ToArray());
 			clbList.SelectedIndex = 0;
 			clbList.Focus();

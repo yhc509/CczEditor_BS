@@ -61,9 +61,10 @@
             this.tss_Config_1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiMainMenu_Config_LoadAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMainMenu_Config_SaveAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.테스트용ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PresetSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMainMenu_About = new System.Windows.Forms.ToolStripMenuItem();
             this.pMainContainer = new System.Windows.Forms.Panel();
+            this.ProjectClose = new System.Windows.Forms.ToolStripMenuItem();
             this.msMainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,6 +92,7 @@
             this.tsmiMainMenu_File_LoadFolder,
             this.tss_File_1,
             this.tsmiMainMenu_File_LoadData,
+            this.ProjectClose,
             this.tss_File_2,
             this.tsmiMainMenu_File_ExitApplication});
             this.tsmiMainMenu_File.Name = "tsmiMainMenu_File";
@@ -227,7 +229,7 @@
             this.tsmiMainMenu_Imsg_Units_Original,
             this.tsmiMainMenu_Imsg_Units_Extension});
             this.tsmiMainMenu_Imsg_Units.Name = "tsmiMainMenu_Imsg_Units";
-            this.tsmiMainMenu_Imsg_Units.Size = new System.Drawing.Size(152, 22);
+            this.tsmiMainMenu_Imsg_Units.Size = new System.Drawing.Size(146, 22);
             this.tsmiMainMenu_Imsg_Units.Text = "인물 열전 (&U)";
             this.tsmiMainMenu_Imsg_Units.Visible = false;
             // 
@@ -248,21 +250,21 @@
             // tsmiMainMenu_Imsg_Retreat
             // 
             this.tsmiMainMenu_Imsg_Retreat.Name = "tsmiMainMenu_Imsg_Retreat";
-            this.tsmiMainMenu_Imsg_Retreat.Size = new System.Drawing.Size(152, 22);
+            this.tsmiMainMenu_Imsg_Retreat.Size = new System.Drawing.Size(146, 22);
             this.tsmiMainMenu_Imsg_Retreat.Text = "퇴각 대사 (&R)";
             this.tsmiMainMenu_Imsg_Retreat.Click += new System.EventHandler(this.tsmiMainMenu_Imsg_Retreat_Click);
             // 
             // tsmiMainMenu_Imsg_Critical
             // 
             this.tsmiMainMenu_Imsg_Critical.Name = "tsmiMainMenu_Imsg_Critical";
-            this.tsmiMainMenu_Imsg_Critical.Size = new System.Drawing.Size(152, 22);
+            this.tsmiMainMenu_Imsg_Critical.Size = new System.Drawing.Size(146, 22);
             this.tsmiMainMenu_Imsg_Critical.Text = "회심 대사 (&C)";
             this.tsmiMainMenu_Imsg_Critical.Click += new System.EventHandler(this.tsmiMainMenu_Imsg_Critical_Click);
             // 
             // tsmiMainMenu_Imsg_Staff
             // 
             this.tsmiMainMenu_Imsg_Staff.Name = "tsmiMainMenu_Imsg_Staff";
-            this.tsmiMainMenu_Imsg_Staff.Size = new System.Drawing.Size(152, 22);
+            this.tsmiMainMenu_Imsg_Staff.Size = new System.Drawing.Size(146, 22);
             this.tsmiMainMenu_Imsg_Staff.Text = "제작 인물 (&S)";
             this.tsmiMainMenu_Imsg_Staff.Click += new System.EventHandler(this.tsmiMainMenu_Imsg_Staff_Click);
             // 
@@ -288,7 +290,7 @@
             this.tss_Config_1,
             this.tsmiMainMenu_Config_LoadAll,
             this.tsmiMainMenu_Config_SaveAll,
-            this.테스트용ToolStripMenuItem});
+            this.PresetSetting});
             this.tsmiMainMenu_Config.Name = "tsmiMainMenu_Config";
             this.tsmiMainMenu_Config.Size = new System.Drawing.Size(91, 20);
             this.tsmiMainMenu_Config.Text = "버전 설정 (&C)";
@@ -325,12 +327,12 @@
             this.tsmiMainMenu_Config_SaveAll.Size = new System.Drawing.Size(260, 22);
             this.tsmiMainMenu_Config_SaveAll.Text = "설정을 보존한다 (&S)";
             // 
-            // 테스트용ToolStripMenuItem
+            // PresetSetting
             // 
-            this.테스트용ToolStripMenuItem.Name = "테스트용ToolStripMenuItem";
-            this.테스트용ToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
-            this.테스트용ToolStripMenuItem.Text = "프리셋 설정";
-            this.테스트용ToolStripMenuItem.Click += new System.EventHandler(this.테스트용ToolStripMenuItem_Click);
+            this.PresetSetting.Name = "PresetSetting";
+            this.PresetSetting.Size = new System.Drawing.Size(260, 22);
+            this.PresetSetting.Text = "프리셋 설정";
+            this.PresetSetting.Click += new System.EventHandler(this.테스트용ToolStripMenuItem_Click);
             // 
             // tsmiMainMenu_About
             // 
@@ -346,6 +348,13 @@
             this.pMainContainer.Name = "pMainContainer";
             this.pMainContainer.Size = new System.Drawing.Size(893, 580);
             this.pMainContainer.TabIndex = 1;
+            // 
+            // ProjectClose
+            // 
+            this.ProjectClose.Name = "ProjectClose";
+            this.ProjectClose.Size = new System.Drawing.Size(169, 22);
+            this.ProjectClose.Text = "프로젝트 닫기";
+            this.ProjectClose.Click += new System.EventHandler(this.프로젝트닫기ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -407,8 +416,9 @@
         private System.Windows.Forms.ToolStripMenuItem 프로젝트편집ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 특수편집ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 세이브편집ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 테스트용ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PresetSetting;
         private System.Windows.Forms.ToolStripMenuItem 코드입력기ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ProjectClose;
     }
 }
 

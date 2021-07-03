@@ -146,11 +146,11 @@ namespace CczEditor.Data.Wrapper
         {
         }
 
-        public void Write(int index, GameData gameData, ImsgData imsgData, ExeData exeData, Config config)
+        public void Write(int index, GameData gameData, StarData starData, ImsgData imsgData, ExeData exeData, Config config)
         {
             WriteGameData(index, gameData, config);
             WriteImsgData(index, imsgData, config);
-            WriteExeData(index, exeData, config);
+            WriteExeData(index, gameData, starData, exeData, config);
         }
 
         public void WriteGameData(int index, GameData targetData, Config config)
@@ -257,13 +257,13 @@ namespace CczEditor.Data.Wrapper
             }
         }
 
-        public void WriteExeData(int index, ExeData targetData, Config config)
+        public void WriteExeData(int index, GameData gameData, StarData starData, ExeData exeData, Config config)
         {
-            if (!targetData.IsLocked)
+            if (!exeData.IsLocked)
             {
-                int treasureCount = DataUtils.GetTreasureItemCount();
-                if (!targetData.IsLocked)
-                    targetData.WriteByte(treasureCount, 0, config.Exe.TreasureCountOffset);
+                int treasureCount = DataUtils.GetTreasureItemCount(gameData, starData);
+                if (!exeData.IsLocked)
+                    exeData.WriteByte(treasureCount, 0, config.Exe.TreasureCountOffset);
             }
         }
     }

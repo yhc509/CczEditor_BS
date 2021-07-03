@@ -28,13 +28,13 @@ namespace CczEditor.Controls.DataControls
 
 			cbStorage.Items.AddRange(_unitList);
 			cbBusiness.Items.AddRange(_unitList);
-			clbEquipment.Items.AddRange(DataUtils.GetItemNames(ItemType.Weapons, true).ToArray());
-			clbEquipment.Items.AddRange(DataUtils.GetItemNames(ItemType.Armor, true).ToArray());
-			clbEquipment.Items.AddRange(DataUtils.GetItemNames(ItemType.Auxiliary, true).ToArray());
-            clbConsumables.Items.AddRange(DataUtils.GetItemNames(ItemType.Consumables, true).ToArray());
-            clbConsumables.Items.AddRange(DataUtils.GetItemNames(ItemType.BombMines, true).ToArray());
-            clbConsumables.Items.AddRange(DataUtils.GetItemNames(ItemType.BombTools, true).ToArray());
-            clbConsumables.Items.AddRange(DataUtils.GetItemNames(ItemType.Bombs, true).ToArray()); 
+			clbEquipment.Items.AddRange(DataUtils.GetItemNames(Program.GameData, Program.StarData, ItemType.Weapons, true).ToArray());
+			clbEquipment.Items.AddRange(DataUtils.GetItemNames(Program.GameData, Program.StarData, ItemType.Armor, true).ToArray());
+			clbEquipment.Items.AddRange(DataUtils.GetItemNames(Program.GameData, Program.StarData, ItemType.Auxiliary, true).ToArray());
+            clbConsumables.Items.AddRange(DataUtils.GetItemNames(Program.GameData, Program.StarData, ItemType.Consumables, true).ToArray());
+            clbConsumables.Items.AddRange(DataUtils.GetItemNames(Program.GameData, Program.StarData, ItemType.BombMines, true).ToArray());
+            clbConsumables.Items.AddRange(DataUtils.GetItemNames(Program.GameData, Program.StarData, ItemType.BombTools, true).ToArray());
+            clbConsumables.Items.AddRange(DataUtils.GetItemNames(Program.GameData, Program.StarData, ItemType.Bombs, true).ToArray()); 
 			lbList.Items.AddRange(Program.GameData.StoreNameList(true).ToArray());
 		}
 

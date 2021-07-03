@@ -14,6 +14,7 @@ namespace CczEditor.Controls.DataControls
 	public partial class ItemController : BaseDataControl
 	{
         Data.Wrapper.ItemData CurrentData;
+        Data.Wrapper.CodeEffectNameData CurrentCodeEffectNameData;
 
 		public ItemController()
 		{
@@ -44,7 +45,7 @@ namespace CczEditor.Controls.DataControls
             cbCorps.Items.AddRange(ConfigUtils.GetForceCategoryNames(Program.ExeData, Program.CurrentConfig, Program.FORMATSTRING_KEYVALUEPAIR_HEX2).Values.ToArray());
 
             cbItemHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
-			lbList.Items.AddRange(DataUtils.ItemNameList(true).ToArray());
+			lbList.Items.AddRange(DataUtils.ItemNameList(Program.GameData, Program.StarData, true).ToArray());
 
             if (Program.StarData != null && Program.StarData.CurrentFile != null && Program.StarData.CurrentStream != null)
             {
@@ -62,6 +63,7 @@ namespace CczEditor.Controls.DataControls
         {
             base.Reset();
             CurrentData = new Data.Wrapper.ItemData();
+            CurrentCodeEffectNameData = new Data.Wrapper.CodeEffectNameData();
             lbList.SelectedIndex = 0;
             lbList.Focus();
         }
@@ -494,7 +496,7 @@ namespace CczEditor.Controls.DataControls
 
             CurrentData.Imsg = txtImsg.Text;
             
-            CurrentData.Write(index, Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
+            CurrentData.Write(index, Program.GameData, Program.StarData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
 
             lbList.Items.RemoveAt(index);
             lbList.Items.Insert(index, string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, index, txtName.Text));
@@ -557,7 +559,7 @@ namespace CczEditor.Controls.DataControls
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            var list = DataUtils.ItemNameList(false);
+            var list = DataUtils.ItemNameList(Program.GameData, Program.StarData, false);
             var index = list.FindIndex(x => x == searchTextBox.Text);
             if (index == -1)
             {
@@ -580,9 +582,12 @@ namespace CczEditor.Controls.DataControls
 
             SpecialEffNameEditBox.Enabled = true;
             SpecialEffNameEditButton.Enabled = true;
-
+            
             var code = Utils.GetId(cbSpecialEffects.SelectedItem);
-            var effName = ConfigUtils.GetAuxiliaryEffect(Program.ExeData, Program.CurrentConfig, code);
+
+            CurrentCodeEffectNameData.Read(code, Program.ExeData, Program.CurrentConfig);
+
+            var effName = CurrentCodeEffectNameData.Name;//ConfigUtils.GetAuxiliaryEffect(Program.ExeData, Program.CurrentConfig, code);
             if (string.IsNullOrEmpty(effName))
             {
                 SpecialEffNameEditBox.Enabled = false;
@@ -612,18 +617,18 @@ namespace CczEditor.Controls.DataControls
 
         private void SpecialEffNameEditButton_Click(object sender, EventArgs e)
         {
-            var code = Utils.GetId(cbSpecialEffects.SelectedItem);
-            var target = Program.CurrentConfig.ItemEffects.Find(x => x.Index == code);
-            if (target == null) return;
+            try
+            {
+                var code = Utils.GetId(cbSpecialEffects.SelectedItem);
 
-            int length = Encoding.Default.GetByteCount(SpecialEffNameEditBox.Text);
-            if (length > target.Length)
+                CurrentCodeEffectNameData.Name = SpecialEffNameEditBox.Text;
+                CurrentCodeEffectNameData.Write(code, Program.ExeData, Program.CurrentConfig);
+            }
+            catch(Data.Wrapper.CodeEffectNameData.IsLongNameException)
             {
                 MessageBox.Show("이름이 너무 깁니다!");
-                return;
             }
-
-            Program.ExeData.WriteText(SpecialEffNameEditBox.Text, target.Offset, target.Length);
+            
         }
 
         private void SpecialEffNameEditBox_TextChanged(object sender, EventArgs e)

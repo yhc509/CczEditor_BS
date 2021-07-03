@@ -64,6 +64,13 @@ namespace CczEditor.Data
             _exeDataContainer.Add(path, data);
             return data;
         }
+
+        public static void Initialize(GameData gameData, StarData starData, ImsgData imsgData, ExeData exeData, Config config)
+        {
+            gameData.Initialize(starData, imsgData, exeData, config);
+            starData.Initialize(starData, imsgData, exeData, config);
+            imsgData.Initialize(starData, imsgData, exeData, config);
+        }
         #endregion
 
         #region Unload

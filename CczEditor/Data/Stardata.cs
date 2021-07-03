@@ -10,33 +10,54 @@ namespace CczEditor.Data
     public class StarData : FileData
     {
         public const int STAR_ITEM_LENGTH = Program.GAME_ITEM_LENGTH;
-        private readonly Dictionary<int, string> _weapons = ConfigUtils.GetWeaponsTypes(Program.ExeData, Program.CurrentConfig);
-        private readonly Dictionary<int, string> _armor = ConfigUtils.GetArmorTypes(Program.ExeData, Program.CurrentConfig);
-        private readonly Dictionary<int, string> _auxiliary = ConfigUtils.GetAuxiliaryEffects(Program.ExeData, Program.CurrentConfig);
-        private readonly Dictionary<int, string> _consumables = ConfigUtils.GetConsumablesEffects(Program.ExeData, Program.CurrentConfig);
-        private readonly Dictionary<int, string> _bombs = ConfigUtils.GetBombsEffects(Program.ExeData, Program.CurrentConfig);
-        private readonly Dictionary<int, string> _bombs2 = ConfigUtils.GetBombsEffects2(Program.ExeData, Program.CurrentConfig);
-        private readonly Dictionary<int, string> _bombs3 = ConfigUtils.GetBombsEffects3(Program.ExeData, Program.CurrentConfig);
+        private Dictionary<int, string> _weapons;
+        private Dictionary<int, string> _armor;
+        private Dictionary<int, string> _auxiliary;
+        private Dictionary<int, string> _consumables;
+        private Dictionary<int, string> _bombs;
+        private Dictionary<int, string> _bombs2;
+        private Dictionary<int, string> _bombs3;
 
+        private StarData _starData;
+        private ImsgData _imsgData;
+        private ExeData _exeData;
+        private Config _config;
 
         public StarData(string fileName) : base(fileName)
         {
         }
 
+
+        public void Initialize(StarData starData, ImsgData imsgData, ExeData exeData, Config config)
+        {
+            _starData = starData;
+            _imsgData = imsgData;
+            _exeData = exeData;
+            _config = config;
+
+            _weapons = ConfigUtils.GetWeaponsTypes(exeData, config);
+            _armor = ConfigUtils.GetArmorTypes(exeData, config);
+            _auxiliary = ConfigUtils.GetAuxiliaryEffects(exeData, config);
+            _consumables = ConfigUtils.GetConsumablesEffects(exeData, config);
+            _bombs = ConfigUtils.GetBombsEffects(exeData, config);
+            _bombs2 = ConfigUtils.GetBombsEffects2(exeData, config);
+            _bombs3 = ConfigUtils.GetBombsEffects3(exeData, config);
+        }
+
         public List<string> GetItemNames(ItemType type, bool hasFormater)
         {
-            var count = Program.CurrentConfig.Data.StarItemCount;
-            var offset = Program.CurrentConfig.Data.StarItemOffset;
+            var count = _config.Data.StarItemCount;
+            var offset = _config.Data.StarItemOffset;
             var list = new List<string>(); 
             var data = new byte[STAR_ITEM_LENGTH * count];
             CurrentStream.Seek(offset, SeekOrigin.Begin);
             CurrentStream.Read(data, 0, STAR_ITEM_LENGTH * count);
-            for (var i = Program.CurrentConfig.Data.ItemCount + 1; i < count; i++)
+            for (var i = _config.Data.ItemCount + 1; i < count; i++)
             {
-                var t = data[17 + STAR_ITEM_LENGTH * (i - (Program.CurrentConfig.Data.ItemCount + 1))];
+                var t = data[17 + STAR_ITEM_LENGTH * (i - (_config.Data.ItemCount + 1))];
                 var s = hasFormater ? 
-                    string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, Utils.ByteToString(data, STAR_ITEM_LENGTH * (i - (Program.CurrentConfig.Data.ItemCount + 1)), 16))
-                    : Utils.ByteToString(data, STAR_ITEM_LENGTH * (i - (Program.CurrentConfig.Data.ItemCount + 1)), 16);
+                    string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, Utils.ByteToString(data, STAR_ITEM_LENGTH * (i - (_config.Data.ItemCount + 1)), 16))
+                    : Utils.ByteToString(data, STAR_ITEM_LENGTH * (i - (_config.Data.ItemCount + 1)), 16);
                 
                 if (type == ItemType.Weapons && _weapons.ContainsKey(t)) list.Add(s);
                 if (type == ItemType.Armor && _armor.ContainsKey(t)) list.Add(s);
@@ -50,15 +71,15 @@ namespace CczEditor.Data
             return list;
         }
 
-        public List<string> ItemNameList(bool hasFormatter)//List<string> list
+        public List<string> ItemNameList(bool hasFormatter)
         {
-            var count = Program.CurrentConfig.Data.StarItemCount;
-            var offset = Program.CurrentConfig.Data.StarItemOffset;
+            var count = _config.Data.StarItemCount;
+            var offset = _config.Data.StarItemOffset;
             var list = new List<string>();
             var name = new byte[16];
-            for (var i = Program.CurrentConfig.Data.ItemCount; i < count; i++)
+            for (var i = _config.Data.ItemCount; i < count; i++)
             {
-                CurrentStream.Seek(offset + (i-Program.CurrentConfig.Data.ItemCount) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
+                CurrentStream.Seek(offset + (i- _config.Data.ItemCount) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
                 CurrentStream.Read(name, 0, 16);
                 list.Add(hasFormatter ? string.Format(Program.FORMATSTRING_KEYVALUEPAIR_HEX2, i, Utils.ByteToString(name)) : Utils.ByteToString(name));
             }
@@ -67,8 +88,8 @@ namespace CczEditor.Data
 
         public List<int> ItemIconList(List<int> list)
         {
-            var count = Program.CurrentConfig.Data.StarItemCount;
-            var offset = Program.CurrentConfig.Data.StarItemOffset;
+            var count = _config.Data.StarItemCount;
+            var offset = _config.Data.StarItemOffset;
             for (var i = 0x82; i < count; i++)
             {
                 CurrentStream.Seek(offset + (i-0x82) * STAR_ITEM_LENGTH + 20, SeekOrigin.Begin);
@@ -77,30 +98,28 @@ namespace CczEditor.Data
             return list;
         }
 
-        public List<bool> ItemIllustrationsShowList
+        public List<bool> GetItemIllustrationsShowList()
         {
-            get
+            var count = _config.Data.StarItemCount;
+            var offset = _config.Data.StarItemOffset;
+            var list = new List<bool>();
+            for (var i = 0x82; i < count; i++)
             {
-                var count = Program.CurrentConfig.Data.StarItemCount;
-                var offset = Program.CurrentConfig.Data.StarItemOffset;
-                var list = new List<bool>();
-                for (var i = 0x82; i < count; i++)
-                {
-                    CurrentStream.Seek(offset + (i-0x82) * STAR_ITEM_LENGTH + 24, SeekOrigin.Begin);
-                    list.Add(CurrentStream.ReadByte() == 0x01 ? true : false);
-                }
-                return list;
+                CurrentStream.Seek(offset + (i-0x82) * STAR_ITEM_LENGTH + 24, SeekOrigin.Begin);
+                list.Add(CurrentStream.ReadByte() == 0x01 ? true : false);
             }
-            set
+            return list;
+        }
+
+        public void SetItemIllustrationsShowList(List<bool> value)
+        {
+            var count = _config.Data.StarItemCount;
+            var offset = _config.Data.StarItemOffset;
+            count = count > value.Count ? value.Count : count;
+            for (var i = 0x82; i < count; i++)
             {
-                var count = Program.CurrentConfig.Data.StarItemCount;
-                var offset = Program.CurrentConfig.Data.StarItemOffset;
-                count = count > value.Count ? value.Count : count;
-                for (var i = 0x82; i < count; i++)
-                {
-                    CurrentStream.Seek(offset + (i-0x82) * STAR_ITEM_LENGTH + 24, SeekOrigin.Begin);
-                    CurrentStream.WriteByte((byte)(value[i] ? 0x01 : 0x00));
-                }
+                CurrentStream.Seek(offset + (i - 0x82) * STAR_ITEM_LENGTH + 24, SeekOrigin.Begin);
+                CurrentStream.WriteByte((byte)(value[i] ? 0x01 : 0x00));
             }
         }
 
@@ -109,10 +128,10 @@ namespace CczEditor.Data
             var item = new byte[1];
             int count = 0;
             int i = 0;
-            for (; i < Program.CurrentConfig.Data.StarItemCount; i++)
+            for (; i < _config.Data.StarItemCount; i++)
             {
                 var offset = 24;
-                CurrentStream.Seek(offset + (i - Program.CurrentConfig.Data.ItemCount) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
+                CurrentStream.Seek(offset + (i - _config.Data.ItemCount) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
                 CurrentStream.Read(item, 0, 1);
                 if (item[0] == 1)
                 {
@@ -125,7 +144,7 @@ namespace CczEditor.Data
         
         public byte[] ItemGet(int index,byte[] item)
         {
-            var offset = Program.CurrentConfig.Data.StarItemOffset;
+            var offset = _config.Data.StarItemOffset;
             CurrentStream.Seek(offset + (index-0x82) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
             CurrentStream.Read(item, 0, STAR_ITEM_LENGTH);
             return item;
@@ -133,7 +152,7 @@ namespace CczEditor.Data
 
         public void ItemSet(int index, byte[] value)
         {
-            var offset = Program.CurrentConfig.Data.StarItemOffset;
+            var offset = _config.Data.StarItemOffset;
             CurrentStream.Seek(offset + (index-0x82) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
             CurrentStream.Write(value, 0, STAR_ITEM_LENGTH);
         }

@@ -20,7 +20,7 @@ namespace CczEditor.Controls.ImsgControls
 
 		private void ItemsImsg_Load(object sender, EventArgs e)
 		{
-			lbList.Items.AddRange(Data.DataUtils.ItemNameList(true).ToArray());
+			lbList.Items.AddRange(Data.DataUtils.ItemNameList(Program.GameData, Program.StarData, true).ToArray());
 			lbList.SelectedIndex = 0;
 			lbList.Focus();
 		}

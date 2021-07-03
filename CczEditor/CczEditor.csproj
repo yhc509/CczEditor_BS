@@ -329,6 +329,7 @@
     <Compile Include="Data\SaveNewData.cs" />
     <Compile Include="Data\Stardata.cs" />
     <Compile Include="Data\Wrapper\CodeEffectData.cs" />
+    <Compile Include="Data\Wrapper\CodeEffectNameData.cs" />
     <Compile Include="Data\Wrapper\ForceData.cs" />
     <Compile Include="Data\Wrapper\ForceSynastryData.cs" />
     <Compile Include="Data\Wrapper\ItemData.cs" />

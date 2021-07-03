@@ -26,7 +26,7 @@ namespace CczEditor.Data.Wrapper
         public int DefenceIndex = 0;
         public int TerrainAssistIndex = 0;
         public int EtcIndex = 0;
-
+        
         public void Read(ExeData exeData, Config config)
         {
             ReadExeData(exeData, config);

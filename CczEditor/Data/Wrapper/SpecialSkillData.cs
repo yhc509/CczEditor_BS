@@ -12,7 +12,7 @@ namespace CczEditor.Data.Wrapper
         public byte[] Levels;
         public byte Value;
 
-        public void Read(int index, GameData gameData, ImsgData imsgData, ExeData exeData, Config config)
+        public void Read(int index, ExeData exeData, Config config)
         {
             ReadExeData(index, exeData, config);
         }
