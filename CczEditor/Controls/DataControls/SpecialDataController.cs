@@ -369,6 +369,17 @@ namespace CczEditor.Controls.DataControls
 
             CurrentCodeEffectData.CodeEffectContainer[terrain.Description] = (byte)Utils.GetId(TerrainValue.SelectedItem);
             CurrentCodeEffectData.CodeEffectContainer[etc.Description] = (byte)Utils.GetId(EtcValue.SelectedItem);
+            
+            CurrentCodeEffectData.AbilityAssistIndex = AbilityAssistList.SelectedIndex;
+            CurrentCodeEffectData.AttackAccIndex = AttackAccList.SelectedIndex;
+            CurrentCodeEffectData.MagicIndex = MagicList.SelectedIndex;
+            CurrentCodeEffectData.StateEffectAttackIndex = StateEffectAttackList.SelectedIndex;
+            CurrentCodeEffectData.TurnCureIndex = TurnCureList.SelectedIndex;
+            CurrentCodeEffectData.DeburfAttackIndex = DeburfList.SelectedIndex;
+            CurrentCodeEffectData.DecreaseDmgIndex = DecreaseDmgList.SelectedIndex;
+            CurrentCodeEffectData.DefenceIndex = DefenceList.SelectedIndex;
+            CurrentCodeEffectData.TerrainAssistIndex = TerrainList.SelectedIndex;
+            CurrentCodeEffectData.EtcIndex = EtcList.SelectedIndex;
 
             CurrentCodeEffectData.Write(Program.ExeData, Program.CurrentConfig);
         }

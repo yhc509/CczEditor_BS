@@ -640,5 +640,66 @@ namespace CczEditor.Controls.DataControls
             int length = Encoding.Default.GetByteCount(SpecialEffNameEditBox.Text);
             EffNameLabel.Text = $"{length}/{target.Length} byte";
         }
+
+        private void pbIcon_DoubleClick(object sender, EventArgs e)
+        {
+
+            if (ItemIcons == null)
+            {
+                return;
+            }
+            try
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "Image File(*.bmp)|*.bmp";
+                OpenFileDialog openFileDialog2 = openFileDialog1;
+                if (DialogResult.OK != openFileDialog2.ShowDialog() || string.IsNullOrEmpty(openFileDialog2.FileName) || !System.IO.File.Exists(openFileDialog2.FileName))
+                    return;
+
+                int index = (int)(ncItemIcon.Value * 2) + 101;
+
+                Resources.ItemIconResources.Save(index, openFileDialog2.FileName);
+
+                ncItemIcon_ValueChanged((object)null, (EventArgs)null);
+                MessageBox.Show("수정 성공!");
+            }
+            catch
+            {
+                MessageBox.Show("오류가 발생했습니다!");
+            }
+        }
+
+        private void pbIcons_DoubleClick(object sender, EventArgs e)
+        {
+
+            if (ItemIcons == null)
+            {
+                return;
+            }
+            try
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "Image File(*.bmp)|*.bmp";
+                OpenFileDialog openFileDialog2 = openFileDialog1;
+                if (DialogResult.OK != openFileDialog2.ShowDialog() || string.IsNullOrEmpty(openFileDialog2.FileName) || !System.IO.File.Exists(openFileDialog2.FileName))
+                    return;
+
+                int index = (int)(ncItemIcon.Value * 2) + 100;
+
+                Resources.ItemIconResources.Save(index, openFileDialog2.FileName);
+
+                ncItemIcon_ValueChanged((object)null, (EventArgs)null);
+                MessageBox.Show("수정 성공!");
+            }
+            catch
+            {
+                MessageBox.Show("오류가 발생했습니다!");
+            }
+        }
+
+        private void pbIcons_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -156,6 +156,9 @@ namespace CczEditor
                 SystemConfig.Inst.CurrentConfig = configFileName;
                 SystemConfig.Write(SystemConfig.DefaultSystemConfigFileName);
                 Program.CurrentConfig = config;
+
+                Reset();
+
                 SetControlsVisible(false);
                 pMainContainer.Controls.Clear();
                 Text = Program.TitleNameCurrent = string.Format("{0} - {1}", Program.TITLE_NAME_ORIGINAL, Program.CurrentConfig.DisplayName);
@@ -322,11 +325,23 @@ namespace CczEditor
             pMainContainer.Controls.Clear();
 
             var path = Program.CurrentConfig.DirectoryPath;
+            
+            DataContainer.Reset();
+        }
 
-            DataContainer.UnloadGameData(path);
-            DataContainer.UnloadStarData(path);
-            DataContainer.UnloadImsgData(path);
-            DataContainer.UnloadExeData(path);
+        public void Reset()
+        {
+            DataContainer.Reset();
+            UnitController = null;
+            ItemController = null;
+            ShopController = null;
+            ForceController = null;
+            TerrainController = null;
+            MagicController = null;
+            SpecialDataController = null;
+            ProjectController = null;
+            ConfigPreset = null;
+            CodeApplierControl = null;
         }
     }
 }

@@ -15,7 +15,9 @@ namespace CczEditor.Controls.ConfigControls
         private ConfigVersionType originConfigVersionType;
         private ConfigVersionType destConfigVersionType;
 
-        BackgroundWorker bgw = new BackgroundWorker();
+        BackgroundWorker bgw;
+
+        private string _statusText;
 
         private enum ConfigVersionType
         {
@@ -437,7 +439,13 @@ namespace CczEditor.Controls.ConfigControls
             originConfig.DirectoryPath = tbOriginPath.Text;
             destConfig.DirectoryPath = tbDestPath.Text;
 
-            bgw.DoWork += new DoWorkEventHandler((object o, DoWorkEventArgs dwe) => Migration(originConfig, destConfig));
+            btnExecute.Enabled = false;
+
+            bgw = new BackgroundWorker();
+            bgw.DoWork += new DoWorkEventHandler(
+                (object o, DoWorkEventArgs dwe) => {
+                    Migration(originConfig, destConfig);
+                });
             bgw.ProgressChanged += new ProgressChangedEventHandler(bgw_ProgressChanged);
             bgw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgw_RunWorkerCompleted);
             bgw.WorkerReportsProgress = true;
@@ -464,159 +472,213 @@ namespace CczEditor.Controls.ConfigControls
 
             Data.DataContainer.Initialize(destGameData, destStarData, destImsgData, destExeData, destConfig);
 
-            bgw.ReportProgress(1);
+            originExeData.Open(System.IO.FileAccess.ReadWrite);
+            destExeData.Open(System.IO.FileAccess.ReadWrite);
 
-            if (cbUnitData.Checked)
+            try
             {
-                var data = new Data.Wrapper.UnitData();
+                bgw.ReportProgress(1);
 
-                for(int i = 0; i < originConfig.Data.UnitCount; i++)
+                if (cbUnitData.Checked)
                 {
-                    data.Read(i, originGameData, originImsgData, originExeData, originConfig);
-                    data.Write(i, destGameData, destImsgData, destExeData, destConfig);
-                }
-            }
-            bgw.ReportProgress(10);
+                    var data = new Data.Wrapper.UnitData();
 
-            if (cbItemData.Checked)
+                    var count = originConfig.Data.UnitCount;
+                    for (int i = 0; i < count; i++)
+                    {
+                        data.Read(i, originGameData, originImsgData, originExeData, originConfig);
+                        data.Write(i, destGameData, destImsgData, destExeData, destConfig);
+
+                        _statusText = $"인물 데이터를 이식 중입니다. ({i}/{count})";
+                        bgw.ReportProgress(i * 10 / count);
+                    }
+                }
+                bgw.ReportProgress(10);
+
+                if (cbItemData.Checked)
+                {
+                    var data = new Data.Wrapper.ItemData();
+
+                    var count = originConfig.Data.StarItemCount;
+                    for (int i = 0; i < count; i++)
+                    {
+                        data.Read(i, originGameData, originImsgData, originExeData, originConfig);
+                        data.Write(i, destGameData, destStarData, destImsgData, destExeData, destConfig);
+
+                        _statusText = $"물품 데이터를 이식 중입니다. ({i}/{count})";
+                        bgw.ReportProgress(10 + i * 10 / count);
+                    }
+                }
+                bgw.ReportProgress(20);
+
+                if (cbShopData.Checked)
+                {
+                    var data = new Data.Wrapper.ShopData();
+                    var count = originConfig.Data.ShopCount;
+                    for (int i = 0; i < count; i++)
+                    {
+                        data.Read(i, originGameData, originImsgData, originExeData, originConfig);
+                        data.Write(i, destGameData, destImsgData, destExeData, destConfig);
+
+                        _statusText = $"상점 데이터를 이식 중입니다. ({i}/{count})";
+                        bgw.ReportProgress(20 + i * 10 / count);
+                    }
+                }
+                bgw.ReportProgress(30);
+
+                if (cbForceData.Checked)
+                {
+                    var data = new Data.Wrapper.ForceData();
+                    var count = originConfig.Data.ForceCount;
+                    for (int i = 0; i < count; i++)
+                    {
+                        data.Read(i, originGameData, originImsgData, originExeData, originConfig);
+                        data.Write(i, destGameData, destImsgData, destExeData, destConfig);
+
+                        _statusText = $"병종 데이터를 이식 중입니다. ({i}/{count})";
+                        bgw.ReportProgress(30 + i * 10 / count);
+                    }
+                }
+                bgw.ReportProgress(40);
+
+                if (cbTerrainSyn.Checked)
+                {
+                    var data = new Data.Wrapper.TerrainData();
+                    var count = originConfig.ForceCategoryNames.Count;
+                    for (int i = 0; i < count; i++)
+                    {
+                        data.Read(i, originGameData, originImsgData, originExeData, originConfig);
+                        data.Write(i, destGameData, destImsgData, destExeData, destConfig);
+                        _statusText = $"지형 데이터를 이식 중입니다. ({i}/{count})";
+                        bgw.ReportProgress(40 + i * 10 / count);
+                    }
+                }
+                bgw.ReportProgress(50);
+
+                if (cbMagicData.Checked)
+                {
+                    var data = new Data.Wrapper.MagicData();
+                    var count = originConfig.Data.MagicCount;
+                    for (int i = 0; i < count; i++)
+                    {
+                        data.Read(i, originGameData, originImsgData, originExeData, originConfig);
+                        data.Write(i, destGameData, destImsgData, destExeData, destConfig);
+                        _statusText = $"책략 데이터를 이식 중입니다. ({i}/{count})";
+                        bgw.ReportProgress(50 + i * 10 / count);
+                    }
+                }
+                bgw.ReportProgress(60);
+
+                if (cbSpecialEffect.Checked)
+                {
+                    var data = new Data.Wrapper.SpecialEffectData();
+                    var count = originConfig.SpecialEffectNames.Count;
+                    for (int i = 0; i < count; i++)
+                    {
+                        data.Read(i, originExeData, originConfig);
+                        data.Write(i, destExeData, destConfig);
+                        _statusText = $"인물,병종 코드 데이터를 이식 중입니다. ({i}/{count})";
+                        bgw.ReportProgress(60 + i * 10 / count);
+                    }
+                }
+                bgw.ReportProgress(70);
+
+                if (cbSpecialSkill.Checked)
+                {
+                    var data = new Data.Wrapper.SpecialSkillData();
+                    var count = originConfig.SpecialSkillNames.Count;
+                    for (int i = 0; i < count; i++)
+                    {
+                        bool isPhysics = i <= Program.CurrentConfig.Exe.SpecialSkillPhysicsCount;
+                        if (!isPhysics) continue;
+                        data.Read(i, originExeData, originConfig);
+                        data.Write(i, destExeData, destConfig);
+                        _statusText = $"인물 필살기 데이터를 이식 중입니다. ({i}/{count})";
+                        bgw.ReportProgress(70 + i * 10 / count);
+                    }
+                }
+                bgw.ReportProgress(80);
+
+                if (cbSpecialCode.Checked)
+                {
+                    var data = new Data.Wrapper.CodeEffectData();
+                    data.Read(originExeData, originConfig);
+                    data.WriteAll(destExeData, destConfig);
+                    _statusText = $"보물 코드 데이터를 이식 중입니다.";
+                }
+
+                if (cbSpecialCode.Checked)
+                {
+                    var data = new Data.Wrapper.CodeEffectNameData();
+                    for (int i = 0; i < originConfig.ItemEffects.Count; i++)
+                    {
+                        data.Read(i, originExeData, originConfig);
+                        data.Write(i, destExeData, destConfig);
+                        _statusText = $"보물 코드 데이터를 이식 중입니다.";
+                    }
+                }
+                bgw.ReportProgress(90);
+
+                {
+                    var data = new Data.Wrapper.ProjectData();
+
+                    if (cbTitle.Checked)
+                    {
+                        data.ReadTitle(originExeData, originConfig);
+                        data.WriteTitle(destExeData, destConfig);
+                        _statusText = $"타이틀명을 이식 중입니다.";
+                    }
+                    bgw.ReportProgress(94);
+
+                    if (cbAbility.Checked)
+                    {
+                        data.ReadAbility(originExeData, originConfig);
+                        data.WriteAbility(destExeData, destConfig);
+                        _statusText = $"열전 특화 데이터를 이식 중입니다.";
+                    }
+                    bgw.ReportProgress(95);
+
+                    if (cbLevelExp.Checked)
+                    {
+                        data.ReadLevels(originExeData, originConfig);
+                        data.WriteLevel(destExeData, destConfig);
+                        _statusText = $"레벨, 경험치 설정 데이터를 이식 중입니다.";
+                    }
+                    bgw.ReportProgress(97);
+
+                    if (cbSpecialAppearForce.Checked)
+                    {
+                        data.ReadEtc(originExeData, originConfig);
+                        data.WriteEtc(destExeData, destConfig);
+                        _statusText = $"병종 특수 설정 데이터를 이식 중입니다.";
+                    }
+                }
+                bgw.ReportProgress(100);
+            }
+            catch(Exception ex)
             {
-                var data = new Data.Wrapper.ItemData();
-                for (int i = 0; i < originConfig.Data.ItemCount; i++)
-                {
-                    data.Read(i, originGameData, originImsgData, originExeData, originConfig);
-                    data.Write(i, destGameData, destStarData, destImsgData, destExeData, destConfig);
-                }
             }
-            bgw.ReportProgress(20);
-
-            if (cbShopData.Checked)
+            finally
             {
-                var data = new Data.Wrapper.ShopData();
-                for (int i = 0; i < originConfig.Data.ShopCount; i++)
-                {
-                    data.Read(i, originGameData, originImsgData, originExeData, originConfig);
-                    data.Write(i, destGameData, destImsgData, destExeData, destConfig);
-                }
+                originExeData.Close();
+                destExeData.Close();
             }
-            bgw.ReportProgress(30);
-
-            if (cbForceData.Checked)
-            {
-                var data = new Data.Wrapper.ForceData();
-                for (int i = 0; i < originConfig.Data.ForceCount; i++)
-                {
-                    data.Read(i, originGameData, originImsgData, originExeData, originConfig);
-                    data.Write(i, destGameData, destImsgData, destExeData, destConfig);
-                }
-            }
-            bgw.ReportProgress(40);
-
-            if (cbTerrainSyn.Checked)
-            {
-                var data = new Data.Wrapper.TerrainData();
-                for (int i = 0; i < originConfig.ForceCategoryNames.Count; i++)
-                {
-                    data.Read(i, originGameData, originImsgData, originExeData, originConfig);
-                    data.Write(i, destGameData, destImsgData, destExeData, destConfig);
-                }
-            }
-            bgw.ReportProgress(50);
-
-            if (cbMagicData.Checked)
-            {
-                var data = new Data.Wrapper.MagicData();
-                for (int i = 0; i < originConfig.Data.MagicCount; i++)
-                {
-                    data.Read(i, originGameData, originImsgData, originExeData, originConfig);
-                    data.Write(i, destGameData, destImsgData, destExeData, destConfig);
-                }
-            }
-            bgw.ReportProgress(60);
-
-            if (cbSpecialEffect.Checked)
-            {
-                var data = new Data.Wrapper.SpecialEffectData();
-                for (int i = 0; i < originConfig.SpecialEffectNames.Count; i++)
-                {
-                    data.Read(i, originExeData, originConfig);
-                    data.Write(i, destExeData, destConfig);
-                }
-            }
-            bgw.ReportProgress(70);
-
-            if (cbSpecialSkill.Checked)
-            {
-                var data = new Data.Wrapper.SpecialSkillData();
-                for (int i = 0; i < originConfig.SpecialSkillNames.Count; i++)
-                {
-                    bool isPhysics = i <= Program.CurrentConfig.Exe.SpecialSkillPhysicsCount;
-                    if (!isPhysics) continue;
-                    data.Read(i, originExeData, originConfig);
-                    data.Write(i, destExeData, destConfig);
-                }
-            }
-            bgw.ReportProgress(80);
-
-            if (cbSpecialCode.Checked)
-            {
-                var data = new Data.Wrapper.CodeEffectData();
-                data.Read(originExeData, originConfig);
-                data.Write(destExeData, destConfig);
-            }
-
-            if (cbSpecialCode.Checked)
-            {
-                var data = new Data.Wrapper.CodeEffectNameData();
-                for (int i = 0; i < originConfig.ItemEffects.Count; i++)
-                {
-                    data.Read(i, originExeData, originConfig);
-                    data.Write(i, destExeData, destConfig);
-                }
-            }
-            bgw.ReportProgress(90);
-
-            {
-                var data = new Data.Wrapper.ProjectData();
-
-                if (cbTitle.Checked)
-                {
-                    data.ReadTitle(originExeData, originConfig);
-                    data.WriteTitle(destExeData, destConfig);
-                }
-                bgw.ReportProgress(94);
-
-                if (cbAbility.Checked)
-                {
-                    data.ReadAbility(originExeData, originConfig);
-                    data.WriteAbility(destExeData, destConfig);
-                }
-                bgw.ReportProgress(95);
-
-                if (cbLevelExp.Checked)
-                {
-                    data.ReadLevels(originExeData, originConfig);
-                    data.WriteLevel(destExeData, destConfig);
-                }
-                bgw.ReportProgress(97);
-
-                if (cbSpecialAppearForce.Checked)
-                {
-                    data.ReadEtc(originExeData, originConfig);
-                    data.WriteEtc(destExeData, destConfig);
-                }
-            }
-            bgw.ReportProgress(100);
         }
         
         void bgw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
+            lbStatus.Text = _statusText;
         }
 
         void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             //do the code when bgv completes its work
+            _statusText = string.Empty;
+            lbStatus.Text = string.Empty;
+            progressBar1.Value = 100;
             MessageBox.Show("마이그레이션이 완료되었습니다");
+            btnExecute.Enabled = true;
         }
 
         private void btnOriginPath_Click(object sender, EventArgs e)

@@ -131,7 +131,7 @@ namespace CczEditor.Data
             for (; i < _config.Data.StarItemCount; i++)
             {
                 var offset = 24;
-                CurrentStream.Seek(offset + (i - _config.Data.ItemCount) * STAR_ITEM_LENGTH, SeekOrigin.Begin);
+                CurrentStream.Seek(offset + i * STAR_ITEM_LENGTH, SeekOrigin.Begin);
                 CurrentStream.Read(item, 0, 1);
                 if (item[0] == 1)
                 {

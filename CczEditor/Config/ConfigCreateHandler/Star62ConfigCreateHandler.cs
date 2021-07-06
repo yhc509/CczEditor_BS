@@ -135,6 +135,20 @@ namespace CczEditor
                 0x50, 0x51, 0x52, 0x53, 0x54, 0x55
             };
             result.Exe.Magic.LearTypeOffset = 0x65201;
+
+            result.Exe.SpecialAppear_ForceIndexOffset = new int[]
+            {
+                0x56809, 0x56817
+            };
+            result.Exe.Knock_Back_ForceIndexOffset = 0x10482;
+            result.Exe.SpecialSkillDmg_ForceCategoryIndexOffset = 0x3AD94;
+            result.Exe.SpecialSkillDmg_SkillIndexOffset = 0x3AD88;
+
+            result.Exe.Magic_Block_ForceIndexOffset = 0x3ACDB;
+            result.Exe.Neighbor_MorIncrease_ForceIndexOffset = 0xA1F52;
+            result.Exe.Neighbor_HpRecover_ForceIndexOffset = 0xA1F60;
+            result.Exe.Neighbor_MpRecover_ForceIndexOffset = 0xA1F6E;
+            result.Exe.Neighbor_Awaken_ForceIndexOffset = 0x3C5EA;
         }
         
         protected override void CreateItemEffectNames()
@@ -468,7 +482,8 @@ namespace CczEditor
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B1ED, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DecreaseDmg, Description = "간접피해감소", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B259, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DecreaseDmg, Description = "물리피해감소", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B679, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DecreaseDmg, Description = "책략피해감소", Editable = true, SubEdit = 0 });
-            
+            result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3B7F8, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.DecreaseDmg, Description = "피해제한", Editable = true, SubEdit = 0 });
+
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x51D7, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "치명일격방어", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x5335, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "이차공격방어", Editable = true, SubEdit = 0 });
             result.CodeEffects.Add(new Config.ConfigCodeEffectInfos { Offset = 0x3ECD1, TypeIndex = (int)Config.ConfigCodeEffectInfos.Type.Defence, Description = "간접공격방어", Editable = true, SubEdit = 0 });

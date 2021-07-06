@@ -728,6 +728,7 @@
             this.pbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbIcon.TabIndex = 37;
             this.pbIcon.TabStop = false;
+            this.pbIcon.DoubleClick += new System.EventHandler(this.pbIcon_DoubleClick);
             // 
             // pbIcons
             // 
@@ -738,6 +739,7 @@
             this.pbIcons.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbIcons.TabIndex = 53;
             this.pbIcons.TabStop = false;
+            this.pbIcons.DoubleClick += new System.EventHandler(this.pbIcons_DoubleClick);
             // 
             // panel1
             // 
@@ -830,11 +832,11 @@
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
-            // ItemsData
+            // ItemController
             // 
             this.Controls.Add(this.tlpMainContainer);
             this.DoubleBuffered = true;
-            this.Name = "ItemsData";
+            this.Name = "ItemController";
             this.Size = new System.Drawing.Size(892, 581);
             this.Load += new System.EventHandler(this.ItemsData_Load);
             this.tlpMainContainer.ResumeLayout(false);

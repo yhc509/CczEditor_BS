@@ -12,6 +12,7 @@ namespace CczEditor
 {
 	internal static class Program
 	{
+        static MainForm mainForm;
 		[STAThread]
 		private static void Main()
 		{
@@ -43,7 +44,9 @@ namespace CczEditor
 				Utils.ShowError(ex.Message);
 			}
 
-			Application.Run(new MainForm());
+            mainForm = new MainForm();
+
+            Application.Run(mainForm);
 		}
         
 		private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
@@ -62,7 +65,7 @@ namespace CczEditor
             get { return EncoderS; }
 		}
         
-        public static string TitleNameCurrent = "CczEditor 4.0.5";
+        public static string TitleNameCurrent = "CczEditor 4.1.0";
 
 		#region
         
@@ -197,10 +200,7 @@ namespace CczEditor
         {
             var path = CurrentConfig.DirectoryPath;
 
-            DataContainer.UnloadGameData(path);
-            DataContainer.UnloadStarData(path);
-            DataContainer.UnloadImsgData(path);
-            DataContainer.UnloadExeData(path);
+            mainForm.Reset();
 
             var exeData = DataContainer.LoadExeData(path);
             var gameData = DataContainer.LoadGameData(path);

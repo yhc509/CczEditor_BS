@@ -12,20 +12,11 @@ namespace CczEditor.Data
 {
     public class ExeData
     {
-        public ExeData()
-        {
-        }
+        private string _filePath;
 
-        private string ExePath
+        public ExeData(string filePath)
         {
-            get
-            {
-                var config = Config.Read(SystemConfig.Inst.CurrentConfig);
-                var path = config.DirectoryPath;
-                var exeFileName = config.ExeFileName;
-
-                return Path.Combine(path, exeFileName);
-            }
+            _filePath = filePath;
         }
 
         public bool IsLocked
@@ -34,7 +25,7 @@ namespace CczEditor.Data
             {
                 try
                 {
-                    var CurrentFile = new FileInfo(ExePath);
+                    var CurrentFile = new FileInfo(_filePath);
                     using (FileStream stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                     {
                         stream.Close();
@@ -53,7 +44,9 @@ namespace CczEditor.Data
 
         public void Open(FileAccess accessType)
         {
-            var CurrentFile = new FileInfo(ExePath);
+            if (Stream != null) return;
+
+            var CurrentFile = new FileInfo(_filePath);
             Stream = CurrentFile.Open(FileMode.Open, accessType, FileShare.ReadWrite);
         }
 
@@ -72,7 +65,7 @@ namespace CczEditor.Data
 
             if (Stream == null)
             {
-                var CurrentFile = new FileInfo(ExePath);
+                var CurrentFile = new FileInfo(_filePath);
                 using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     stream.Seek(offset, SeekOrigin.Begin);
@@ -94,7 +87,7 @@ namespace CczEditor.Data
 
             if (Stream == null)
             {
-                var CurrentFile = new FileInfo(ExePath);
+                var CurrentFile = new FileInfo(_filePath);
                 using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     stream.Seek(offset + select * 2, SeekOrigin.Begin);
@@ -115,7 +108,7 @@ namespace CczEditor.Data
             var binary = BitConverter.GetBytes((short)value);
             if (Stream == null)
             {
-                var CurrentFile = new FileInfo(ExePath);
+                var CurrentFile = new FileInfo(_filePath);
                 using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
                 {
                     stream.Seek(offset + select * 2, SeekOrigin.Begin);
@@ -136,7 +129,7 @@ namespace CczEditor.Data
             var binary = new byte[1];
             if (Stream == null)
             {
-                var CurrentFile = new FileInfo(ExePath);
+                var CurrentFile = new FileInfo(_filePath);
                 using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     stream.Seek(offset + select, SeekOrigin.Begin);
@@ -157,7 +150,7 @@ namespace CczEditor.Data
             var binary = BitConverter.GetBytes((short)value);
             if (Stream == null)
             {
-                var CurrentFile = new FileInfo(ExePath);
+                var CurrentFile = new FileInfo(_filePath);
                 using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
                 {
                     stream.Seek(offset + select, SeekOrigin.Begin);
@@ -179,7 +172,7 @@ namespace CczEditor.Data
             Utils.ChangeByteValue(binary, Utils.GetBytes(text), 0, length);
             if (Stream == null)
             {
-                var CurrentFile = new FileInfo(ExePath);
+                var CurrentFile = new FileInfo(_filePath);
                 using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
                 {
                     stream.Seek(offset, SeekOrigin.Begin);
@@ -199,7 +192,7 @@ namespace CczEditor.Data
         {
             if (Stream == null)
             {
-                var CurrentFile = new FileInfo(ExePath);
+                var CurrentFile = new FileInfo(_filePath);
                 using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
                 {
                     stream.Seek(offset, SeekOrigin.Begin);
@@ -221,7 +214,7 @@ namespace CczEditor.Data
             var binary = new byte[length];
             if (Stream == null)
             {
-                var CurrentFile = new FileInfo(ExePath);
+                var CurrentFile = new FileInfo(_filePath);
                 using (var stream = CurrentFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     stream.Seek(offset, SeekOrigin.Begin);

@@ -60,7 +60,7 @@ namespace CczEditor.Data
                 return _exeDataContainer[path];
             }
 
-            var data = new ExeData();
+            var data = new ExeData(Path.Combine(path, Program.FILENAME_EXE));
             _exeDataContainer.Add(path, data);
             return data;
         }
@@ -138,6 +138,14 @@ namespace CczEditor.Data
         }
         #endregion
 
+        public static void Reset()
+        {
+            _gameDataContainer.Clear();
+            _starDataContainer.Clear();
+            _imsgDataContainer.Clear();
+            _exeDataContainer.Clear();
+            _saveDataContainer.Clear();
+        }
 
     }
 }

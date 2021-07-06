@@ -19,7 +19,7 @@ namespace CczEditor.Data.Wrapper
 
         public void ReadExeData(int index, ExeData targetData, Config config)
         {
-            Name = ConfigUtils.GetSpecialEffectName(Program.ExeData, Program.CurrentConfig, index);
+            Name = ConfigUtils.GetSpecialEffectName(targetData, config, index);
 
             int offset = config.Exe.SpecialEffectOffset;
             targetData.Open(System.IO.FileAccess.ReadWrite);

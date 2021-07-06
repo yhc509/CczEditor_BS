@@ -228,6 +228,7 @@
             this.pbIconSmall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbIconSmall.TabIndex = 64;
             this.pbIconSmall.TabStop = false;
+            this.pbIconSmall.DoubleClick += new System.EventHandler(this.pbIconSmall_DoubleClick);
             // 
             // lblMpCost
             // 
@@ -272,7 +273,7 @@
             this.lblHitarea.Text = "시전 범위";
             this.lblHitarea.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // m7
+            // cbLearnType
             // 
             this.cbLearnType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbLearnType.Location = new System.Drawing.Point(544, 222);
@@ -281,7 +282,7 @@
             0,
             0,
             0});
-            this.cbLearnType.Name = "m7";
+            this.cbLearnType.Name = "cbLearnType";
             this.cbLearnType.Size = new System.Drawing.Size(133, 23);
             this.cbLearnType.TabIndex = 63;
             // 
@@ -296,7 +297,7 @@
             this.lblTarget.Text = "책략 대상";
             this.lblTarget.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // reflect
+            // cbReflect
             // 
             this.cbReflect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbReflect.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -305,7 +306,7 @@
             "00, 책략반사가능",
             "01, 책략반사불가"});
             this.cbReflect.Location = new System.Drawing.Point(544, 251);
-            this.cbReflect.Name = "reflect";
+            this.cbReflect.Name = "cbReflect";
             this.cbReflect.Size = new System.Drawing.Size(133, 23);
             this.cbReflect.TabIndex = 62;
             this.cbReflect.Visible = false;
@@ -368,11 +369,11 @@
             this.ncMagicType.Size = new System.Drawing.Size(103, 23);
             this.ncMagicType.TabIndex = 2;
             // 
-            // m9
+            // cbAccRate
             // 
             this.cbAccRate.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbAccRate.Location = new System.Drawing.Point(544, 193);
-            this.cbAccRate.Name = "m9";
+            this.cbAccRate.Name = "cbAccRate";
             this.cbAccRate.Size = new System.Drawing.Size(133, 23);
             this.cbAccRate.TabIndex = 46;
             this.cbAccRate.Value = new decimal(new int[] {
@@ -396,7 +397,7 @@
             this.ncMpCost.Size = new System.Drawing.Size(103, 23);
             this.ncMpCost.TabIndex = 6;
             // 
-            // m8
+            // cbDmgValue
             // 
             this.cbDmgValue.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbDmgValue.Location = new System.Drawing.Point(544, 164);
@@ -405,7 +406,7 @@
             0,
             0,
             0});
-            this.cbDmgValue.Name = "m8";
+            this.cbDmgValue.Name = "cbDmgValue";
             this.cbDmgValue.Size = new System.Drawing.Size(133, 23);
             this.cbDmgValue.TabIndex = 45;
             this.cbDmgValue.Value = new decimal(new int[] {
@@ -439,7 +440,7 @@
             this.cbTarget.Size = new System.Drawing.Size(103, 23);
             this.cbTarget.TabIndex = 3;
             // 
-            // m6
+            // cbCondition
             // 
             this.cbCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCondition.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -453,7 +454,7 @@
             "05, 장비착용",
             "06, 조건 없음"});
             this.cbCondition.Location = new System.Drawing.Point(544, 133);
-            this.cbCondition.Name = "m6";
+            this.cbCondition.Name = "cbCondition";
             this.cbCondition.Size = new System.Drawing.Size(133, 23);
             this.cbCondition.TabIndex = 41;
             // 
@@ -468,7 +469,7 @@
             this.cbEffarea.TabIndex = 5;
             this.cbEffarea.SelectedIndexChanged += new System.EventHandler(this.cbEffarea_SelectedIndexChanged);
             // 
-            // m5
+            // cbAiType
             // 
             this.cbAiType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAiType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -491,7 +492,7 @@
             "0E, 낮은 확률",
             "0F, 능력상승"});
             this.cbAiType.Location = new System.Drawing.Point(544, 104);
-            this.cbAiType.Name = "m5";
+            this.cbAiType.Name = "cbAiType";
             this.cbAiType.Size = new System.Drawing.Size(133, 23);
             this.cbAiType.TabIndex = 40;
             // 
@@ -534,7 +535,7 @@
             this.label10.Text = "책략 위력";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // m3
+            // cbMeff
             // 
             this.cbMeff.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbMeff.Location = new System.Drawing.Point(105, 207);
@@ -543,7 +544,7 @@
             0,
             0,
             0});
-            this.cbMeff.Name = "m3";
+            this.cbMeff.Name = "cbMeff";
             this.cbMeff.Size = new System.Drawing.Size(103, 23);
             this.cbMeff.TabIndex = 43;
             this.cbMeff.Value = new decimal(new int[] {
@@ -581,13 +582,13 @@
             this.pbHitarea.TabIndex = 23;
             this.pbHitarea.TabStop = false;
             // 
-            // m4
+            // cbMcall
             // 
             this.cbMcall.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMcall.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbMcall.FormattingEnabled = true;
             this.cbMcall.Location = new System.Drawing.Point(105, 236);
-            this.cbMcall.Name = "m4";
+            this.cbMcall.Name = "cbMcall";
             this.cbMcall.Size = new System.Drawing.Size(103, 23);
             this.cbMcall.TabIndex = 48;
             // 
@@ -693,6 +694,8 @@
             this.pbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbIcon.TabIndex = 25;
             this.pbIcon.TabStop = false;
+            this.pbIcon.Click += new System.EventHandler(this.pbIcon_Click);
+            this.pbIcon.DoubleClick += new System.EventHandler(this.pbIcon_DoubleClick);
             // 
             // label4
             // 
@@ -704,7 +707,7 @@
             this.label4.Text = "회복 유형";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // m2
+            // cbHealType
             // 
             this.cbHealType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbHealType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -716,11 +719,11 @@
             "03, MP회복",
             "04, 회복 없음"});
             this.cbHealType.Location = new System.Drawing.Point(544, 77);
-            this.cbHealType.Name = "m2";
+            this.cbHealType.Name = "cbHealType";
             this.cbHealType.Size = new System.Drawing.Size(133, 23);
             this.cbHealType.TabIndex = 39;
             // 
-            // m0
+            // cbMagicType
             // 
             this.cbMagicType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMagicType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -767,11 +770,11 @@
             "26, 추가코드",
             "27. 추가코드"});
             this.cbMagicType.Location = new System.Drawing.Point(544, 22);
-            this.cbMagicType.Name = "m0";
+            this.cbMagicType.Name = "cbMagicType";
             this.cbMagicType.Size = new System.Drawing.Size(133, 23);
             this.cbMagicType.TabIndex = 37;
             // 
-            // m1
+            // cbDmgType
             // 
             this.cbDmgType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDmgType.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -783,7 +786,7 @@
             "03, 청룡,주작",
             "04, 피해 없음"});
             this.cbDmgType.Location = new System.Drawing.Point(544, 50);
-            this.cbDmgType.Name = "m1";
+            this.cbDmgType.Name = "cbDmgType";
             this.cbDmgType.Size = new System.Drawing.Size(133, 23);
             this.cbDmgType.TabIndex = 38;
             // 
@@ -1063,10 +1066,10 @@
             this.searchTextBox.Size = new System.Drawing.Size(109, 23);
             this.searchTextBox.TabIndex = 9;
             // 
-            // MagicData
+            // MagicController
             // 
             this.Controls.Add(this.tlpMainContainer);
-            this.Name = "MagicData";
+            this.Name = "MagicController";
             this.Size = new System.Drawing.Size(892, 581);
             this.Load += new System.EventHandler(this.MagicData_Load);
             this.tlpMainContainer.ResumeLayout(false);

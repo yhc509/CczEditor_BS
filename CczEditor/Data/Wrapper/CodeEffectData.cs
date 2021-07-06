@@ -109,13 +109,14 @@ namespace CczEditor.Data.Wrapper
             foreach(var code in CodeEffectContainer)
             {
                 var info = config.CodeEffects.Find(x => x.Description == code.Key);
+                if (info == null) continue;
                 switch((Config.ConfigCodeEffectInfos.Type) info.TypeIndex)
                 {
                     case Config.ConfigCodeEffectInfos.Type.AbilityAssist:
                         targetData.WriteByte(code.Value, 0, info.Offset);
                         if (info.SubEdit == 1)
                         {
-                            targetData.WriteByte(AbilityAssistPercent[index] ? 2 : 1, code.Value, config.Exe.AbilityAssistPercentOffset);
+                            targetData.WriteByte(AbilityAssistPercent[index] ? 2 : 1, index, config.Exe.AbilityAssistPercentOffset);
                         }
                         break;
                     case Config.ConfigCodeEffectInfos.Type.SpecialAttack:

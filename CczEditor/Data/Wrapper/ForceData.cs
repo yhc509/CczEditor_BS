@@ -88,8 +88,8 @@ namespace CczEditor.Data.Wrapper
                 }
                 if (!targetData.IsLocked)
                 {
-                    ForceName = ConfigUtils.GetForceName(Program.ExeData, Program.CurrentConfig, index);
-                    ForceCategoryName = ConfigUtils.GetForceCategoryName(Program.ExeData, Program.CurrentConfig, forceCategoryIndex);
+                    ForceName = ConfigUtils.GetForceName(targetData, config, index);
+                    ForceCategoryName = ConfigUtils.GetForceCategoryName(targetData, config, forceCategoryIndex);
                     MoveSound = targetData.ReadByte(forceCategoryIndex, config.Exe.Force.MoveSoundOffset);
                     MoveSpeed = targetData.ReadByte(forceCategoryIndex, config.Exe.Force.MoveSpeedOffset);
                     AtkSound = targetData.ReadByte(forceCategoryIndex, config.Exe.Force.AtkSoundOffset);

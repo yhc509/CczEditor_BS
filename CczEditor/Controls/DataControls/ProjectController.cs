@@ -33,17 +33,17 @@ namespace CczEditor.Controls.DataControls
             KnockBackForceList.Items.Add("50,미사용");
             cbMagicBlock.Items.AddRange(forceNames);
             cbMagicBlock.Items.Add("50,미사용");
-            cbNeighborAwaken.Items.AddRange(forceNames);
-            cbNeighborAwaken.Items.Add("50,미사용");
             cbNeighborHPRec.Items.AddRange(forceNames);
             cbNeighborHPRec.Items.Add("50,미사용");
+            cbNeighborMorInc.Items.AddRange(forceNames);
+            cbNeighborMorInc.Items.Add("50,미사용");
 
+            cbNeighborAwaken.Items.AddRange(forceCategoryNames);
+            cbNeighborAwaken.Items.Add("28,미사용");
             SpecialSkillDmgForceList.Items.AddRange(forceCategoryNames);
             SpecialSkillDmgForceList.Items.Add("28,미사용");
-            cbNeighborMpRec.Items.AddRange(forceNames);
+            cbNeighborMpRec.Items.AddRange(forceCategoryNames);
             cbNeighborMpRec.Items.Add("28,미사용");
-            cbNeighborMorInc.Items.AddRange(forceNames);
-            cbNeighborMorInc.Items.Add("28,미사용");
         }
 
         public override void Reset()
@@ -243,11 +243,11 @@ namespace CczEditor.Controls.DataControls
             
             SpecialSkillDmgForceList.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(CurrentData.SpecialSkillDmgForce));
 
-            cbMagicBlock.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(CurrentData.MagicBlockForce));
-            cbNeighborAwaken.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(CurrentData.NeighborAwakenForce));
-            cbNeighborHPRec.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(CurrentData.NeighborHpRecForce));
-            cbNeighborMpRec.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(CurrentData.NeighborMpRecForce));
-            cbNeighborMorInc.SelectedIndex = SpecialSkillDmgForceList.FindString(Utils.GetString(CurrentData.NeighborMorIncForce));
+            cbMagicBlock.SelectedIndex = cbMagicBlock.FindString(Utils.GetString(CurrentData.MagicBlockForce));
+            cbNeighborAwaken.SelectedIndex = cbNeighborAwaken.FindString(Utils.GetString(CurrentData.NeighborAwakenForce));
+            cbNeighborHPRec.SelectedIndex = cbNeighborHPRec.FindString(Utils.GetString(CurrentData.NeighborHpRecForce));
+            cbNeighborMpRec.SelectedIndex = cbNeighborMpRec.FindString(Utils.GetString(CurrentData.NeighborMpRecForce));
+            cbNeighborMorInc.SelectedIndex = cbNeighborMorInc.FindString(Utils.GetString(CurrentData.NeighborMorIncForce));
         }
         #endregion
 
@@ -257,6 +257,13 @@ namespace CczEditor.Controls.DataControls
             CurrentData.SpecialAppearForce[1] = (byte)SpecialAppearForceList2.SelectedIndex;
             CurrentData.KnockBackForce = (byte)KnockBackForceList.SelectedIndex;
             CurrentData.SpecialSkillDmgForce = (byte)SpecialSkillDmgForceList.SelectedIndex;
+
+
+            CurrentData.MagicBlockForce = (byte)cbMagicBlock.SelectedIndex;
+            CurrentData.NeighborAwakenForce = (byte)cbNeighborAwaken.SelectedIndex;
+            CurrentData.NeighborHpRecForce = (byte)cbNeighborHPRec.SelectedIndex;
+            CurrentData.NeighborMpRecForce = (byte)cbNeighborMpRec.SelectedIndex;
+            CurrentData.NeighborMorIncForce = (byte)cbNeighborMorInc.SelectedIndex;
 
             CurrentData.WriteEtc(Program.ExeData, Program.CurrentConfig);
         }

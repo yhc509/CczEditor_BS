@@ -31,7 +31,7 @@ namespace CczEditor.Data.Wrapper
                 throw new IsLongNameException();
             }
 
-            Program.ExeData.WriteText(Name, target.Offset, target.Length);
+            targetData.WriteText(Name, target.Offset, target.Length);
         }
         
     }

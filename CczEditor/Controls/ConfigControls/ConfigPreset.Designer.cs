@@ -38,6 +38,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.VersionHelperTab = new System.Windows.Forms.TabPage();
+            this.lbStatus = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnDestPath = new System.Windows.Forms.Button();
             this.btnOriginPath = new System.Windows.Forms.Button();
             this.cbSpecialSkill = new System.Windows.Forms.CheckBox();
@@ -49,7 +51,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.cbBackup = new System.Windows.Forms.CheckBox();
             this.btnExecute = new System.Windows.Forms.Button();
             this.cbForceCategoryData = new System.Windows.Forms.CheckBox();
             this.cbForceSyn = new System.Windows.Forms.CheckBox();
@@ -84,7 +85,6 @@
             this.tbOriginPath = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.VersionHelperTab.SuspendLayout();
@@ -178,6 +178,7 @@
             // 
             // VersionHelperTab
             // 
+            this.VersionHelperTab.Controls.Add(this.lbStatus);
             this.VersionHelperTab.Controls.Add(this.progressBar1);
             this.VersionHelperTab.Controls.Add(this.btnDestPath);
             this.VersionHelperTab.Controls.Add(this.btnOriginPath);
@@ -190,7 +191,6 @@
             this.VersionHelperTab.Controls.Add(this.label7);
             this.VersionHelperTab.Controls.Add(this.label6);
             this.VersionHelperTab.Controls.Add(this.label5);
-            this.VersionHelperTab.Controls.Add(this.cbBackup);
             this.VersionHelperTab.Controls.Add(this.btnExecute);
             this.VersionHelperTab.Controls.Add(this.cbForceCategoryData);
             this.VersionHelperTab.Controls.Add(this.cbForceSyn);
@@ -233,9 +233,25 @@
             this.VersionHelperTab.Text = "마이그레이션 헬퍼";
             this.VersionHelperTab.UseVisualStyleBackColor = true;
             // 
+            // lbStatus
+            // 
+            this.lbStatus.AutoSize = true;
+            this.lbStatus.Location = new System.Drawing.Point(428, 481);
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Size = new System.Drawing.Size(0, 12);
+            this.lbStatus.TabIndex = 53;
+            this.lbStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(22, 455);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(817, 23);
+            this.progressBar1.TabIndex = 52;
+            // 
             // btnDestPath
             // 
-            this.btnDestPath.Location = new System.Drawing.Point(505, 73);
+            this.btnDestPath.Location = new System.Drawing.Point(505, 47);
             this.btnDestPath.Name = "btnDestPath";
             this.btnDestPath.Size = new System.Drawing.Size(75, 23);
             this.btnDestPath.TabIndex = 51;
@@ -245,7 +261,7 @@
             // 
             // btnOriginPath
             // 
-            this.btnOriginPath.Location = new System.Drawing.Point(505, 24);
+            this.btnOriginPath.Location = new System.Drawing.Point(505, 15);
             this.btnOriginPath.Name = "btnOriginPath";
             this.btnOriginPath.Size = new System.Drawing.Size(75, 23);
             this.btnOriginPath.TabIndex = 50;
@@ -257,7 +273,7 @@
             // 
             this.cbSpecialSkill.AutoSize = true;
             this.cbSpecialSkill.Enabled = false;
-            this.cbSpecialSkill.Location = new System.Drawing.Point(394, 356);
+            this.cbSpecialSkill.Location = new System.Drawing.Point(158, 264);
             this.cbSpecialSkill.Name = "cbSpecialSkill";
             this.cbSpecialSkill.Size = new System.Drawing.Size(116, 16);
             this.cbSpecialSkill.TabIndex = 49;
@@ -268,7 +284,7 @@
             // 
             this.cbSpecialEffect.AutoSize = true;
             this.cbSpecialEffect.Enabled = false;
-            this.cbSpecialEffect.Location = new System.Drawing.Point(256, 356);
+            this.cbSpecialEffect.Location = new System.Drawing.Point(20, 264);
             this.cbSpecialEffect.Name = "cbSpecialEffect";
             this.cbSpecialEffect.Size = new System.Drawing.Size(132, 16);
             this.cbSpecialEffect.TabIndex = 48;
@@ -279,7 +295,7 @@
             // 
             this.cbAbility.AutoSize = true;
             this.cbAbility.Enabled = false;
-            this.cbAbility.Location = new System.Drawing.Point(147, 356);
+            this.cbAbility.Location = new System.Drawing.Point(158, 242);
             this.cbAbility.Name = "cbAbility";
             this.cbAbility.Size = new System.Drawing.Size(104, 16);
             this.cbAbility.TabIndex = 47;
@@ -290,7 +306,7 @@
             // 
             this.cbSpecialAppearForce.AutoSize = true;
             this.cbSpecialAppearForce.Enabled = false;
-            this.cbSpecialAppearForce.Location = new System.Drawing.Point(413, 228);
+            this.cbSpecialAppearForce.Location = new System.Drawing.Point(20, 193);
             this.cbSpecialAppearForce.Name = "cbSpecialAppearForce";
             this.cbSpecialAppearForce.Size = new System.Drawing.Size(104, 16);
             this.cbSpecialAppearForce.TabIndex = 45;
@@ -301,7 +317,7 @@
             // 
             this.cbTitle.AutoSize = true;
             this.cbTitle.Enabled = false;
-            this.cbTitle.Location = new System.Drawing.Point(22, 378);
+            this.cbTitle.Location = new System.Drawing.Point(291, 242);
             this.cbTitle.Name = "cbTitle";
             this.cbTitle.Size = new System.Drawing.Size(72, 16);
             this.cbTitle.TabIndex = 44;
@@ -312,7 +328,7 @@
             // 
             this.cbLevelExp.AutoSize = true;
             this.cbLevelExp.Enabled = false;
-            this.cbLevelExp.Location = new System.Drawing.Point(22, 356);
+            this.cbLevelExp.Location = new System.Drawing.Point(20, 242);
             this.cbLevelExp.Name = "cbLevelExp";
             this.cbLevelExp.Size = new System.Drawing.Size(120, 16);
             this.cbLevelExp.TabIndex = 43;
@@ -324,16 +340,17 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(20, 411);
+            this.label7.Location = new System.Drawing.Point(195, 298);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(488, 96);
+            this.label7.Size = new System.Drawing.Size(449, 96);
             this.label7.TabIndex = 42;
             this.label7.Text = resources.GetString("label7.Text");
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(634, 78);
+            this.label6.Location = new System.Drawing.Point(634, 52);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 12);
             this.label6.TabIndex = 41;
@@ -342,28 +359,16 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(634, 29);
+            this.label5.Location = new System.Drawing.Point(634, 20);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 40;
             this.label5.Text = "컨피그";
             // 
-            // cbBackup
-            // 
-            this.cbBackup.AutoSize = true;
-            this.cbBackup.Checked = true;
-            this.cbBackup.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBackup.Location = new System.Drawing.Point(681, 405);
-            this.cbBackup.Name = "cbBackup";
-            this.cbBackup.Size = new System.Drawing.Size(104, 16);
-            this.cbBackup.TabIndex = 39;
-            this.cbBackup.Text = "백업 파일 생성";
-            this.cbBackup.UseVisualStyleBackColor = true;
-            // 
             // btnExecute
             // 
             this.btnExecute.Enabled = false;
-            this.btnExecute.Location = new System.Drawing.Point(681, 427);
+            this.btnExecute.Location = new System.Drawing.Point(350, 407);
             this.btnExecute.Name = "btnExecute";
             this.btnExecute.Size = new System.Drawing.Size(158, 42);
             this.btnExecute.TabIndex = 38;
@@ -375,7 +380,7 @@
             // 
             this.cbForceCategoryData.AutoSize = true;
             this.cbForceCategoryData.Enabled = false;
-            this.cbForceCategoryData.Location = new System.Drawing.Point(147, 206);
+            this.cbForceCategoryData.Location = new System.Drawing.Point(144, 149);
             this.cbForceCategoryData.Name = "cbForceCategoryData";
             this.cbForceCategoryData.Size = new System.Drawing.Size(116, 16);
             this.cbForceCategoryData.TabIndex = 37;
@@ -386,7 +391,7 @@
             // 
             this.cbForceSyn.AutoSize = true;
             this.cbForceSyn.Enabled = false;
-            this.cbForceSyn.Location = new System.Drawing.Point(335, 228);
+            this.cbForceSyn.Location = new System.Drawing.Point(332, 171);
             this.cbForceSyn.Name = "cbForceSyn";
             this.cbForceSyn.Size = new System.Drawing.Size(72, 16);
             this.cbForceSyn.TabIndex = 36;
@@ -397,7 +402,7 @@
             // 
             this.cbTerrainSyn.AutoSize = true;
             this.cbTerrainSyn.Enabled = false;
-            this.cbTerrainSyn.Location = new System.Drawing.Point(257, 228);
+            this.cbTerrainSyn.Location = new System.Drawing.Point(254, 171);
             this.cbTerrainSyn.Name = "cbTerrainSyn";
             this.cbTerrainSyn.Size = new System.Drawing.Size(72, 16);
             this.cbTerrainSyn.TabIndex = 35;
@@ -408,7 +413,7 @@
             // 
             this.cbShopData.AutoSize = true;
             this.cbShopData.Enabled = false;
-            this.cbShopData.Location = new System.Drawing.Point(148, 184);
+            this.cbShopData.Location = new System.Drawing.Point(591, 90);
             this.cbShopData.Name = "cbShopData";
             this.cbShopData.Size = new System.Drawing.Size(116, 16);
             this.cbShopData.TabIndex = 34;
@@ -419,7 +424,7 @@
             // 
             this.cbReflect.AutoSize = true;
             this.cbReflect.Enabled = false;
-            this.cbReflect.Location = new System.Drawing.Point(246, 311);
+            this.cbReflect.Location = new System.Drawing.Point(684, 193);
             this.cbReflect.Name = "cbReflect";
             this.cbReflect.Size = new System.Drawing.Size(96, 16);
             this.cbReflect.TabIndex = 31;
@@ -430,7 +435,7 @@
             // 
             this.cbLearn.AutoSize = true;
             this.cbLearn.Enabled = false;
-            this.cbLearn.Location = new System.Drawing.Point(144, 311);
+            this.cbLearn.Location = new System.Drawing.Point(582, 193);
             this.cbLearn.Name = "cbLearn";
             this.cbLearn.Size = new System.Drawing.Size(96, 16);
             this.cbLearn.TabIndex = 30;
@@ -441,7 +446,7 @@
             // 
             this.cbAcc.AutoSize = true;
             this.cbAcc.Enabled = false;
-            this.cbAcc.Location = new System.Drawing.Point(78, 311);
+            this.cbAcc.Location = new System.Drawing.Point(516, 193);
             this.cbAcc.Name = "cbAcc";
             this.cbAcc.Size = new System.Drawing.Size(60, 16);
             this.cbAcc.TabIndex = 29;
@@ -452,7 +457,7 @@
             // 
             this.cbDmgValue.AutoSize = true;
             this.cbDmgValue.Enabled = false;
-            this.cbDmgValue.Location = new System.Drawing.Point(22, 311);
+            this.cbDmgValue.Location = new System.Drawing.Point(460, 193);
             this.cbDmgValue.Name = "cbDmgValue";
             this.cbDmgValue.Size = new System.Drawing.Size(48, 16);
             this.cbDmgValue.TabIndex = 28;
@@ -463,7 +468,7 @@
             // 
             this.cbConditionType.AutoSize = true;
             this.cbConditionType.Enabled = false;
-            this.cbConditionType.Location = new System.Drawing.Point(362, 289);
+            this.cbConditionType.Location = new System.Drawing.Point(460, 215);
             this.cbConditionType.Name = "cbConditionType";
             this.cbConditionType.Size = new System.Drawing.Size(100, 16);
             this.cbConditionType.TabIndex = 27;
@@ -474,7 +479,7 @@
             // 
             this.cbAIType.AutoSize = true;
             this.cbAIType.Enabled = false;
-            this.cbAIType.Location = new System.Drawing.Point(256, 289);
+            this.cbAIType.Location = new System.Drawing.Point(694, 171);
             this.cbAIType.Name = "cbAIType";
             this.cbAIType.Size = new System.Drawing.Size(100, 16);
             this.cbAIType.TabIndex = 26;
@@ -485,7 +490,7 @@
             // 
             this.cbDmgType.AutoSize = true;
             this.cbDmgType.Enabled = false;
-            this.cbDmgType.Location = new System.Drawing.Point(178, 289);
+            this.cbDmgType.Location = new System.Drawing.Point(616, 171);
             this.cbDmgType.Name = "cbDmgType";
             this.cbDmgType.Size = new System.Drawing.Size(72, 16);
             this.cbDmgType.TabIndex = 25;
@@ -496,7 +501,7 @@
             // 
             this.cbHealType.AutoSize = true;
             this.cbHealType.Enabled = false;
-            this.cbHealType.Location = new System.Drawing.Point(100, 289);
+            this.cbHealType.Location = new System.Drawing.Point(538, 171);
             this.cbHealType.Name = "cbHealType";
             this.cbHealType.Size = new System.Drawing.Size(72, 16);
             this.cbHealType.TabIndex = 24;
@@ -507,7 +512,7 @@
             // 
             this.cbMagicType.AutoSize = true;
             this.cbMagicType.Enabled = false;
-            this.cbMagicType.Location = new System.Drawing.Point(22, 289);
+            this.cbMagicType.Location = new System.Drawing.Point(460, 171);
             this.cbMagicType.Name = "cbMagicType";
             this.cbMagicType.Size = new System.Drawing.Size(72, 16);
             this.cbMagicType.TabIndex = 23;
@@ -518,7 +523,7 @@
             // 
             this.cbMagicLv.AutoSize = true;
             this.cbMagicLv.Enabled = false;
-            this.cbMagicLv.Location = new System.Drawing.Point(145, 267);
+            this.cbMagicLv.Location = new System.Drawing.Point(582, 149);
             this.cbMagicLv.Name = "cbMagicLv";
             this.cbMagicLv.Size = new System.Drawing.Size(96, 16);
             this.cbMagicLv.TabIndex = 22;
@@ -529,7 +534,7 @@
             // 
             this.cbEquip.AutoSize = true;
             this.cbEquip.Enabled = false;
-            this.cbEquip.Location = new System.Drawing.Point(155, 228);
+            this.cbEquip.Location = new System.Drawing.Point(152, 171);
             this.cbEquip.Name = "cbEquip";
             this.cbEquip.Size = new System.Drawing.Size(96, 16);
             this.cbEquip.TabIndex = 21;
@@ -540,7 +545,7 @@
             // 
             this.cbForceName.AutoSize = true;
             this.cbForceName.Enabled = false;
-            this.cbForceName.Location = new System.Drawing.Point(23, 228);
+            this.cbForceName.Location = new System.Drawing.Point(20, 171);
             this.cbForceName.Name = "cbForceName";
             this.cbForceName.Size = new System.Drawing.Size(60, 16);
             this.cbForceName.TabIndex = 20;
@@ -551,7 +556,7 @@
             // 
             this.cbForceCategoryName.AutoSize = true;
             this.cbForceCategoryName.Enabled = false;
-            this.cbForceCategoryName.Location = new System.Drawing.Point(89, 228);
+            this.cbForceCategoryName.Location = new System.Drawing.Point(86, 171);
             this.cbForceCategoryName.Name = "cbForceCategoryName";
             this.cbForceCategoryName.Size = new System.Drawing.Size(60, 16);
             this.cbForceCategoryName.TabIndex = 19;
@@ -562,7 +567,7 @@
             // 
             this.cbSpecialCode.AutoSize = true;
             this.cbSpecialCode.Enabled = false;
-            this.cbSpecialCode.Location = new System.Drawing.Point(270, 184);
+            this.cbSpecialCode.Location = new System.Drawing.Point(460, 112);
             this.cbSpecialCode.Name = "cbSpecialCode";
             this.cbSpecialCode.Size = new System.Drawing.Size(196, 16);
             this.cbSpecialCode.TabIndex = 17;
@@ -573,7 +578,7 @@
             // 
             this.cbCutin.AutoSize = true;
             this.cbCutin.Enabled = false;
-            this.cbCutin.Location = new System.Drawing.Point(337, 150);
+            this.cbCutin.Location = new System.Drawing.Point(335, 112);
             this.cbCutin.Name = "cbCutin";
             this.cbCutin.Size = new System.Drawing.Size(72, 16);
             this.cbCutin.TabIndex = 16;
@@ -584,7 +589,7 @@
             // 
             this.cbVoice.AutoSize = true;
             this.cbVoice.Enabled = false;
-            this.cbVoice.Location = new System.Drawing.Point(259, 150);
+            this.cbVoice.Location = new System.Drawing.Point(257, 112);
             this.cbVoice.Name = "cbVoice";
             this.cbVoice.Size = new System.Drawing.Size(72, 16);
             this.cbVoice.TabIndex = 15;
@@ -595,7 +600,7 @@
             // 
             this.cbCost.AutoSize = true;
             this.cbCost.Enabled = false;
-            this.cbCost.Location = new System.Drawing.Point(179, 150);
+            this.cbCost.Location = new System.Drawing.Point(177, 112);
             this.cbCost.Name = "cbCost";
             this.cbCost.Size = new System.Drawing.Size(74, 16);
             this.cbCost.TabIndex = 14;
@@ -606,7 +611,7 @@
             // 
             this.cbBattleObj.AutoSize = true;
             this.cbBattleObj.Enabled = false;
-            this.cbBattleObj.Location = new System.Drawing.Point(101, 150);
+            this.cbBattleObj.Location = new System.Drawing.Point(99, 112);
             this.cbBattleObj.Name = "cbBattleObj";
             this.cbBattleObj.Size = new System.Drawing.Size(72, 16);
             this.cbBattleObj.TabIndex = 13;
@@ -617,7 +622,7 @@
             // 
             this.cbPmapObj.AutoSize = true;
             this.cbPmapObj.Enabled = false;
-            this.cbPmapObj.Location = new System.Drawing.Point(23, 150);
+            this.cbPmapObj.Location = new System.Drawing.Point(21, 112);
             this.cbPmapObj.Name = "cbPmapObj";
             this.cbPmapObj.Size = new System.Drawing.Size(72, 16);
             this.cbPmapObj.TabIndex = 12;
@@ -628,7 +633,7 @@
             // 
             this.cbMagicData.AutoSize = true;
             this.cbMagicData.Enabled = false;
-            this.cbMagicData.Location = new System.Drawing.Point(23, 267);
+            this.cbMagicData.Location = new System.Drawing.Point(460, 149);
             this.cbMagicData.Name = "cbMagicData";
             this.cbMagicData.Size = new System.Drawing.Size(116, 16);
             this.cbMagicData.TabIndex = 11;
@@ -639,7 +644,7 @@
             // 
             this.cbForceData.AutoSize = true;
             this.cbForceData.Enabled = false;
-            this.cbForceData.Location = new System.Drawing.Point(23, 206);
+            this.cbForceData.Location = new System.Drawing.Point(20, 149);
             this.cbForceData.Name = "cbForceData";
             this.cbForceData.Size = new System.Drawing.Size(116, 16);
             this.cbForceData.TabIndex = 10;
@@ -650,7 +655,7 @@
             // 
             this.cbItemData.AutoSize = true;
             this.cbItemData.Enabled = false;
-            this.cbItemData.Location = new System.Drawing.Point(24, 184);
+            this.cbItemData.Location = new System.Drawing.Point(460, 90);
             this.cbItemData.Name = "cbItemData";
             this.cbItemData.Size = new System.Drawing.Size(116, 16);
             this.cbItemData.TabIndex = 9;
@@ -661,7 +666,7 @@
             // 
             this.cbUnitData.AutoSize = true;
             this.cbUnitData.Enabled = false;
-            this.cbUnitData.Location = new System.Drawing.Point(24, 128);
+            this.cbUnitData.Location = new System.Drawing.Point(22, 90);
             this.cbUnitData.Name = "cbUnitData";
             this.cbUnitData.Size = new System.Drawing.Size(116, 16);
             this.cbUnitData.TabIndex = 8;
@@ -677,7 +682,7 @@
             "Star 6.2 ",
             "BS 1.0",
             "BS 1.1"});
-            this.destVersionBox.Location = new System.Drawing.Point(681, 75);
+            this.destVersionBox.Location = new System.Drawing.Point(681, 49);
             this.destVersionBox.Name = "destVersionBox";
             this.destVersionBox.Size = new System.Drawing.Size(121, 20);
             this.destVersionBox.TabIndex = 7;
@@ -692,7 +697,7 @@
             "Star 6.2 ",
             "BS 1.0",
             "BS 1.1"});
-            this.originVersionBox.Location = new System.Drawing.Point(681, 26);
+            this.originVersionBox.Location = new System.Drawing.Point(681, 17);
             this.originVersionBox.Name = "originVersionBox";
             this.originVersionBox.Size = new System.Drawing.Size(121, 20);
             this.originVersionBox.TabIndex = 6;
@@ -701,7 +706,7 @@
             // tbDestPath
             // 
             this.tbDestPath.Enabled = false;
-            this.tbDestPath.Location = new System.Drawing.Point(130, 75);
+            this.tbDestPath.Location = new System.Drawing.Point(130, 49);
             this.tbDestPath.Name = "tbDestPath";
             this.tbDestPath.Size = new System.Drawing.Size(369, 21);
             this.tbDestPath.TabIndex = 3;
@@ -709,7 +714,7 @@
             // tbOriginPath
             // 
             this.tbOriginPath.Enabled = false;
-            this.tbOriginPath.Location = new System.Drawing.Point(130, 26);
+            this.tbOriginPath.Location = new System.Drawing.Point(130, 17);
             this.tbOriginPath.Name = "tbOriginPath";
             this.tbOriginPath.Size = new System.Drawing.Size(369, 21);
             this.tbOriginPath.TabIndex = 2;
@@ -717,7 +722,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 78);
+            this.label4.Location = new System.Drawing.Point(22, 52);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 12);
             this.label4.TabIndex = 1;
@@ -726,18 +731,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 29);
+            this.label3.Location = new System.Drawing.Point(22, 20);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 12);
             this.label3.TabIndex = 0;
             this.label3.Text = "이전 버전 경로";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(556, 475);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(283, 23);
-            this.progressBar1.TabIndex = 52;
             // 
             // ConfigPreset
             // 
@@ -800,7 +798,6 @@
         private System.Windows.Forms.CheckBox cbShopData;
         private System.Windows.Forms.CheckBox cbForceCategoryData;
         private System.Windows.Forms.Button btnExecute;
-        private System.Windows.Forms.CheckBox cbBackup;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
@@ -813,5 +810,6 @@
         private System.Windows.Forms.Button btnDestPath;
         private System.Windows.Forms.Button btnOriginPath;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label lbStatus;
     }
 }

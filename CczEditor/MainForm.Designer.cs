@@ -34,6 +34,7 @@
             this.tsmiMainMenu_File_LoadFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.tss_File_1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiMainMenu_File_LoadData = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProjectClose = new System.Windows.Forms.ToolStripMenuItem();
             this.tss_File_2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiMainMenu_File_ExitApplication = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMainMenu_Data = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +65,6 @@
             this.PresetSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMainMenu_About = new System.Windows.Forms.ToolStripMenuItem();
             this.pMainContainer = new System.Windows.Forms.Panel();
-            this.ProjectClose = new System.Windows.Forms.ToolStripMenuItem();
             this.msMainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,6 +118,13 @@
             this.tsmiMainMenu_File_LoadData.Size = new System.Drawing.Size(169, 22);
             this.tsmiMainMenu_File_LoadData.Text = "프로젝트 로드";
             this.tsmiMainMenu_File_LoadData.Click += new System.EventHandler(this.tsmiMainMenu_File_LoadData_Click);
+            // 
+            // ProjectClose
+            // 
+            this.ProjectClose.Name = "ProjectClose";
+            this.ProjectClose.Size = new System.Drawing.Size(169, 22);
+            this.ProjectClose.Text = "프로젝트 닫기";
+            this.ProjectClose.Click += new System.EventHandler(this.프로젝트닫기ToolStripMenuItem_Click);
             // 
             // tss_File_2
             // 
@@ -348,13 +355,6 @@
             this.pMainContainer.Name = "pMainContainer";
             this.pMainContainer.Size = new System.Drawing.Size(893, 580);
             this.pMainContainer.TabIndex = 1;
-            // 
-            // ProjectClose
-            // 
-            this.ProjectClose.Name = "ProjectClose";
-            this.ProjectClose.Size = new System.Drawing.Size(169, 22);
-            this.ProjectClose.Text = "프로젝트 닫기";
-            this.ProjectClose.Click += new System.EventHandler(this.프로젝트닫기ToolStripMenuItem_Click);
             // 
             // MainForm
             // 

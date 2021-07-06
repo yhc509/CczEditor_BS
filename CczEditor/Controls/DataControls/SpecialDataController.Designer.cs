@@ -31,6 +31,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SpecialSkillName = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.SpecialSkillLevelBox5 = new System.Windows.Forms.NumericUpDown();
@@ -60,6 +61,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.SpecialSkillList = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SpecialEffectName = new System.Windows.Forms.TextBox();
             this.SpecialEffectSaveButton = new System.Windows.Forms.Button();
             this.SpecialEffectSaveApplyButton = new System.Windows.Forms.Button();
@@ -130,8 +132,6 @@
             this.AbilityAssistValue2 = new System.Windows.Forms.CheckBox();
             this.AbilityAssistValue = new System.Windows.Forms.ComboBox();
             this.AbilityAssistList = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -226,6 +226,16 @@
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "인물 / 병종 효과";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(680, 120);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(180, 35);
+            this.button1.TabIndex = 33;
+            this.button1.Text = "세이브에서 불러오기 (주의)";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             // 
             // SpecialSkillName
             // 
@@ -526,6 +536,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "인물 / 병종 효과";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(691, 108);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(169, 34);
+            this.button2.TabIndex = 19;
+            this.button2.Text = "세이브에서 불러오기 (주의)";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             // 
             // SpecialEffectName
             // 
@@ -1210,30 +1230,12 @@
             this.AbilityAssistList.TabIndex = 1;
             this.AbilityAssistList.SelectedIndexChanged += new System.EventHandler(this.AbilityAssistList_SelectedIndexChanged);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(680, 120);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(180, 35);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "세이브에서 불러오기 (주의)";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(691, 108);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(169, 34);
-            this.button2.TabIndex = 19;
-            this.button2.Text = "세이브에서 불러오기 (주의)";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // ExeSpecialDataController
+            // SpecialDataController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
-            this.Name = "ExeSpecialDataController";
+            this.Name = "SpecialDataController";
             this.Size = new System.Drawing.Size(892, 581);
             this.Load += new System.EventHandler(this.ExeSpecialDataController_Load);
             this.tabControl1.ResumeLayout(false);

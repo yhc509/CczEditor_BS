@@ -21,7 +21,7 @@ namespace CczEditor.Data.Wrapper
         {
             targetData.Open(System.IO.FileAccess.ReadWrite);
 
-            Name = ConfigUtils.GetSpecialSkillName(Program.ExeData, Program.CurrentConfig, index);
+            Name = ConfigUtils.GetSpecialSkillName(targetData, config, index);
 
             bool isPhysics = index <= config.Exe.SpecialSkillPhysicsCount;
 
@@ -76,9 +76,9 @@ namespace CczEditor.Data.Wrapper
                 targetData.WriteWord(Units[4], 0, offset + index * 0x10 + 0x0C);
                 targetData.WriteByte(Levels[4], 0, offset + index * 0x10 + 0x0E);
 
-                Program.ExeData.WriteByte(Value, 0, offset + index * 0x10 + 0x0F);
+                targetData.WriteByte(Value, 0, offset + index * 0x10 + 0x0F);
             }
-            Program.ExeData.Close();
+            targetData.Close();
         }
         
     }

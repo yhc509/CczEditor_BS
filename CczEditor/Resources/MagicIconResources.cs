@@ -16,5 +16,11 @@ namespace CczEditor.Resources
             var result = GetImage(filePath, index);
             return result;
         }
+
+        public static void Save(int index, string bitmapPath)
+        {
+            var filePath = Path.Combine(Program.CurrentConfig.DirectoryPath, "Mgcicon.dll");
+            SetImage(filePath, new IntPtr(index), bitmapPath);
+        }
     }
 }
