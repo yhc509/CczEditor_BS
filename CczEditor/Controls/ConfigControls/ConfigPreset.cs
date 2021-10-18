@@ -24,7 +24,8 @@ namespace CczEditor.Controls.ConfigControls
             Star61 = 0,
             Star62 = 1,
             Bs10 = 2,
-            Bs11 = 3
+            Bs11 = 3,
+            Bs12 = 4,
         }
 
 
@@ -68,6 +69,15 @@ namespace CczEditor.Controls.ConfigControls
             popup.DefaultFileName = "BS 1.1";
             popup.ShowDialog();
 
+        }
+
+        private void Bs12Button_Click(object sender, EventArgs e)
+        {
+            CreatePreset popup = new CreatePreset();
+            popup._presetType = CreatePreset.PresetType.Bs12;
+            popup.DefaultDisplayName = "비상조조전 1.2";
+            popup.DefaultFileName = "BS 1.2";
+            popup.ShowDialog();
         }
 
         private void originVersionBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -704,5 +714,6 @@ namespace CczEditor.Controls.ConfigControls
             }
             return fbd.SelectedPath;
         }
+       
     }
 }

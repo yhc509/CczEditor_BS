@@ -30,6 +30,7 @@
 		{
             this.tlpMainContainer = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ForceLevelResetButton = new System.Windows.Forms.Button();
             this.lblIconSmall = new System.Windows.Forms.Label();
             this.lblIcon = new System.Windows.Forms.Label();
             this.pbIconSmall = new System.Windows.Forms.PictureBox();
@@ -61,7 +62,6 @@
             this.pbEffarea = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.pbHitarea = new System.Windows.Forms.PictureBox();
-            this.cbMcall = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lblMagicIcon = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -96,6 +96,7 @@
             this.lbList = new System.Windows.Forms.ListBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.searchTextBox = new CczEditor.Controls.TextBoxControl();
+            this.cbMcall = new System.Windows.Forms.NumericUpDown();
             this.tlpMainContainer.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconSmall)).BeginInit();
@@ -113,6 +114,7 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbMcall)).BeginInit();
             this.SuspendLayout();
             // 
             // tlpMainContainer
@@ -137,6 +139,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbMcall);
+            this.groupBox1.Controls.Add(this.ForceLevelResetButton);
             this.groupBox1.Controls.Add(this.lblIconSmall);
             this.groupBox1.Controls.Add(this.lblIcon);
             this.groupBox1.Controls.Add(this.pbIconSmall);
@@ -168,7 +172,6 @@
             this.groupBox1.Controls.Add(this.pbEffarea);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.pbHitarea);
-            this.groupBox1.Controls.Add(this.cbMcall);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.lblMagicIcon);
             this.groupBox1.Controls.Add(this.label3);
@@ -197,6 +200,16 @@
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "책략 편집";
+            // 
+            // ForceLevelResetButton
+            // 
+            this.ForceLevelResetButton.Location = new System.Drawing.Point(294, 364);
+            this.ForceLevelResetButton.Name = "ForceLevelResetButton";
+            this.ForceLevelResetButton.Size = new System.Drawing.Size(125, 23);
+            this.ForceLevelResetButton.TabIndex = 67;
+            this.ForceLevelResetButton.Text = "리셋";
+            this.ForceLevelResetButton.UseVisualStyleBackColor = true;
+            this.ForceLevelResetButton.Click += new System.EventHandler(this.ForceLevelResetButton_Click);
             // 
             // lblIconSmall
             // 
@@ -582,16 +595,6 @@
             this.pbHitarea.TabIndex = 23;
             this.pbHitarea.TabStop = false;
             // 
-            // cbMcall
-            // 
-            this.cbMcall.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbMcall.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbMcall.FormattingEnabled = true;
-            this.cbMcall.Location = new System.Drawing.Point(105, 236);
-            this.cbMcall.Name = "cbMcall";
-            this.cbMcall.Size = new System.Drawing.Size(103, 23);
-            this.cbMcall.TabIndex = 48;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -659,7 +662,7 @@
             this.lvLearnLv.MultiSelect = false;
             this.lvLearnLv.Name = "lvLearnLv";
             this.lvLearnLv.ShowGroups = false;
-            this.lvLearnLv.Size = new System.Drawing.Size(125, 367);
+            this.lvLearnLv.Size = new System.Drawing.Size(125, 337);
             this.lvLearnLv.TabIndex = 8;
             this.lvLearnLv.UseCompatibleStateImageBehavior = false;
             this.lvLearnLv.View = System.Windows.Forms.View.Details;
@@ -1066,6 +1069,24 @@
             this.searchTextBox.Size = new System.Drawing.Size(109, 23);
             this.searchTextBox.TabIndex = 9;
             // 
+            // cbMcall
+            // 
+            this.cbMcall.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbMcall.Location = new System.Drawing.Point(105, 236);
+            this.cbMcall.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.cbMcall.Name = "cbMcall";
+            this.cbMcall.Size = new System.Drawing.Size(103, 23);
+            this.cbMcall.TabIndex = 68;
+            this.cbMcall.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            // 
             // MagicController
             // 
             this.Controls.Add(this.tlpMainContainer);
@@ -1092,6 +1113,7 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbMcall)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -1146,7 +1168,6 @@
         private System.Windows.Forms.NumericUpDown cbMeff;
         private System.Windows.Forms.NumericUpDown cbDmgValue;
         private System.Windows.Forms.NumericUpDown cbAccRate;
-        private System.Windows.Forms.ComboBox cbMcall;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox mda1;
         private System.Windows.Forms.Label label1;
@@ -1166,5 +1187,7 @@
         private System.Windows.Forms.Label lblIconSmall;
         private System.Windows.Forms.Label lblIcon;
         private System.Windows.Forms.PictureBox pbIconSmall;
+        private System.Windows.Forms.Button ForceLevelResetButton;
+        private System.Windows.Forms.NumericUpDown cbMcall;
     }
 }

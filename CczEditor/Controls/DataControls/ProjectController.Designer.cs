@@ -68,6 +68,16 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbMagicBlock = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cbNeighborMpRec = new System.Windows.Forms.ComboBox();
+            this.cbNeighborHPRec = new System.Windows.Forms.ComboBox();
+            this.cbNeighborAwaken = new System.Windows.Forms.ComboBox();
+            this.cbNeighborMorInc = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SpecialSkillDmgForceList = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.KnockBackForceList = new System.Windows.Forms.ComboBox();
@@ -76,16 +86,6 @@
             this.SpecialAppearForceList1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.EtcSave = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cbNeighborMorInc = new System.Windows.Forms.ComboBox();
-            this.cbNeighborAwaken = new System.Windows.Forms.ComboBox();
-            this.cbNeighborHPRec = new System.Windows.Forms.ComboBox();
-            this.cbNeighborMpRec = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cbMagicBlock = new System.Windows.Forms.ComboBox();
             this.groupBox14.SuspendLayout();
             this.groupBox15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SecondEquipStartLevel)).BeginInit();
@@ -243,6 +243,11 @@
             // EnemyUnitExploit
             // 
             this.EnemyUnitExploit.Location = new System.Drawing.Point(356, 195);
+            this.EnemyUnitExploit.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.EnemyUnitExploit.Name = "EnemyUnitExploit";
             this.EnemyUnitExploit.Size = new System.Drawing.Size(68, 21);
             this.EnemyUnitExploit.TabIndex = 19;
@@ -250,6 +255,11 @@
             // NewUnitExploit
             // 
             this.NewUnitExploit.Location = new System.Drawing.Point(147, 195);
+            this.NewUnitExploit.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
             this.NewUnitExploit.Name = "NewUnitExploit";
             this.NewUnitExploit.Size = new System.Drawing.Size(68, 21);
             this.NewUnitExploit.TabIndex = 18;
@@ -538,6 +548,96 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "병종 특수 설정";
             // 
+            // cbMagicBlock
+            // 
+            this.cbMagicBlock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMagicBlock.FormattingEnabled = true;
+            this.cbMagicBlock.Location = new System.Drawing.Point(379, 116);
+            this.cbMagicBlock.Name = "cbMagicBlock";
+            this.cbMagicBlock.Size = new System.Drawing.Size(107, 20);
+            this.cbMagicBlock.TabIndex = 43;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(272, 119);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 12);
+            this.label9.TabIndex = 42;
+            this.label9.Text = "책략면역 병종";
+            // 
+            // cbNeighborMpRec
+            // 
+            this.cbNeighborMpRec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbNeighborMpRec.FormattingEnabled = true;
+            this.cbNeighborMpRec.Location = new System.Drawing.Point(379, 189);
+            this.cbNeighborMpRec.Name = "cbNeighborMpRec";
+            this.cbNeighborMpRec.Size = new System.Drawing.Size(107, 20);
+            this.cbNeighborMpRec.TabIndex = 41;
+            // 
+            // cbNeighborHPRec
+            // 
+            this.cbNeighborHPRec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbNeighborHPRec.FormattingEnabled = true;
+            this.cbNeighborHPRec.Location = new System.Drawing.Point(379, 154);
+            this.cbNeighborHPRec.Name = "cbNeighborHPRec";
+            this.cbNeighborHPRec.Size = new System.Drawing.Size(107, 20);
+            this.cbNeighborHPRec.TabIndex = 40;
+            // 
+            // cbNeighborAwaken
+            // 
+            this.cbNeighborAwaken.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbNeighborAwaken.FormattingEnabled = true;
+            this.cbNeighborAwaken.Location = new System.Drawing.Point(144, 189);
+            this.cbNeighborAwaken.Name = "cbNeighborAwaken";
+            this.cbNeighborAwaken.Size = new System.Drawing.Size(107, 20);
+            this.cbNeighborAwaken.TabIndex = 39;
+            // 
+            // cbNeighborMorInc
+            // 
+            this.cbNeighborMorInc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbNeighborMorInc.FormattingEnabled = true;
+            this.cbNeighborMorInc.Location = new System.Drawing.Point(144, 154);
+            this.cbNeighborMorInc.Name = "cbNeighborMorInc";
+            this.cbNeighborMorInc.Size = new System.Drawing.Size(107, 20);
+            this.cbNeighborMorInc.TabIndex = 38;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(19, 192);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(125, 12);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "주위 상태 회복 병종계";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(272, 192);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(104, 12);
+            this.label7.TabIndex = 36;
+            this.label7.Text = "주위 MP회복 병종";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(272, 157);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(101, 12);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "주위 HP회복 병종";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(19, 157);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(113, 12);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "주위 사기 상승 병종";
+            // 
             // SpecialSkillDmgForceList
             // 
             this.SpecialSkillDmgForceList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -610,96 +710,6 @@
             this.EtcSave.Text = "저장";
             this.EtcSave.UseVisualStyleBackColor = true;
             this.EtcSave.Click += new System.EventHandler(this.EtcSave_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 157);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 12);
-            this.label5.TabIndex = 34;
-            this.label5.Text = "주위 사기 상승 병종";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(272, 157);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(101, 12);
-            this.label6.TabIndex = 35;
-            this.label6.Text = "주위 HP회복 병종";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(272, 192);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 12);
-            this.label7.TabIndex = 36;
-            this.label7.Text = "주위 MP회복 병종";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(19, 192);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(125, 12);
-            this.label8.TabIndex = 37;
-            this.label8.Text = "주위 상태 회복 병종계";
-            // 
-            // cbNeighborMorInc
-            // 
-            this.cbNeighborMorInc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbNeighborMorInc.FormattingEnabled = true;
-            this.cbNeighborMorInc.Location = new System.Drawing.Point(144, 154);
-            this.cbNeighborMorInc.Name = "cbNeighborMorInc";
-            this.cbNeighborMorInc.Size = new System.Drawing.Size(107, 20);
-            this.cbNeighborMorInc.TabIndex = 38;
-            // 
-            // cbNeighborAwaken
-            // 
-            this.cbNeighborAwaken.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbNeighborAwaken.FormattingEnabled = true;
-            this.cbNeighborAwaken.Location = new System.Drawing.Point(144, 189);
-            this.cbNeighborAwaken.Name = "cbNeighborAwaken";
-            this.cbNeighborAwaken.Size = new System.Drawing.Size(107, 20);
-            this.cbNeighborAwaken.TabIndex = 39;
-            // 
-            // cbNeighborHPRec
-            // 
-            this.cbNeighborHPRec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbNeighborHPRec.FormattingEnabled = true;
-            this.cbNeighborHPRec.Location = new System.Drawing.Point(379, 154);
-            this.cbNeighborHPRec.Name = "cbNeighborHPRec";
-            this.cbNeighborHPRec.Size = new System.Drawing.Size(107, 20);
-            this.cbNeighborHPRec.TabIndex = 40;
-            // 
-            // cbNeighborMpRec
-            // 
-            this.cbNeighborMpRec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbNeighborMpRec.FormattingEnabled = true;
-            this.cbNeighborMpRec.Location = new System.Drawing.Point(379, 189);
-            this.cbNeighborMpRec.Name = "cbNeighborMpRec";
-            this.cbNeighborMpRec.Size = new System.Drawing.Size(107, 20);
-            this.cbNeighborMpRec.TabIndex = 41;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(272, 119);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(81, 12);
-            this.label9.TabIndex = 42;
-            this.label9.Text = "책략면역 병종";
-            // 
-            // cbMagicBlock
-            // 
-            this.cbMagicBlock.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbMagicBlock.FormattingEnabled = true;
-            this.cbMagicBlock.Location = new System.Drawing.Point(379, 116);
-            this.cbMagicBlock.Name = "cbMagicBlock";
-            this.cbMagicBlock.Size = new System.Drawing.Size(107, 20);
-            this.cbMagicBlock.TabIndex = 43;
             // 
             // ProjectController
             // 

@@ -28,7 +28,7 @@ namespace CczEditor.Controls.DataControls
 		{
             cbHitarea.Items.AddRange(Program.CurrentConfig.HitAreaNames.ToArray());
 			cbEffarea.Items.AddRange(Program.CurrentConfig.EffAreaNames.ToArray());
-
+            /*
             if(Program.CurrentConfig.CodeOptionContainer.UseMeffAfterMcallExtension)
             {
                 for(int i = 1; i <= 60; i++)
@@ -48,7 +48,7 @@ namespace CczEditor.Controls.DataControls
                 cbMcall.Items.Add("08, 회복");
                 cbMcall.Items.Add("09, 사용안함");
             }
-
+            */
             var forceNames = ConfigUtils.GetForceNames(Program.ExeData, Program.CurrentConfig, Program.FORMATSTRING_KEYVALUEPAIR_HEX2);
             for (var i = 0; i < forceNames.Count; i++)
             {
@@ -80,7 +80,7 @@ namespace CczEditor.Controls.DataControls
 
             txtName.Text = CurrentData.Name;
 
-            ncMagicType.Value = CurrentData.MagicType;
+            ncMagicType.Value = CurrentData.ViewType;
             cbTarget.SelectedIndex = CurrentData.TargetType;
             cbHitarea.SelectedIndex = CurrentData.HitArea;
             cbEffarea.SelectedIndex = CurrentData.EffArea;
@@ -143,13 +143,13 @@ namespace CczEditor.Controls.DataControls
             if (CurrentData.UseMcall)
             {
                 cbMcall.Enabled = true;
-                cbMcall.SelectedIndex = cbMcall.FindString(Utils.GetString(CurrentData.Mcall));
+                cbMcall.Value = CurrentData.Mcall;
 
             }
             else
             {
                 cbMcall.Enabled = false;
-                cbMcall.SelectedIndex = -1;
+                cbMcall.Value = -1;
             }
             
             if (CurrentData.UseAIType)
@@ -247,7 +247,8 @@ namespace CczEditor.Controls.DataControls
 			}
 			var index = lbList.SelectedIndex;
 
-            CurrentData.MagicType = (byte)ncMagicType.Value;
+            CurrentData.Name = txtName.Text;
+            CurrentData.ViewType = (byte)ncMagicType.Value;
             CurrentData.TargetType = (byte)cbTarget.SelectedIndex;
             CurrentData.HitArea = (byte)cbHitarea.SelectedIndex;
             CurrentData.EffArea = (byte)cbEffarea.SelectedIndex;
@@ -264,13 +265,14 @@ namespace CczEditor.Controls.DataControls
             CurrentData.DmgType = (byte)cbDmgType.SelectedIndex;
             CurrentData.HealType = (byte) cbHealType.SelectedIndex;
             CurrentData.Meff = (byte)cbMeff.Value;
-            CurrentData.Mcall = (byte)cbMcall.SelectedIndex;
+            CurrentData.Mcall = (byte)cbMcall.Value;
             CurrentData.AIType = (byte)cbAiType.SelectedIndex;
             CurrentData.Condition = (byte)cbCondition.SelectedIndex;
             CurrentData.LearnType = (byte)cbLearnType.Value;
             CurrentData.DmgValue = (byte)cbDmgValue.Value;
             CurrentData.AccRate = (byte)cbAccRate.Value;
-            
+            CurrentData.Reflect = (byte) cbReflect.SelectedIndex;
+
             CurrentData.Write(index, Program.GameData, Program.ImsgData, Program.ExeData, Program.CurrentConfig);
 
             lbList.Items.RemoveAt(index);
@@ -413,6 +415,15 @@ namespace CczEditor.Controls.DataControls
 
         private void pbIcon_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void ForceLevelResetButton_Click(object sender, EventArgs e)
+        {
+            for (var i = 0; i < Program.CurrentConfig.ForceNames.Count; i++)
+            {
+                lvLearnLv.Items[i].Text = "0";
+            }
 
         }
     }

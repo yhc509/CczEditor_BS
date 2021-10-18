@@ -29,7 +29,7 @@ namespace CczEditor.Data.Wrapper
         public bool UseDmgValue;
         public bool UseAccRate;
         public bool UseReflect;
-
+        
         public byte MagicType;
         public byte DmgType;
         public byte HealType;
@@ -83,8 +83,8 @@ namespace CczEditor.Data.Wrapper
                     if (UseMcall)
                     {
                         Mcall = targetData.ReadByte(list.IndexOf(index), config.Exe.Magic.McallOffset);
-                        if (config.CodeOptionContainer.UseMeffAfterMcallExtension && Mcall != 0xFF)
-                            Mcall++;
+                        /*if (config.CodeOptionContainer.UseMeffAfterMcallExtension && Mcall != 0xFF)
+                            Mcall++;*/
                     }
 
                     list = config.Exe.Magic.UseAiTypeIndexes.ToList();
@@ -220,6 +220,15 @@ namespace CczEditor.Data.Wrapper
                 {
                     targetData.WriteByte(AccRate, list.IndexOf(index),  config.Exe.Magic.AccRateOffset);
                 }
+
+                if (config.CodeOptionContainer.MagicReflect)
+                {
+                    list = config.Exe.Magic.UseReflectIndexes.ToList();
+                    UseReflect = list.Contains(index);
+                    if (UseReflect)
+                        targetData.WriteByte(Reflect, list.IndexOf(index), config.Exe.Magic.ReflectTypeOffset);
+
+                }
             }
             
         }
@@ -233,7 +242,7 @@ namespace CczEditor.Data.Wrapper
 
                 Utils.ChangeByteValue(magic, Utils.GetBytes(Name), 0, 10);
 
-                magic[11] = MagicType;
+                magic[11] = ViewType;
                 magic[12] = TargetType;
                 magic[13] = HitArea;
                 magic[14] = EffArea;

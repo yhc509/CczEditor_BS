@@ -17,6 +17,7 @@ namespace CczEditor.Controls.ConfigControls
             Star62,
             Bs10,
             Bs11,
+            Bs12
         }
         
         public PresetType _presetType;
@@ -65,8 +66,13 @@ namespace CczEditor.Controls.ConfigControls
                     handler.result.DisplayName = DisplayName.Text;
                     config = handler.Execute();
                     break;
-                default:
+                case PresetType.Bs11:
                     handler = new Bs11ConfigCreateHandler();
+                    handler.result.DisplayName = DisplayName.Text;
+                    config = handler.Execute();
+                    break;
+                default:
+                    handler = new Bs12ConfigCreateHandler();
                     handler.result.DisplayName = DisplayName.Text;
                     config = handler.Execute();
                     break;

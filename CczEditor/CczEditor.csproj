@@ -120,7 +120,9 @@
     <Compile Include="Config\Config.cs" />
     <Compile Include="Config\ConfigCreateHandler\Bs10ConfigCreateHandler.cs" />
     <Compile Include="Config\ConfigCreateHandler\BS11ConfigCreateHandler.cs" />
+    <Compile Include="Config\ConfigCreateHandler\Bs12ConfigCreateHandler.cs" />
     <Compile Include="Config\ConfigCreateHandler\ConfigCreateHandler.cs" />
+    <Compile Include="Config\ConfigCreateHandler\Star57ConfigCreateHandler.cs" />
     <Compile Include="Config\ConfigCreateHandler\Star61ConfigCreateHandler.cs" />
     <Compile Include="Config\ConfigManager.cs" />
     <Compile Include="Config\ConfigUtils.cs" />

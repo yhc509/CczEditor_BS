@@ -225,8 +225,8 @@ namespace CczEditor.Controls.DataControls
             CurrentData.SecondEquipLevel = (byte)SecondEquipStartLevel.Value;
             CurrentData.NewUnitExploit = (byte) NewUnitExploit.Value;
             CurrentData.EnemyUnitExploit = (byte)EnemyUnitExploit.Value;
-            CurrentData.NormalEquipLevel = (byte)NormalEquipStLevel.Value;
-            CurrentData.SpecialEquipLevel = (byte)SpecialEquipStLevel.Value;
+            CurrentData.NormalEquipUpLevel = (byte)NormalEquipStLevel.Value;
+            CurrentData.SpecialEquipUpLevel = (byte)SpecialEquipStLevel.Value;
             CurrentData.WriteLevel(Program.ExeData, Program.CurrentConfig);
         }
         #endregion

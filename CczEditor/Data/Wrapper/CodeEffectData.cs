@@ -102,7 +102,7 @@ namespace CczEditor.Data.Wrapper
         {
             if (targetData.IsLocked) return;
 
-            var list = config.CodeEffects.Where(x => x.TypeIndex == (int) type).ToArray();
+            var list = config.CodeEffects.Where(x => x.TypeIndex == (int)type).ToList();
 
             var effect = list[index];
             
@@ -116,7 +116,10 @@ namespace CczEditor.Data.Wrapper
                         targetData.WriteByte(code.Value, 0, info.Offset);
                         if (info.SubEdit == 1)
                         {
-                            targetData.WriteByte(AbilityAssistPercent[index] ? 2 : 1, index, config.Exe.AbilityAssistPercentOffset);
+                            var idx = config.CodeEffects
+                                .Where(x => x.TypeIndex == (int) Config.ConfigCodeEffectInfos.Type.AbilityAssist)
+                                .ToList().IndexOf(info);
+                            targetData.WriteByte(AbilityAssistPercent[idx] ? 2 : 1, idx, config.Exe.AbilityAssistPercentOffset);
                         }
                         break;
                     case Config.ConfigCodeEffectInfos.Type.SpecialAttack:

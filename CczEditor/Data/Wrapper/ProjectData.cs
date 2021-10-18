@@ -255,13 +255,13 @@ namespace CczEditor.Data.Wrapper
             offsets = config.Exe.NormalEquipUpLevelOffsets;
             foreach (var offset in offsets)
             {
-                targetData.WriteByte(NormalEquipLevel, 0, offset);
+                targetData.WriteByte(NormalEquipUpLevel, 0, offset);
             }
 
             offsets = config.Exe.SpecialEquipUpLevelOffsets;
             foreach (var offset in offsets)
             {
-                targetData.WriteByte(SpecialEquipLevel, 0, offset);
+                targetData.WriteByte(SpecialEquipUpLevel, 0, offset);
             }
 
             targetData.Close();

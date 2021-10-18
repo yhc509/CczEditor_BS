@@ -34,6 +34,7 @@
             this.Bs10Button = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Bs12Button = new System.Windows.Forms.Button();
             this.Bs11Button = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -132,6 +133,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.Bs12Button);
             this.tabPage1.Controls.Add(this.Bs11Button);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
@@ -145,6 +147,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "프리셋";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // Bs12Button
+            // 
+            this.Bs12Button.Location = new System.Drawing.Point(425, 193);
+            this.Bs12Button.Name = "Bs12Button";
+            this.Bs12Button.Size = new System.Drawing.Size(155, 42);
+            this.Bs12Button.TabIndex = 6;
+            this.Bs12Button.Text = "BS 1.2 프리셋 생성";
+            this.Bs12Button.UseVisualStyleBackColor = true;
+            this.Bs12Button.Visible = false;
+            this.Bs12Button.Click += new System.EventHandler(this.Bs12Button_Click);
             // 
             // Bs11Button
             // 
@@ -811,5 +824,6 @@
         private System.Windows.Forms.Button btnOriginPath;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lbStatus;
+        private System.Windows.Forms.Button Bs12Button;
     }
 }
